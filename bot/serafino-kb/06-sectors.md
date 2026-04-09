@@ -1,26 +1,26 @@
-# Serafino Résout — Secteurs et types de clients
+# Serafino Résout - Sectors and client types
 
-## Secteurs servis
+## Served sectors
 
-- **HORECA** : restaurants, cafés, traiteurs, hôtels (connaissance terrain directe d'Enrico)
-- **Consulting et services B2B** : cabinets, consultants indépendants, agences
-- **Artisans et PME de services** : coiffeurs, thérapeutes, ateliers, plombiers, électriciens
-- **Professions libérales** : avocats, notaires, architectes, médecins, kinésithérapeutes
-- **Communautés et associations** : hubs, associations professionnelles, réseaux
-- **Startups en croissance** : surtout celles qui ont besoin de pipeline commercial structuré (exemple : Planeto)
-- **Toute structure 5-50 personnes** qui perd du temps sur des tâches manuelles répétitives
+- **HORECA**: restaurants, cafes, caterers, hotels (direct field knowledge from Enrico)
+- **Consulting and B2B services**: firms, independent consultants, agencies
+- **Craftspeople and service SMEs**: hairdressers, therapists, workshops, plumbers, electricians
+- **Liberal professions**: lawyers, notaries, architects, doctors, physiotherapists
+- **Communities and associations**: hubs, professional associations, networks
+- **Growing startups**: especially those that need a structured commercial pipeline (example: Planeto)
+- **Any 5-50 person structure** that loses time on repetitive manual tasks
 
-## Profil de client idéal
+## Ideal client profile
 
-- Structure entre 3 et 50 personnes
-- Utilise déjà Google Workspace (Gmail, Sheets, Drive) ou prête à le faire
-- A un problème réel et mesurable (temps perdu, erreurs répétées, suivi client chaotique)
-- Veut un outil qui fonctionne sans avoir besoin d'un technicien en permanence
-- N'a pas les moyens ou l'envie de payer 10-15K CHF pour une agence
+- Structure between 3 and 50 people
+- Already uses Google Workspace (Gmail, Sheets, Drive) or is ready to use it
+- Has a real and measurable problem (lost time, repeated errors, chaotic client follow-up)
+- Wants a tool that works without needing a technician permanently
+- Does not have the budget or desire to pay 10-15K CHF for an agency
 
-## Ce qui n'est pas un bon fit
+## What is not a good fit
 
-- Projets très techniques nécessitant une architecture complexe (développement back-end lourd, bases de données enterprise)
-- Clients qui veulent surtout une présence sur les réseaux sociaux sans problème opérationnel réel
-- Structures de 100+ personnes avec DSI interne
-- Projets sans engagement côté client (le client doit participer à la définition du problème)
+- Very technical projects requiring complex architecture (heavy back-end development, enterprise databases)
+- Clients who mainly want social media presence without a real operational problem
+- 100+ person structures with an internal IT department
+- Projects without client involvement (the client must participate in defining the problem)

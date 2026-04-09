@@ -39,7 +39,7 @@ Cosa deve mostrare:
 Messaggio:
 decidere più velocemente cosa comprare e cosa mettere in menu.
 
-## Shot 3 — EnricoBot
+## Shot 3 — SerafinoBot
 
 Titolo suggerito:
 `Assistant cuisine`

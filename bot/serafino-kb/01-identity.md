@@ -1,36 +1,40 @@
-# Serafino Résout — Identité et fondateur
+# Serafino Résout - Identity and founder
 
-## Qui est Enrico La Noce
+## Who Enrico La Noce is
 
-Enrico La Noce est le fondateur de Serafino Résout, cabinet de conseil solo basé à Genève.
+Enrico La Noce is the founder of Serafino Résout, a solo consulting practice located in Geneva.
 
-Parcours terrain (11+ ans à Genève) :
-- Chef de rang, maître d'hôtel, responsable de salle, manager d'équipe
-- Expériences : Le Scandale (gastronomique), La Citadella, Palais des Nations (jusqu'à 250 couverts/jour)
-- Compétences développées : gestion d'équipes, coordination des flux, résolution de problèmes en temps réel, amélioration continue
+Serafino is the professional alter ego of Enrico La Noce. When Enrico speaks and acts as Serafino, he takes on a distinct working identity: more structured, focused on problem solving, field reality, automation, and concrete delivery.
 
-Reconversion technique (depuis 2023, autodidacte) :
+Field background (11+ years in Geneva):
+- Chef de cuisine
+- Restaurant owner
+- Direct restaurant experience in Geneva, on the kitchen and operational management side
+- Operational coordination of teams and production flows serving up to 250 meals per service
+- Skills developed: team management, workflow coordination, stock management, supplier coordination, real-time problem solving, continuous improvement
+
+Technical transition (since 2023, self-taught):
 - Google Apps Script, JavaScript, React, Python
-- Construction de solutions numériques réelles : dashboards, automatisations, bots IA, CRM
-- Portfolio démontrable : NGC Alliance Hub (200+ membres), Lucy's Run, Mangia il Laziale, UNLOCK, Planeto
+- Built real digital solutions: dashboards, automations, AI bots, CRM systems
+- Demonstrable portfolio: NGC Alliance Hub (200+ members), Lucy's Run, Mangia il Laziale, UNLOCK, Planeto
 
-## La valeur différenciante
+## Differentiating value
 
-La double compétence terrain + code est l'actif principal. À Genève, il est pratiquement impossible de trouver quelqu'un qui ait géré 250+ couverts au Palais des Nations ET qui sache écrire en React et Python. Cette combinaison ne s'achète pas et ne se réplique pas facilement.
+The main asset is the double competence: field experience + code. In Geneva, it is rare to find someone who has lived the restaurant business from the inside, as a chef de cuisine and restaurant owner coordinating operational flows up to 250 meals per service, and who can also write React and Python. This combination cannot be bought or easily replicated.
 
-Enrico n'est pas consultant théorique. Il a vécu les mêmes frictions opérationnelles que ses clients — commandes dispersées, suivis manuels, dépendances humaines fragiles. Il propose des solutions qu'il aurait lui-même voulu avoir.
+Enrico is not a theoretical consultant. He has lived the same operational frictions as his clients: scattered orders, manual follow-ups, fragile human dependencies. He proposes solutions he would have wanted himself.
 
-## Positionnement
+## Positioning
 
-Serafino Résout est positionné entre :
-- Les agences web (10-15K CHF, trop chères, généralistes)
-- Les freelances IT (5-12K CHF, ne comprennent pas le terrain)
-- Les consultants en management (200-300 CHF/h, ne livrent pas d'outils)
-- Les SaaS génériques (50-200 CHF/mois, pas adaptés au métier spécifique)
+Serafino Résout is positioned between:
+- Web agencies (10-15K CHF, too expensive, generalist)
+- IT freelancers (5-12K CHF, technically competent but disconnected from field reality)
+- Management consultants (200-300 CHF/hour, advise but do not deliver tools)
+- Generic SaaS products (50-200 CHF/month, not adapted to the client's specific business)
 
-Serafino Résout : diagnostic gratuit + plan 300 CHF + mise en place dès 800 CHF. Résultat concret, propriété du client, fonctionne sans Enrico.
+Serafino Résout: free diagnostic + 300 CHF plan + implementation from 800 CHF. Concrete result, client ownership, works without Enrico.
 
-## Localisation et contact
+## Location and contact
 
-- Basé à Genève, Suisse
-- Marché principal : PMI de la Suisse romande (HORECA, artisans, professions libérales, startups, énergie, consulting)
+- Located in Geneva, Switzerland
+- Main market: SMEs in French-speaking Switzerland (HORECA, craftspeople, liberal professions, startups, energy, consulting)

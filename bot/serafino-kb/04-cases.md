@@ -1,56 +1,56 @@
-# Serafino Résout — Cas réels
+# Serafino Résout - Real cases
 
-## Cas 1 — Planeto (scale-up énergie, Suisse/UK/Italie)
+## Case 1 - Planeto (energy scale-up, Switzerland/UK/Italy)
 
-**Contexte :** Planeto SA est une startup suisse spécialisée dans la planification de réseaux thermiques (5G DHC). Fondée par Stefano Cozza et Jonathan Chambers, elle avait une base de prospects dispersés à travers l'Europe mais aucun système pour les prioriser, les contacter ou les suivre.
+**Context:** Planeto SA is a Swiss startup specialized in planning thermal networks (5G DHC). Founded by Stefano Cozza and Jonathan Chambers, it had a prospect base scattered across Europe but no system to prioritize, contact, or track them.
 
-**Problème :** Aucun CRM structuré. Des centaines de prospects non qualifiés dans des tableurs épars. L'équipe perdait du temps sur des contacts non pertinents et n'avait pas de vision claire de la pipeline commerciale.
+**Problem:** No structured CRM. Hundreds of unqualified prospects in scattered spreadsheets. The team was losing time on irrelevant contacts and had no clear view of the commercial pipeline.
 
-**Ce qu'Enrico a livré :**
-- Système de scraping et enrichissement automatique des leads (CH, UK, IT)
-- Base de 756 leads haute priorité identifiés sur ~1785 contacts UK + ~396 contacts CH
-- CRM complet sur Google Sheets avec synchronisation automatique, statuts, pipeline, dashboard
-- Tessa : bot IA multilingue (FR/EN/DE/IT) avec la base de connaissance Planeto, livré sur clé USB plug & play
-- Automatisations de relances et de suivi
+**What Enrico delivered:**
+- Automatic lead scraping and enrichment system (CH, UK, IT)
+- Base of 756 high-priority leads identified from about 1785 UK contacts + about 396 CH contacts
+- Full CRM on Google Sheets with automatic synchronization, statuses, pipeline, dashboard
+- Tessa: multilingual AI bot (FR/EN/DE/IT) with the Planeto knowledge base, delivered as plug-and-play on a USB key
+- Follow-up and tracking automations
 
-**Impact :** L'équipe Planeto peut maintenant se concentrer sur les conversations humaines à fort potentiel, sans passer des heures à trier et qualifier manuellement. Le système tourne sans intervention technique continue.
-
----
-
-## Cas 2 — Restauration HORECA (Genève)
-
-**Problème :** Planification hétérogène, surcharge opérationnelle, pertes de temps quotidiennes. Les responsabilités n'étaient pas clairement définies, les frictions entre brigade et salle causaient des erreurs répétées.
-
-**Ce qu'Enrico a apporté :**
-- Organisation standardisée des flux de service
-- Clarification des responsabilités par poste
-- Réduction mesurable des frictions opérationnelles
-- Amélioration de la stabilité d'équipe
-
-**Impact :** Meilleure fluidité de service, moins d'erreurs, équipe plus stable.
+**Impact:** The Planeto team can now focus on high-potential human conversations without spending hours manually sorting and qualifying contacts. The system runs without continuous technical intervention.
 
 ---
 
-## Cas 3 — NGC Alliance Hub (communauté 200+ membres)
+## Case 2 - HORECA restaurant operations (Geneva)
 
-**Problème :** Informations dispersées, suivi manuel fastidieux, décisions lentes. La coordination entre membres et responsables prenait trop de temps et manquait de traçabilité.
+**Problem:** Inconsistent planning, operational overload, daily time loss. Responsibilities were not clearly defined, and friction between kitchen and service caused repeated errors.
 
-**Ce qu'Enrico a livré :**
-- Tableau de bord centralisé avec suivi en temps réel
-- Priorisation automatique des actions à forte valeur
-- Système de coordination qui fonctionne sans intervention manuelle continue
+**What Enrico brought:**
+- Standardized organization of service flows
+- Clarification of responsibilities by role
+- Measurable reduction of operational friction
+- Improved team stability
 
-**Impact :** Coordination accélérée, meilleure qualité de décision, gain de temps récurrent pour les responsables.
+**Impact:** Smoother service, fewer errors, more stable team.
 
 ---
 
-## Cas 4 — Digitalisation administrative (PME)
+## Case 3 - NGC Alliance Hub (200+ member community)
 
-**Problème :** Tâches répétitives de ressaisie, faible traçabilité, erreurs fréquentes. Le personnel perdait des heures par semaine sur des processus manuels évitables.
+**Problem:** Scattered information, tedious manual tracking, slow decisions. Coordination between members and responsible people took too much time and lacked traceability.
 
-**Ce qu'Enrico a livré :**
-- Automatisation ciblée des flux administratifs
-- Structure documentaire claire dans l'écosystème Google existant
-- Flux simplifié avec validation automatique
+**What Enrico delivered:**
+- Centralized dashboard with real-time tracking
+- Automatic prioritization of high-value actions
+- Coordination system that works without continuous manual intervention
 
-**Impact :** Gain de temps récurrent estimé, réduction du risque d'erreur, aucun nouvel outil à apprendre.
+**Impact:** Faster coordination, better decision quality, recurring time savings for the people in charge.
+
+---
+
+## Case 4 - Administrative digitalization (SME)
+
+**Problem:** Repetitive re-entry tasks, weak traceability, frequent errors. Staff were losing hours per week on avoidable manual processes.
+
+**What Enrico delivered:**
+- Targeted automation of administrative flows
+- Clear document structure in the existing Google ecosystem
+- Simplified flow with automatic validation
+
+**Impact:** Estimated recurring time savings, reduced error risk, no new tool to learn.

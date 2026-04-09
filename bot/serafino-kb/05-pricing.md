@@ -1,42 +1,42 @@
-# Serafino Résout — Tarification et modèle économique
+# Serafino Résout - Pricing and business model
 
-## Structure tarifaire
+## Pricing structure
 
-| Étape | Prix | Ce que le client reçoit |
-|-------|------|------------------------|
-| Diagnostic | 0 CHF | Analyse terrain, rapport de synthèse, priorités identifiées |
-| Plan de simplification | 300 CHF | Document actionnable : objectifs, actions, indicateurs |
-| Mise en oeuvre | 800 CHF+ par mois | Déploiement outil ou processus, suivi, transfert |
+| Step | Price | What the client receives |
+|------|-------|--------------------------|
+| Diagnostic | 0 CHF | Field analysis, synthesis report, identified priorities |
+| Simplification plan | 300 CHF | Actionable document: objectives, actions, indicators |
+| Implementation | 800 CHF+ per month | Tool or process deployment, tracking, transfer |
 
-## Comparaison avec les alternatives du marché
+## Comparison with market alternatives
 
-| Option | Coût typique | Limite |
-|--------|-------------|--------|
-| Agences web | 10'000–15'000 CHF | Généralistes, ne comprennent pas le terrain |
-| Freelances IT | 5'000–12'000 CHF | Compétents techniquement mais pas le métier |
-| Consultants management | 200–300 CHF/h | Conseillent mais ne livrent pas d'outils |
-| SaaS générique | 50–200 CHF/mois | Pas adapté au métier spécifique |
-| **Serafino Résout** | **0 → 800 CHF** | **Terrain + code + livraison autonome** |
+| Option | Typical cost | Limitation |
+|--------|--------------|------------|
+| Web agencies | 10,000-15,000 CHF | Generalist, do not understand the field |
+| IT freelancers | 5,000-12,000 CHF | Technically competent but not business-field oriented |
+| Management consultants | 200-300 CHF/hour | Advise but do not deliver tools |
+| Generic SaaS | 50-200 CHF/month | Not adapted to the specific business |
+| **Serafino Résout** | **0 -> 800 CHF** | **Field + code + autonomous delivery** |
 
-## Logique de valeur
+## Value logic
 
-- Le diagnostic gratuit élimine le risque côté client : il reçoit déjà de la valeur avant de payer quoi que ce soit
-- Le plan à 300 CHF est utile même si la mission s'arrête là — ce n'est pas un funnel piégé
-- La mise en oeuvre est facturée mensuellement, en fonction de la complexité et du volume
-- Ticket moyen constaté : 2'800 à 3'800 CHF par mission complète
-- L'outil livré appartient au client, sans abonnement ni dépendance permanente
+- The free diagnostic removes risk for the client: they already receive value before paying anything
+- The 300 CHF plan is useful even if the mission stops there - it is not a trapped funnel
+- Implementation is billed monthly, depending on complexity and volume
+- Observed average ticket: 2,800 to 3,800 CHF per complete mission
+- The delivered tool belongs to the client, with no subscription or permanent dependency
 
-## Garantie
+## Guarantee
 
-**Satisfait ou remboursé à 3 mois.** Si le client ne constate pas de résultat mesurable dans les 3 mois suivant la mise en oeuvre, il est remboursé intégralement. Cette garantie est ferme et sans condition.
+**Satisfied or refunded at 3 months.** If the client does not observe a measurable result within 3 months after implementation, they are fully refunded. This guarantee is firm and unconditional.
 
-## Questions fréquentes sur le prix
+## Frequent pricing questions
 
-**Est-ce que 800 CHF/mois, c'est beaucoup ?**
-Comparé à une heure de consultant classique (200-300 CHF), non. Et contrairement à un consultant, Enrico livre un outil qui continue à fonctionner après la fin de la mission.
+**Is 800 CHF/month a lot?**
+Compared with one hour of classic consulting (200-300 CHF), no. And unlike a consultant, Enrico delivers a tool that keeps working after the mission ends.
 
-**Y a-t-il des coûts cachés ?**
-Non. Enrico travaille dans l'écosystème Google que le client a déjà. Il n'y a pas de logiciel à acheter, pas de serveur à louer, pas d'abonnement supplémentaire.
+**Are there hidden costs?**
+No. Enrico works in the Google ecosystem the client already has. There is no software to buy, no server to rent, no additional subscription.
 
-**Peut-on s'arrêter après le plan à 300 CHF ?**
-Oui, absolument. Le plan a de la valeur en soi. Beaucoup de clients l'utilisent comme feuille de route qu'ils implémentent eux-mêmes.
+**Can the client stop after the 300 CHF plan?**
+Yes, absolutely. The plan has value by itself. Many clients use it as a roadmap they implement themselves.

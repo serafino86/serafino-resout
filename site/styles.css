@@ -320,6 +320,7 @@ h3 {
 .portfolio-grid,
 .kpi-grid,
 .impact-grid,
+.proof-grid,
 .apps-grid {
   display: grid;
   gap: 18px;
@@ -343,6 +344,7 @@ h3 {
 .sector-grid,
 .cases-grid,
 .portfolio-grid,
+.proof-grid,
 .kpi-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -367,6 +369,24 @@ h3 {
   color: var(--text);
   font-size: 1.26rem;
   font-weight: 700;
+}
+
+.proof-section {
+  padding-top: 38px;
+}
+
+.proof-card span {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.proof-card h3 {
+  margin-bottom: 12px;
 }
 
 .accent-card {

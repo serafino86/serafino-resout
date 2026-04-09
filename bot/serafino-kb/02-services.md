@@ -1,39 +1,39 @@
-# Serafino Résout — Services
+# Serafino Résout - Services
 
-## L'offre en trois étapes
+## The three-step offer
 
-### Étape 1 : Diagnostic ciblé (gratuit)
-- Analyse des flux de travail, tâches répétitives, points de friction, pertes de temps
-- Identification des priorités à fort impact
-- Livrable : rapport de diagnostic clair, sans jargon
-- Engagement : aucun, le diagnostic est offert sans condition
+### Step 1: Targeted diagnostic (free)
+- Analysis of workflows, repetitive tasks, friction points, and lost time
+- Identification of high-impact priorities
+- Deliverable: a clear diagnostic report, without jargon
+- Commitment: none, the diagnostic is offered without conditions
 
-### Étape 2 : Plan de simplification (300 CHF)
-- Formalisation d'un plan d'action concret
-- Contenu : objectifs, actions prioritaires, responsabilités, délais, indicateurs de succès
-- Livrable : document structuré, réutilisable par le client même si la mission s'arrête là
-- Valeur standalone : le plan a de la valeur même sans mise en oeuvre
+### Step 2: Simplification plan (300 CHF)
+- Formalization of a concrete action plan
+- Content: objectives, priority actions, responsibilities, deadlines, success indicators
+- Deliverable: a structured document the client can reuse even if the mission stops there
+- Standalone value: the plan has value even without implementation
 
-### Étape 3 : Mise en oeuvre (à partir de 800 CHF/mois)
-- Déploiement progressif des solutions : organisation, automatisation, outils digitaux
-- Adaptation au niveau réel du client et de son équipe
-- Suivi des résultats : temps gagné, erreurs réduites, coûts évités, qualité de service
-- Transfert complet au client en fin de mission
+### Step 3: Implementation (from 800 CHF/month)
+- Progressive deployment of solutions: organization, automation, digital tools
+- Adaptation to the real level of the client and their team
+- Result tracking: time saved, errors reduced, costs avoided, service quality
+- Full transfer to the client at the end of the mission
 
-## Ce que Enrico construit concrètement
+## What Enrico builds concretely
 
-- CRM léger sur Google Sheets avec automatisations (relances, statuts, dashboard)
-- Bots IA avec base de connaissance métier (comme Tessa pour Planeto)
-- Tableaux de bord opérationnels (stocks, commandes, performances équipe)
-- Automatisations de tâches répétitives (emails, rappels, exports)
-- Systèmes de gestion de leads et pipeline commercial
-- Outils de suivi client (relances coiffeur, rappels dentiste, follow-up B2B)
+- Lightweight CRM on Google Sheets with automations (follow-ups, statuses, dashboard)
+- AI bots with a business knowledge base (like Tessa for Planeto)
+- Operational dashboards (stock, orders, team performance)
+- Automations for repetitive tasks (emails, reminders, exports)
+- Lead management and commercial pipeline systems
+- Client follow-up tools (hairdresser reminders, dentist reminders, B2B follow-up)
 
-## La philosophie de livraison
+## Delivery philosophy
 
-**Le produit final fonctionne sans Enrico.**
-Ce n'est pas un service à abonnement ou une dépendance. Le client reçoit un outil documenté, qu'il possède, qu'il peut modifier, et qui tourne dans son écosystème Google existant. Enrico revient seulement si le client veut évoluer ou ajouter de nouvelles fonctionnalités.
+**The final product works without Enrico.**
+This is not a subscription service or a dependency. The client receives a documented tool that they own, can modify, and that runs in their existing Google ecosystem. Enrico only comes back if the client wants to evolve it or add new features.
 
-## Garantie
+## Guarantee
 
-Satisfait ou remboursé à 3 mois. Si le client n'obtient pas de résultat mesurable dans les 3 mois suivant la mise en oeuvre, il est remboursé intégralement.
+Satisfied or refunded at 3 months. If the client does not obtain a measurable result within 3 months after implementation, they are fully refunded.
