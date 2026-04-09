@@ -180,7 +180,7 @@ Everything I build belongs to you, is documented, and runs in your Google accoun
 The diagnostic is free and without commitment. We meet for one hour, I ask questions about your activity, and I give you a clear report on the priorities. Then you decide whether you want to go further.
 
 **Q: How do I book the diagnostic?**
-Directly by email: enrico@serafino-resout.com. Or through the contact form on the site.
+Directly by email: contact@serafino-resout.ch. Or through the contact form on the site.
 
 **Q: How long does the diagnostic take?**
 Usually 1 hour of conversation, then a few days for me to send you a written report. Without commitment from your side.

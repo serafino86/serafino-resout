@@ -215,7 +215,7 @@ async function callOpenRouter(systemPrompt, history, maxTokens) {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      'HTTP-Referer': 'https://serafino-resout.com',
+      'HTTP-Referer': 'https://serafino-resout.ch',
       'X-Title': 'Serafino Résout Bot',
     },
     body: JSON.stringify({
