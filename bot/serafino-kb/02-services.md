@@ -14,7 +14,7 @@
 - Deliverable: a structured document the client can reuse even if the mission stops there
 - Standalone value: the plan has value even without implementation
 
-### Step 3: Implementation (from 800 CHF/month)
+### Step 3: Implementation (from 800 CHF per standalone project, paid once)
 - Progressive deployment of solutions: organization, automation, digital tools
 - Adaptation to the real level of the client and their team
 - Result tracking: time saved, errors reduced, costs avoided, service quality

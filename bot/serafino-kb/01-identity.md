@@ -32,7 +32,7 @@ Serafino Résout is positioned between:
 - Management consultants (200-300 CHF/hour, advise but do not deliver tools)
 - Generic SaaS products (50-200 CHF/month, not adapted to the client's specific business)
 
-Serafino Résout: free diagnostic + 300 CHF plan + implementation from 800 CHF. Concrete result, client ownership, works without Enrico.
+Serafino Résout: free diagnostic + 300 CHF plan + implementation from 800 CHF per standalone project, paid once. Concrete result, client ownership, works without Serafino.
 
 ## Location and contact
 
