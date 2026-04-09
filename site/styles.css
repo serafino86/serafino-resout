@@ -1001,6 +1001,30 @@ h3 {
   transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s;
 }
 
+.bot-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 252, 247, 0.96);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(40, 30, 20, 0.12);
+}
+
+.bot-close:hover,
+.bot-close:focus-visible {
+  border-color: rgba(45, 90, 77, 0.4);
+  color: var(--accent);
+}
+
 /* iframe fills the popup */
 .bot-popup-frame {
   flex: 1;
@@ -1051,6 +1075,14 @@ h3 {
     height: 90dvh;
     border-radius: 24px 24px 0 0;
     transform: translateY(100%);
+  }
+
+  .bot-close {
+    top: 10px;
+    right: 10px;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 0.9rem;
   }
 
   .bot-popup.is-open {

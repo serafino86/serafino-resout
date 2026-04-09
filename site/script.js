@@ -20,6 +20,7 @@ const botFab   = document.getElementById("botFab");
 const botPopup = document.getElementById("botPopup");
 const botScrim = document.getElementById("botScrim");
 const botFrame = document.getElementById("botFrame");
+const botClose = document.getElementById("botClose");
 const BOT_URL  = "https://serafino-bot.vercel.app";
 
 let botOpen   = false;
@@ -51,6 +52,10 @@ if (botFab) {
 
 if (botScrim) {
   botScrim.addEventListener("click", closeBot);
+}
+
+if (botClose) {
+  botClose.addEventListener("click", closeBot);
 }
 
 document.addEventListener("keydown", (e) => {
