@@ -540,9 +540,21 @@ h3 {
   margin-top: 20px;
 }
 
+.case-screens {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.7fr);
+  gap: 18px;
+  margin-top: 22px;
+  align-items: start;
+}
+
 .case-screenshot {
   margin: 22px 0 0;
   padding: 14px;
+}
+
+.case-screens .case-screenshot {
+  margin: 0;
 }
 
 .case-screenshot img {
@@ -858,6 +870,7 @@ h3 {
   .portfolio-grid,
   .kpi-grid,
   .kitchen-features,
+  .case-screens,
   .story-milestones,
   .impact-grid,
   .apps-grid {
