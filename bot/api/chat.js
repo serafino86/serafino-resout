@@ -8,6 +8,7 @@ const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
 const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-8b-instruct';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
 const MAX_TOKENS        = 500;
+const MAX_EMAIL_TOKENS  = 750;
 const MAX_MEMORY_TOKENS = 120;
 const RATE_LIMIT_RETRIES = 3;
 const DEFAULT_LANGUAGE  = 'fr';
@@ -140,7 +141,7 @@ function normalizeHistory(history, message) {
     .slice(-MAX_HISTORY_MESSAGES);
 
   const last = trimmed[trimmed.length - 1];
-  if (!last || last.role !== 'user' || last.text !== message) {
+  if (message && (!last || last.role !== 'user' || last.text !== message)) {
     trimmed.push({ role: 'user', text: message });
   }
 
@@ -151,6 +152,136 @@ function toTranscript(history) {
   return history
     .map((entry) => `${entry.role === 'user' ? 'User' : 'Assistant'}: ${entry.text}`)
     .join('\n\n');
+}
+
+function safeJsonParse(text) {
+  const raw = String(text || '').trim();
+  try { return JSON.parse(raw); } catch (_) { /* continue */ }
+  const match = raw.match(/\{[\s\S]*\}/);
+  if (!match) return null;
+  try { return JSON.parse(match[0]); } catch (_) { return null; }
+}
+
+function cleanField(value, maxLength) {
+  return String(value || '').trim().slice(0, maxLength);
+}
+
+function defaultEmailDraft(language, currentMemory, history) {
+  const transcript = toTranscript(history).slice(-1200);
+  const isIt = language === 'it';
+  const isEn = language === 'en';
+  const isDe = language === 'de-CH';
+  const subject = isIt ? 'Primo scambio - caso da chiarire'
+    : isEn ? 'First conversation - case to clarify'
+    : isDe ? 'Erstes Gespräch - Situation klären'
+    : 'Premier échange - situation à clarifier';
+  const body = isIt ? [
+    'Ciao Serafino,',
+    '',
+    'Ho parlato con il tuo assistente e vorrei capire se puoi aiutarmi.',
+    '',
+    'Riepilogo:',
+    currentMemory || transcript || '- Da completare',
+    '',
+    'Informazioni ancora da completare:',
+    '- Attività',
+    '- Problema principale',
+    '- Obiettivo',
+    '- Contatto',
+    '',
+    'Grazie,',
+  ].join('\n') : isEn ? [
+    'Hello Serafino,',
+    '',
+    'I spoke with your assistant and would like to understand whether you can help.',
+    '',
+    'Summary:',
+    currentMemory || transcript || '- To complete',
+    '',
+    'Information still to complete:',
+    '- Activity',
+    '- Main problem',
+    '- Goal',
+    '- Contact details',
+    '',
+    'Thank you,',
+  ].join('\n') : isDe ? [
+    'Hallo Serafino,',
+    '',
+    'Ich habe mit deinem Assistenten gesprochen und möchte klären, ob du mir helfen kannst.',
+    '',
+    'Zusammenfassung:',
+    currentMemory || transcript || '- Zu ergänzen',
+    '',
+    'Noch fehlende Informationen:',
+    '- Tätigkeit',
+    '- Hauptproblem',
+    '- Ziel',
+    '- Kontakt',
+    '',
+    'Danke,',
+  ].join('\n') : [
+    'Bonjour Serafino,',
+    '',
+    'J\'ai échangé avec votre assistant et j\'aimerais voir si vous pouvez m\'aider.',
+    '',
+    'Résumé:',
+    currentMemory || transcript || '- À compléter',
+    '',
+    'Informations encore à compléter:',
+    '- Activité',
+    '- Problème principal',
+    '- Objectif',
+    '- Coordonnées',
+    '',
+    'Merci,',
+  ].join('\n');
+
+  return {
+    subject,
+    summary: currentMemory || '',
+    missing: ['activity', 'main problem', 'goal', 'contact details'],
+    body,
+  };
+}
+
+async function prepareLeadEmail(language, currentMemory, history) {
+  const transcript = toTranscript(history).slice(-6000);
+  const config = LANGUAGE_CONFIG[language] || LANGUAGE_CONFIG[DEFAULT_LANGUAGE];
+  const fallback = defaultEmailDraft(language, currentMemory, history);
+
+  const result = await generateWithFallback(
+    [
+      config.promptInstruction,
+      'You prepare a concise email draft from a Serafino Résout chatbot conversation.',
+      'Return only valid JSON. No markdown. No code fences.',
+      'Do not ask again for details already present in the conversation or memory.',
+      'Identify only essential missing information: activity, main operational problem, desired improvement, urgency/timing, contact details.',
+      'If information is missing, include a short "To complete" line in the email body instead of blocking the user.',
+      'Keep the email human, direct, and easy for the visitor to edit before sending.',
+      'Recipient is Serafino at contact@serafino-resout.ch.',
+      'JSON shape: {"subject":"...","summary":"...","missing":["..."],"body":"..."}',
+    ].join('\n'),
+    [{ role: 'user', text: [
+      'Conversation memory:',
+      currentMemory || '- No durable context yet.',
+      '',
+      'Conversation transcript:',
+      transcript || '- No transcript.',
+    ].join('\n') }],
+    MAX_EMAIL_TOKENS,
+  );
+
+  const parsed = safeJsonParse(result.text) || fallback;
+  return {
+    subject: cleanField(parsed.subject || fallback.subject, 120) || fallback.subject,
+    summary: cleanField(parsed.summary || fallback.summary, 900),
+    missing: Array.isArray(parsed.missing)
+      ? parsed.missing.map((item) => cleanField(item, 80)).filter(Boolean).slice(0, 6)
+      : fallback.missing,
+    body: cleanField(parsed.body || fallback.body, 1800) || fallback.body,
+    provider: result.provider,
+  };
 }
 
 async function callGemini(systemPrompt, history, maxTokens) {
@@ -317,12 +448,62 @@ module.exports = async function handler(req, res) {
   const history  = Array.isArray(body.messages) ? body.messages : [];
   const currentMemory = sanitizeMemory(body.memory);
 
-  if (!message) return res.status(400).json({ ok: false, error: 'Missing message' });
+  if (body.action === 'prepare_email') {
+    const normalized = normalizeHistory(history, '');
+    const fallback = defaultEmailDraft(language, currentMemory, normalized);
+    const hasKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENROUTER_API_KEY;
+    if (!hasKey) {
+      return res.status(200).json({
+        ok: true,
+        mode: 'fallback-email-draft',
+        memory: currentMemory,
+        draft: {
+          to: 'contact@serafino-resout.ch',
+          subject: fallback.subject,
+          summary: fallback.summary,
+          missing: fallback.missing,
+          body: fallback.body,
+        },
+      });
+    }
+
+    try {
+      const draft = await prepareLeadEmail(language, currentMemory, normalized);
+      return res.status(200).json({
+        ok: true,
+        mode: `${draft.provider}-email-draft`,
+        provider: draft.provider,
+        memory: currentMemory,
+        draft: {
+          to: 'contact@serafino-resout.ch',
+          subject: draft.subject,
+          summary: draft.summary,
+          missing: draft.missing,
+          body: draft.body,
+        },
+      });
+    } catch (error) {
+      return res.status(200).json({
+        ok: true,
+        mode: 'fallback-email-draft',
+        memory: currentMemory,
+        draft: {
+          to: 'contact@serafino-resout.ch',
+          subject: fallback.subject,
+          summary: fallback.summary,
+          missing: fallback.missing,
+          body: fallback.body,
+        },
+      });
+    }
+  }
 
   const hasKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENROUTER_API_KEY;
   if (!hasKey) {
     return res.status(200).json({ ok: true, mode: 'no_api_key', memory: currentMemory, reply: config.missingKey });
   }
+
+  if (!message) return res.status(400).json({ ok: false, error: 'Missing message' });
 
   const normalizedHistory = normalizeHistory(history, message);
 

@@ -182,6 +182,16 @@
     .bot-suggestions:empty { margin-bottom: 0; }
     .bot-suggestions::-webkit-scrollbar { display: none; }
 
+    .bot-actions {
+      display: none;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .bot-actions.is-visible {
+      display: flex;
+    }
+
     .bot-suggestion-chip {
       background: transparent;
       border: 1px solid var(--line-strong);
@@ -199,6 +209,47 @@
       background: rgba(45, 90, 77, 0.08);
       border-color: var(--accent);
       color: var(--text);
+    }
+
+    .bot-action-chip {
+      background: rgba(45, 90, 77, 0.1);
+      border: 1px solid rgba(45, 90, 77, 0.34);
+      color: var(--accent);
+      border-radius: 99px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .bot-action-chip:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .bot-mail-card {
+      display: grid;
+      gap: 9px;
+    }
+
+    .bot-mail-card p {
+      margin: 0;
+    }
+
+    .bot-mail-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      width: fit-content;
+      padding: 0 14px;
+      border-radius: 99px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .bot-composer { display: flex; align-items: flex-end; gap: 8px; }
@@ -277,6 +328,11 @@
   <div class="bot-thread-wrap" id="botThread"></div>
 
   <div class="bot-composer-wrap">
+    <div class="bot-actions" id="botActions">
+      <button type="button" class="bot-action-chip" id="prepareMail">
+        Préparer une mail
+      </button>
+    </div>
     <div class="bot-suggestions" id="botSuggestions"></div>
     <div class="bot-composer">
       <textarea id="botInput" class="bot-input" rows="1"
@@ -326,6 +382,12 @@ const BOT_COPY = {
   fr: {
     welcome: "Bonjour. Je suis l'assistant de Serafino Résout. Je peux t'aider à comprendre si l'offre de Serafino correspond à ta situation — de façon claire et concrète. Commence par me parler de ton activité ou pose une question directe.",
     placeholder: 'Décris ton problème ou pose une question...',
+    prepareMail: 'Préparer une mail',
+    preparingMail: 'Je prépare la mail...',
+    mailIntro: 'J’ai préparé une mail pour Serafino avec ce qui est déjà clair.',
+    missingIntro: 'À compléter si tu veux:',
+    openMail: 'Ouvrir la mail',
+    mailError: 'Je n’ai pas réussi à préparer la mail. Tu peux écrire directement à contact@serafino-resout.ch.',
     suggestions: [
       "C'est quoi Serafino Résout ?",
       'Comment fonctionne le diagnostic gratuit ?',
@@ -338,6 +400,12 @@ const BOT_COPY = {
   en: {
     welcome: "Hello. I'm the Serafino Résout assistant. I can help you understand whether Serafino's offer fits your situation — clearly and concretely. Tell me about your activity or ask a direct question.",
     placeholder: 'Describe your problem or ask a question...',
+    prepareMail: 'Prepare an email',
+    preparingMail: 'I am preparing the email...',
+    mailIntro: 'I prepared an email for Serafino with what is already clear.',
+    missingIntro: 'To complete if you want:',
+    openMail: 'Open email',
+    mailError: 'I could not prepare the email. You can write directly to contact@serafino-resout.ch.',
     suggestions: [
       'What is Serafino Résout?',
       'How does the free diagnostic work?',
@@ -350,6 +418,12 @@ const BOT_COPY = {
   it: {
     welcome: "Ciao. Sono l'assistente di Serafino Résout. Posso aiutarti a capire se l'offerta di Serafino fa al caso tuo — in modo chiaro e concreto. Raccontami della tua attività o fai una domanda diretta.",
     placeholder: 'Descrivi il tuo problema o fai una domanda...',
+    prepareMail: 'Preparare una mail',
+    preparingMail: 'Preparo la mail...',
+    mailIntro: 'Ho preparato una mail per Serafino con ciò che è già chiaro.',
+    missingIntro: 'Da completare se vuoi:',
+    openMail: 'Aprire la mail',
+    mailError: 'Non sono riuscito a preparare la mail. Puoi scrivere direttamente a contact@serafino-resout.ch.',
     suggestions: [
       "Cos'è Serafino Résout?",
       'Come funziona la diagnosi gratuita?',
@@ -362,6 +436,12 @@ const BOT_COPY = {
   'de-CH': {
     welcome: 'Hallo. Ich bin der Assistent von Serafino Résout. Ich kann dir helfen zu verstehen, ob Serafinos Angebot zu deiner Situation passt — klar und konkret. Erzähl mir von deiner Tätigkeit oder stelle eine direkte Frage.',
     placeholder: 'Beschreibe dein Problem oder stelle eine Frage...',
+    prepareMail: 'E-Mail vorbereiten',
+    preparingMail: 'Ich bereite die E-Mail vor...',
+    mailIntro: 'Ich habe eine E-Mail für Serafino vorbereitet, mit dem, was schon klar ist.',
+    missingIntro: 'Kannst du bei Bedarf ergänzen:',
+    openMail: 'E-Mail öffnen',
+    mailError: 'Ich konnte die E-Mail nicht vorbereiten. Du kannst direkt an contact@serafino-resout.ch schreiben.',
     suggestions: [
       'Was ist Serafino Résout?',
       'Wie funktioniert die kostenlose Diagnose?',
@@ -388,11 +468,23 @@ function autoResize() {
 function syncComposer() {
   const input = document.getElementById('botInput');
   const send  = document.getElementById('botSend');
+  const action = document.getElementById('prepareMail');
   if (!input || !send) return;
   const copy = BOT_COPY[botState.language];
   input.placeholder = copy ? copy.placeholder : '';
   input.disabled    = botState.loading;
   send.disabled     = botState.loading || !input.value.trim();
+  if (action && copy) {
+    action.textContent = botState.loading ? copy.preparingMail : copy.prepareMail;
+    action.disabled = botState.loading;
+  }
+}
+
+function renderActions() {
+  const el = document.getElementById('botActions');
+  if (!el) return;
+  const hasUserMessage = botState.messages.some((msg) => msg.role === 'user');
+  el.classList.toggle('is-visible', hasUserMessage);
 }
 
 function renderSuggestions() {
@@ -418,6 +510,36 @@ function addBubble(role, text) {
   bubble.className = 'bot-bubble';
   bubble.textContent = text;
   row.appendChild(bubble);
+  thread.appendChild(row);
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function makeMailto(draft) {
+  const to = draft.to || 'contact@serafino-resout.ch';
+  const subject = encodeURIComponent(draft.subject || 'Premier échange - Serafino Résout');
+  const body = encodeURIComponent(draft.body || '');
+  return `mailto:${to}?subject=${subject}&body=${body}`;
+}
+
+function addMailDraft(draft) {
+  const thread = document.getElementById('botThread');
+  const copy = BOT_COPY[botState.language] || BOT_COPY.fr;
+  if (!thread) return;
+
+  const missing = Array.isArray(draft.missing) && draft.missing.length
+    ? `<p><strong>${esc(copy.missingIntro)}</strong> ${esc(draft.missing.join(', '))}</p>`
+    : '';
+
+  const row = document.createElement('div');
+  row.className = 'bot-bubble-row bot';
+  row.innerHTML = `
+    <div class="bot-bubble bot-mail-card">
+      <p>${esc(copy.mailIntro)}</p>
+      ${missing}
+      <p><strong>${esc(draft.subject || '')}</strong></p>
+      <a class="bot-mail-button" href="${esc(makeMailto(draft))}" target="_top">${esc(copy.openMail)}</a>
+    </div>
+  `;
   thread.appendChild(row);
   thread.scrollTop = thread.scrollHeight;
 }
@@ -449,6 +571,7 @@ function setLanguage(lang) {
     addBubble('bot', BOT_COPY[lang].welcome);
   }
   renderSuggestions();
+  renderActions();
   syncComposer();
 }
 
@@ -465,6 +588,7 @@ async function send(rawMsg) {
 
   addBubble('user', msg);
   renderSuggestions();
+  renderActions();
   syncComposer();
   showTyping();
 
@@ -491,10 +615,38 @@ async function send(rawMsg) {
   }
 }
 
+async function prepareMail() {
+  if (botState.loading) return;
+  const copy = BOT_COPY[botState.language] || BOT_COPY.fr;
+  botState.loading = true;
+  renderActions();
+  syncComposer();
+  showTyping();
+
+  try {
+    const data = await API.chatBot({
+      action: 'prepare_email',
+      messages: botState.messages,
+      language: botState.language,
+      memory: botState.memory,
+    });
+    hideTyping();
+    if (!data.draft) throw new Error('Missing draft');
+    addMailDraft(data.draft);
+  } catch (_) {
+    hideTyping();
+    addBubble('bot', copy.mailError);
+  } finally {
+    botState.loading = false;
+    syncComposer();
+  }
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   addBubble('bot', BOT_COPY.fr.welcome);
   renderSuggestions();
+  renderActions();
   syncComposer();
 
   // Language pills
@@ -525,6 +677,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const input = document.getElementById('botInput');
       send(input ? input.value : '');
     });
+  }
+
+  const prepareMailBtn = document.getElementById('prepareMail');
+  if (prepareMailBtn) {
+    prepareMailBtn.addEventListener('click', prepareMail);
   }
 
   // Mobile viewport sync (keyboard)
