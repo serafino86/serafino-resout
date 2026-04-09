@@ -3,15 +3,25 @@ const nav = document.querySelector(".site-nav");
 
 if (toggle && nav) {
   toggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
+    const open = document.body.classList.toggle("nav-open");
+    nav.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
   });
 
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
+      document.body.classList.remove("nav-open");
       nav.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
     });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!document.body.classList.contains("nav-open")) return;
+    if (nav.contains(event.target) || toggle.contains(event.target)) return;
+    document.body.classList.remove("nav-open");
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
   });
 }
 

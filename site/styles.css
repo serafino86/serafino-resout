@@ -895,7 +895,16 @@ h3 {
 
   .menu-toggle {
     display: inline-flex;
-    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 76px;
+    min-height: 42px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-strong);
+    font-weight: 700;
+    cursor: pointer;
   }
 
   .site-nav {
@@ -913,7 +922,8 @@ h3 {
     box-shadow: var(--shadow);
   }
 
-  .site-nav.is-open {
+  .site-nav.is-open,
+  body.nav-open .site-nav {
     display: flex;
   }
 }
