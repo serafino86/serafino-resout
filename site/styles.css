@@ -540,6 +540,25 @@ h3 {
   margin-top: 20px;
 }
 
+.case-screenshot {
+  margin: 22px 0 0;
+  padding: 14px;
+}
+
+.case-screenshot img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.case-screenshot figcaption {
+  margin: 12px 8px 2px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
 .kitchen-grid-secondary {
   margin-top: 20px;
 }
