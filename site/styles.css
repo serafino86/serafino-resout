@@ -1322,9 +1322,51 @@ h3 {
   .flip-card {
     height: auto;
     min-height: 200px;
+    cursor: default;
+    perspective: none;
   }
 
   .flip-inner {
-    min-height: 200px;
+    display: grid;
+    gap: 10px;
+    min-height: 0;
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+  }
+
+  .flip-front,
+  .flip-back {
+    position: static;
+    min-height: 0;
+    padding: 18px;
+    border-radius: 14px;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+  }
+
+  .flip-front {
+    box-shadow: none;
+    border-bottom: 0;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .flip-back {
+    border-radius: 0 0 14px 14px;
+  }
+
+  .flip-hint {
+    display: none;
+  }
+
+  .flip-question {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .flip-back p:not(.flip-service) {
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 }
