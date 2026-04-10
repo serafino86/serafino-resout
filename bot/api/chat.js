@@ -443,16 +443,16 @@ async function withRetries(fn) {
 }
 
 async function generateWithFallback(systemPrompt, history, maxTokens) {
-  // 1. OpenRouter (primary)
-  if (process.env.OPENROUTER_API_KEY) {
-    try {
-      return { provider: 'openrouter', text: await withRetries(() => callOpenRouter(systemPrompt, history, maxTokens)) };
-    } catch (_) { /* fall through */ }
-  }
-  // 2. Gemini
+  // 1. Gemini (primary)
   if (process.env.GEMINI_API_KEY) {
     try {
       return { provider: 'gemini', text: await withRetries(() => callGemini(systemPrompt, history, maxTokens)) };
+    } catch (_) { /* fall through */ }
+  }
+  // 2. OpenRouter (fallback)
+  if (process.env.OPENROUTER_API_KEY) {
+    try {
+      return { provider: 'openrouter', text: await withRetries(() => callOpenRouter(systemPrompt, history, maxTokens)) };
     } catch (_) { /* fall through */ }
   }
   // 3. Groq
