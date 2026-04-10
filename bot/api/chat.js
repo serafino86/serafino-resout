@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const GROQ_MODEL        = 'llama-3.1-8b-instant';
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-8b-instruct';
+const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
 const MAX_TOKENS        = 500;
 const MAX_EMAIL_TOKENS  = 750;
@@ -443,19 +443,19 @@ async function withRetries(fn) {
 }
 
 async function generateWithFallback(systemPrompt, history, maxTokens) {
-  // 1. Gemini (primary)
-  if (process.env.GEMINI_API_KEY) {
-    try {
-      return { provider: 'gemini', text: await withRetries(() => callGemini(systemPrompt, history, maxTokens)) };
-    } catch (_) { /* fall through */ }
-  }
-  // 2. OpenRouter (fallback)
+  // 1. OpenRouter
   if (process.env.OPENROUTER_API_KEY) {
     try {
       return { provider: 'openrouter', text: await withRetries(() => callOpenRouter(systemPrompt, history, maxTokens)) };
     } catch (_) { /* fall through */ }
   }
-  // 3. Groq
+  // 2. Gemini
+  if (process.env.GEMINI_API_KEY) {
+    try {
+      return { provider: 'gemini', text: await withRetries(() => callGemini(systemPrompt, history, maxTokens)) };
+    } catch (_) { /* fall through */ }
+  }
+  // 3. Groq (llama)
   if (process.env.GROQ_API_KEY) {
     return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
   }
