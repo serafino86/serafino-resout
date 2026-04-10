@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/chat.js": { "maxDuration": 10 }
-  },
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/bot.html" }
