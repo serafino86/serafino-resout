@@ -17,17 +17,27 @@
 
 ---
 
-## Case 2 - HORECA restaurant operations (Geneva)
+## Case 2 - Palais des Nations (UN canteen, Geneva)
 
-**Problem:** Inconsistent planning, operational overload, daily time loss. Responsibilities were not clearly defined, and friction between kitchen and service caused repeated errors.
+**Context:** Enrico worked as chef at the Palais des Nations (United Nations headquarters in Geneva). A large portion of his working time was consumed by repetitive tasks outside the kitchen: manual inventory, supplier offer analysis, and menu planning.
 
-**What Enrico brought:**
-- Standardized organization of service flows
-- Clarification of responsibilities by role
-- Measurable reduction of operational friction
-- Improved team stability
+**Problem:**
+- Manual inventory: 2h per session, done weekly = up to 8h/month lost, one person immobilized
+- Supplier analysis: 2–3h/week comparing Excel price lists, checking seasonality, estimating food cost
+- Menu planning: several additional hours per week building menus from scratch
 
-**Impact:** Smoother service, fewer errors, more stable team.
+**What Enrico built (for himself):**
+- **Voice inventory:** dictated products in the cold room, the system recognized his personal units (e.g. "un sac" = 2.5 kg) and updated the stock database automatically. Incoming deliveries (delivery notes, invoices) were also entered to track movements.
+- **Supplier offer analysis:** supplier Excel files received by email were automatically filtered by seasonality and price. The system produced an optimized shopping list with food cost projection.
+- **Menu assistant:** based on real stock and season, the system proposed weekly menu structures in Enrico's own format — ready to refine and send via WhatsApp.
+
+**Key differentiator:** The system was built around Enrico's vocabulary, habits, and way of working — not the other way around. "Un sac" meant 2.5 kg because that is how Enrico thinks. He did not adapt to the tool. The tool learned to work like him. This is the core principle behind all systems Enrico builds for clients.
+
+**Impact:**
+- Inventory: from 2h/week to a few minutes of dictation — same precision, fraction of the time
+- Supplier analysis: fully automated, zero manual calculation
+- Menu planning: proposals generated in minutes instead of hours
+- Total: several hours recovered every week, with no loss of quality or control
 
 ---
 

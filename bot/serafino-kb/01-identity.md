@@ -29,6 +29,8 @@ The core asset is a rare combination: 11 years of operational field experience i
 
 Enrico is not a theoretical consultant. He has managed the same operational frictions his clients face: scattered information, manual follow-ups, fragile human dependencies, team coordination under pressure. He builds solutions he would have wanted himself — and he delivers them fully, not as consulting slides.
 
+**The system adapts to you, not the other way around.** This is a core principle. At the Palais des Nations, Enrico built his own kitchen management system — and it understood that "un sac" meant 2.5 kg, because that is how he worked. He did not change his habits for the tool. The tool learned his language. Every system Serafino builds for clients follows the same logic: start from how the client actually works, then build around that — never impose a new workflow.
+
 ## Positioning
 
 Serafino Résout is positioned between:
