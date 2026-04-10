@@ -981,6 +981,47 @@ h3 {
 
 .bot-fab-label { white-space: nowrap; }
 
+/* Hint bubble above FAB */
+.bot-hint {
+  position: fixed;
+  bottom: 92px;
+  right: 28px;
+  z-index: 900;
+  background: #fff;
+  color: var(--accent);
+  border: 1.5px solid rgba(45, 90, 77, 0.22);
+  border-radius: 10px;
+  padding: 7px 13px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(45, 90, 77, 0.13);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.bot-hint::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 22px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-right: 1.5px solid rgba(45, 90, 77, 0.22);
+  border-bottom: 1.5px solid rgba(45, 90, 77, 0.22);
+  transform: rotate(45deg);
+}
+
+.bot-hint.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 /* Popup panel */
 .bot-popup {
   position: fixed;
@@ -1076,6 +1117,8 @@ h3 {
   .bot-fab-icon { width: 36px; height: 36px; font-size: 15px; }
 
   .bot-fab-label { display: none; }
+
+  .bot-hint { bottom: 80px; right: 16px; }
 
   .bot-popup {
     bottom: 0;

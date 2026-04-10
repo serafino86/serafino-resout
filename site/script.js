@@ -31,10 +31,14 @@ const botPopup = document.getElementById("botPopup");
 const botScrim = document.getElementById("botScrim");
 const botFrame = document.getElementById("botFrame");
 const botClose = document.getElementById("botClose");
+const botHint  = document.getElementById("botHint");
 const BOT_URL  = "https://serafino-bot.vercel.app";
 
 let botOpen   = false;
 let botLoaded = false;
+
+// Show hint bubble after 3s, hide once bot is opened
+setTimeout(() => { if (!botOpen && botHint) botHint.classList.add("is-visible"); }, 3000);
 
 function openBot() {
   if (!botLoaded) {
@@ -42,6 +46,7 @@ function openBot() {
     botLoaded = true;
   }
   botOpen = true;
+  if (botHint) botHint.classList.remove("is-visible");
   botPopup.classList.add("is-open");
   botScrim.classList.add("is-open");
   botFab.setAttribute("aria-expanded", "true");
