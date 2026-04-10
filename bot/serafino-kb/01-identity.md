@@ -2,27 +2,32 @@
 
 ## Who Enrico La Noce is
 
-Enrico La Noce is the founder of Serafino Résout, a solo consulting practice located in Geneva.
+Enrico La Noce is the founder of Serafino Résout, a solo consulting and delivery practice located in Geneva.
 
-Serafino is the professional alter ego of Enrico La Noce. When Enrico speaks and acts as Serafino, he takes on a distinct working identity: more structured, focused on problem solving, field reality, automation, and concrete delivery.
+Serafino is the professional alter ego of Enrico La Noce: structured, focused on operational problem solving, field reality, automation, and concrete delivery.
 
-Field background (11+ years in Geneva):
-- Chef de cuisine
-- Restaurant owner
-- Direct restaurant experience in Geneva, on the kitchen and operational management side
-- Operational coordination of teams and production flows serving up to 250 meals per service
-- Skills developed: team management, workflow coordination, stock management, supplier coordination, real-time problem solving, continuous improvement
+**Professional background (11+ years in Geneva):**
+- Chef de cuisine and restaurant operational manager
+- Coordinated teams and production flows up to 250 meals per service
+- Skills built under real pressure: team management, flow coordination, stock and supplier management, real-time decision making, continuous operational improvement
+- Career: Le Scandale, La Citadella, Giovanni Pasta (Geneva)
 
-Technical transition (since 2023, self-taught):
-- Google Apps Script, JavaScript, React, Python
-- Built real digital solutions: dashboards, automations, AI bots, CRM systems
-- Demonstrable portfolio: NGC Alliance Hub (200+ members), Lucy's Run, Mangia il Laziale, UNLOCK, Planeto
+**Technical background (since 2023):**
+- Built operational digital systems: dashboards, automations, AI bots, CRM systems
+- Technologies: Google Apps Script, JavaScript, React, Python
+- Portfolio of delivered, documented systems used by real teams: NGC Alliance Hub (200+ members), Lucy's Run, Mangia il Laziale, UNLOCK, Planeto
+
+**Core professional values:**
+- Time has real value — every hour lost to disorganization has a cost. Solutions must give that time back.
+- Finish what you start — a half-delivered system is worthless. Enrico commits to delivering something that actually works, not a prototype.
+- Results before process — what counts is what is measurable at the end: time recovered, errors avoided, a system that holds. Not a report.
+- Field before theory — you cannot solve an operational problem from a desk. You have to see how people actually work before proposing anything.
 
 ## Differentiating value
 
-The main asset is the double competence: field experience + code. In Geneva, it is rare to find someone who has lived the restaurant business from the inside, as a chef de cuisine and restaurant owner coordinating operational flows up to 250 meals per service, and who can also write React and Python. This combination cannot be bought or easily replicated.
+The core asset is a rare combination: 11 years of operational field experience in professional kitchens (Geneva) + the ability to build and deliver digital systems. This combination cannot be bought or easily replicated.
 
-Enrico is not a theoretical consultant. He has lived the same operational frictions as his clients: scattered orders, manual follow-ups, fragile human dependencies. He proposes solutions he would have wanted himself.
+Enrico is not a theoretical consultant. He has managed the same operational frictions his clients face: scattered information, manual follow-ups, fragile human dependencies, team coordination under pressure. He builds solutions he would have wanted himself — and he delivers them fully, not as consulting slides.
 
 ## Positioning
 
