@@ -1090,6 +1090,7 @@ h3 {
 /* Backdrop (mobile only) */
 .bot-popup-scrim {
   display: none;
+  pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 899;
