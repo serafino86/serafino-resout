@@ -376,6 +376,8 @@ const botState = {
   messages: [],
   memory: '',
   suggestionsSent: false,
+  pendingDraft: null,
+  emailAttempt: 0,
 };
 
 const BOT_COPY = {
@@ -384,10 +386,11 @@ const BOT_COPY = {
     placeholder: 'Décris ton problème ou pose une question...',
     prepareMail: 'Préparer une mail',
     preparingMail: 'Je prépare la mail...',
-    mailIntro: 'J’ai préparé une mail pour Serafino avec ce qui est déjà clair.',
-    missingIntro: 'À compléter si tu veux:',
+    mailIntro: "J’ai préparé une mail pour Serafino avec ce qui est déjà clair.",
+    missingIntro: '\u00c0 compléter si tu veux\u00a0:',
     openMail: 'Ouvrir la mail',
-    mailError: 'Je n’ai pas réussi à préparer la mail. Tu peux écrire directement à contact@serafino-resout.ch.',
+    mailError: "Je n’ai pas réussi à préparer la mail. Tu peux écrire directement à contact@serafino-resout.ch.",
+    mailAskMissing: "Pour finaliser la mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Réponds ici en quelques mots et je la préparerai aussitôt.",
     suggestions: [
       "C'est quoi Serafino Résout ?",
       'Comment fonctionne le diagnostic gratuit ?',
@@ -406,6 +409,7 @@ const BOT_COPY = {
     missingIntro: 'To complete if you want:',
     openMail: 'Open email',
     mailError: 'I could not prepare the email. You can write directly to contact@serafino-resout.ch.',
+    mailAskMissing: 'To finalize the email, I need a few details: {missing}. Reply here in a few words and I\'ll prepare it right away.',
     suggestions: [
       'What is Serafino Résout?',
       'How does the free diagnostic work?',
@@ -424,6 +428,7 @@ const BOT_COPY = {
     missingIntro: 'Da completare se vuoi:',
     openMail: 'Aprire la mail',
     mailError: 'Non sono riuscito a preparare la mail. Puoi scrivere direttamente a contact@serafino-resout.ch.',
+    mailAskMissing: 'Per finalizzare la mail, ho bisogno di: {missing}. Rispondimi qui in poche parole e la preparo subito.',
     suggestions: [
       "Cos'è Serafino Résout?",
       'Come funziona la diagnosi gratuita?',
@@ -442,6 +447,7 @@ const BOT_COPY = {
     missingIntro: 'Kannst du bei Bedarf ergänzen:',
     openMail: 'E-Mail öffnen',
     mailError: 'Ich konnte die E-Mail nicht vorbereiten. Du kannst direkt an contact@serafino-resout.ch schreiben.',
+    mailAskMissing: 'Um die E-Mail abzuschließen, brauche ich noch: {missing}. Antworte kurz hier und ich bereite sie sofort vor.',
     suggestions: [
       'Was ist Serafino Résout?',
       'Wie funktioniert die kostenlose Diagnose?',
@@ -584,11 +590,20 @@ async function send(rawMsg) {
   botState.messages.push({ role: 'user', text: msg });
   botState.suggestionsSent = true;
   if (input) { input.value = ''; autoResize(); }
-  botState.loading = true;
 
   addBubble('user', msg);
   renderSuggestions();
   renderActions();
+
+  // If we were collecting missing info for an email, regenerate the draft now
+  if (botState.pendingDraft) {
+    botState.pendingDraft = null;
+    syncComposer();
+    await prepareMail();
+    return;
+  }
+
+  botState.loading = true;
   syncComposer();
   showTyping();
 
@@ -615,9 +630,15 @@ async function send(rawMsg) {
   }
 }
 
+function buildMissingQuestion(missing, copy) {
+  const list = missing.join(', ');
+  return (copy.mailAskMissing || 'Informations manquantes: {missing}').replace('{missing}', list);
+}
+
 async function prepareMail() {
   if (botState.loading) return;
   const copy = BOT_COPY[botState.language] || BOT_COPY.fr;
+  botState.emailAttempt += 1;
   botState.loading = true;
   renderActions();
   syncComposer();
@@ -632,9 +653,23 @@ async function prepareMail() {
     });
     hideTyping();
     if (!data.draft) throw new Error('Missing draft');
-    addMailDraft(data.draft);
+
+    const hasMissing = Array.isArray(data.draft.missing) && data.draft.missing.length > 0;
+
+    // First attempt with missing info: ask the user instead of showing the draft
+    if (hasMissing && botState.emailAttempt === 1) {
+      botState.pendingDraft = data.draft;
+      const question = buildMissingQuestion(data.draft.missing, copy);
+      botState.messages.push({ role: 'bot', text: question });
+      addBubble('bot', question);
+    } else {
+      // Second attempt or no missing info: show the email card
+      botState.emailAttempt = 0;
+      addMailDraft(data.draft);
+    }
   } catch (_) {
     hideTyping();
+    botState.emailAttempt = 0;
     addBubble('bot', copy.mailError);
   } finally {
     botState.loading = false;
