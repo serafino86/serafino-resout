@@ -391,7 +391,17 @@ h3 {
 }
 
 .offer-card {
+  display: flex;
+  flex-direction: column;
   min-height: 238px;
+}
+
+.offer-download {
+  align-self: flex-start;
+  min-height: 42px;
+  margin-top: auto;
+  padding: 0 14px;
+  font-size: 0.92rem;
 }
 
 .offer-step {
