@@ -97,6 +97,7 @@ function buildSystemPrompt(language, memory) {
     'You are the assistant for Serafino Résout. Serafino is the professional alter ego of Enrico La Noce.',
     'Your role is to help visitors understand what Serafino does, how he works, whether his offer fits their situation, and how to take the next step.',
     'You must sound human, warm, direct, and honest — like Serafino, Enrico\'s professional alter ego: terrain-first, concrete, never salesy.',
+    'Address the visitor with "tu" (tutoiement) throughout the entire conversation. Use: tu, te, ton, ta, tes. Never use vous/votre/vos when referring to the visitor. This is non-negotiable.',
     'Stay strictly within confirmed Serafino Résout knowledge.',
     'Do not invent facts, pricing, client names, or capabilities that are not in the knowledge base.',
     'When the user asks about a false or unconfirmed biography detail, reject it directly and give the confirmed version.',
@@ -166,6 +167,117 @@ function cleanField(value, maxLength) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+function missingLabels(language, items) {
+  const labels = {
+    fr: {
+      activity: 'activité',
+      problem: 'problème principal',
+      improvement: 'amélioration souhaitée',
+      timing: 'urgence ou calendrier',
+      contact: 'coordonnées',
+    },
+    en: {
+      activity: 'activity',
+      problem: 'main problem',
+      improvement: 'desired improvement',
+      timing: 'urgency or timing',
+      contact: 'contact details',
+    },
+    it: {
+      activity: 'attività',
+      problem: 'problema principale',
+      improvement: 'miglioramento desiderato',
+      timing: 'urgenza o tempistiche',
+      contact: 'contatto',
+    },
+    'de-CH': {
+      activity: 'Tätigkeit',
+      problem: 'Hauptproblem',
+      improvement: 'gewünschte Verbesserung',
+      timing: 'Dringlichkeit oder Zeitplan',
+      contact: 'Kontaktangaben',
+    },
+  };
+  const langLabels = labels[language] || labels.fr;
+  const found = new Set();
+  const normalized = Array.isArray(items) ? items : [];
+
+  for (const item of normalized) {
+    const text = normalizeMessage(item);
+    if (/activ|attiv|tatig|tätig|business|activity/.test(text)) found.add('activity');
+    else if (/problem|problema|friction|pain|haupt/.test(text)) found.add('problem');
+    else if (/improv|amelior|amélior|miglior|objectif|obiettivo|goal|ziel/.test(text)) found.add('improvement');
+    else if (/urgent|urgen|timing|temp|calend|zeit|when|quando/.test(text)) found.add('timing');
+    else if (/contact|coord|mail|email|phone|telefono|tel|kontakt/.test(text)) found.add('contact');
+  }
+
+  return [...found].map((key) => langLabels[key]);
+}
+
+function buildEmailBody(language, summary, missing) {
+  const cleanSummary = cleanField(summary, 900);
+  const missingList = missing.length ? missing.map((item) => `- ${item}`).join('\n') : '';
+
+  if (language === 'it') {
+    return [
+      'Ciao Serafino,',
+      '',
+      'Ho parlato con il tuo assistente e vorrei capire se puoi aiutarmi.',
+      '',
+      'Riepilogo:',
+      cleanSummary || '- Da completare',
+      '',
+      missingList ? 'Informazioni ancora da completare:' : '',
+      missingList,
+      '',
+      'Grazie,',
+    ].filter((line) => line !== '').join('\n');
+  }
+  if (language === 'en') {
+    return [
+      'Hello Serafino,',
+      '',
+      'I spoke with your assistant and would like to understand whether you can help.',
+      '',
+      'Summary:',
+      cleanSummary || '- To complete',
+      '',
+      missingList ? 'Information still to complete:' : '',
+      missingList,
+      '',
+      'Thank you,',
+    ].filter((line) => line !== '').join('\n');
+  }
+  if (language === 'de-CH') {
+    return [
+      'Hallo Serafino,',
+      '',
+      'Ich habe mit deinem Assistenten gesprochen und möchte klären, ob du mir helfen kannst.',
+      '',
+      'Zusammenfassung:',
+      cleanSummary || '- Zu ergänzen',
+      '',
+      missingList ? 'Noch fehlende Informationen:' : '',
+      missingList,
+      '',
+      'Danke,',
+    ].filter((line) => line !== '').join('\n');
+  }
+  return [
+    'Bonjour Serafino,',
+    '',
+    'J\'ai échangé avec votre assistant et j\'aimerais voir si vous pouvez m\'aider.',
+    '',
+    'Résumé:',
+    cleanSummary || '- À compléter',
+    '',
+    missingList ? 'Informations encore à compléter:' : '',
+    missingList,
+    '',
+    'Merci,',
+  ].filter((line) => line !== '').join('\n');
+}
+
 function defaultEmailDraft(language, currentMemory, history) {
   const transcript = toTranscript(history).slice(-1200);
   const isIt = language === 'it';
@@ -175,72 +287,13 @@ function defaultEmailDraft(language, currentMemory, history) {
     : isEn ? 'First conversation - case to clarify'
     : isDe ? 'Erstes Gespräch - Situation klären'
     : 'Premier échange - situation à clarifier';
-  const body = isIt ? [
-    'Ciao Serafino,',
-    '',
-    'Ho parlato con il tuo assistente e vorrei capire se puoi aiutarmi.',
-    '',
-    'Riepilogo:',
-    currentMemory || transcript || '- Da completare',
-    '',
-    'Informazioni ancora da completare:',
-    '- Attività',
-    '- Problema principale',
-    '- Obiettivo',
-    '- Contatto',
-    '',
-    'Grazie,',
-  ].join('\n') : isEn ? [
-    'Hello Serafino,',
-    '',
-    'I spoke with your assistant and would like to understand whether you can help.',
-    '',
-    'Summary:',
-    currentMemory || transcript || '- To complete',
-    '',
-    'Information still to complete:',
-    '- Activity',
-    '- Main problem',
-    '- Goal',
-    '- Contact details',
-    '',
-    'Thank you,',
-  ].join('\n') : isDe ? [
-    'Hallo Serafino,',
-    '',
-    'Ich habe mit deinem Assistenten gesprochen und möchte klären, ob du mir helfen kannst.',
-    '',
-    'Zusammenfassung:',
-    currentMemory || transcript || '- Zu ergänzen',
-    '',
-    'Noch fehlende Informationen:',
-    '- Tätigkeit',
-    '- Hauptproblem',
-    '- Ziel',
-    '- Kontakt',
-    '',
-    'Danke,',
-  ].join('\n') : [
-    'Bonjour Serafino,',
-    '',
-    'J\'ai échangé avec votre assistant et j\'aimerais voir si vous pouvez m\'aider.',
-    '',
-    'Résumé:',
-    currentMemory || transcript || '- À compléter',
-    '',
-    'Informations encore à compléter:',
-    '- Activité',
-    '- Problème principal',
-    '- Objectif',
-    '- Coordonnées',
-    '',
-    'Merci,',
-  ].join('\n');
+  const missing = missingLabels(language, ['activity', 'main problem', 'goal', 'contact details']);
+  const body = buildEmailBody(language, currentMemory || transcript, missing);
 
   return {
     subject,
     summary: currentMemory || '',
-    missing: ['activity', 'main problem', 'goal', 'contact details'],
+    missing,
     body,
   };
 }
@@ -255,12 +308,12 @@ async function prepareLeadEmail(language, currentMemory, history) {
       config.promptInstruction,
       'You prepare a concise email draft from a Serafino Résout chatbot conversation.',
       'Return only valid JSON. No markdown. No code fences.',
-      'Do not ask again for details already present in the conversation or memory.',
-      'Identify only essential missing information: activity, main operational problem, desired improvement, urgency/timing, contact details.',
-      'If information is missing, include a short "To complete" line in the email body instead of blocking the user.',
-      'Keep the email human, direct, and easy for the visitor to edit before sending.',
+      'Read the full transcript carefully. Extract every piece of information already stated by the visitor: their activity, problem, what they want to improve, urgency, and contact details.',
+      'Only mark a field as "missing" if it was genuinely never mentioned anywhere in the conversation or memory. If the visitor said they run a restaurant, do not mark "activity" as missing.',
+      'Identify only truly absent fields using this exact enum: activity, problem, improvement, timing, contact.',
+      'Do not write the final email body. Only provide the summary, subject, and missing enum items.',
       'Recipient is Serafino at contact@serafino-resout.ch.',
-      'JSON shape: {"subject":"...","summary":"...","missing":["..."],"body":"..."}',
+      'JSON shape: {"subject":"...","summary":"...","missing":["activity","contact"]}',
     ].join('\n'),
     [{ role: 'user', text: [
       'Conversation memory:',
@@ -276,10 +329,8 @@ async function prepareLeadEmail(language, currentMemory, history) {
   return {
     subject: cleanField(parsed.subject || fallback.subject, 120) || fallback.subject,
     summary: cleanField(parsed.summary || fallback.summary, 900),
-    missing: Array.isArray(parsed.missing)
-      ? parsed.missing.map((item) => cleanField(item, 80)).filter(Boolean).slice(0, 6)
-      : fallback.missing,
-    body: cleanField(parsed.body || fallback.body, 1800) || fallback.body,
+    missing: missingLabels(language, Array.isArray(parsed.missing) ? parsed.missing : fallback.missing),
+    body: '',
     provider: result.provider,
   };
 }
@@ -469,6 +520,7 @@ module.exports = async function handler(req, res) {
 
     try {
       const draft = await prepareLeadEmail(language, currentMemory, normalized);
+      const bodyText = buildEmailBody(language, draft.summary, draft.missing);
       return res.status(200).json({
         ok: true,
         mode: `${draft.provider}-email-draft`,
@@ -479,7 +531,7 @@ module.exports = async function handler(req, res) {
           subject: draft.subject,
           summary: draft.summary,
           missing: draft.missing,
-          body: draft.body,
+          body: bodyText,
         },
       });
     } catch (error) {
