@@ -118,6 +118,15 @@ function buildSystemPrompt(language, memory) {
   return prompt;
 }
 
+function truncateToSentences(text, max) {
+  const t = String(text || '').trim();
+  // Match sentences ending with . ! ? (including ... and ?) followed by space or end
+  const sentences = t.match(/[^.!?…]+(?:[.!?…]+(?:\s|$))/g) || [];
+  if (!sentences.length) return t;
+  if (sentences.length <= max) return t;
+  return sentences.slice(0, max).join('').trim();
+}
+
 function isRateLimitError(msg) {
   return /rate limit|too many requests|429|resource exhausted/i.test(msg || '');
 }
@@ -560,14 +569,15 @@ module.exports = async function handler(req, res) {
 
   try {
     const result = await generateWithFallback(buildSystemPrompt(language, currentMemory), normalizedHistory, MAX_TOKENS);
-    const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, result.text);
+    const reply = truncateToSentences(result.text, 5);
+    const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, reply);
     return res.status(200).json({
       ok: true,
       mode: `${result.provider}-live`,
       provider: result.provider,
       memory: memoryUpdate.memory,
       memory_provider: memoryUpdate.provider,
-      reply: result.text,
+      reply,
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown chat error';
