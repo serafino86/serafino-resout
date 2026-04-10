@@ -1080,21 +1080,19 @@ h3 {
 }
 
 .bot-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 2;
-  height: 38px;
-  padding: 0 14px;
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin: 6px 8px 0;
+  height: 30px;
+  padding: 0 12px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: rgba(255, 252, 247, 0.96);
-  color: var(--text);
+  color: var(--muted);
   cursor: pointer;
   font-family: var(--sans);
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  box-shadow: 0 8px 22px rgba(40, 30, 20, 0.12);
 }
 
 .bot-close:hover,
@@ -1161,11 +1159,9 @@ h3 {
   }
 
   .bot-close {
-    top: 10px;
-    right: 10px;
-    height: 40px;
-    padding: 0 16px;
-    font-size: 0.9rem;
+    height: 32px;
+    padding: 0 14px;
+    font-size: 0.84rem;
   }
 
   .bot-popup.is-open {

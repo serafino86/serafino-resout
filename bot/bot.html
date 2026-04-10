@@ -555,7 +555,7 @@ function addMailDraft(draft) {
       <p>${esc(copy.mailIntro)}</p>
       ${missing}
       <p><strong>${esc(draft.subject || '')}</strong></p>
-      <a class="bot-mail-button" href="${esc(makeMailto(draft))}" target="_top">${esc(copy.openMail)}</a>
+      <a class="bot-mail-button" href="${esc(makeMailto(draft))}" target="_blank" rel="noopener">${esc(copy.openMail)}</a>
     </div>
   `;
   thread.appendChild(row);
