@@ -23,7 +23,7 @@
 ## What Enrico builds concretely
 
 - Lightweight CRM on Google Sheets with automations (follow-ups, statuses, dashboard)
-- AI bots with a business knowledge base (like Tessa for Planeto)
+- AI bots with a business knowledge base (like the multilingual bot built for Planeto)
 - Operational dashboards (stock, orders, team performance)
 - Automations for repetitive tasks (emails, reminders, exports)
 - Lead management and commercial pipeline systems

@@ -15,7 +15,7 @@ An agency builds you a site or app for 10-15K CHF, often by someone who has neve
 I build the tool (Sheets with automations, AI bot, dashboard, follow-up system) and teach you how to use it. I make sure it really works in your context, not only in a demo. And I transfer everything to you: access, documentation, logic.
 
 **Q: You mention an "AI bot" - what is that concretely?**
-It is a conversational assistant that knows your activity. Your clients or prospects ask questions, and the bot answers with your own information. Like the bot you are using now, but with your own knowledge inside. Planeto did this - they called it Tessa.
+It is a conversational assistant that knows your activity. Your clients or prospects ask questions, and the bot answers with your own information. Like the bot you are using now, but with your own knowledge inside. Planeto did this — their bot is multilingual and will be integrated on their official site.
 
 ---
 
@@ -119,7 +119,7 @@ I can build an automatic scoring and qualification system. What I did for Planet
 A central dashboard, fed automatically by the different sources. Not a complicated enterprise integration - something simple, reliable, and actually used by your team.
 
 **Q: We want an AI bot to answer frequent prospect questions. Is this possible without a huge tech budget?**
-Yes. This is what I delivered to Planeto with Tessa. A multilingual bot with their knowledge base, delivered turnkey. The cost is well below custom development. And it works in your infrastructure.
+Yes. This is what I delivered to Planeto. A multilingual bot with their knowledge base, delivered turnkey. The cost is well below custom development. And it works in your infrastructure.
 
 **Q: Our client onboarding is chaotic. Every client has a different experience.**
 A standardized onboarding process, with templates, checklists, and automations, can make the experience more consistent without burdening the team. We start by mapping the real steps, then we structure them.

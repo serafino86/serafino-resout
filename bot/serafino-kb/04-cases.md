@@ -10,7 +10,7 @@
 - Automatic lead scraping and enrichment system (CH, UK, IT)
 - Base of 756 high-priority leads identified from about 1785 UK contacts + about 396 CH contacts
 - Full CRM on Google Sheets with automatic synchronization, statuses, pipeline, dashboard
-- Tessa: multilingual AI bot (FR/EN/DE/IT) with the Planeto knowledge base, delivered as plug-and-play on a USB key
+- Multilingual AI bot (FR/EN/DE/IT) with the Planeto knowledge base, delivered as plug-and-play on a USB key
 - Follow-up and tracking automations
 
 **Impact:** The Planeto team can now focus on high-potential human conversations without spending hours manually sorting and qualifying contacts. The system runs without continuous technical intervention.
