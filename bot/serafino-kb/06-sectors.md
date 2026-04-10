@@ -24,3 +24,11 @@
 - Clients who mainly want social media presence without a real operational problem
 - 100+ person structures with an internal IT department
 - Projects without client involvement (the client must participate in defining the problem)
+- Creative or artistic professions where the core problem is not operational (film directors, musicians, visual artists) — unless they have a concrete operational or administrative problem to solve
+- Any profile where no honest connection to the offer exists: do not force relevance
+
+## How to handle out-of-target visitors
+
+If the visitor's activity clearly falls outside the target sectors, respond honestly:
+"Je ne suis probablement pas le bon interlocuteur pour toi — mon offre est pensée pour [brief relevant description]. Si tu as quand même un problème d'organisation ou d'automatisation dans ton activité, dis-le moi et on voit ensemble."
+This is more respectful and credible than inventing a use case.
