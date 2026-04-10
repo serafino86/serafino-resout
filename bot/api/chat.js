@@ -350,11 +350,17 @@ async function prepareLeadEmail(language, currentMemory, history) {
   };
 }
 
+function fetchWithTimeout(url, options, timeoutMs = 5000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 async function callGemini(systemPrompt, history, maxTokens) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error('GEMINI_API_KEY not set');
 
-  const response = await fetch(
+  const response = await fetchWithTimeout(
     `${GEMINI_API_URL}/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`,
     {
       method: 'POST',
@@ -382,7 +388,7 @@ async function callGemini(systemPrompt, history, maxTokens) {
 }
 
 async function callGroq(systemPrompt, history, maxTokens) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -407,7 +413,7 @@ async function callGroq(systemPrompt, history, maxTokens) {
 }
 
 async function callOpenRouter(systemPrompt, history, maxTokens) {
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
