@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const GROQ_MODEL        = 'llama-3.1-8b-instant';
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.3-70b-instruct';
+const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-120b:free';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
 const MAX_TOKENS        = 500;
 const MAX_EMAIL_TOKENS  = 750;
