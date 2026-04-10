@@ -229,6 +229,14 @@
       cursor: default;
     }
 
+    .bot-action-chip.is-pulsing {
+      animation: chip-pulse 1.2s ease-in-out 3;
+    }
+    @keyframes chip-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(45, 90, 77, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(45, 90, 77, 0); }
+    }
+
     .bot-mail-card {
       display: grid;
       gap: 9px;
@@ -391,6 +399,7 @@ const BOT_COPY = {
     openMail: 'Ouvrir la mail',
     mailError: "Je n’ai pas réussi à préparer la mail. Tu peux écrire directement à contact@serafino-resout.ch.",
     mailAskMissing: "Pour finaliser la mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Réponds ici en quelques mots et je la préparerai aussitôt.",
+    proactiveEmail: "On a déjà bien cerné ta situation. Tu veux que je prépare une mail récapitulative pour Serafino, prête à envoyer en un clic ?",
     suggestions: [
       "C'est quoi Serafino Résout ?",
       'Comment fonctionne le diagnostic gratuit ?',
@@ -410,6 +419,7 @@ const BOT_COPY = {
     openMail: 'Open email',
     mailError: 'I could not prepare the email. You can write directly to contact@serafino-resout.ch.',
     mailAskMissing: 'To finalize the email, I need a few details: {missing}. Reply here in a few words and I\'ll prepare it right away.',
+    proactiveEmail: "We've got a good picture of your situation. Want me to prepare a summary email for Serafino, ready to send in one click?",
     suggestions: [
       'What is Serafino Résout?',
       'How does the free diagnostic work?',
@@ -429,6 +439,7 @@ const BOT_COPY = {
     openMail: 'Aprire la mail',
     mailError: 'Non sono riuscito a preparare la mail. Puoi scrivere direttamente a contact@serafino-resout.ch.',
     mailAskMissing: 'Per finalizzare la mail, ho bisogno di: {missing}. Rispondimi qui in poche parole e la preparo subito.',
+    proactiveEmail: "Ho già un quadro chiaro della tua situazione. Vuoi che prepari una mail riepilogativa per Serafino, pronta da inviare in un click?",
     suggestions: [
       "Cos'è Serafino Résout?",
       'Come funziona la diagnosi gratuita?',
@@ -448,6 +459,7 @@ const BOT_COPY = {
     openMail: 'E-Mail öffnen',
     mailError: 'Ich konnte die E-Mail nicht vorbereiten. Du kannst direkt an contact@serafino-resout.ch schreiben.',
     mailAskMissing: 'Um die E-Mail abzuschließen, brauche ich noch: {missing}. Antworte kurz hier und ich bereite sie sofort vor.',
+    proactiveEmail: "Ich habe deine Situation schon gut verstanden. Soll ich eine Zusammenfassungs-E-Mail für Serafino vorbereiten, die du mit einem Klick senden kannst?",
     suggestions: [
       'Was ist Serafino Résout?',
       'Wie funktioniert die kostenlose Diagnose?',
@@ -619,6 +631,18 @@ async function send(rawMsg) {
     botState.messages.push({ role: 'bot', text: reply });
     hideTyping();
     addBubble('bot', reply);
+    if (data.proactive_email === true && !botState.pendingDraft) {
+      const copy = BOT_COPY[botState.language] || BOT_COPY.fr;
+      const proactiveText = copy.proactiveEmail || '';
+      if (proactiveText) {
+        setTimeout(() => {
+          botState.messages.push({ role: 'bot', text: proactiveText });
+          addBubble('bot', proactiveText);
+          const prepareMailBtn = document.getElementById('prepareMail');
+          if (prepareMailBtn) prepareMailBtn.classList.add('is-pulsing');
+        }, 800);
+      }
+    }
   } catch (err) {
     const errText = String(err.message || 'Erreur de connexion.');
     botState.messages.push({ role: 'bot', text: errText });
@@ -716,7 +740,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const prepareMailBtn = document.getElementById('prepareMail');
   if (prepareMailBtn) {
-    prepareMailBtn.addEventListener('click', prepareMail);
+    prepareMailBtn.addEventListener('click', () => {
+      prepareMailBtn.classList.remove('is-pulsing');
+      prepareMail();
+    });
   }
 
   // Mobile viewport sync (keyboard)

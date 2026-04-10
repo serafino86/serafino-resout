@@ -296,7 +296,7 @@ function defaultEmailDraft(language, currentMemory, history) {
     : isEn ? 'First conversation - case to clarify'
     : isDe ? 'Erstes Gespräch - Situation klären'
     : 'Premier échange - situation à clarifier';
-  const missing = missingLabels(language, ['activity', 'main problem', 'goal', 'contact details']);
+  const missing = missingLabels(language, ['contact']);
   const body = buildEmailBody(language, currentMemory || transcript, missing);
 
   return {
@@ -319,7 +319,7 @@ async function prepareLeadEmail(language, currentMemory, history) {
       'Return only valid JSON. No markdown. No code fences.',
       'Read the full transcript carefully. Extract every piece of information already stated by the visitor: their activity, problem, what they want to improve, urgency, and contact details.',
       'Only mark a field as "missing" if it was genuinely never mentioned anywhere in the conversation or memory. If the visitor said they run a restaurant, do not mark "activity" as missing.',
-      'Identify only truly absent fields using this exact enum: activity, problem, improvement, timing, contact.',
+      'The only truly essential missing field is contact details (email or phone). Activity and problem should already be in the conversation. Only list "contact" as missing if the visitor has never provided any contact information.',
       'Do not write the final email body. Only provide the summary, subject, and missing enum items.',
       'Recipient is Serafino at contact@serafino-resout.ch.',
       'JSON shape: {"subject":"...","summary":"...","missing":["activity","contact"]}',
@@ -572,6 +572,8 @@ module.exports = async function handler(req, res) {
     const result = await generateWithFallback(buildSystemPrompt(language, currentMemory), normalizedHistory, MAX_TOKENS);
     const reply = truncateToSentences(result.text, 5);
     const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, reply);
+    const userMessageCount = normalizedHistory.filter((m) => m.role === 'user').length;
+    const proactiveEmail = userMessageCount === 3 && currentMemory.trim() && reply ? true : undefined;
     return res.status(200).json({
       ok: true,
       mode: `${result.provider}-live`,
@@ -579,6 +581,7 @@ module.exports = async function handler(req, res) {
       memory: memoryUpdate.memory,
       memory_provider: memoryUpdate.provider,
       reply,
+      ...(proactiveEmail ? { proactive_email: true } : {}),
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown chat error';
