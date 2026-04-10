@@ -890,6 +890,7 @@ h3 {
 
 @media (max-width: 760px) {
   .site-header {
+    position: relative; /* containing block for absolute dropdown */
     align-items: flex-start;
   }
 
