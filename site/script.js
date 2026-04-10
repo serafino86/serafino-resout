@@ -32,6 +32,7 @@ const botScrim = document.getElementById("botScrim");
 const botFrame = document.getElementById("botFrame");
 const botClose = document.getElementById("botClose");
 const botHint  = document.getElementById("botHint");
+const botHint2 = document.getElementById("botHint2");
 const BOT_URL  = "https://serafino-bot.vercel.app";
 
 let botOpen   = false;
@@ -40,6 +41,18 @@ let botLoaded = false;
 // Show hint bubble after 3s, hide once bot is opened
 setTimeout(() => { if (!botOpen && botHint) botHint.classList.add("is-visible"); }, 3000);
 
+// Show second hint when contact section enters viewport
+const contactSection = document.getElementById("contact");
+if (contactSection && botHint2) {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !botOpen) {
+      botHint2.classList.add("is-visible");
+      setTimeout(() => { botHint2.classList.remove("is-visible"); }, 8000);
+    }
+  }, { threshold: 0.2 });
+  observer.observe(contactSection);
+}
+
 function openBot() {
   if (!botLoaded) {
     botFrame.src = BOT_URL;
@@ -47,6 +60,7 @@ function openBot() {
   }
   botOpen = true;
   if (botHint) botHint.classList.remove("is-visible");
+  if (botHint2) botHint2.classList.remove("is-visible");
   botPopup.classList.add("is-open");
   botScrim.classList.add("is-open");
   botFab.setAttribute("aria-expanded", "true");
