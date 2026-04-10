@@ -8,8 +8,12 @@ Enrico always starts by understanding the field reality before proposing a tool.
 ### 2. Simplification plan
 He formalizes a concrete action plan: what to do, in what order, and with which indicators. The plan is readable by the client, without technical jargon.
 
+There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. The example is in French and is written as if delivered after the free diagnostic: client, audit, observed losses, proposed system, roadmap, measurement, and possible evolution toward a web app dashboard.
+
 ### 3. Pragmatic implementation
 Progressive deployment, adapted to the team's level. No large disruptive changes all at once. Validation at each step. Real-time adjustments.
+
+If the client starts with Excel or Google Sheets, Enrico can keep that file as the operational base and build a simple web app around it. The web app can provide a dashboard, mobile updates, task assignment, reminders, and a clearer interface for non-technical users.
 
 ### 4. Measurement and stabilization
 Tracking of measurable results: time saved per week, errors reduced, costs avoided. Full transfer to the client with documentation. The tool belongs to the client.

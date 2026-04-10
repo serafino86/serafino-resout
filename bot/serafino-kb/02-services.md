@@ -13,6 +13,7 @@
 - Content: objectives, priority actions, responsibilities, deadlines, success indicators
 - Deliverable: a structured document the client can reuse even if the mission stops there
 - Standalone value: the plan has value even without implementation
+- Public example available on the website: a downloadable PDF named "Plan de simplification opérationnel" for a "Chef ONU" case. It is a client-style sample after the free diagnostic, showing audit, inventory, suppliers, stock, menus, roadmap, web app evolution, and success indicators.
 
 ### Step 3: Implementation (from 800 CHF per standalone project, paid once)
 - Progressive deployment of solutions: organization, automation, digital tools
@@ -25,6 +26,8 @@
 - Lightweight CRM on Google Sheets with automations (follow-ups, statuses, dashboard)
 - AI bots with a business knowledge base (like the multilingual bot built for Planeto)
 - Operational dashboards (stock, orders, team performance)
+- Web apps connected to Excel / Google Sheets to keep all key information under control from a dashboard
+- Mobile-friendly interfaces to update the spreadsheet, assign tasks, set reminders, and track what remains to be done from a phone
 - Automations for repetitive tasks (emails, reminders, exports)
 - Lead management and commercial pipeline systems
 - Client follow-up tools (hairdresser reminders, dentist reminders, B2B follow-up)

@@ -5,6 +5,9 @@
 **Q: Concretely, what do you do?**
 I spend time inside your activity to understand where you are losing time and money. Then I build the tool or process that solves it: CRM, automation, AI bot, dashboard. And I deliver it so it can run without me.
 
+**Q: Can I see an example of the simplification plan before paying 300 CHF?**
+Yes. There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. It shows the kind of client-facing document Serafino can deliver after the free diagnostic: audit, concrete problems, proposed actions, roadmap, measurement, and possible evolution toward a web app dashboard.
+
 **Q: What is the difference between you and a freelance developer?**
 A freelance developer codes what they are asked to code. I start by understanding the field problem. Often the real problem is not the one people think it is. I had 11 years of operational experience before learning to code.
 
@@ -26,6 +29,9 @@ This is exactly the kind of problem I solve. An automated schedule, WhatsApp rem
 
 **Q: My supplier orders are chaotic — I forget things or order duplicates.**
 A standardized ordering system with a Sheets template, automatic stock alerts, and visible order history. Simple to build, simple to use.
+
+**Q: Can this become a web app instead of only an Excel or Google Sheet?**
+Yes. The spreadsheet can remain the data base, while a simple web app becomes the cockpit: dashboard, stock view, supplier orders, tasks, reminders, and mobile updates. The point is not to replace the file for the sake of it, but to make it easier to control and update from a phone or computer.
 
 ---
 
