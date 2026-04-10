@@ -3,7 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const GROQ_MODEL        = 'llama-3.1-8b-instant';
+const GROQ_MODEL        = 'llama-3.3-70b-versatile';
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
 const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'nvidia/nemotron-3-super-120b-a12b:free';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
