@@ -5,7 +5,8 @@ const path = require('node:path');
 
 const GROQ_MODEL        = 'llama-3.3-70b-versatile';
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'nvidia/nemotron-3-super-120b-a12b:free';
+const OPENROUTER_MODEL          = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-120b:free';
+const OPENROUTER_MODEL_FALLBACK = 'nvidia/nemotron-3-super-120b-a12b:free';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
 const MAX_TOKENS        = 500;
 const MAX_EMAIL_TOKENS  = 750;
@@ -454,11 +455,38 @@ async function withRetries(fn) {
   throw lastError instanceof Error ? lastError : new Error('Unknown chat error');
 }
 
+async function callOpenRouterModel(model, systemPrompt, history, maxTokens, timeoutMs) {
+  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      'HTTP-Referer': 'https://serafino-resout.ch',
+      'X-Title': 'Serafino Résout Bot',
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...history.map((e) => ({ role: e.role, content: e.text })),
+      ],
+      max_tokens: maxTokens,
+      temperature: 0.3,
+    }),
+  }, timeoutMs);
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data?.error?.message || `OpenRouter error ${response.status}`);
+  }
+  return String(data?.choices?.[0]?.message?.content || '').trim();
+}
+
 async function generateWithFallback(systemPrompt, history, maxTokens) {
-  // 1. OpenRouter
+  // 1. OpenRouter primary (gpt-oss-120b, fast)
   if (process.env.OPENROUTER_API_KEY) {
     try {
-      return { provider: 'openrouter', text: await withRetries(() => callOpenRouter(systemPrompt, history, maxTokens)) };
+      return { provider: 'openrouter', text: await withRetries(() => callOpenRouterModel(OPENROUTER_MODEL, systemPrompt, history, maxTokens, 5000)) };
     } catch (_) { /* fall through */ }
   }
   // 2. Gemini
@@ -469,7 +497,13 @@ async function generateWithFallback(systemPrompt, history, maxTokens) {
   }
   // 3. Groq (llama)
   if (process.env.GROQ_API_KEY) {
-    return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
+    try {
+      return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
+    } catch (_) { /* fall through */ }
+  }
+  // 4. OpenRouter fallback (nemotron, slow but high quality — only reachable if others fail fast)
+  if (process.env.OPENROUTER_API_KEY) {
+    return { provider: 'openrouter-nemotron', text: await withRetries(() => callOpenRouterModel(OPENROUTER_MODEL_FALLBACK, systemPrompt, history, maxTokens, 12000)) };
   }
 
   throw new Error('No AI provider available');
