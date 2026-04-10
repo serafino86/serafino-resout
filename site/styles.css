@@ -166,6 +166,15 @@ h3 {
   line-height: 1.72;
 }
 
+.method-note {
+  margin-top: 32px;
+  padding: 14px 20px;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
 .lead {
   max-width: 60ch;
   margin: 16px 0 0;

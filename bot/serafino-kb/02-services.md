@@ -36,4 +36,4 @@ This is not a subscription service or a dependency. The client receives a docume
 
 ## Guarantee
 
-Satisfied or refunded at 3 months. If the client does not obtain a measurable result within 3 months after implementation, they are fully refunded.
+Satisfied or refunded within 3 months. If within 3 months after implementation, following the agreed usage protocol, no measurable result is observed — the client is fully refunded.

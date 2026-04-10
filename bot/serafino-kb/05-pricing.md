@@ -28,7 +28,7 @@
 
 ## Guarantee
 
-**Satisfied or refunded at 3 months.** If the client does not observe a measurable result within 3 months after implementation, they are fully refunded. This guarantee is firm and unconditional.
+**Satisfied or refunded within 3 months.** If within 3 months after implementation, following the agreed usage protocol, no measurable result is observed — the client is fully refunded.
 
 ## Frequent pricing questions
 

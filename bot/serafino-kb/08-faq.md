@@ -82,7 +82,7 @@ Digitizing files is possible. But before building anything, I want to understand
 This is the classic mistake: imposing a tool nobody understands. I build in Google Sheets - your team already knows it, they have nothing to learn. And I build exactly what they need, not 200 features they will never use.
 
 **Q: I am not sure this is the right time. We are overloaded right now.**
-That is often the best time, paradoxically. When you are overloaded, the problem is real. The diagnostic takes one hour. It can reveal where the most energy is being lost - and sometimes it changes priorities.
+That is often the best time, paradoxically. When you are overloaded, the problem is real. The diagnostic takes 30 minutes. It can reveal where the most energy is being lost - and sometimes it changes priorities.
 
 **Q: Our problems are too specific. I do not think they can be digitalized easily.**
 That is what most clients think before the diagnostic. Afterward, we often realize that 80% of the problem comes from 2-3 repetitive tasks that can be automated. Complex cases stay complex - but we isolate them.
@@ -91,13 +91,13 @@ That is what most clients think before the diagnostic. Afterward, we often reali
 Maybe they can. If that is true, it is the best option. What I bring in addition: I understand the operational business, I deliver fast, and I work specifically on the field problem - not on the firm's general IT priorities.
 
 **Q: We do not have budget for this.**
-The diagnostic is free. The plan costs 300 CHF. And if at the end you have no measurable result within 3 months, you are refunded. The financial risk is almost zero.
+The diagnostic is free. The plan costs 300 CHF. And if within 3 months of implementation, following the agreed usage protocol, no measurable result is observed — you are fully refunded. The financial risk is almost zero.
 
 **Q: It will work for a while and then you leave and it stops.**
 That is precisely the problem I am trying to solve. I document everything, train you, and the tool belongs to you - not to me. My goal is for you to no longer need me to run it.
 
 **Q: How long does it take to see results?**
-For simple automations, often from the first week. For more complex projects, we define success indicators at the start and check them at 30 days. If there is nothing measurable at 3 months, you are refunded.
+For simple automations, often from the first week. For more complex projects, we define success indicators at the start and check them at 30 days. If within 3 months, following the agreed usage protocol, nothing measurable is observed — you are fully refunded.
 
 **Q: I am afraid it will be too complicated for my team.**
 I build for your team, not for myself. That means: simple interface, short documentation, training included. If your team cannot use it, the tool has missed its target.
@@ -161,7 +161,7 @@ An interactive dashboard on Google Sheets or a simple React app can replace stat
 I do not claim to be a software engineer. I build operational tools in Google Workspace, with Apps Script, Python, and React. That is what most SMEs need - not an enterprise architecture. The portfolio speaks for itself: real systems, running, used by real teams.
 
 **Q: How do you know you will not just create a new problem?**
-I progress through validation at each step. Each deliverable is tested with you before moving to the next one. And the 3-month guarantee exists exactly for this: if it creates more problems than it solves, you are refunded.
+I progress through validation at each step. Each deliverable is tested with you before moving to the next one. And the 3-month guarantee exists exactly for this: if within 3 months, following the agreed usage protocol, no measurable result is observed — you are fully refunded.
 
 **Q: You cannot do everything alone. Do your projects have limits?**
 Yes. I work on a maximum of 3-4 projects at the same time. If I am at capacity, I say it clearly rather than accepting and delivering badly. And I do not commit to projects that exceed my real skills.
@@ -177,13 +177,13 @@ Everything I build belongs to you, is documented, and runs in your Google accoun
 ## GETTING IN TOUCH
 
 **Q: Where should we start?**
-The diagnostic is free and without commitment. We meet for one hour, I ask questions about your activity, and I give you a clear report on the priorities. Then you decide whether you want to go further.
+The diagnostic is free and without commitment. We meet for 30 minutes, I ask questions about your activity, and I give you a clear report on the priorities. Then you decide whether you want to go further.
 
 **Q: How do I book the diagnostic?**
 Directly by email: contact@serafino-resout.ch. Or through the contact form on the site.
 
 **Q: How long does the diagnostic take?**
-Usually 1 hour of conversation, then a few days for me to send you a written report. Without commitment from your side.
+Usually 30 minutes of conversation, then a few days for me to send you a written report. Without commitment from your side.
 
 **Q: Do you work remotely or in person?**
 Both. For the diagnostic and implementation, I prefer to start in person if possible - especially for HORECA, because seeing the field makes a real difference. But most missions then happen remotely.
