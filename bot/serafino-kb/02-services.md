@@ -13,7 +13,7 @@
 - Content: objectives, priority actions, responsibilities, deadlines, success indicators
 - Deliverable: a structured document the client can reuse even if the mission stops there
 - Standalone value: the plan has value even without implementation
-- Public example available on the website: a downloadable PDF named "Plan de simplification opérationnel" for a "Chef ONU" case. It is a client-style sample after the free diagnostic, showing audit, inventory, suppliers, stock, menus, roadmap, web app evolution, and success indicators.
+- Public example available on the website: a downloadable PDF named "Plan de simplification opérationnel" for a "Chef ONU" case. Direct link: https://serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf. It is a client-style sample after the free diagnostic, showing audit, inventory, suppliers, stock, menus, roadmap, web app evolution, and success indicators.
 
 ### Step 3: Implementation (from 800 CHF per standalone project, paid once)
 - Progressive deployment of solutions: organization, automation, digital tools

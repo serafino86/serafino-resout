@@ -6,7 +6,7 @@
 I spend time inside your activity to understand where you are losing time and money. Then I build the tool or process that solves it: CRM, automation, AI bot, dashboard. And I deliver it so it can run without me.
 
 **Q: Can I see an example of the simplification plan before paying 300 CHF?**
-Yes. There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. It shows the kind of client-facing document Serafino can deliver after the free diagnostic: audit, concrete problems, proposed actions, roadmap, measurement, and possible evolution toward a web app dashboard.
+Yes. There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. Direct link: https://serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf. It shows the kind of client-facing document Serafino can deliver after the free diagnostic: audit, concrete problems, proposed actions, roadmap, measurement, and possible evolution toward a web app dashboard.
 
 **Q: What is the difference between you and a freelance developer?**
 A freelance developer codes what they are asked to code. I start by understanding the field problem. Often the real problem is not the one people think it is. I had 11 years of operational experience before learning to code.
@@ -39,6 +39,9 @@ Yes. The spreadsheet can remain the data base, while a simple web app becomes th
 
 **Q: I have a list of 300 prospects in an Excel file. I do not know where to start.**
 A lightweight CRM on Google Sheets with a simple scoring system can turn that list into an actionable pipeline. I did this for Planeto: 756 high-priority leads extracted from a much larger base.
+
+**Q: How many leads did Planeto actually get from this work?**
+For Planeto, the concrete result was 756 high-priority leads identified from a larger prospect base, notably about 1785 UK contacts and about 396 CH contacts. The important point is not a vanity volume number, but the fact that the list became usable: prioritized, structured, and ready for follow-up inside a working CRM.
 
 **Q: I am a consultant. I lose track of prospects and follow up too late.**
 A CRM with automatic reminders in Google Calendar or by email, fed by a Sheet you update in 2 minutes after each exchange.
