@@ -658,6 +658,31 @@
     .comparison-table tr:last-child td { border-bottom: none; }
     .comparison-highlight td { color: var(--text); background: var(--accent-dim); }
 
+    /* ── DO / DON'T ──────────────────────────────────────────────────────── */
+    .do-dont {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      margin-top: 32px;
+    }
+    .do-panel { background: var(--surface); padding: 36px; }
+    .do-panel.dont { background: var(--surface2); }
+    .do-panel .panel-head {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 24px; display: block;
+    }
+    .do-panel:first-child .panel-head { color: var(--accent); }
+    .do-panel.dont .panel-head { color: var(--muted); }
+    .do-items { display: flex; flex-direction: column; gap: 14px; }
+    .do-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.88rem; color: rgba(240,236,228,0.82);
+    }
+    .do-item .di { flex-shrink: 0; font-family: var(--font-d); font-size: 1rem; margin-top: 1px; }
+    .do-panel:first-child .di { color: var(--accent); }
+    .do-panel.dont .di { color: var(--subtle); }
+    @media (max-width: 640px) { .do-dont { grid-template-columns: 1fr; } }
+
     /* ── STEPS / METHOD ──────────────────────────────────────────────────── */
     .steps {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -1299,6 +1324,30 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="do-dont">
+        <div class="do-panel">
+          <span class="panel-head">Ce que je fais</span>
+          <div class="do-items">
+            <div class="do-item"><span class="di">→</span><span>Diagnostic terrain: observer comment le travail circule réellement, pas sur papier</span></div>
+            <div class="do-item"><span class="di">→</span><span>Plan d'action concret avec priorités, délais et responsabilités</span></div>
+            <div class="do-item"><span class="di">→</span><span>CRM, dashboards, bots IA, automatisations — livrés, documentés, opérationnels</span></div>
+            <div class="do-item"><span class="di">→</span><span>Systèmes que l'équipe peut utiliser sans moi dès le lendemain</span></div>
+            <div class="do-item"><span class="di">→</span><span>Propriété totale: aucune licence, aucun abonnement, aucune dépendance</span></div>
+            <div class="do-item"><span class="di">→</span><span>Garantie de résultat ou remboursement intégral dans les 3 mois</span></div>
+          </div>
+        </div>
+        <div class="do-panel dont">
+          <span class="panel-head">Ce que je ne fais pas</span>
+          <div class="do-items">
+            <div class="do-item"><span class="di">—</span><span>Rapports PowerPoint sans réalisation concrète</span></div>
+            <div class="do-item"><span class="di">—</span><span>Solutions génériques copiées d'un client à l'autre</span></div>
+            <div class="do-item"><span class="di">—</span><span>Outils qui nécessitent une formation continue ou un support externe</span></div>
+            <div class="do-item"><span class="di">—</span><span>Abonnements mensuels ou licences sur ce que je livre</span></div>
+            <div class="do-item"><span class="di">—</span><span>Projets démarrés sans accord clair sur ce qui change et pourquoi</span></div>
+            <div class="do-item"><span class="di">—</span><span>Plus de 3–4 missions en parallèle — pour garantir une vraie attention</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
