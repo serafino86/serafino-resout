@@ -347,27 +347,32 @@
       border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
     }
     .flip-card {
-      perspective: 900px; cursor: pointer; min-height: 220px;
-      background: var(--surface);
+      perspective: 1000px; cursor: pointer;
+      background: var(--surface); height: 240px;
     }
     .flip-inner {
       position: relative; width: 100%; height: 100%;
-      min-height: 240px;
       transform-style: preserve-3d;
       transition: transform 0.55s var(--ease);
     }
-    .flip-card.is-flipped .flip-inner,
-    .flip-card:focus .flip-inner { transform: rotateY(180deg); }
+    /* Desktop hover */
+    @media (hover: hover) {
+      .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    }
+    /* Click/tap */
+    .flip-card.is-flipped .flip-inner { transform: rotateY(180deg); }
+
     .flip-front, .flip-back {
-      position: absolute; inset: 0; padding: 32px;
-      backface-visibility: hidden; display: flex;
-      flex-direction: column; justify-content: space-between;
+      position: absolute; inset: 0; padding: 28px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
     .flip-back { transform: rotateY(180deg); background: var(--surface2); }
-    .flip-question { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; color: var(--text); line-height: 1.35; }
-    .flip-hint { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 16px; }
-    .flip-service { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-    .flip-back p { font-size: 0.9rem; color: rgba(240,236,228,0.88); line-height: 1.6; }
+    .flip-question { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .flip-hint { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 12px; }
+    .flip-service { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .flip-back p { font-size: 0.88rem; color: rgba(240,236,228,0.88); line-height: 1.6; }
 
     /* ── OFFER ───────────────────────────────────────────────────────────── */
     .offer-grid {
