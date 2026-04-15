@@ -260,6 +260,33 @@
       50%      { opacity: 1;   transform: scaleY(1)   translateY(4px); }
     }
 
+    /* ── METRICS STRIP ───────────────────────────────────────────────────── */
+    .metrics-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--bg2);
+      border-bottom: 1px solid var(--line);
+    }
+    .metric {
+      padding: 28px 32px;
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .metric:last-child { border-right: none; }
+    .metric strong {
+      font-family: var(--font-d); font-size: 2.2rem;
+      font-weight: 700; color: var(--accent); line-height: 1;
+    }
+    .metric span { font-size: 12px; color: rgba(240,236,228,0.6); line-height: 1.4; }
+    @media (max-width: 900px) {
+      .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 500px) {
+      .metrics-strip { grid-template-columns: 1fr; }
+      .metric { border-right: none; border-bottom: 1px solid var(--line); }
+      .metric:last-child { border-bottom: none; }
+    }
+
     /* ── TRUST STRIP ─────────────────────────────────────────────────────── */
     .trust-strip {
       display: flex; flex-wrap: wrap; gap: 0;
@@ -636,6 +663,39 @@
     }
     .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* ── FAQ ─────────────────────────────────────────────────────────────── */
+    .faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      border-radius: 4px; overflow: hidden;
+    }
+    .faq-item {
+      background: var(--surface); padding: 0;
+      transition: background 0.2s;
+    }
+    .faq-item[open] { background: var(--surface2); }
+    .faq-item summary {
+      padding: 24px 28px; cursor: pointer;
+      font-family: var(--font-d); font-size: 1.05rem;
+      font-weight: 600; color: var(--text); line-height: 1.3;
+      list-style: none; display: flex;
+      justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+'; color: var(--accent); font-size: 1.4rem;
+      font-weight: 300; flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      padding: 0 28px 24px; font-size: 0.9rem;
+      color: rgba(240,236,228,0.80); line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── BOT WIDGET ──────────────────────────────────────────────────────── */
     .bot-hint {
       position: fixed; bottom: 90px; right: 24px; z-index: 800;
@@ -800,6 +860,26 @@
       </div>
     </div>
 
+    <!-- ── METRICS STRIP ────────────────────────────────────────────────── -->
+    <section class="metrics-strip" aria-label="Résultats mesurables">
+      <div class="metric">
+        <strong>756</strong>
+        <span>leads haute priorité générés</span>
+      </div>
+      <div class="metric">
+        <strong>4–6h</strong>
+        <span>récupérées / semaine en cuisine</span>
+      </div>
+      <div class="metric">
+        <strong>8h → 30min</strong>
+        <span>inventaire mensuel, même précision</span>
+      </div>
+      <div class="metric">
+        <strong>0</strong>
+        <span>licence mensuelle sur les systèmes livrés</span>
+      </div>
+    </section>
+
     <!-- ── TRUST STRIP ───────────────────────────────────────────────────── -->
     <section class="trust-strip" aria-label="Promesse de valeur">
       <span>Diagnostic clair</span>
@@ -808,7 +888,6 @@
       <span>Outils autonomes</span>
       <span>Organisation stable</span>
       <span>Temps gagné</span>
-      <span>756 leads qualifiés générés</span>
     </section>
 
     <!-- ── DIAGNOSTIC ────────────────────────────────────────────────────── -->
@@ -1249,6 +1328,40 @@
       </div>
     </section>
 
+    <!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
+    <section class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2>Les réponses rapides.</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary>À qui s'adresse votre accompagnement ?</summary>
+          <p>Aux PME, restaurants, artisans, professions libérales et petites équipes qui perdent du temps dans des outils dispersés, des tâches répétitives ou une organisation floue. Si l'information vit entre WhatsApp, Excel et la mémoire de quelques personnes — c'est exactement là que j'interviens.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Est-ce que vous remplacez tous nos outils ?</summary>
+          <p>Pas forcément. L'objectif est d'améliorer ce qui existe déjà quand c'est pertinent, et de simplifier l'ensemble. Parfois un seul ajustement change tout. Je ne vends pas de technologie pour la technologie.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Peut-on commencer petit ?</summary>
+          <p>Oui. Le premier échange est gratuit et sans engagement. Il sert à clarifier la situation. Un plan d'action à 300 CHF vient ensuite, et la mise en place démarre seulement si les deux parties sont alignées sur ce qui doit changer.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Combien coûte une intervention concrète ?</summary>
+          <p>Le premier échange est gratuit. Le plan de recommandations commence à 300 CHF. La mise en place démarre à 800 CHF pour un projet stand-alone, payé une seule fois — sans abonnement ni licence mensuelle. Garantie de résultat ou remboursement intégral dans les 3 mois.</p>
+        </details>
+        <details class="faq-item">
+          <summary>L'équipe doit-elle savoir coder ou se former ?</summary>
+          <p>Non. Je construis des outils sur la façon dont votre équipe travaille déjà. Si ce n'est pas utilisable sans formation, ce n'est pas livrable. C'est une règle de travail, pas une promesse commerciale.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Vous ne savez pas encore quel est le vrai problème ?</summary>
+          <p>C'est souvent le cas. Le bot ci-dessous vous aide à décrire votre situation, fait ressortir les points de friction et prépare un récapitulatif prêt à envoyer — sans que vous ayez à tout formuler seul.</p>
+        </details>
+      </div>
+    </section>
+
     <!-- ── CONTACT ─────────────────────────────────────────────────────────── -->
     <section id="contact" class="section contact-section fade-up">
       <div class="contact-panel">
@@ -1274,13 +1387,13 @@
   </main>
 
   <!-- ── BOT WIDGET ──────────────────────────────────────────────────────── -->
-  <div class="bot-hint" id="botHint">Pas envie de lire tout ça ?</div>
-  <div class="bot-hint bot-hint-contact" id="botHint2">Diagnostic gratuit — 30 min pour voir si je peux vraiment t'aider.</div>
+  <div class="bot-hint" id="botHint">Décrivez votre situation — le bot structure et prépare un résumé.</div>
+  <div class="bot-hint bot-hint-contact" id="botHint2">Pas sûr de ce qu'il faut améliorer ? Le bot vous aide à clarifier.</div>
   <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant Serafino" aria-expanded="false">
     <span class="bot-fab-icon">
       <img src="./assets/photos/avatar.png" alt="Serafino" loading="lazy" onerror="this.src='./assets/photos/LA_NOCE_Enrico_v.jpg'" />
     </span>
-    <span class="bot-fab-label">Une question ?</span>
+    <span class="bot-fab-label">Clarifier mon besoin</span>
   </button>
   <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout" aria-hidden="true">
     <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">Fermer</button>
