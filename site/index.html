@@ -29,13 +29,13 @@
   <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
   <link rel="apple-touch-icon" href="./assets/photos/avatar.png" />
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "SERAFINO RÉSOUT",
-    "description": "Conseil opérationnel et outils simples pour PME genevoises",
+    "description": "Conseil opérationnel et outils simples pour PME genevoises — diagnostic terrain, automatisation des processus, outils sur mesure.",
     "url": "https://www.serafino-resout.ch",
     "telephone": "+41786583760",
     "email": "contact@serafino-resout.ch",
@@ -46,9 +46,69 @@
       "postalCode": "1202",
       "addressCountry": "CH"
     },
-    "priceRange": "CHF 300–800+",
+    "priceRange": "CHF 0–800+",
     "founder": { "@type": "Person", "name": "Enrico La Noce" },
-    "areaServed": { "@type": "City", "name": "Genève" }
+    "areaServed": [
+      { "@type": "City", "name": "Genève" },
+      { "@type": "AdministrativeArea", "name": "Suisse romande" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services SERAFINO RÉSOUT",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Premier échange — diagnostic gratuit",
+            "description": "30 minutes pour comprendre comment le travail circule aujourd'hui, identifier les pertes de temps et d'énergie, et voir si une intervention a du sens.",
+            "provider": { "@type": "LocalBusiness", "name": "SERAFINO RÉSOUT" }
+          },
+          "price": "0",
+          "priceCurrency": "CHF"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Plan de simplification opérationnelle",
+            "description": "Analyse terrain des flux réels, identification des causes de perte de temps et des angles morts, livraison d'un plan d'action clair avec priorités, délais et responsabilités.",
+            "provider": { "@type": "LocalBusiness", "name": "SERAFINO RÉSOUT" }
+          },
+          "price": "300",
+          "priceCurrency": "CHF"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mise en place d'outils opérationnels",
+            "description": "Déploiement pragmatique de solutions adaptées au terrain: dashboards, CRM, bots IA, automatisations. Livraison documentée, équipe autonome, garantie de résultat.",
+            "provider": { "@type": "LocalBusiness", "name": "SERAFINO RÉSOUT" }
+          },
+          "price": "800",
+          "priceCurrency": "CHF"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Évolutions et nouvelles fonctions",
+            "description": "Extension d'un système existant: nouvelle source de données, nouvelle fonction, nouveau bot ou nouveau périmètre métier.",
+            "provider": { "@type": "LocalBusiness", "name": "SERAFINO RÉSOUT" }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Scalabilité — accompagnement à la croissance",
+            "description": "Adaptation des systèmes opérationnels quand la structure grandit: plusieurs sites, nouvelles équipes, nouveaux marchés — sans tout reconstruire.",
+            "provider": { "@type": "LocalBusiness", "name": "SERAFINO RÉSOUT" }
+          }
+        }
+      ]
+    }
   }
   </script>
 
