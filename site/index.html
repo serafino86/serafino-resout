@@ -466,7 +466,7 @@
 
     /* ── STEPS / METHOD ──────────────────────────────────────────────────── */
     .steps {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1px; background: var(--line);
       border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
       margin-bottom: 40px;
@@ -706,7 +706,7 @@
       transition: opacity 0.3s, transform 0.3s; pointer-events: none;
     }
     .bot-hint.is-visible { opacity: 1; transform: none; pointer-events: auto; }
-    .bot-hint-contact { border-radius: 20px 20px 4px 20px; }
+    .bot-hint-contact { border-radius: 20px 20px 4px 20px; bottom: 148px; }
 
     .bot-fab {
       position: fixed; bottom: 24px; right: 24px; z-index: 800;
@@ -1033,6 +1033,12 @@
           <p class="price">Nouvelle mission</p>
           <p>Une fois l'outil en place, il peut évoluer: nouvelle source de données, nouvelle fonction, nouveau bot ou nouveau périmètre.</p>
         </article>
+        <article class="offer-card">
+          <p class="offer-step">05</p>
+          <h3>Scalabilité</h3>
+          <p class="price">Sur mesure</p>
+          <p>Quand votre structure grandit, vos outils grandissent avec elle. Ce qui a été construit pour 3 personnes peut être étendu à 10, à plusieurs sites, ou à de nouveaux marchés — sans tout recommencer.</p>
+        </article>
       </div>
       <div class="guarantee-strip">
         <p><strong>Cadre clair, garantie simple.</strong> 800 CHF est un point de départ pour un projet stand-alone, payé une seule fois. Si dans les 3 mois suivant la mise en place, en suivant le protocole d'utilisation convenu, aucun résultat mesurable n'est observé — vous êtes remboursé intégralement.</p>
@@ -1196,6 +1202,7 @@
         <article class="card"><h3>4 à 6h gagnées / semaine</h3><p>Sur la recherche de prix, la saisonnalité et les décisions d'achat — sans refaire le tri à chaque fois.</p></article>
         <article class="card"><h3>Saisonnalité en quelques secondes</h3><p>Identifier les produits disponibles au meilleur prix, directement exploitable pour composer les menus.</p></article>
         <article class="card"><h3>Connaissance du logiciel métier</h3><p>Expérience préalable avec Food Cost in Cloud — ce qui permet de comprendre les limites des outils existants avant de proposer une alternative.</p></article>
+        <article class="card"><h3>Équipe autonome</h3><p>Le système a été conçu pour que n'importe quel membre de l'équipe puisse l'utiliser sans formation spécifique — pas de dépendance technique à la livraison.</p></article>
         <article class="card"><h3>Information utile, pas stockée</h3><p>L'information n'était plus archivée: elle devenait directement exploitable pour organiser les achats et piloter la cuisine.</p></article>
       </div>
 
