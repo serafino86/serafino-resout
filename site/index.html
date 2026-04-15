@@ -148,7 +148,7 @@
     /* ── HERO WRAPPER ────────────────────────────────────────────────────── */
     .hero-wrapper {
       position: relative;
-      height: 400vh;
+      height: 250vh;
     }
 
     .hero-canvas-wrap {
@@ -156,6 +156,34 @@
       width: 100%; height: 100vh;
       overflow: hidden;
     }
+
+    /* Mobile: no scroll hijack */
+    @media (max-width: 768px) {
+      .hero-wrapper { height: 100vh; }
+      .hero-beats { display: none; }
+      .scroll-hint { display: none; }
+      .hero-mobile { display: flex !important; }
+    }
+
+    .hero-mobile {
+      display: none;
+      position: absolute; inset: 0;
+      flex-direction: column; justify-content: center;
+      padding: 80px 7vw 60px;
+      gap: 16px;
+    }
+    .hero-mobile .eyebrow { margin-bottom: 0; }
+    .hero-mobile h1 {
+      font-family: var(--font-d);
+      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--text);
+    }
+    .hero-mobile p {
+      font-size: 1rem; color: rgba(240,236,228,0.75);
+      max-width: 480px; line-height: 1.6;
+    }
+    .hero-mobile .beat-cta { align-self: flex-start; margin-top: 8px; }
 
     #network {
       position: absolute; inset: 0;
@@ -733,23 +761,31 @@
         <canvas id="network" aria-hidden="true"></canvas>
 
         <div class="hero-beats" aria-hidden="true">
-          <div class="beat" data-start="0" data-end="0.22" data-align="center">
+          <div class="beat" data-start="0" data-end="0.28" data-align="center">
             <h1 class="beat-title">SYSTÈMES QUI<br><em>FONCTIONNENT.</em></h1>
             <p class="beat-sub">De la complexité, de l'ordre. Du chaos, une structure.</p>
           </div>
-          <div class="beat" data-start="0.26" data-end="0.46" data-align="left">
+          <div class="beat" data-start="0.33" data-end="0.58" data-align="left">
             <div class="beat-title">CHAQUE CONNEXION<br>A UN BUT.</div>
             <p class="beat-sub">Rien n'est laissé au hasard. Aucun processus n'est improvisé.</p>
           </div>
-          <div class="beat" data-start="0.50" data-end="0.70" data-align="right">
+          <div class="beat" data-start="0.63" data-end="0.83" data-align="right">
             <div class="beat-title">LA PRÉCISION<br>NE SE VOIT PAS.</div>
             <p class="beat-sub">Jusqu'à ce que vous regardiez à l'intérieur du système.</p>
           </div>
-          <div class="beat" data-start="0.75" data-end="0.97" data-align="center">
+          <div class="beat" data-start="0.87" data-end="1.0" data-align="center">
             <div class="beat-title">CONSTRUISONS<br><em>ENSEMBLE.</em></div>
             <p class="beat-sub">Diagnostic. Structure. Outils qui restent.</p>
             <a class="beat-cta" href="#contact">Réserver un premier échange</a>
           </div>
+        </div>
+
+        <!-- Mobile static hero (no scroll hijack) -->
+        <div class="hero-mobile">
+          <p class="eyebrow">Conseil opérationnel à Genève</p>
+          <h1>Remettre de l'ordre dans le travail avant que le désordre ne coûte trop cher.</h1>
+          <p>Diagnostic sur le terrain. Systèmes simples. Résultats mesurables.</p>
+          <a class="beat-cta" href="#contact">Réserver un premier échange</a>
         </div>
 
         <div class="scroll-hint" id="scrollHint">
@@ -1353,53 +1389,40 @@
     raf = requestAnimationFrame(render);
 
     /* ── SCROLL PROGRESS ──────────────────────────────────────────────────── */
-    const wrapper   = document.querySelector('.hero-wrapper');
-    const beats     = document.querySelectorAll('.beat');
+    const wrapper    = document.querySelector('.hero-wrapper');
+    const beats      = document.querySelectorAll('.beat');
     const scrollHint = document.getElementById('scrollHint');
 
-    if (!isMobile) {
-      window.addEventListener('scroll', onScroll, {passive: true});
-    } else {
-      // On mobile: auto-animate progress from 0 to 1 over 3s on load
-      let start = null;
-      function autoAnimate(ts) {
-        if (!start) start = ts;
-        progress = Math.min((ts - start) / 3000, 1);
-        beats.forEach(b => {
-          const s = +b.dataset.start, e = +b.dataset.end;
-          const mid = (s + e) / 2;
-          // On mobile just show the last beat
-          b.style.opacity = (progress > 0.75) ? '1' : '0';
-        });
-        if (progress < 1) requestAnimationFrame(autoAnimate);
-      }
-      setTimeout(() => requestAnimationFrame(autoAnimate), 500);
+    function beatOpacity(p, s, e) {
+      if (p < s || p > e) return 0;
+      const fadeW = Math.min((e - s) * 0.22, 0.07);
+      // Beat A starts fully visible at p=0
+      if (s === 0 && p < fadeW) return 1;
+      if (p < s + fadeW) return (p - s) / fadeW;
+      if (p > e - fadeW) return (e - p) / fadeW;
+      return 1;
     }
 
     function onScroll() {
-      const rect = wrapper.getBoundingClientRect();
+      const rect  = wrapper.getBoundingClientRect();
       const total = wrapper.offsetHeight - window.innerHeight;
-      const scrolled = -rect.top;
-      progress = Math.max(0, Math.min(1, scrolled / total));
+      if (total <= 0) return;
+      progress = Math.max(0, Math.min(1, -rect.top / total));
 
-      // Scroll hint fade
-      if (scrollHint) scrollHint.style.opacity = progress < 0.05 ? '1' : '0';
+      if (scrollHint) scrollHint.style.opacity = progress < 0.04 ? '1' : '0';
 
-      // Beat visibility
       beats.forEach(b => {
         const s = +b.dataset.start, e = +b.dataset.end;
-        const span = e - s;
-        const fadeW = span * 0.18;
-        let op = 0;
-        if (progress >= s && progress <= e) {
-          if (progress < s + fadeW)      op = (progress - s) / fadeW;
-          else if (progress > e - fadeW) op = (e - progress) / fadeW;
-          else                           op = 1;
-        }
+        const op = beatOpacity(progress, s, e);
         b.style.opacity = op;
-        const yOff = op < 1 ? (1 - op) * 18 : 0;
-        b.style.transform = `translateY(${progress < s ? yOff : -yOff}px)`;
+        b.style.transform = `translateY(${(1 - op) * (progress < s ? 20 : -20)}px)`;
       });
+    }
+
+    if (!isMobile) {
+      window.addEventListener('scroll', onScroll, {passive: true});
+      // Show beat A immediately on load
+      onScroll();
     }
   })();
 
