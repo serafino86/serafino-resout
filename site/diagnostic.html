@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Diagnostic opérationnel PME à Genève | SERAFINO RÉSOUT</title>
+  <meta name="description" content="Diagnostic opérationnel pour PME à Genève: identifier les pertes de temps, les angles morts et les causes réelles de désorganisation. 30 min gratuites, plan d'action à 300 CHF." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/diagnostic.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/diagnostic.html" />
+  <meta property="og:title" content="Diagnostic opérationnel PME Genève | SERAFINO RÉSOUT" />
+  <meta property="og:description" content="Avant de changer quoi que ce soit, comprendre ce qui freine vraiment. Diagnostic terrain, plan d'action clair, 300 CHF." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <meta property="og:site_name" content="SERAFINO RÉSOUT" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Diagnostic opérationnel PME Genève | SERAFINO RÉSOUT" />
+  <meta name="twitter:description" content="Identifier les vraies causes avant de poser la moindre solution. Diagnostic terrain, plan d'action, 300 CHF." />
+  <meta name="twitter:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Diagnostic opérationnel PME",
+    "description": "Analyse terrain des flux réels d'une PME: identification des pertes de temps, des tâches répétitives, des angles morts et des causes profondes de désorganisation. Livraison d'un plan d'action concret avec priorités, délais et responsabilités.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "SERAFINO RÉSOUT",
+      "url": "https://www.serafino-resout.ch",
+      "telephone": "+41786583760",
+      "email": "contact@serafino-resout.ch",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenue de Sécheron 12",
+        "addressLocality": "Genève",
+        "postalCode": "1202",
+        "addressCountry": "CH"
+      }
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Genève" },
+      { "@type": "AdministrativeArea", "name": "Suisse romande" }
+    ],
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Premier échange diagnostic",
+        "price": "0",
+        "priceCurrency": "CHF",
+        "description": "30 minutes pour clarifier la situation, identifier le vrai point de friction et voir si une intervention a du sens."
+      },
+      {
+        "@type": "Offer",
+        "name": "Plan de simplification opérationnelle",
+        "price": "300",
+        "priceCurrency": "CHF",
+        "description": "Diagnostic terrain complet avec livraison d'un plan d'action: priorités, actions, délais, responsabilités. Utilisable immédiatement, même sans mise en place."
+      }
+    ],
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.serafino-resout.ch/" },
+        { "@type": "ListItem", "position": 2, "name": "Diagnostic opérationnel", "item": "https://www.serafino-resout.ch/diagnostic.html" }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #0f0e0d;
+      --bg2:         #141310;
+      --surface:     #1a1917;
+      --surface2:    #222019;
+      --text:        #f0ece4;
+      --muted:       #7a7468;
+      --subtle:      #38362f;
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.08);
+      --line:        rgba(240,236,228,0.07);
+      --line-strong: rgba(240,236,228,0.14);
+      --ease:        cubic-bezier(0.25,0,0,1);
+      --font-d:      'Cormorant Garamond', Georgia, serif;
+      --font-b:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-b); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    p { color: rgba(240,236,228,0.82); }
+    a { color: inherit; }
+    strong { color: var(--text); }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(15,14,13,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-logo {
+      font-family: var(--font-d); font-size: 1.1rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none; color: var(--text);
+    }
+    .site-logo span { color: var(--accent); }
+    .nav-back {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 96px 48px 80px;
+      max-width: 960px; margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-family: var(--font-d); font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600; line-height: 1.15; color: var(--text);
+      margin-bottom: 28px;
+    }
+    .page-hero .lead {
+      font-size: 1.15rem; line-height: 1.7;
+      color: rgba(240,236,228,0.75); max-width: 680px;
+      margin-bottom: 40px;
+    }
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .button-primary {
+      display: inline-block; background: var(--accent); color: #0f0e0d;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 14px 28px; border-radius: 2px; transition: opacity 0.2s;
+    }
+    .button-primary:hover { opacity: 0.88; }
+    .button-secondary {
+      display: inline-block; border: 1px solid var(--line-strong);
+      color: var(--muted); font-size: 13px; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 13px 24px; border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px; margin: 0 auto;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-head { margin-bottom: 48px; }
+    .section-head h2 {
+      font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 600; line-height: 1.25; color: var(--text);
+      margin-top: 12px;
+    }
+
+    /* ── SIGNAL GRID ── */
+    .signal-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .signal-card {
+      background: var(--surface); padding: 32px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .signal-card .marker {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      margin-bottom: 4px;
+    }
+    .signal-card p { font-size: 0.9rem; }
+
+    /* ── WHAT / HOW BLOCKS ── */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: start;
+    }
+    .block-label {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .block h3 {
+      font-family: var(--font-d); font-size: 1.5rem; font-weight: 600;
+      color: var(--text); margin-bottom: 16px; line-height: 1.3;
+    }
+    .block p { font-size: 0.92rem; margin-bottom: 14px; }
+    .check-list {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-top: 8px;
+    }
+    .check-list li {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.9rem; color: rgba(240,236,228,0.8);
+      list-style: none;
+    }
+    .check-list li::before {
+      content: '→'; color: var(--accent); flex-shrink: 0;
+      font-family: var(--font-d); font-size: 1rem; margin-top: 1px;
+    }
+
+    /* ── OFFER CARDS ── */
+    .offer-duo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      border-radius: 4px; overflow: hidden;
+    }
+    .offer-panel {
+      background: var(--surface); padding: 40px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .offer-panel.accent-panel { background: var(--surface2); }
+    .offer-panel .step-num {
+      font-family: var(--font-d); font-size: 3rem; font-weight: 700;
+      color: var(--subtle); line-height: 1;
+    }
+    .offer-panel h3 { font-size: 1.2rem; }
+    .offer-panel .price {
+      font-family: var(--font-d); font-size: 2rem; font-weight: 700;
+      color: var(--accent);
+    }
+    .offer-panel p { font-size: 0.9rem; }
+    .offer-panel ul { padding-left: 0; display: flex; flex-direction: column; gap: 8px; }
+    .offer-panel li {
+      list-style: none; font-size: 0.88rem;
+      color: rgba(240,236,228,0.75); padding-left: 16px; position: relative;
+    }
+    .offer-panel li::before {
+      content: '—'; position: absolute; left: 0; color: var(--subtle);
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps {
+      display: flex; flex-direction: column; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      border-radius: 4px; overflow: hidden;
+    }
+    .process-step {
+      background: var(--surface); padding: 32px 40px;
+      display: grid; grid-template-columns: 64px 1fr; gap: 24px;
+      align-items: start;
+    }
+    .process-step:hover { background: var(--surface2); }
+    .process-step .step-n {
+      font-family: var(--font-d); font-size: 2.4rem; font-weight: 700;
+      color: var(--subtle); line-height: 1; padding-top: 4px;
+    }
+    .process-step-body { display: flex; flex-direction: column; gap: 8px; }
+    .process-step h3 { font-size: 1.1rem; }
+    .process-step p { font-size: 0.88rem; }
+    .process-step .duration {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-top: 4px;
+    }
+
+    /* ── DIFF TABLE ── */
+    .diff-table {
+      width: 100%; border-collapse: collapse;
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .diff-table th {
+      padding: 16px 24px; text-align: left;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); background: var(--surface2);
+      border-bottom: 1px solid var(--line);
+    }
+    .diff-table td {
+      padding: 18px 24px; font-size: 0.9rem;
+      color: rgba(240,236,228,0.75);
+      border-bottom: 1px solid var(--line);
+    }
+    .diff-table tr:last-child td { border-bottom: none; }
+    .diff-table .highlight td { color: var(--text); background: var(--accent-dim); }
+    .diff-table .highlight td strong { color: var(--accent); }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      background: var(--surface2); border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0; padding: 32px 40px;
+      margin-top: 48px;
+    }
+    .quote-block blockquote {
+      font-family: var(--font-d); font-size: 1.3rem; font-style: italic;
+      color: var(--text); line-height: 1.5; margin-bottom: 16px;
+    }
+    .quote-block cite { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      max-width: 960px; margin: 0 auto;
+      padding: 96px 48px; text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.2; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .cta-section p { max-width: 560px; margin: 0 auto 36px; }
+    .cta-meta { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--line); padding: 32px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .site-footer p { font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ── FADE ── */
+    .fade-up {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .site-header { padding: 0 20px; }
+      .page-hero { padding: 64px 20px 56px; }
+      .section { padding: 56px 20px; }
+      .two-col { grid-template-columns: 1fr; gap: 32px; }
+      .offer-duo { grid-template-columns: 1fr; }
+      .process-step { grid-template-columns: 48px 1fr; padding: 24px 20px; }
+      .cta-section { padding: 72px 20px; }
+      .site-footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
+    <a class="nav-back" href="./index.html">← Retour à l'accueil</a>
+  </header>
+
+  <section class="page-hero">
+    <p class="eyebrow">Diagnostic opérationnel — Genève &amp; Suisse romande</p>
+    <h1>Avant de changer quoi que ce soit, comprendre ce qui freine vraiment.</h1>
+    <p class="lead">Le vrai problème n'est presque jamais celui qu'on croit. Un diagnostic opérationnel terrain permet d'identifier les causes réelles — pas les symptômes — et de construire un plan d'action sur ce qui existe vraiment dans votre organisation.</p>
+    <div class="cta-row">
+      <a class="button-primary" href="mailto:contact@serafino-resout.ch?subject=Diagnostic%20opérationnel%20—%20Premier%20échange">Premier échange gratuit — 30 min</a>
+      <a class="button-secondary" href="./index.html#methode">Voir la méthode complète</a>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Le vrai signal d'alerte</p>
+      <h2>Votre organisation a besoin d'un diagnostic si vous reconnaissez ces situations.</h2>
+    </div>
+    <div class="signal-grid">
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>Le travail tient grâce aux personnes les plus débrouillardes. Quand l'une d'elles est absente, tout ralentit.</p>
+      </div>
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>Vous savez qu'il y a un problème, mais vous n'arrivez pas à identifier exactement où il se situe — ni par où commencer.</p>
+      </div>
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>Vous avez essayé des outils ou des changements, mais rien n'a vraiment tenu dans la durée.</p>
+      </div>
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>L'information circule par WhatsApp, email et mémoire humaine. Retrouver quelque chose de simple prend trop de temps.</p>
+      </div>
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>Les mêmes erreurs reviennent, les mêmes questions se posent, les mêmes frictions réapparaissent chaque semaine.</p>
+      </div>
+      <div class="signal-card">
+        <div class="marker"></div>
+        <p>Vous passez plus de temps à gérer l'organisation qu'à développer votre activité ou servir vos clients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">La différence qui compte</p>
+      <h2>Traiter les symptômes ou agir sur les causes.</h2>
+    </div>
+    <div class="two-col">
+      <div class="block">
+        <p class="block-label">Ce qui ne fonctionne pas</p>
+        <h3>Ajouter des outils sur un système désorganisé</h3>
+        <p>La plupart des interventions échouent parce qu'elles posent une solution avant d'avoir compris le problème. Un logiciel neuf ne résout pas un problème d'organisation — il le déplace.</p>
+        <ul class="check-list">
+          <li>Nouveaux outils non adoptés par l'équipe</li>
+          <li>Formations qui ne changent pas les habitudes</li>
+          <li>Consultants qui livrent des rapports, pas des résultats</li>
+          <li>Solutions génériques sur des problèmes spécifiques</li>
+        </ul>
+      </div>
+      <div class="block">
+        <p class="block-label">Ce qui fonctionne</p>
+        <h3>Observer le travail réel avant de toucher quoi que ce soit</h3>
+        <p>Un diagnostic opérationnel terrain commence par comprendre comment le travail circule réellement — pas comment il devrait circuler selon les procédures. La différence est souvent considérable.</p>
+        <ul class="check-list">
+          <li>Identification des vraies causes, pas des symptômes visibles</li>
+          <li>Plan d'action adapté à la réalité du terrain</li>
+          <li>Interventions ciblées avec impact mesurable</li>
+          <li>Solutions que l'équipe comprend et peut s'approprier</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">L'offre</p>
+      <h2>Deux points d'entrée, selon où vous en êtes.</h2>
+    </div>
+    <div class="offer-duo">
+      <div class="offer-panel">
+        <span class="step-num">01</span>
+        <h3>Premier échange</h3>
+        <span class="price">Gratuit</span>
+        <p>30 minutes pour clarifier votre situation, identifier le vrai point de friction et voir ensemble si une intervention a du sens — et laquelle.</p>
+        <ul>
+          <li>Sans engagement, sans préparation préalable</li>
+          <li>Questions concrètes sur votre fonctionnement réel</li>
+          <li>Orientation claire sur la prochaine étape</li>
+          <li>Par téléphone, visio ou en personne à Genève</li>
+        </ul>
+      </div>
+      <div class="offer-panel accent-panel">
+        <span class="step-num">02</span>
+        <h3>Plan de simplification</h3>
+        <span class="price">300 CHF</span>
+        <p>Diagnostic terrain complet, suivi d'un plan d'action écrit avec priorités, actions concrètes, délais et responsabilités. Utilisable immédiatement — même si vous vous arrêtez là.</p>
+        <ul>
+          <li>Observation des flux réels sur site ou à distance</li>
+          <li>Identification des pertes de temps et des angles morts</li>
+          <li>Plan d'action priorisé, pas un rapport PowerPoint</li>
+          <li>Estimations d'impact pour chaque action</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Ce qu'on observe</p>
+      <h2>Le diagnostic couvre l'ensemble des flux opérationnels.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="step-n">01</span>
+        <div class="process-step-body">
+          <h3>Flux d'information</h3>
+          <p>Comment circule l'information entre les personnes, les outils et les équipes. Où elle se perd, se duplique, se retrouve dans des formats inutilisables.</p>
+          <span class="duration">Canaux · Outils · Formats</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-n">02</span>
+        <div class="process-step-body">
+          <h3>Tâches répétitives et manuelles</h3>
+          <p>Identification systématique des tâches qui reviennent régulièrement, leur fréquence, leur durée réelle et leur potentiel d'automatisation.</p>
+          <span class="duration">Volume · Fréquence · Durée</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-n">03</span>
+        <div class="process-step-body">
+          <h3>Points de friction et goulots</h3>
+          <p>Les endroits où le travail ralentit, où des erreurs se produisent régulièrement, où des personnes clés deviennent des goulets d'étranglement.</p>
+          <span class="duration">Délais · Erreurs · Dépendances</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-n">04</span>
+        <div class="process-step-body">
+          <h3>Outils en place et leur usage réel</h3>
+          <p>Ce que l'équipe utilise vraiment — pas ce qui est censé être utilisé. La différence entre l'outil prévu et l'outil réel révèle souvent les vraies causes.</p>
+          <span class="duration">Adoption · Contournements · Lacunes</span>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-n">05</span>
+        <div class="process-step-body">
+          <h3>Connaissance implicite et dépendances humaines</h3>
+          <p>Ce qui existe dans la tête des personnes clés et nulle part ailleurs. La connaissance non documentée qui crée de la fragilité opérationnelle.</p>
+          <span class="duration">Risques · Documentation · Transmission</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Positionnement</p>
+      <h2>Ce que vous ne trouverez pas ailleurs au même prix.</h2>
+    </div>
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>Intervenant</th>
+          <th>Approche</th>
+          <th>Limite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cabinet de conseil</td>
+          <td>Diagnostic stratégique</td>
+          <td>200–300 CHF/h, livraison en slides, pas de réalisation</td>
+        </tr>
+        <tr>
+          <td>Agence digitale</td>
+          <td>Audit outils et systèmes</td>
+          <td>Focalisé sur la vente d'outils, pas sur l'organisation réelle</td>
+        </tr>
+        <tr>
+          <td>Freelance</td>
+          <td>Analyse à distance</td>
+          <td>Peu de connaissance terrain, pas d'expertise métier HORECA/PME</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>SERAFINO RÉSOUT</strong></td>
+          <td><strong>Diagnostic terrain + plan d'action + réalisation possible</strong></td>
+          <td><strong>300 CHF tout compris. Résultat garanti ou remboursé.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="quote-block">
+      <blockquote>«On ne commence pas à intervenir sans avoir d'abord compris. On finit ce qu'on commence. Un travail bien fait ne devrait pas avoir besoin d'être refait.»</blockquote>
+      <cite>— Enrico La Noce, fondateur SERAFINO RÉSOUT</cite>
+    </div>
+  </section>
+
+  <div class="cta-section fade-up">
+    <p class="eyebrow">Premier échange gratuit</p>
+    <h2>30 minutes pour voir si votre organisation a des leviers évidents à activer.</h2>
+    <p>Pas de préparation préalable. Pas d'engagement. On regarde ensemble comment le travail circule et où ça coince.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="button-primary" href="mailto:contact@serafino-resout.ch?subject=Diagnostic%20opérationnel%20—%20Premier%20échange">Réserver 30 min — gratuit</a>
+      <a class="button-secondary" href="./automatisation.html">Voir les automatisations →</a>
+    </div>
+    <p class="cta-meta">contact@serafino-resout.ch &nbsp;·&nbsp; +41 78 658 37 60 &nbsp;·&nbsp; Genève</p>
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./automatisation.html">Automatisation PME</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p><a href="./index.html">serafino-resout.ch</a></p>
+  </footer>
+
+  <script defer>
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
