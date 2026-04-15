@@ -733,19 +733,29 @@
       width: min(420px, calc(100vw - 48px)); height: 560px;
       background: var(--surface); border: 1px solid var(--line-strong);
       border-radius: 12px; overflow: hidden;
+      display: flex; flex-direction: column;
       box-shadow: 0 16px 48px rgba(0,0,0,0.5);
       display: flex; flex-direction: column;
       opacity: 0; transform: translateY(16px) scale(0.97);
       pointer-events: none; transition: opacity 0.25s, transform 0.25s var(--ease);
     }
     .bot-popup.is-open { opacity: 1; transform: none; pointer-events: auto; }
-    .bot-close {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--surface2); border: 1px solid var(--line);
-      color: var(--muted); font-size: 11px; padding: 5px 10px;
-      border-radius: 4px; cursor: pointer; z-index: 1;
+    .bot-popup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; border-bottom: 1px solid var(--line);
+      background: var(--surface2); flex-shrink: 0;
+    }
+    .bot-popup-header span {
+      font-size: 12px; color: var(--muted);
       letter-spacing: 0.08em; text-transform: uppercase;
     }
+    .bot-close {
+      background: transparent; border: 1px solid var(--line);
+      color: var(--muted); font-size: 11px; padding: 4px 10px;
+      border-radius: 4px; cursor: pointer;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .bot-close:hover { border-color: var(--accent); color: var(--accent); }
     .bot-popup-frame { flex: 1; border: none; width: 100%; }
     .bot-popup-scrim {
       position: fixed; inset: 0; z-index: 799; background: rgba(0,0,0,0.5);
@@ -1408,7 +1418,10 @@
     <span class="bot-fab-label">Clarifier mon besoin</span>
   </button>
   <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout" aria-hidden="true">
-    <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">Fermer</button>
+    <div class="bot-popup-header">
+      <span>Assistant Serafino</span>
+      <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">Fermer ✕</button>
+    </div>
     <iframe class="bot-popup-frame" id="botFrame" src="" title="Assistant Serafino Résout" allow="clipboard-write"></iframe>
   </div>
   <div class="bot-popup-scrim" id="botScrim"></div>
