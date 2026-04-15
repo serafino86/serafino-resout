@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Automatisation des processus PME à Genève | SERAFINO RÉSOUT</title>
+  <meta name="description" content="Automatisez les tâches répétitives de votre PME à Genève: saisie, relances, rapports, synchronisation de données. Des outils sur mesure, sans abonnement, livrés et documentés." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/automatisation.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/automatisation.html" />
+  <meta property="og:title" content="Automatisation des processus PME à Genève | SERAFINO RÉSOUT" />
+  <meta property="og:description" content="Supprimez les tâches manuelles qui coûtent du temps chaque semaine. Diagnostic gratuit, outils sur mesure, résultat garanti." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <meta property="og:site_name" content="SERAFINO RÉSOUT" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Automatisation PME Genève | SERAFINO RÉSOUT" />
+  <meta name="twitter:description" content="Supprimez les tâches manuelles répétitives. Outils sur mesure, sans abonnement." />
+  <meta name="twitter:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Automatisation des processus PME",
+    "description": "Identification et automatisation des tâches répétitives dans les PME, restaurants et artisans à Genève et en Suisse romande. Dashboards, bots IA, synchronisation de données, relances automatiques.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "SERAFINO RÉSOUT",
+      "url": "https://www.serafino-resout.ch",
+      "telephone": "+41786583760",
+      "email": "contact@serafino-resout.ch",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenue de Sécheron 12",
+        "addressLocality": "Genève",
+        "postalCode": "1202",
+        "addressCountry": "CH"
+      }
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Genève" },
+      { "@type": "AdministrativeArea", "name": "Suisse romande" }
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "800",
+      "priceCurrency": "CHF",
+      "description": "Mise en place complète d'une automatisation — payé une fois, sans abonnement. Garantie de résultat ou remboursement dans les 3 mois."
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.serafino-resout.ch/" },
+        { "@type": "ListItem", "position": 2, "name": "Automatisation PME", "item": "https://www.serafino-resout.ch/automatisation.html" }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #0f0e0d;
+      --bg2:         #141310;
+      --surface:     #1a1917;
+      --surface2:    #222019;
+      --text:        #f0ece4;
+      --muted:       #7a7468;
+      --subtle:      #38362f;
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.08);
+      --line:        rgba(240,236,228,0.07);
+      --line-strong: rgba(240,236,228,0.14);
+      --ease:        cubic-bezier(0.25,0,0,1);
+      --font-d:      'Cormorant Garamond', Georgia, serif;
+      --font-b:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--font-b); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    p { color: rgba(240,236,228,0.82); }
+    a { color: inherit; }
+    strong { color: var(--text); }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 64px;
+      background: rgba(15,14,13,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-logo {
+      font-family: var(--font-d); font-size: 1.1rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none; color: var(--text);
+    }
+    .site-logo span { color: var(--accent); }
+    .nav-back {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 96px 48px 80px;
+      max-width: 960px; margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-family: var(--font-d); font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600; line-height: 1.15; color: var(--text);
+      margin-bottom: 28px;
+    }
+    .page-hero .lead {
+      font-size: 1.15rem; line-height: 1.7;
+      color: rgba(240,236,228,0.75); max-width: 680px;
+      margin-bottom: 40px;
+    }
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .button-primary {
+      display: inline-block; background: var(--accent); color: #0f0e0d;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 14px 28px; border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .button-primary:hover { opacity: 0.88; }
+    .button-secondary {
+      display: inline-block; border: 1px solid var(--line-strong);
+      color: var(--muted); font-size: 13px; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 13px 24px; border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px; margin: 0 auto;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-head { margin-bottom: 48px; }
+    .section-head h2 {
+      font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 600; line-height: 1.25; color: var(--text);
+      margin-top: 12px;
+    }
+
+    /* ── COST STRIP ── */
+    .cost-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px;
+      overflow: hidden; margin-bottom: 48px;
+    }
+    .cost-item {
+      background: var(--surface); padding: 32px 28px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .cost-item .num {
+      font-family: var(--font-d); font-size: 2.4rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .cost-item p { font-size: 0.88rem; }
+
+    /* ── PROBLEM LIST ── */
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px;
+      overflow: hidden;
+    }
+    .problem-card {
+      background: var(--surface); padding: 32px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .problem-card .icon {
+      font-family: var(--font-d); font-size: 2rem;
+      color: var(--subtle); line-height: 1;
+    }
+    .problem-card h3 { font-size: 1.05rem; font-weight: 500; }
+    .problem-card p { font-size: 0.88rem; }
+
+    /* ── SOLUTIONS ── */
+    .solution-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .solution-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 4px; padding: 32px;
+      transition: border-color 0.2s;
+    }
+    .solution-card:hover { border-color: var(--line-strong); }
+    .solution-tag {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .solution-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .solution-card p { font-size: 0.88rem; }
+    .solution-card ul {
+      margin-top: 14px; padding-left: 16px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .solution-card li { font-size: 0.85rem; color: rgba(240,236,228,0.7); }
+
+    /* ── RESULTS ── */
+    .result-strip {
+      background: var(--surface2); border: 1px solid var(--line);
+      border-radius: 4px; padding: 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .result-block { display: flex; flex-direction: column; gap: 10px; }
+    .result-block .label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .result-block .stat {
+      font-family: var(--font-d); font-size: 2.2rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .result-block p { font-size: 0.88rem; }
+
+    /* ── METHOD STEPS ── */
+    .method-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .method-step {
+      background: var(--surface); padding: 32px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .method-step .num {
+      font-family: var(--font-d); font-size: 3rem; font-weight: 700;
+      color: var(--subtle); line-height: 1;
+    }
+    .method-step h3 { font-size: 1rem; }
+    .method-step p { font-size: 0.85rem; }
+
+    /* ── GUARANTEE ── */
+    .guarantee {
+      background: var(--accent-dim); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px; padding: 32px 40px;
+      margin-top: 40px;
+    }
+    .guarantee strong { color: var(--accent); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      max-width: 960px; margin: 0 auto;
+      padding: 96px 48px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.2; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .cta-section p { max-width: 560px; margin: 0 auto 36px; }
+    .cta-meta {
+      font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 100%;
+    }
+    .site-footer p { font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ── FADE ── */
+    .fade-up {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .site-header { padding: 0 20px; }
+      .page-hero { padding: 64px 20px 56px; }
+      .section { padding: 56px 20px; }
+      .method-steps { grid-template-columns: 1fr 1fr; }
+      .result-strip { grid-template-columns: 1fr; }
+      .cta-section { padding: 72px 20px; }
+      .site-footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .method-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
+    <a class="nav-back" href="./index.html">← Retour à l'accueil</a>
+  </header>
+
+  <section class="page-hero">
+    <p class="eyebrow">Automatisation des processus — Genève &amp; Suisse romande</p>
+    <h1>Chaque heure perdue sur une tâche répétitive est une heure que vous ne récupérerez pas.</h1>
+    <p class="lead">SERAFINO RÉSOUT identifie les tâches manuelles qui ralentissent votre PME — saisie, relances, rapports, synchronisation — et les automatise avec des outils sur mesure, livrés et documentés, que votre équipe possède entièrement.</p>
+    <div class="cta-row">
+      <a class="button-primary" href="mailto:contact@serafino-resout.ch?subject=Automatisation%20PME%20—%20Premier%20échange">Diagnostic gratuit — 30 min</a>
+      <a class="button-secondary" href="./index.html#cas">Voir les cas réels</a>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Ce que ça coûte vraiment</p>
+      <h2>Le désordre opérationnel ne coûte pas cher à l'instant. Il coûte cher en continu.</h2>
+    </div>
+    <div class="cost-strip">
+      <div class="cost-item">
+        <span class="num">4–6h</span>
+        <p>perdues chaque semaine sur des recherches d'information dans des outils dispersés</p>
+      </div>
+      <div class="cost-item">
+        <span class="num">8h→30min</span>
+        <p>c'est le gain réel sur l'inventaire mensuel d'une cuisine professionnelle après automatisation</p>
+      </div>
+      <div class="cost-item">
+        <span class="num">756</span>
+        <p>leads qualifiés livrés automatiquement — zéro heure de prospection manuelle</p>
+      </div>
+      <div class="cost-item">
+        <span class="num">CHF 0</span>
+        <p>d'abonnement ou de licence mensuelle — les outils vous appartiennent</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Vous reconnaissez-vous ?</p>
+      <h2>Les situations les plus fréquentes dans les PME romandes.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="icon">01</span>
+        <h3>Saisie manuelle répétitive</h3>
+        <p>Les mêmes données saisies plusieurs fois dans plusieurs outils. Chaque saisie est une source d'erreur potentielle et une perte de temps certaine.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">02</span>
+        <h3>Relances oubliées ou manuelles</h3>
+        <p>Les relances clients ou fournisseurs reposent sur la mémoire d'une personne. Quand cette personne est absente, les relances s'arrêtent.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">03</span>
+        <h3>Rapports construits à la main</h3>
+        <p>Chaque semaine ou chaque mois, quelqu'un passe du temps à copier-coller des chiffres pour produire un rapport que tout le monde attend.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">04</span>
+        <h3>Information dispersée</h3>
+        <p>Devis dans un fichier, suivi client dans un autre, relances dans la tête, documents dans la boîte mail. Chaque outil fonctionne. Ensemble, ils créent du travail supplémentaire.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">05</span>
+        <h3>Recherches chronophages</h3>
+        <p>Retrouver une information simple — prix, stock, contact, historique — prend trop de temps parce que rien n'est centralisé ni accessible rapidement.</p>
+      </div>
+      <div class="problem-card">
+        <span class="icon">06</span>
+        <h3>Dépendance aux personnes clés</h3>
+        <p>Le système tient grâce aux personnes les plus débrouillardes. Quand l'une d'elles part, une partie de la connaissance opérationnelle part avec elle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Les automatisations les plus impactantes</p>
+      <h2>Des solutions concrètes pour des problèmes récurrents.</h2>
+    </div>
+    <div class="solution-list">
+      <div class="solution-card">
+        <p class="solution-tag">Données &amp; synchronisation</p>
+        <h3>Centralisation et synchronisation automatique</h3>
+        <p>Une donnée saisie une fois, disponible partout. Fini les doublons, les versions contradictoires, les mises à jour manuelles entre outils.</p>
+        <ul>
+          <li>Synchronisation Google Sheets ↔ base de données</li>
+          <li>Mise à jour automatique des tableaux de bord</li>
+          <li>Import/export entre systèmes hétérogènes</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <p class="solution-tag">Commercial &amp; CRM</p>
+        <h3>Pipeline commercial automatisé</h3>
+        <p>Qualification de leads, relances programmées, suivi de pipeline — sans intervention manuelle quotidienne.</p>
+        <ul>
+          <li>Qualification automatique selon critères métier</li>
+          <li>Relances email/WhatsApp programmées</li>
+          <li>Tableau de bord commercial en temps réel</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <p class="solution-tag">Opérations &amp; HORECA</p>
+        <h3>Gestion opérationnelle simplifiée</h3>
+        <p>Inventaires, commandes fournisseurs, planning équipe — les tâches chronophages réduites à quelques minutes.</p>
+        <ul>
+          <li>Inventaire par dictée vocale ou scan</li>
+          <li>Comparaison fournisseurs automatisée</li>
+          <li>Alertes stock et suggestions commandes</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <p class="solution-tag">Connaissance &amp; support</p>
+        <h3>Bot IA métier personnalisé</h3>
+        <p>Un assistant qui connaît votre activité, vos produits, vos processus — disponible en permanence, multilingue, sans intervention humaine.</p>
+        <ul>
+          <li>Réponses métier sur base de connaissance client</li>
+          <li>Support commercial et gestion des objections</li>
+          <li>Rédaction de documents répétitifs (devis, emails)</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <p class="solution-tag">Administration</p>
+        <h3>Automatisation administrative</h3>
+        <p>Les tâches administratives répétitives traitées automatiquement: rappels, confirmations, exports, archivage.</p>
+        <ul>
+          <li>Rappels automatiques clients et fournisseurs</li>
+          <li>Génération automatique de documents</li>
+          <li>Archivage et classement automatisé</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <p class="solution-tag">Reporting &amp; pilotage</p>
+        <h3>Tableaux de bord opérationnels</h3>
+        <p>Les chiffres qui comptent, visibles en temps réel, sans que personne n'ait à les assembler chaque semaine.</p>
+        <ul>
+          <li>Dashboard personnalisé aux KPIs réels</li>
+          <li>Alertes sur seuils critiques</li>
+          <li>Rapports hebdomadaires générés automatiquement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Résultats mesurables</p>
+      <h2>Des chiffres issus de missions réelles, pas de projections.</h2>
+    </div>
+    <div class="result-strip">
+      <div class="result-block">
+        <span class="label">Cuisine professionnelle, Genève</span>
+        <span class="stat">8h → 30min</span>
+        <p>Inventaire mensuel réduit de 8 heures à 30 minutes. Même précision, fraction du temps — grâce à la dictée vocale et au calcul automatique.</p>
+      </div>
+      <div class="result-block">
+        <span class="label">Pipeline commercial, Planeto</span>
+        <span class="stat">756 leads</span>
+        <p>Leads qualifiés et priorisés automatiquement. Zéro recherche manuelle, zéro tri — l'équipe commerciale se concentre sur les discussions.</p>
+      </div>
+      <div class="result-block">
+        <span class="label">Gestion fournisseurs HORECA</span>
+        <span class="stat">4–6h/sem</span>
+        <p>Temps récupéré chaque semaine sur la recherche de prix, la saisonnalité et les décisions d'achat fournisseurs.</p>
+      </div>
+      <div class="result-block">
+        <span class="label">Souveraineté des données</span>
+        <span class="stat">CHF 0/mois</span>
+        <p>Aucune licence mensuelle, aucun abonnement externe. Les outils appartiennent au client — propriété totale, aucune dépendance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Comment ça se passe</p>
+      <h2>Quatre étapes, du terrain à la livraison.</h2>
+    </div>
+    <div class="method-steps">
+      <div class="method-step">
+        <span class="num">01</span>
+        <h3>Diagnostic ciblé</h3>
+        <p>Observer les flux réels, identifier les tâches répétitives, mesurer le temps perdu. Pas les processus sur papier — ce qui se passe vraiment.</p>
+      </div>
+      <div class="method-step">
+        <span class="num">02</span>
+        <h3>Plan d'action</h3>
+        <p>Priorités, solutions, délais, responsabilités. Vous repartez avec une direction claire, même si vous vous arrêtez là.</p>
+      </div>
+      <div class="method-step">
+        <span class="num">03</span>
+        <h3>Mise en place</h3>
+        <p>Déploiement des automatisations, adapté au niveau réel de l'équipe. Rien d'inutile, rien de complexe sans raison.</p>
+      </div>
+      <div class="method-step">
+        <span class="num">04</span>
+        <h3>Stabilisation</h3>
+        <p>Le système tient sans moi. L'équipe peut l'utiliser, le modifier, se l'approprier — documentation complète incluse.</p>
+      </div>
+    </div>
+    <div class="guarantee">
+      <p><strong>Garantie de résultat.</strong> 800 CHF pour une mise en place stand-alone, payé une seule fois. Si dans les 3 mois suivant la mise en place, en suivant le protocole convenu, aucun résultat mesurable n'est observé — remboursement intégral.</p>
+    </div>
+  </section>
+
+  <div class="cta-section fade-up">
+    <p class="eyebrow">Premier échange gratuit</p>
+    <h2>30 minutes pour savoir si une automatisation peut changer quelque chose.</h2>
+    <p>On regarde ensemble où se perdent du temps, de l'énergie ou de la clarté. Gratuit, sans engagement, orientation concrète.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="button-primary" href="mailto:contact@serafino-resout.ch?subject=Automatisation%20PME%20—%20Premier%20échange">Réserver 30 min — gratuit</a>
+      <a class="button-secondary" href="./index.html">Voir l'offre complète</a>
+    </div>
+    <p class="cta-meta">contact@serafino-resout.ch &nbsp;·&nbsp; +41 78 658 37 60 &nbsp;·&nbsp; Genève</p>
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./diagnostic.html">Diagnostic opérationnel</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p><a href="./index.html">serafino-resout.ch</a></p>
+  </footer>
+
+  <script defer>
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
