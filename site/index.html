@@ -1,795 +1,1466 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SERAFINO RÉSOUT | Conseil opérationnel à Genève</title>
-    <meta
-      name="description"
-      content="SERAFINO RÉSOUT aide les PME, restaurants et artisans à Genève à simplifier leur organisation, gagner du temps et stabiliser leurs opérations."
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="noise"></div>
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" href="#top">
-          <span>SERAFINO</span>
-          <span>RÉSOUT</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>SERAFINO RÉSOUT | Conseil opérationnel à Genève</title>
+  <meta name="description" content="SERAFINO RÉSOUT aide les PME, restaurants et artisans à Genève à simplifier leur organisation, gagner du temps et stabiliser leurs opérations." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/" />
+  <meta property="og:title" content="SERAFINO RÉSOUT | Conseil opérationnel à Genève" />
+  <meta property="og:description" content="Diagnostic sur le terrain. Plan d'action clair. Systèmes simples que votre équipe comprend et garde." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <meta property="og:site_name" content="SERAFINO RÉSOUT" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SERAFINO RÉSOUT | Conseil opérationnel à Genève" />
+  <meta name="twitter:description" content="Diagnostic sur le terrain. Plan d'action clair. Systèmes simples." />
+  <meta name="twitter:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+  <link rel="apple-touch-icon" href="./assets/photos/avatar.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SERAFINO RÉSOUT",
+    "description": "Conseil opérationnel et outils simples pour PME genevoises",
+    "url": "https://www.serafino-resout.ch",
+    "telephone": "+41786583760",
+    "email": "contact@serafino-resout.ch",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue de Sécheron 12",
+      "addressLocality": "Genève",
+      "postalCode": "1202",
+      "addressCountry": "CH"
+    },
+    "priceRange": "CHF 300–800+",
+    "founder": { "@type": "Person", "name": "Enrico La Noce" },
+    "areaServed": { "@type": "City", "name": "Genève" }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── ROOT ─────────────────────────────────────────────────────────────── */
+    :root {
+      --bg:          #0f0e0d;
+      --bg2:         #141310;
+      --surface:     #1a1917;
+      --surface2:    #222019;
+      --text:        #f0ece4;
+      --muted:       #7a7468;
+      --subtle:      #38362f;
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.10);
+      --accent-glow: rgba(201,168,76,0.22);
+      --line:        rgba(240,236,228,0.07);
+      --line-strong: rgba(240,236,228,0.13);
+      --font-d: 'Cormorant Garamond', Georgia, serif;
+      --font-b: 'DM Sans', system-ui, sans-serif;
+      --ease: cubic-bezier(0.16,1,0.3,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.65;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--subtle); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* ── NOISE ───────────────────────────────────────────────────────────── */
+    .noise {
+      position: fixed; inset: 0; z-index: 1000; pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────────────────── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 60px;
+      background: rgba(15,14,13,0.80);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      transition: background 0.3s;
+    }
+
+    .brand {
+      display: flex; flex-direction: column; gap: 1px;
+      text-decoration: none; color: var(--text);
+      font-family: var(--font-d);
+    }
+    .brand span:first-child {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; line-height: 1;
+    }
+    .brand span:last-child {
+      font-size: 10px; font-weight: 400; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent); line-height: 1;
+    }
+
+    .site-nav { display: flex; gap: 28px; }
+    .site-nav a {
+      font-size: 12px; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; text-decoration: none;
+      color: rgba(240,236,228,0.5);
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--text); }
+
+    .menu-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      font-family: var(--font-b); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(240,236,228,0.6);
+      padding: 8px 0;
+    }
+
+    /* ── HERO WRAPPER ────────────────────────────────────────────────────── */
+    .hero-wrapper {
+      position: relative;
+      height: 400vh;
+    }
+
+    .hero-canvas-wrap {
+      position: sticky; top: 0;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+    }
+
+    #network {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ── HERO BEATS ──────────────────────────────────────────────────────── */
+    .hero-beats {
+      position: absolute; inset: 0;
+      pointer-events: none;
+    }
+
+    .beat {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      opacity: 0;
+      transition: opacity 0.05s linear;
+      will-change: opacity, transform;
+    }
+    .beat[data-align="center"] { align-items: center; text-align: center; }
+    .beat[data-align="left"]   { align-items: flex-start; text-align: left; }
+    .beat[data-align="right"]  { align-items: flex-end; text-align: right; }
+
+    .beat-title {
+      font-family: var(--font-d);
+      font-size: clamp(3rem, 8vw, 7.5rem);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .beat-title em { font-style: italic; color: var(--accent); }
+
+    .beat-sub {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      font-weight: 300; color: rgba(240,236,228,0.55);
+      max-width: 520px; line-height: 1.6;
+    }
+
+    .beat-cta {
+      margin-top: 36px; pointer-events: auto;
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--accent); color: #0f0e0d;
+      font-family: var(--font-b); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      box-shadow: 0 0 28px var(--accent-glow);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .beat-cta:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 44px var(--accent-glow);
+    }
+
+    /* ── SCROLL HINT ─────────────────────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(240,236,228,0.35);
+      transition: opacity 0.4s;
+    }
+    .scroll-hint .chevron {
+      width: 1px; height: 32px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100% { opacity: 0.3; transform: scaleY(0.6) translateY(-4px); }
+      50%      { opacity: 1;   transform: scaleY(1)   translateY(4px); }
+    }
+
+    /* ── TRUST STRIP ─────────────────────────────────────────────────────── */
+    .trust-strip {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg2);
+      overflow: hidden;
+    }
+    .trust-strip span {
+      flex: 1; min-width: 160px;
+      padding: 14px 24px;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); white-space: nowrap;
+      border-right: 1px solid var(--line);
+    }
+    .trust-strip span:last-child { border-right: none; }
+
+    /* ── SECTIONS ─────────────────────────────────────────────────────────── */
+    .section {
+      padding: 100px 8vw;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:nth-child(even) { background: var(--bg2); }
+
+    .section-head { margin-bottom: 56px; max-width: 760px; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; line-height: 1.12;
+      letter-spacing: -0.01em; color: var(--text);
+    }
+    h2 em { font-style: italic; }
+
+    h3 {
+      font-family: var(--font-d);
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--text); line-height: 1.2;
+    }
+
+    p { color: rgba(240,236,228,0.72); }
+
+    /* ── CARDS ───────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 32px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .card:hover { border-color: var(--line-strong); background: var(--surface2); }
+
+    /* ── DIAGNOSIS ───────────────────────────────────────────────────────── */
+    .diagnosis-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); border-radius: 4px;
+      overflow: hidden;
+    }
+    .diagnosis-card { background: var(--surface); padding: 40px; }
+    .diagnosis-card.strong { background: var(--surface2); }
+    .diagnosis-card h3 {
+      font-size: 1.1rem; font-weight: 500;
+      margin-bottom: 20px; color: var(--text);
+    }
+    .diagnosis-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .diagnosis-card li {
+      padding-left: 18px; position: relative;
+      font-size: 0.95rem; color: rgba(240,236,228,0.65);
+    }
+    .diagnosis-card li::before {
+      content: '—'; position: absolute; left: 0;
+      color: var(--accent); font-size: 0.8rem;
+    }
+
+    /* ── FLIP CARDS ──────────────────────────────────────────────────────── */
+    .flip-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .flip-card {
+      perspective: 900px; cursor: pointer; min-height: 240px;
+      background: var(--surface);
+    }
+    .flip-inner {
+      position: relative; width: 100%; height: 100%;
+      min-height: 240px;
+      transform-style: preserve-3d;
+      transition: transform 0.55s var(--ease);
+    }
+    .flip-card.is-flipped .flip-inner,
+    .flip-card:focus .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position: absolute; inset: 0; padding: 32px;
+      backface-visibility: hidden; display: flex;
+      flex-direction: column; justify-content: space-between;
+    }
+    .flip-back { transform: rotateY(180deg); background: var(--surface2); }
+    .flip-question { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+    .flip-hint { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 16px; }
+    .flip-service { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .flip-back p { font-size: 0.9rem; color: rgba(240,236,228,0.72); line-height: 1.6; }
+
+    /* ── OFFER ───────────────────────────────────────────────────────────── */
+    .offer-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .offer-card { background: var(--surface); padding: 36px; }
+    .offer-card.accent-card { background: var(--surface2); }
+    .offer-step {
+      font-family: var(--font-d); font-size: 3.5rem; font-weight: 700;
+      color: var(--subtle); line-height: 1; margin-bottom: 12px;
+    }
+    .offer-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .price {
+      font-family: var(--font-d); font-size: 1.6rem; font-weight: 600;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .offer-card p { font-size: 0.92rem; }
+
+    .guarantee-strip {
+      padding: 28px 36px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 4px;
+    }
+    .guarantee-strip p { font-size: 0.9rem; color: rgba(240,236,228,0.75); }
+    .guarantee-strip strong { color: var(--text); }
+
+    /* ── OFFER DOWNLOAD BUTTON ───────────────────────────────────────────── */
+    .offer-download {
+      display: inline-block; margin-top: 16px;
+      padding: 9px 18px;
+      border: 1px solid var(--line-strong);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(240,236,228,0.65); text-decoration: none; border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .offer-download:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTION MANIFESTO ───────────────────────────────────────────────── */
+    .section-manifesto {
+      font-family: var(--font-d); font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic; color: var(--text);
+      margin-bottom: 48px; line-height: 1.25;
+    }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────────────────── */
+    .comparison-wrap { overflow-x: auto; padding: 0; }
+    .comparison-table { width: 100%; border-collapse: collapse; }
+    .comparison-table th, .comparison-table td {
+      padding: 16px 24px; text-align: left;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9rem;
+    }
+    .comparison-table th {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); font-weight: 400; background: var(--surface2);
+    }
+    .comparison-table td { color: rgba(240,236,228,0.65); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-highlight td { color: var(--text); background: var(--accent-dim); }
+
+    /* ── STEPS / METHOD ──────────────────────────────────────────────────── */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .steps article {
+      background: var(--surface); padding: 36px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .steps article span {
+      font-family: var(--font-d); font-size: 3rem; font-weight: 700;
+      color: var(--subtle); line-height: 1;
+    }
+    .steps article h3 { font-size: 1.1rem; }
+    .steps article p { font-size: 0.9rem; }
+
+    .method-note {
+      font-size: 0.9rem; color: var(--muted);
+      margin-bottom: 12px; padding-left: 18px;
+      border-left: 2px solid var(--subtle);
+    }
+    .method-case strong { color: var(--text); }
+
+    /* ── STORY ───────────────────────────────────────────────────────────── */
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 64px; margin-bottom: 56px; align-items: start;
+    }
+    .story-copy { display: flex; flex-direction: column; gap: 20px; }
+    .story-copy p { font-size: 1rem; line-height: 1.75; }
+
+    .story-photo img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      object-position: top; border-radius: 2px;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .story-notes { margin-top: 24px; display: flex; flex-direction: column; gap: 20px; }
+    .story-notes > div { padding-left: 16px; border-left: 2px solid var(--accent); }
+    .story-notes span {
+      display: block; font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+    }
+    .story-notes p { font-size: 0.85rem; }
+
+    .story-milestones {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px;
+      background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .story-milestones .card { border: none; border-radius: 0; }
+    .story-milestones span {
+      display: block; font-family: var(--font-d); font-size: 1.1rem;
+      font-weight: 600; color: var(--accent); margin-bottom: 10px;
+    }
+    .story-milestones p { font-size: 0.88rem; }
+
+    /* ── KITCHEN / CASES ─────────────────────────────────────────────────── */
+    .kitchen-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; margin-bottom: 40px; align-items: start;
+    }
+    .case-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 4px;
+    }
+    .timeline-note {
+      display: flex; gap: 16px; padding: 16px 0; margin: 16px 0;
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .timeline-note span {
+      font-family: var(--font-d); font-size: 1rem; font-weight: 600;
+      color: var(--accent); flex-shrink: 0;
+    }
+    .timeline-note p { font-size: 0.88rem; }
+
+    .kitchen-copy p { font-size: 0.95rem; margin-bottom: 14px; }
+    .adapt-callout {
+      font-family: var(--font-d); font-size: 1.25rem; font-style: italic;
+      color: var(--text); border-left: 3px solid var(--accent);
+      padding-left: 20px; margin-top: 20px;
+    }
+
+    .kitchen-card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 32px; }
+    .panel-kicker {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .panel-quote {
+      font-family: var(--font-d); font-size: 1.15rem; font-style: italic;
+      color: var(--text); line-height: 1.5; margin-bottom: 20px;
+    }
+    .kitchen-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .kitchen-list li {
+      font-size: 0.88rem; color: rgba(240,236,228,0.7);
+      padding-left: 16px; position: relative;
+    }
+    .kitchen-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+
+    .case-screens {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); border-radius: 4px;
+      overflow: hidden; margin-bottom: 1px;
+    }
+    .case-screenshot { border: none; border-radius: 0; padding: 0; overflow: hidden; }
+    .case-screenshot img { width: 100%; display: block; object-fit: cover; }
+    .case-screenshot figcaption {
+      padding: 14px 20px; font-size: 0.8rem;
+      color: var(--muted); background: var(--surface);
+    }
+
+    .kitchen-features {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      margin-top: 1px;
+    }
+    .kitchen-features .card { border: none; border-radius: 0; }
+    .kitchen-features h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .kitchen-features p  { font-size: 0.88rem; }
+
+    .case-divider {
+      height: 1px; background: var(--line); margin: 72px 0;
+    }
+
+    .testimonial-full {
+      margin-top: 40px;
+      padding: 36px 40px;
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+    }
+    .testimonial-full p {
+      font-family: var(--font-d); font-size: 1.2rem; font-style: italic;
+      color: var(--text); line-height: 1.65; margin-bottom: 16px;
+    }
+    .testimonial-full footer {
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── SECTORS ─────────────────────────────────────────────────────────── */
+    .sector-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .sector-grid .card { border: none; border-radius: 0; }
+    .sector-grid h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .sector-grid p  { font-size: 0.88rem; }
+
+    /* ── CONTACT ─────────────────────────────────────────────────────────── */
+    .contact-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .contact-panel h2 { margin-bottom: 20px; }
+    .contact-panel p  { margin-bottom: 24px; font-size: 0.95rem; }
+    .contact-points {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .contact-points span {
+      padding: 6px 14px;
+      border: 1px solid var(--line-strong);
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); border-radius: 2px;
+    }
+
+    .contact-box {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .contact-box a:not(.button-primary) {
+      font-family: var(--font-d); font-size: 1.4rem;
+      color: var(--text); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-box a:not(.button-primary):hover { color: var(--accent); }
+    .contact-box p { font-size: 0.9rem; }
+
+    /* ── BUTTONS ─────────────────────────────────────────────────────────── */
+    .button {
+      display: inline-block; text-decoration: none;
+      font-family: var(--font-b); font-size: 12px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 13px 28px; border-radius: 2px;
+      transition: all 0.2s var(--ease);
+    }
+    .button-primary {
+      background: var(--accent); color: #0f0e0d;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .button-primary:hover { transform: scale(1.02); box-shadow: 0 0 36px var(--accent-glow); }
+    .button-secondary {
+      border: 1px solid var(--line-strong); color: rgba(240,236,228,0.65);
+    }
+    .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── BOT WIDGET ──────────────────────────────────────────────────────── */
+    .bot-hint {
+      position: fixed; bottom: 90px; right: 24px; z-index: 800;
+      background: var(--surface2); border: 1px solid var(--line-strong);
+      color: var(--text); font-size: 13px; padding: 10px 16px;
+      border-radius: 20px 20px 4px 20px;
+      opacity: 0; transform: translateY(8px) scale(0.95);
+      transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+    }
+    .bot-hint.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+    .bot-hint-contact { border-radius: 20px 20px 4px 20px; }
+
+    .bot-fab {
+      position: fixed; bottom: 24px; right: 24px; z-index: 800;
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface2); border: 1px solid var(--line-strong);
+      padding: 8px 16px 8px 8px; border-radius: 40px;
+      cursor: pointer; box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .bot-fab:hover { border-color: var(--accent); box-shadow: 0 4px 32px rgba(201,168,76,0.15); }
+    .bot-fab-icon {
+      width: 36px; height: 36px; border-radius: 50%; overflow: hidden;
+      background: var(--surface); flex-shrink: 0;
+    }
+    .bot-fab-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .bot-fab-label { font-size: 13px; color: rgba(240,236,228,0.8); white-space: nowrap; }
+
+    .bot-popup {
+      position: fixed; bottom: 80px; right: 24px; z-index: 801;
+      width: min(420px, calc(100vw - 48px)); height: 560px;
+      background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      display: flex; flex-direction: column;
+      opacity: 0; transform: translateY(16px) scale(0.97);
+      pointer-events: none; transition: opacity 0.25s, transform 0.25s var(--ease);
+    }
+    .bot-popup.is-open { opacity: 1; transform: none; pointer-events: auto; }
+    .bot-close {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--surface2); border: 1px solid var(--line);
+      color: var(--muted); font-size: 11px; padding: 5px 10px;
+      border-radius: 4px; cursor: pointer; z-index: 1;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .bot-popup-frame { flex: 1; border: none; width: 100%; }
+    .bot-popup-scrim {
+      position: fixed; inset: 0; z-index: 799; background: rgba(0,0,0,0.5);
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .bot-popup-scrim.is-open { opacity: 1; pointer-events: auto; }
+
+    /* ── FADE-IN ANIMATION ───────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ──────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .site-nav { display: none; }
+      .menu-toggle { display: block; }
+
+      body.nav-open .site-nav {
+        display: flex; flex-direction: column; gap: 0;
+        position: fixed; top: 60px; left: 0; right: 0;
+        background: var(--bg); border-bottom: 1px solid var(--line);
+        padding: 16px 32px; z-index: 899;
+      }
+      body.nav-open .site-nav a {
+        padding: 12px 0; border-bottom: 1px solid var(--line);
+      }
+
+      .story-grid { grid-template-columns: 1fr; }
+      .story-side { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .kitchen-grid { grid-template-columns: 1fr; }
+      .contact-section { grid-template-columns: 1fr; gap: 40px; }
+      .diagnosis-grid { grid-template-columns: 1fr; }
+      .case-screens { grid-template-columns: 1fr; }
+
+      .beat-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .section { padding: 64px 6vw; }
+    }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 0 20px; }
+      .story-side { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span>SERAFINO</span>
+      <span>RÉSOUT</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+      <a href="#offre">Offre</a>
+      <a href="#methode">Méthode</a>
+      <a href="#histoire">Histoire</a>
+      <a href="#cas">Cas réels</a>
+      <a href="#serafinobot">SerafinoBot</a>
+      <a href="#secteurs">Secteurs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+    <div class="hero-wrapper">
+      <div class="hero-canvas-wrap">
+        <canvas id="network" aria-hidden="true"></canvas>
+
+        <div class="hero-beats" aria-hidden="true">
+          <div class="beat" data-start="0" data-end="0.22" data-align="center">
+            <h1 class="beat-title">SYSTÈMES QUI<br><em>FONCTIONNENT.</em></h1>
+            <p class="beat-sub">De la complexité, de l'ordre. Du chaos, une structure.</p>
+          </div>
+          <div class="beat" data-start="0.26" data-end="0.46" data-align="left">
+            <div class="beat-title">CHAQUE CONNEXION<br>A UN BUT.</div>
+            <p class="beat-sub">Rien n'est laissé au hasard. Aucun processus n'est improvisé.</p>
+          </div>
+          <div class="beat" data-start="0.50" data-end="0.70" data-align="right">
+            <div class="beat-title">LA PRÉCISION<br>NE SE VOIT PAS.</div>
+            <p class="beat-sub">Jusqu'à ce que vous regardiez à l'intérieur du système.</p>
+          </div>
+          <div class="beat" data-start="0.75" data-end="0.97" data-align="center">
+            <div class="beat-title">CONSTRUISONS<br><em>ENSEMBLE.</em></div>
+            <p class="beat-sub">Diagnostic. Structure. Outils qui restent.</p>
+            <a class="beat-cta" href="#contact">Réserver un premier échange</a>
+          </div>
+        </div>
+
+        <div class="scroll-hint" id="scrollHint">
+          <span>Défiler</span>
+          <div class="chevron"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRUST STRIP ───────────────────────────────────────────────────── -->
+    <section class="trust-strip" aria-label="Promesse de valeur">
+      <span>Diagnostic clair</span>
+      <span>Mise en place pragmatique</span>
+      <span>CRM & bases de données</span>
+      <span>Outils autonomes</span>
+      <span>Organisation stable</span>
+      <span>Temps gagné</span>
+      <span>756 leads qualifiés — Planeto</span>
+    </section>
+
+    <!-- ── DIAGNOSTIC ────────────────────────────────────────────────────── -->
+    <section id="diagnostic" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Quand intervenir</p>
+        <h2>Le vrai signal d'alerte: quand l'organisation tient surtout grâce aux personnes les plus débrouillardes.</h2>
+      </div>
+      <div class="diagnosis-grid">
+        <article class="diagnosis-card">
+          <h3>Vous êtes concerné si…</h3>
+          <ul>
+            <li>les infos vivent entre WhatsApp, Excel, mémoire et coups de téléphone</li>
+            <li>une seule personne sait vraiment comment les choses tiennent</li>
+            <li>les doubles saisies et les oublis deviennent normaux</li>
+            <li>vous perdez du temps à corriger plutôt qu'à avancer</li>
+          </ul>
+        </article>
+        <article class="diagnosis-card strong">
+          <h3>Ce qu'on cherche à obtenir</h3>
+          <ul>
+            <li>des flux plus lisibles</li>
+            <li>moins de tâches répétitives</li>
+            <li>des outils que l'équipe comprend</li>
+            <li>un système plus stable, sans dépendance cachée</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── FLIP CARDS ────────────────────────────────────────────────────── -->
+    <section class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Situations concrètes</p>
+        <h2>Retournez la carte si vous vous reconnaissez.</h2>
+      </div>
+      <div class="flip-grid">
+        <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p class="flip-question">Vous avez des contacts, des leads, une liste — mais tout dort dans un fichier que personne ne consulte vraiment ?</p>
+              <p class="flip-hint">Retournez →</p>
+            </div>
+            <div class="flip-back">
+              <p class="flip-service">Base de données & CRM sur mesure</p>
+              <p>Je construis et enrichis la base depuis zéro ou depuis l'existant. Le résultat est consultable, filtrable et directement exploitable par votre équipe — sans formation complexe.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p class="flip-question">Vos clients reviennent... seulement quand ils y pensent eux-mêmes ?</p>
+              <p class="flip-hint">Retournez →</p>
+            </div>
+            <div class="flip-back">
+              <p class="flip-service">Système de relance automatique</p>
+              <p>Un rappel au bon moment — pour le coiffeur qui signale qu'il est temps de revenir, le garagiste qui annonce la révision annuelle, le praticien qui relance ses patients.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p class="flip-question">Vous réexpliquez les mêmes choses à chaque nouveau collègue, client ou fournisseur ?</p>
+              <p class="flip-hint">Retournez →</p>
+            </div>
+            <div class="flip-back">
+              <p class="flip-service">SerafinoBot — votre connaissance, disponible en permanence</p>
+              <p>Un assistant construit avec votre savoir-faire. Il répond comme vous, avec vos produits, vos processus, votre vocabulaire métier — sans que vous ayez à intervenir.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p class="flip-question">Vos informations vivent entre WhatsApp, des fichiers Excel et la mémoire de quelques personnes ?</p>
+              <p class="flip-hint">Retournez →</p>
+            </div>
+            <div class="flip-back">
+              <p class="flip-service">Système centralisé & consultable</p>
+              <p>Je remplace la dispersion par une base claire, accessible à toute l'équipe. Plus besoin de chercher, d'appeler ou de reconstituer l'information à chaque fois.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p class="flip-question">Vous voulez trouver de nouveaux clients sans passer vos journées à prospecter manuellement ?</p>
+              <p class="flip-hint">Retournez →</p>
+            </div>
+            <div class="flip-back">
+              <p class="flip-service">Pipeline d'acquisition automatisé</p>
+              <p>Un système qui trouve, enrichit et organise les leads à votre place. Vous recevez des contacts qualifiés, prêts à être travaillés — sans chasse manuelle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OFFRE ──────────────────────────────────────────────────────────── -->
+    <section id="offre" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Le parcours</p>
+        <h2>Une offre lisible, progressive et facile à activer sans se lancer dans un gros chantier.</h2>
+      </div>
+      <div class="offer-grid">
+        <article class="offer-card">
+          <p class="offer-step">01</p>
+          <h3>Premier échange</h3>
+          <p class="price">Gratuit</p>
+          <p>Un échange pour comprendre comment le travail circule aujourd'hui, où se perdent du temps, de l'énergie ou de la clarté. On regarde simplement si je peux vraiment vous aider, sans forcer la suite.</p>
+        </article>
+        <article class="offer-card">
+          <p class="offer-step">02</p>
+          <h3>Plan de simplification</h3>
+          <p class="price">300 CHF</p>
+          <p>Un plan concret avec priorités, actions, responsabilités et premiers leviers de simplification. Vous repartez avec une direction claire, même si vous décidez de vous arrêter là.</p>
+          <a class="offer-download" href="./assets/documents/piano-semplificazione-ristorazione-serafino.pdf" download>Voir un exemple concret</a>
+        </article>
+        <article class="offer-card">
+          <p class="offer-step">03</p>
+          <h3>Mise en place</h3>
+          <p class="price">Dès 800 CHF / projet</p>
+          <p>Mise en place pragmatique de solutions simples, adaptées au niveau réel de l'équipe et à la réalité du terrain. Avant de démarrer, on se met d'accord sur ce qui est fait, ce qui ne l'est pas, et ce qui doit vraiment changer.</p>
+        </article>
+        <article class="offer-card accent-card">
+          <p class="offer-step">04</p>
+          <h3>Évolutions</h3>
+          <p class="price">Nouvelle mission</p>
+          <p>Une fois l'outil en place, il peut évoluer: nouvelle source de données, nouvelle fonction, nouveau bot ou nouveau périmètre.</p>
+        </article>
+      </div>
+      <div class="guarantee-strip">
+        <p><strong>Cadre clair, garantie simple.</strong> 800 CHF est un point de départ pour un projet stand-alone, payé une seule fois. Si dans les 3 mois suivant la mise en place, en suivant le protocole d'utilisation convenu, aucun résultat mesurable n'est observé — vous êtes remboursé intégralement.</p>
+      </div>
+    </section>
+
+    <!-- ── POSITIONNEMENT ─────────────────────────────────────────────────── -->
+    <section class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Pourquoi Serafino</p>
+        <h2>L'alternative à ceux qui coûtent trop cher, ne comprennent pas le terrain ou ne livrent pas.</h2>
+      </div>
+      <p class="section-manifesto">Je ne vends pas des outils. Je construis ce qui tient sans moi.</p>
+      <div class="comparison-wrap card">
+        <table class="comparison-table">
+          <thead>
+            <tr><th>Acteur</th><th>Prix</th><th>Approche</th><th>Limite</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Agences web</td><td>10–15K CHF</td><td>Solutions standard</td><td>Pas de conseil opérationnel</td></tr>
+            <tr><td>Freelances dev</td><td>5–12K CHF</td><td>Dev à l'heure</td><td>Pas d'expertise métier</td></tr>
+            <tr><td>Consultants</td><td>200–300 CHF/h</td><td>Conseil seul</td><td>Pas de réalisation technique</td></tr>
+            <tr><td>Logiciels SaaS</td><td>50–200 CHF/mois</td><td>Génériques</td><td>Pas adaptés aux spécificités</td></tr>
+            <tr class="comparison-highlight">
+              <td><strong>SERAFINO RÉSOUT</strong></td>
+              <td><strong>0 → 300 → dès 800 CHF</strong></td>
+              <td><strong>Conseil + Tech + Résultats</strong></td>
+              <td><strong>Positionnement unique</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── MÉTHODE ────────────────────────────────────────────────────────── -->
+    <section id="methode" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">La méthode</p>
+        <h2>On commence par comprendre le travail réel. Les outils ne viennent qu'après.</h2>
+      </div>
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Diagnostic ciblé</h3>
+          <p>Observer les flux, les tâches répétitives, les pertes de temps et les angles morts.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Plan clair</h3>
+          <p>Mettre à plat les priorités, les actions, les délais et les responsabilités.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Mise en oeuvre</h3>
+          <p>Installer ce qui aide vraiment, sans ajouter une couche de complexité inutile.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Mesure et stabilisation</h3>
+          <p>Vérifier que le système tient dans la durée et que l'équipe peut se l'approprier.</p>
+        </article>
+      </div>
+      <p class="method-note">Je travaille sur 3 à 4 projets maximum en parallèle — pour garantir une attention réelle à chaque mission, pas une gestion à distance.</p>
+      <p class="method-note method-case">Résultats concrets: pour une cuisine genevoise, structurer les données fournisseurs a économisé <strong>4–6h de recherche par semaine</strong>. Pour Planeto, supprimer la prospection manuelle a livré <strong>756 leads haute priorité</strong> sans aucune heure passée à chercher.</p>
+    </section>
+
+    <!-- ── HISTOIRE ───────────────────────────────────────────────────────── -->
+    <section id="histoire" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">L'histoire</p>
+        <h2>Une méthode forgée sous pression: comprendre le problème réel avant de poser la moindre solution.</h2>
+      </div>
+      <div class="story-grid">
+        <div class="story-copy">
+          <p>Pendant 11 ans, j'ai dirigé des cuisines professionnelles à Genève. Ce n'est pas seulement de la restauration — c'est de la gestion opérationnelle avec des échéances en série, sans pause: chaque service est une deadline, chaque problème doit trouver une solution immédiate, et l'agilité n'est pas une option — c'est la condition de survie.</p>
+          <p>C'est là que j'ai développé un réflexe précis: avant de toucher quoi que ce soit, observer comment le travail circule réellement. Identifier ce qui freine vraiment — pas ce qui semble freiner. Agir sur la cause, pas sur les symptômes. Et ne pas partir avant que le système tienne.</p>
+          <p>Ce réflexe a une source plus ancienne. Mon grand-père m'a transmis quelque chose que j'applique depuis toujours: on ne commence pas à intervenir sans avoir d'abord compris. On finit ce qu'on commence. Et un travail bien fait ne devrait pas avoir besoin d'être refait.</p>
+          <p>Depuis 2023, j'applique cette même logique aux systèmes digitaux. Les outils ont changé — Google Apps Script, Python, React — mais l'approche est identique: partir du terrain, construire ce qui répond au vrai problème, livrer quelque chose qui tourne sans moi.</p>
+        </div>
+        <div class="story-side">
+          <div class="story-photo">
+            <img src="./assets/photos/LA_NOCE_Enrico_v.jpg" alt="Portrait d'Enrico La Noce" loading="lazy" />
+          </div>
+          <div class="story-notes">
+            <div>
+              <span>Le temps a de la valeur</span>
+              <p>J'ai vu ce que coûte le désordre: des heures perdues, chaque jour, par des équipes entières. Je ne conçois pas de solution qui ne rende pas ce temps.</p>
+            </div>
+            <div>
+              <span>On finit ce qu'on commence</span>
+              <p>Un système livré à moitié ne sert à rien. Mon engagement: délivrer quelque chose qui fonctionne réellement, pas un prototype abandonné.</p>
+            </div>
+            <div>
+              <span>Le résultat avant tout</span>
+              <p>Ce qui compte, c'est ce qui est mesurable à la fin: du temps récupéré, des erreurs évitées, un outil qui tient. Pas un rapport.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-milestones">
+        <article class="card">
+          <span>2015–2021</span>
+          <p>Chef de cuisine à Genève — Le Scandale, La Citadella, Giovanni Pasta. Formation pratique à la gestion d'équipes, de flux et de production sous pression quotidienne.</p>
+        </article>
+        <article class="card">
+          <span>2021–2025</span>
+          <p>Chef de cuisine avec coordination opérationnelle d'équipes et de flux de production jusqu'à 250 repas par service. 11 ans d'environnements exigeants à Genève.</p>
+        </article>
+        <article class="card">
+          <span>Depuis 2023</span>
+          <p>Construction de systèmes digitaux opérationnels: dashboards, CRM, bots IA, automatisations. Des outils livrés, documentés, utilisés par de vraies équipes.</p>
+        </article>
+        <article class="card">
+          <span>Aujourd'hui</span>
+          <p>SERAFINO RÉSOUT — la synthèse du terrain et du code. Une méthode de consultant, une capacité de réalisation, une livraison sans dépendance.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── CAS RÉELS ──────────────────────────────────────────────────────── -->
+    <section id="cas" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Cas réels</p>
+        <h2>Des systèmes construits à partir du terrain, pas d'une théorie de bureau.</h2>
+      </div>
+
+      <!-- Cas 01 -->
+      <div class="kitchen-grid">
+        <div class="kitchen-copy">
+          <p class="case-label">Cas 01 — HORECA</p>
+          <h3 style="margin:10px 0 18px">Système de gestion cuisine</h3>
+          <div class="timeline-note">
+            <span>2021</span>
+            <p>Constat: informations dispersées, prix reçus par email sous forme Excel, décisions d'achat chronophages.</p>
+          </div>
+          <p>Dans une cuisine, les informations utiles sont souvent éparpillées: recettes, inventaires, fournisseurs, prix, saisonnalité, besoins événementiels. Retrouver la bonne information prenait trop de temps et ralentissait les décisions quotidiennes.</p>
+          <p>Le travail a consisté à transformer ces données dispersées en un système consultable, directement relié aux besoins réels de la cuisine — sans complexité inutile.</p>
+        </div>
+        <div class="kitchen-card">
+          <p class="panel-kicker">Ce qui a été mis en place</p>
+          <p class="panel-quote">Une base de travail structurée autour des recettes, des fournisseurs, des inventaires et des prix, pensée pour faire gagner du temps et améliorer la qualité des décisions d'achat.</p>
+          <ul class="kitchen-list">
+            <li>centralisation des prix reçus par email</li>
+            <li>transformation des fichiers Excel en base consultable</li>
+            <li>recherche rapide par produit, saison, fournisseur ou prix</li>
+            <li>support direct aux décisions d'inventaire et d'approvisionnement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="case-screens">
+        <figure class="case-screenshot card">
+          <img src="./assets/screens/restaurant-dashboard-produits.png" alt="Dashboard restaurant: produits, prix et disponibilités" loading="lazy" />
+          <figcaption>Dashboard restaurant: produits, prix, disponibilité et informations utiles au même endroit.</figcaption>
+        </figure>
+        <figure class="case-screenshot card">
+          <img src="./assets/screens/captain-slow-cook.png" alt="Assistant cuisine Captain Slow-Cook" loading="lazy" />
+          <figcaption>Assistant cuisine: une connaissance métier accessible simplement, sans chercher dans dix documents.</figcaption>
+        </figure>
+      </div>
+      <div class="kitchen-features">
+        <article class="card"><h3>4 à 6h gagnées / semaine</h3><p>Sur la recherche de prix, la saisonnalité et les décisions d'achat — sans refaire le tri à chaque fois.</p></article>
+        <article class="card"><h3>Saisonnalité en quelques secondes</h3><p>Identifier les produits disponibles au meilleur prix, directement exploitable pour composer les menus.</p></article>
+        <article class="card"><h3>Connaissance du logiciel métier</h3><p>Expérience préalable avec Food Cost in Cloud — ce qui permet de comprendre les limites des outils existants avant de proposer une alternative.</p></article>
+        <article class="card"><h3>Information utile, pas stockée</h3><p>L'information n'était plus archivée: elle devenait directement exploitable pour organiser les achats et piloter la cuisine.</p></article>
+      </div>
+
+      <div class="case-divider"></div>
+
+      <!-- Cas 02 -->
+      <div class="kitchen-grid">
+        <div class="kitchen-copy">
+          <p class="case-label">Cas 02 — Acquisition B2B</p>
+          <h3 style="margin:10px 0 18px">Planeto: du processus manuel à l'infrastructure autonome</h3>
+          <div class="timeline-note">
+            <span>Mars – Avril 2026</span>
+            <p>Point de départ: collecte manuelle, dispersée, chronophage. Risque élevé de doublons et de données perdues.</p>
+          </div>
+          <p>L'objectif était de libérer l'équipe commerciale pour qu'elle se concentre sur l'humain — pas sur la recherche de données. En un mois, le périmètre est passé d'une liste à vérifier à un moteur d'acquisition complet, autonome et opérationnel.</p>
+          <p>L'enjeu n'était pas de produire un prototype, mais un système exploitable par l'équipe dès le lendemain — sans aucune compétence en code requise.</p>
+        </div>
+        <div class="kitchen-card">
+          <p class="panel-kicker">Le système livré</p>
+          <p class="panel-quote">Transformer la prospection manuelle en un moteur technologique autonome, livrant près de 2'200 cibles qualifiées dans un poste de pilotage conçu pour accélérer les ventes.</p>
+          <ul class="kitchen-list">
+            <li>2'195 leads UK + Suisse — 756 haute priorité</li>
+            <li>enrichissement: emails, téléphones, sites, noms des dirigeants, LinkedIn</li>
+            <li>CRM web synchronisé avec Google Sheets en temps réel</li>
+            <li>bot AI multilingue (FR/EN/DE/IT) sur la connaissance Planeto</li>
+            <li>livré sur clé USB, plug & play, zéro licence mensuelle</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="case-screenshot card">
+        <img src="./assets/screens/crm-planeto-pilotage.png" alt="CRM Planeto — poste de pilotage" loading="lazy" />
+        <figcaption>CRM opérationnel: information centralisée, actions rapides et synchronisation avec Google Sheets.</figcaption>
+      </figure>
+      <div class="kitchen-features" style="margin-top:1px">
+        <article class="card"><h3>756 leads haute priorité</h3><p>Classés et prêts pour une action commerciale immédiate — sans tri manuel ni recherche préalable.</p></article>
+        <article class="card"><h3>Zéro recherche manuelle</h3><p>L'équipe commerciale se concentre sur les discussions, pas sur la collecte. Suppression totale des tâches chronophages.</p></article>
+        <article class="card"><h3>Souveraineté totale</h3><p>Données à 100% propriété du client. Aucune licence, aucun abonnement, aucune dépendance externe.</p></article>
+        <article class="card"><h3>Architecture évolutive</h3><p>Conçue pour absorber facilement de nouveaux marchés — extension à l'Italie ou autres pays sans refaire le système.</p></article>
+      </div>
+      <blockquote class="testimonial-full">
+        <p>"Il est arrivé pour vérifier une liste. Il est reparti en ayant construit quelque chose que je n'avais pas imaginé. Il m'a donné des idées nouvelles que je n'avais pas évaluées — et le bot qu'il a créé avec notre connaissance métier sera bientôt sur notre site officiel. Vraiment impressionnant."</p>
+        <footer>— Stefano Cozza, CEO de Planeto</footer>
+      </blockquote>
+
+      <div class="case-divider"></div>
+
+      <!-- Cas 03 -->
+      <div class="kitchen-grid">
+        <div class="kitchen-copy">
+          <p class="case-label">Cas 03 — Restauration institutionnelle</p>
+          <h3 style="margin:10px 0 18px">Palais des Nations, Genève: quand le système apprend à travailler comme toi</h3>
+          <div class="timeline-note">
+            <span>2021–2023</span>
+            <p>Constat: inventaire manuel 8h/mois, analyse fournisseurs 2–3h/semaine, planification menus plusieurs heures — tout ça en dehors du temps de cuisine.</p>
+          </div>
+          <p>En tant que chef au Palais des Nations, une grande partie de mon temps n'était pas dans la cuisine. Elle était bloquée dans des tâches répétitives: produit par produit dans un carnet, offres fournisseurs à comparer manuellement, menus à construire en tâtonnant.</p>
+          <p>Ne trouvant pas d'outil adapté à la réalité d'une cuisine professionnelle, j'ai construit le mien — sur mon vocabulaire, mon rythme, ma façon de travailler. Pas l'inverse.</p>
+          <p class="adapt-callout">Si pour moi "un sac" voulait dire 2,5 kg, le système le comprenait. Ce n'est pas moi qui m'adaptais à l'outil. C'est l'outil qui avait appris à travailler comme moi.</p>
+        </div>
+        <div class="kitchen-card">
+          <p class="panel-kicker">Ce qui a été construit</p>
+          <p class="panel-quote">Trois modules conçus sur ma façon de travailler — inventaire vocal, analyse fournisseurs automatique, assistant menus — qui m'ont redonné plusieurs heures par semaine.</p>
+          <ul class="kitchen-list">
+            <li><strong>Inventaire vocal:</strong> je dictais en cellule froide, le système reconnaissait mes unités et mettait à jour le stock en temps réel</li>
+            <li><strong>Contrôle entrées/sorties:</strong> les bons de livraison alimentaient la base — comparaison automatique avec la semaine précédente</li>
+            <li><strong>Analyse fournisseurs:</strong> les offres reçues par email étaient filtrées selon saisonnalité et prix</li>
+            <li><strong>Assistant menus:</strong> propositions hebdomadaires basées sur le stock réel et la saison, dans mon format d'envoi WhatsApp habituel</li>
+          </ul>
+        </div>
+      </div>
+      <div class="kitchen-features">
+        <article class="card"><h3>8h → 30 min/mois</h3><p>L'inventaire complet passait de 2h par semaine à quelques minutes de dictée — même niveau de précision, fraction du temps.</p></article>
+        <article class="card"><h3>Zéro calcul manuel</h3><p>Comparaison fournisseurs, projection food cost, saisonnalité: automatisés. Le chef décide, il ne calcule plus.</p></article>
+        <article class="card"><h3>Menus en quelques minutes</h3><p>Des propositions structurées sur stock réel et saison — à affiner, pas à construire depuis zéro.</p></article>
+        <article class="card"><h3>Construit sur ton langage</h3><p>Le système connaissait mes unités, mes habitudes, mon format d'envoi. Pas de formation, pas de compromis.</p></article>
+      </div>
+    </section>
+
+    <!-- ── SERAFINOBOT ─────────────────────────────────────────────────────── -->
+    <section id="serafinobot" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">SerafinoBot</p>
+        <h2>Un assistant construit avec la connaissance de votre métier — pas un chatbot générique.</h2>
+      </div>
+      <div class="kitchen-grid">
+        <div class="kitchen-copy">
+          <p>SerafinoBot n'est pas un outil standard. C'est un assistant personnalisé, construit à partir de la connaissance spécifique du client: ses produits, ses fournisseurs, ses processus, son vocabulaire métier.</p>
+          <p>Le résultat est un outil qui répond comme quelqu'un qui connaît vraiment le terrain — pas une réponse générique, mais une aide directement exploitable dans le contexte réel du client.</p>
+          <p>Chez Planeto, un bot a été construit sur les offres, les prix et la connaissance commerciale de l'équipe — multilingue (FR/EN/DE/IT), disponible en permanence sans intervention humaine. Il sera intégré sur le site officiel de Planeto.</p>
+        </div>
+        <div class="kitchen-card">
+          <p class="panel-kicker">Ce que le bot peut couvrir</p>
+          <p class="panel-quote">Chaque bot est différent parce que chaque client est différent. Ce qui ne change pas: construit à partir de ce que vous savez déjà, livré comme un outil que vous possédez entièrement.</p>
+          <ul class="kitchen-list">
+            <li>répondre aux questions métier avec la connaissance du client</li>
+            <li>support commercial: gérer les objections, préparer les argumentaires</li>
+            <li>créer des menus, listes de charge, propositions saisonnières</li>
+            <li>rédiger des emails fournisseurs, devis ou communications clients</li>
+            <li>multilingue — s'adapte à la langue de votre marché</li>
+            <li>n'importe quel domaine où la connaissance peut être structurée</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTEURS ────────────────────────────────────────────────────────── -->
+    <section id="secteurs" class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Secteurs prioritaires</p>
+        <h2>Une offre pensée pour les contextes où la qualité d'exécution compte plus que l'effet vitrine.</h2>
+      </div>
+      <div class="sector-grid">
+        <article class="card"><h3>HORECA</h3><p>Planning, stocks, coordination d'équipe, suivi opérationnel, outils de pilotage simples pour restaurants et petites structures.</p></article>
+        <article class="card"><h3>Artisans & commerces</h3><p>Devis, fiches chantier, organisation, suivi administratif et simplification des tâches répétitives pour artisans et commerces de proximité.</p></article>
+        <article class="card"><h3>PME & petites structures</h3><p>Toute organisation où l'information circule encore par WhatsApp, Excel et mémoire humaine a déjà des leviers clairs à activer.</p></article>
+        <article class="card"><h3>Professions libérales</h3><p>Avocats, notaires, architectes, médecins, physiothérapeutes — suivi de dossiers, relances automatiques, documents répétitifs et organisation simplifiée.</p></article>
+        <article class="card"><h3>Startups & scale-ups</h3><p>Pipeline commercial structuré, CRM léger, qualification de leads automatisée — pour les équipes qui grandissent sans budget Sales Ops.</p></article>
+        <article class="card"><h3>Consulting & services B2B</h3><p>Suivi de prospects, tableaux de bord clients, automatisation des relances et centralisation de l'information pour cabinets et indépendants.</p></article>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ─────────────────────────────────────────────────────────── -->
+    <section id="contact" class="section contact-section fade-up">
+      <div class="contact-panel">
+        <p class="eyebrow">Premier échange</p>
+        <h2>Si le travail s'alourdit, se disperse ou repose trop sur quelques personnes, il y a probablement quelque chose à remettre à plat.</h2>
+        <p>Le premier échange sert à clarifier le problème, identifier le vrai point de friction et voir s'il existe un levier d'amélioration réel.</p>
+        <div class="contact-points">
+          <span>30 minutes</span>
+          <span>sans engagement</span>
+          <span>orientation concrète</span>
+        </div>
+      </div>
+      <div class="contact-box card">
+        <a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a>
+        <a href="tel:+41786583760">078 658 37 60</a>
+        <p>Avenue de Sécheron 12, 1202 Genève</p>
+        <a class="button button-primary" href="mailto:contact@serafino-resout.ch?subject=Premier%20%C3%A9change%20SERAFINO%20R%C3%89SOUT">
+          Réserver un premier échange
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
-        <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
-          <a href="#offre">Offre</a>
-          <a href="#methode">Méthode</a>
-          <a href="#histoire">Histoire</a>
-          <a href="#cas">Cas réels</a>
-          <a href="#serafinobot">SerafinoBot</a>
-          <a href="#secteurs">Secteurs</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      </div>
+    </section>
 
-      <main id="top">
+  </main>
 
-        <!-- ═══ HERO ═══ -->
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">Conseil opérationnel et outils simples pour PME genevoises</p>
-            <h1>Remettre de l'ordre dans le travail avant que le désordre ne coûte trop cher.</h1>
-            <p class="problem-hook">Chaque heure passée à ressaisir, chercher ou corriger une donnée — c'est une heure qui ne génère rien.</p>
-            <p class="lead">
-              Je viens sur le terrain, j'observe comment le travail circule réellement, j'identifie
-              ce qui freine et je mets en place des solutions concrètes — outils, processus,
-              automatisations — que votre équipe peut comprendre, utiliser et garder.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#contact">Réserver un premier échange</a>
-              <a class="button button-secondary" href="#diagnostic">Voir si vous êtes concerné</a>
-            </div>
-            <div class="hero-proof">
-              <span>Restaurants</span>
-              <span>Artisans</span>
-              <span>Commerces</span>
-              <span>Petites structures</span>
-              <span>Genève</span>
-            </div>
-          </div>
+  <!-- ── BOT WIDGET ──────────────────────────────────────────────────────── -->
+  <div class="bot-hint" id="botHint">Pas envie de lire tout ça ?</div>
+  <div class="bot-hint bot-hint-contact" id="botHint2">Diagnostic gratuit — 30 min pour voir si je peux vraiment t'aider.</div>
+  <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant Serafino" aria-expanded="false">
+    <span class="bot-fab-icon">
+      <img src="./assets/photos/avatar.png" alt="Serafino" loading="lazy" onerror="this.src='./assets/photos/LA_NOCE_Enrico_v.jpg'" />
+    </span>
+    <span class="bot-fab-label">Une question ?</span>
+  </button>
+  <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout" aria-hidden="true">
+    <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">Fermer</button>
+    <iframe class="bot-popup-frame" id="botFrame" src="" title="Assistant Serafino Résout" allow="clipboard-write"></iframe>
+  </div>
+  <div class="bot-popup-scrim" id="botScrim"></div>
 
-          <aside class="hero-panel">
-            <p class="panel-kicker">Ce que je fais concrètement</p>
-            <p class="panel-quote">
-              Diagnostic sur le terrain. Plan d'action clair. Mise en place de systèmes simples:
-              tableaux de bord, CRM, automatisations et outils Google que l'équipe garde, comprend
-              et utilise vraiment.
-            </p>
-            <dl class="hero-metrics">
-              <div>
-                <dt>11+</dt>
-                <dd>ans d'expérience à Genève</dd>
-              </div>
-              <div>
-                <dt>3 étapes</dt>
-                <dd>pour démarrer sans engagement lourd</dd>
-              </div>
-              <div>
-                <dt>0</dt>
-                <dd>frais cachés, licence ou dépendance imposée</dd>
-              </div>
-            </dl>
-          </aside>
-        </section>
+  <script defer>
+  /* ── NETWORK CANVAS ─────────────────────────────────────────────────────── */
+  (function() {
+    const canvas  = document.getElementById('network');
+    const ctx     = canvas.getContext('2d');
+    const isMobile = window.innerWidth < 768;
+    const NODE_COUNT = isMobile ? 22 : 42;
+    const MAX_DIST_RATIO = 0.32;
 
-        <!-- ═══ TRUST STRIP ═══ -->
-        <section class="trust-strip" aria-label="Promesse de valeur">
-          <span>Diagnostic clair</span>
-          <span>Mise en place pragmatique</span>
-          <span>Base de données & CRM sur mesure</span>
-          <span>Outils autonomes — propriété client</span>
-          <span>Organisation plus stable</span>
-          <span>Temps gagné</span>
-          <span>Planeto · 756 leads qualifiés</span>
-        </section>
+    let W, H, nodes, sortedConns, raf;
+    let progress = 0, time = 0;
 
-        <!-- ═══ DIAGNOSTIC ═══ -->
-        <section id="diagnostic" class="section diagnosis-section">
-          <div class="section-head">
-            <p class="eyebrow">Quand intervenir</p>
-            <h2>Le vrai signal d'alerte: quand l'organisation tient surtout grâce aux personnes les plus débrouillardes.</h2>
-          </div>
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      nodes = buildNodes(NODE_COUNT);
+      sortedConns = buildConns(nodes);
+    }
 
-          <div class="diagnosis-grid">
-            <article class="diagnosis-card">
-              <h3>Vous êtes concerné si...</h3>
-              <ul>
-                <li>les infos vivent entre WhatsApp, Excel, mémoire et coups de téléphone</li>
-                <li>une seule personne sait vraiment comment les choses tiennent</li>
-                <li>les doubles saisies et les oublis deviennent normaux</li>
-                <li>vous perdez du temps à corriger plutôt qu'à avancer</li>
-              </ul>
-            </article>
-            <article class="diagnosis-card strong">
-              <h3>Ce qu'on cherche à obtenir</h3>
-              <ul>
-                <li>des flux plus lisibles</li>
-                <li>moins de tâches répétitives</li>
-                <li>des outils que l'équipe comprend</li>
-                <li>un système plus stable, sans dépendance cachée</li>
-              </ul>
-            </article>
-          </div>
-        </section>
+    function buildNodes(n) {
+      return Array.from({length: n}, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.8 + 1.4,
+        phase: Math.random() * Math.PI * 2
+      }));
+    }
 
-        <!-- ═══ ÇA VOUS PARLE ? ═══ -->
-        <section class="section">
-          <div class="section-head">
-            <p class="eyebrow">Situations concrètes</p>
-            <h2>Retournez la carte si vous vous reconnaissez.</h2>
-          </div>
+    function buildConns(ns) {
+      const pairs = [];
+      const maxD = Math.min(W, H) * MAX_DIST_RATIO;
+      for (let i = 0; i < ns.length; i++) {
+        for (let j = i + 1; j < ns.length; j++) {
+          const dx = ns[i].x - ns[j].x;
+          const dy = ns[i].y - ns[j].y;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          if (d < maxD) pairs.push({i, j, d});
+        }
+      }
+      return pairs.sort((a,b) => a.d - b.d).slice(0, 90);
+    }
 
-          <div class="flip-grid">
+    function render(ts) {
+      time = ts * 0.001;
+      ctx.clearRect(0, 0, W, H);
 
-            <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <p class="flip-question">Vous avez des contacts, des leads, une liste — mais tout dort dans un fichier que personne ne consulte vraiment ?</p>
-                  <p class="flip-hint">Retournez →</p>
-                </div>
-                <div class="flip-back">
-                  <p class="flip-service">Base de données & CRM sur mesure</p>
-                  <p>Je construis et enrichis la base depuis zéro ou depuis l'existant. Le résultat est consultable, filtrable et directement exploitable par votre équipe — sans formation complexe.</p>
-                </div>
-              </div>
-            </div>
+      // Drift nodes
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0) { n.x = 0; n.vx *= -1; }
+        if (n.x > W) { n.x = W; n.vx *= -1; }
+        if (n.y < 0) { n.y = 0; n.vy *= -1; }
+        if (n.y > H) { n.y = H; n.vy *= -1; }
+      }
 
-            <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <p class="flip-question">Vos clients reviennent... seulement quand ils y pensent eux-mêmes ?</p>
-                  <p class="flip-hint">Retournez →</p>
-                </div>
-                <div class="flip-back">
-                  <p class="flip-service">Système de relance automatique</p>
-                  <p>Un rappel au bon moment — pour le coiffeur qui signale qu'il est temps de revenir, le garagiste qui annonce la révision annuelle, le praticien qui relance ses patients.</p>
-                </div>
-              </div>
-            </div>
+      const visible = Math.floor(progress * sortedConns.length);
 
-            <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <p class="flip-question">Vous réexpliquez les mêmes choses à chaque nouveau collègue, client ou fournisseur ?</p>
-                  <p class="flip-hint">Retournez →</p>
-                </div>
-                <div class="flip-back">
-                  <p class="flip-service">SerafinoBot — votre connaissance, disponible en permanence</p>
-                  <p>Un assistant construit avec votre savoir-faire. Il répond comme vous, avec vos produits, vos processus, votre vocabulaire — sans que vous ayez à intervenir.</p>
-                </div>
-              </div>
-            </div>
+      // Draw connections
+      for (let ci = 0; ci < visible; ci++) {
+        const {i, j} = sortedConns[ci];
+        const na = nodes[i], nb = nodes[j];
+        const connProgress = (progress - ci / sortedConns.length) * sortedConns.length;
+        const alpha = Math.min(1, connProgress * 2) * (0.08 + progress * 0.22);
 
-            <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <p class="flip-question">Vos informations vivent entre WhatsApp, des fichiers Excel et la mémoire de quelques personnes ?</p>
-                  <p class="flip-hint">Retournez →</p>
-                </div>
-                <div class="flip-back">
-                  <p class="flip-service">Système centralisé & consultable</p>
-                  <p>Je remplace la dispersion par une base claire, accessible à toute l'équipe. Plus besoin de chercher, d'appeler ou de reconstituer l'information à chaque fois.</p>
-                </div>
-              </div>
-            </div>
+        ctx.beginPath();
+        ctx.moveTo(na.x, na.y);
+        ctx.lineTo(nb.x, nb.y);
+        ctx.strokeStyle = `rgba(201,168,76,${alpha})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
 
-            <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
-              <div class="flip-inner">
-                <div class="flip-front">
-                  <p class="flip-question">Vous voulez trouver de nouveaux clients sans passer vos journées à prospecter manuellement ?</p>
-                  <p class="flip-hint">Retournez →</p>
-                </div>
-                <div class="flip-back">
-                  <p class="flip-service">Pipeline d'acquisition automatisé</p>
-                  <p>Un système qui trouve, enrichit et organise les leads à votre place. Vous recevez des contacts qualifiés, prêts à être travaillés — sans chasse manuelle.</p>
-                </div>
-              </div>
-            </div>
+        // Travelling pulse after 50% progress
+        if (progress > 0.5 && alpha > 0.05) {
+          const t = ((time * 0.25 + ci * 0.07) % 1 + 1) % 1;
+          const px = na.x + (nb.x - na.x) * t;
+          const py = na.y + (nb.y - na.y) * t;
+          ctx.beginPath();
+          ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201,168,76,${alpha * 3})`;
+          ctx.fill();
+        }
+      }
 
-          </div>
-        </section>
+      // Draw nodes
+      for (const n of nodes) {
+        const pulse = Math.sin(time * 1.4 + n.phase) * 0.25 + 0.75;
+        const glow  = progress * 10 * pulse;
 
-        <!-- ═══ OFFRE ═══ -->
-        <section id="offre" class="section">
-          <div class="section-head">
-            <p class="eyebrow">Le parcours</p>
-            <h2>Une offre lisible, progressive et facile à activer sans se lancer dans un gros chantier.</h2>
-          </div>
+        if (glow > 1) {
+          const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r + glow);
+          g.addColorStop(0, `rgba(201,168,76,${0.25 * progress * pulse})`);
+          g.addColorStop(1, 'rgba(201,168,76,0)');
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r + glow, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+        }
 
-          <div class="offer-grid">
-            <article class="card offer-card">
-              <p class="offer-step">01</p>
-              <h3>Premier échange</h3>
-              <p class="price">Gratuit</p>
-              <p>
-                Un échange pour comprendre comment le travail circule aujourd'hui, où se perdent du
-                temps, de l'énergie ou de la clarté. On regarde simplement si je peux vraiment vous
-                aider, sans forcer la suite.
-              </p>
-            </article>
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240,236,228,${0.35 + progress * 0.45 * pulse})`;
+        ctx.fill();
+      }
 
-            <article class="card offer-card">
-              <p class="offer-step">02</p>
-              <h3>Plan de simplification</h3>
-              <p class="price">300 CHF</p>
-              <p>
-                Un plan concret avec priorités, actions, responsabilités et premiers leviers de
-                simplification. Vous repartez avec une direction claire, même si vous décidez de
-                vous arrêter là.
-              </p>
-              <a
-                class="button button-secondary offer-download"
-                href="./assets/documents/piano-semplificazione-ristorazione-serafino.pdf"
-                download
-              >
-                Voir un exemple concret
-              </a>
-            </article>
+      raf = requestAnimationFrame(render);
+    }
 
-            <article class="card offer-card">
-              <p class="offer-step">03</p>
-              <h3>Mise en place</h3>
-              <p class="price">Dès 800 CHF / projet</p>
-              <p>
-                Mise en place pragmatique de solutions simples, adaptées au niveau réel de
-                l'équipe et à la réalité du terrain. Avant de démarrer, on se met d'accord sur ce
-                qui est fait, ce qui ne l'est pas, et ce qui doit vraiment changer.
-              </p>
-            </article>
+    // Init
+    resize();
+    window.addEventListener('resize', () => { resize(); });
+    raf = requestAnimationFrame(render);
 
-            <article class="card offer-card accent-card">
-              <p class="offer-step">04</p>
-              <h3>Évolutions</h3>
-              <p class="price">Nouvelle mission</p>
-              <p>
-                Une fois l'outil en place, il peut évoluer: nouvelle source de données, nouvelle
-                fonction, nouveau bot ou nouveau périmètre.
-              </p>
-            </article>
-          </div>
+    /* ── SCROLL PROGRESS ──────────────────────────────────────────────────── */
+    const wrapper   = document.querySelector('.hero-wrapper');
+    const beats     = document.querySelectorAll('.beat');
+    const scrollHint = document.getElementById('scrollHint');
 
-          <div class="guarantee-strip">
-            <p><strong>Cadre clair, garantie simple.</strong> 800 CHF est un point de départ pour un projet stand-alone, payé une seule fois, afin de remettre un problème précis en ordre. On choisit ensemble ce qui doit s'améliorer: du temps gagné, moins d'erreurs, un suivi plus clair. Si dans les 3 mois suivant la mise en place, en suivant le protocole d'utilisation convenu, aucun résultat mesurable n'est observé — vous êtes remboursé intégralement.</p>
-          </div>
-        </section>
+    if (!isMobile) {
+      window.addEventListener('scroll', onScroll, {passive: true});
+    } else {
+      // On mobile: auto-animate progress from 0 to 1 over 3s on load
+      let start = null;
+      function autoAnimate(ts) {
+        if (!start) start = ts;
+        progress = Math.min((ts - start) / 3000, 1);
+        beats.forEach(b => {
+          const s = +b.dataset.start, e = +b.dataset.end;
+          const mid = (s + e) / 2;
+          // On mobile just show the last beat
+          b.style.opacity = (progress > 0.75) ? '1' : '0';
+        });
+        if (progress < 1) requestAnimationFrame(autoAnimate);
+      }
+      setTimeout(() => requestAnimationFrame(autoAnimate), 500);
+    }
 
-        <!-- ═══ POSITIONNEMENT ═══ -->
-        <section class="section">
-          <div class="section-head">
-            <p class="eyebrow">Pourquoi Serafino</p>
-            <h2>L'alternative à ceux qui coûtent trop cher, ne comprennent pas le terrain ou ne livrent pas.</h2>
-          </div>
+    function onScroll() {
+      const rect = wrapper.getBoundingClientRect();
+      const total = wrapper.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      progress = Math.max(0, Math.min(1, scrolled / total));
 
-          <p class="section-manifesto">Je ne vends pas des outils. Je construis ce qui tient sans moi.</p>
+      // Scroll hint fade
+      if (scrollHint) scrollHint.style.opacity = progress < 0.05 ? '1' : '0';
 
-          <div class="comparison-wrap card">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th>Acteur</th>
-                  <th>Prix</th>
-                  <th>Approche</th>
-                  <th>Limite</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td data-label="Acteur">Agences web</td>
-                  <td data-label="Prix">10–15K CHF</td>
-                  <td data-label="Approche">Solutions standard</td>
-                  <td data-label="Limite">Pas de conseil opérationnel</td>
-                </tr>
-                <tr>
-                  <td data-label="Acteur">Freelances dev</td>
-                  <td data-label="Prix">5–12K CHF</td>
-                  <td data-label="Approche">Dev à l'heure</td>
-                  <td data-label="Limite">Pas d'expertise métier</td>
-                </tr>
-                <tr>
-                  <td data-label="Acteur">Consultants</td>
-                  <td data-label="Prix">200–300 CHF/h</td>
-                  <td data-label="Approche">Conseil seul</td>
-                  <td data-label="Limite">Pas de réalisation technique</td>
-                </tr>
-                <tr>
-                  <td data-label="Acteur">Logiciels SaaS</td>
-                  <td data-label="Prix">50–200 CHF/mois</td>
-                  <td data-label="Approche">Génériques</td>
-                  <td data-label="Limite">Pas adaptés aux spécificités</td>
-                </tr>
-                <tr class="comparison-highlight">
-                  <td data-label="Acteur"><strong>SERAFINO RÉSOUT</strong></td>
-                  <td data-label="Prix"><strong>0 → 300 → dès 800 CHF / projet</strong></td>
-                  <td data-label="Approche"><strong>Conseil + Tech + Résultats</strong></td>
-                  <td data-label="Limite"><strong>Positionnement unique</strong></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+      // Beat visibility
+      beats.forEach(b => {
+        const s = +b.dataset.start, e = +b.dataset.end;
+        const span = e - s;
+        const fadeW = span * 0.18;
+        let op = 0;
+        if (progress >= s && progress <= e) {
+          if (progress < s + fadeW)      op = (progress - s) / fadeW;
+          else if (progress > e - fadeW) op = (e - progress) / fadeW;
+          else                           op = 1;
+        }
+        b.style.opacity = op;
+        const yOff = op < 1 ? (1 - op) * 18 : 0;
+        b.style.transform = `translateY(${progress < s ? yOff : -yOff}px)`;
+      });
+    }
+  })();
 
-        <!-- ═══ MÉTHODE ═══ -->
-        <section id="methode" class="section split">
-          <div class="section-head">
-            <p class="eyebrow">La méthode</p>
-            <h2>On commence par comprendre le travail réel. Les outils ne viennent qu'après.</h2>
-          </div>
+  /* ── NAV ──────────────────────────────────────────────────────────────── */
+  const toggle = document.querySelector('.menu-toggle');
+  const nav    = document.querySelector('.site-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = document.body.classList.toggle('nav-open');
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      document.body.classList.remove('nav-open');
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    document.addEventListener('click', e => {
+      if (!document.body.classList.contains('nav-open')) return;
+      if (nav.contains(e.target) || toggle.contains(e.target)) return;
+      document.body.classList.remove('nav-open');
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
 
-          <div class="steps">
-            <article>
-              <span>01</span>
-              <h3>Diagnostic ciblé</h3>
-              <p>Observer les flux, les tâches répétitives, les pertes de temps et les angles morts.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Plan clair</h3>
-              <p>Mettre à plat les priorités, les actions, les délais et les responsabilités.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Mise en oeuvre</h3>
-              <p>Installer ce qui aide vraiment, sans ajouter une couche de complexité inutile.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Mesure et stabilisation</h3>
-              <p>Vérifier que le système tient dans la durée et que l'équipe peut se l'approprier.</p>
-            </article>
-          </div>
+  /* ── FLIP CARDS ───────────────────────────────────────────────────────── */
+  document.querySelectorAll('.flip-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
+    });
+  });
 
-          <p class="method-note">Je travaille sur 3 à 4 projets maximum en parallèle — pour garantir une attention réelle à chaque mission, pas une gestion à distance.</p>
-          <p class="method-note method-case">Résultats concrets sur des missions récentes: pour une cuisine genevoise, structurer les données fournisseurs a économisé <strong>4–6h de recherche par semaine</strong>. Pour Planeto, supprimer la prospection manuelle a livré <strong>756 leads haute priorité</strong> sans aucune heure passée à chercher.</p>
-        </section>
+  /* ── FADE-UP ON SCROLL ────────────────────────────────────────────────── */
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+  }, {threshold: 0.08});
+  fadeEls.forEach(el => io.observe(el));
 
-        <!-- ═══ HISTOIRE ═══ -->
-        <section id="histoire" class="section story-section">
-          <div class="section-head">
-            <p class="eyebrow">L'histoire</p>
-            <h2>Une méthode forgée sous pression: comprendre le problème réel avant de poser la moindre solution.</h2>
-          </div>
+  /* ── BOT WIDGET ───────────────────────────────────────────────────────── */
+  const botFab   = document.getElementById('botFab');
+  const botPopup = document.getElementById('botPopup');
+  const botScrim = document.getElementById('botScrim');
+  const botFrame = document.getElementById('botFrame');
+  const botClose = document.getElementById('botClose');
+  const botHint  = document.getElementById('botHint');
+  const botHint2 = document.getElementById('botHint2');
+  const BOT_URL  = 'https://serafino-bot.vercel.app';
+  let botOpen = false, botLoaded = false;
 
-          <div class="story-grid">
-            <div class="story-copy">
-              <p>
-                Pendant 11 ans, j'ai dirigé des cuisines professionnelles à Genève. Ce n'est pas
-                seulement de la restauration — c'est de la gestion opérationnelle avec des
-                échéances en série, sans pause: chaque service est une deadline, chaque problème
-                doit trouver une solution immédiate, et l'agilité n'est pas une option — c'est
-                la condition de survie.
-              </p>
-              <p>
-                C'est là que j'ai développé un réflexe précis: avant de toucher quoi que ce soit,
-                observer comment le travail circule réellement. Identifier ce qui freine vraiment —
-                pas ce qui semble fréner. Agir sur la cause, pas sur les symptômes. Et ne pas partir
-                avant que le système tienne.
-              </p>
-              <p>
-                Ce réflexe a une source plus ancienne. Mon grand-père m'a transmis quelque chose que
-                j'applique depuis toujours: on ne commence pas à intervenir sans avoir d'abord
-                compris. On finit ce qu'on commence. Et un travail bien fait ne devrait pas avoir
-                besoin d'être refait.
-              </p>
-              <p>
-                Depuis 2023, j'applique cette même logique aux systèmes digitaux. Les outils ont
-                changé — Google Apps Script, Python, React — mais l'approche est identique:
-                partir du terrain, construire ce qui répond au vrai problème, livrer quelque chose
-                qui tourne sans moi.
-              </p>
-            </div>
-            <div class="story-side">
-              <div class="story-photo">
-                <img src="./assets/photos/LA_NOCE_Enrico_v.jpg" alt="Portrait d'Enrico La Noce" />
-              </div>
-              <div class="story-notes">
-                <div>
-                  <span>Le temps a de la valeur</span>
-                  <p>J'ai vu ce que coûte le désordre: des heures perdues, chaque jour, par des équipes entières. Je ne conçois pas de solution qui ne rende pas ce temps.</p>
-                </div>
-                <div>
-                  <span>On finit ce qu'on commence</span>
-                  <p>Un système livré à moitié ne sert à rien. Mon engagement: délivrer quelque chose qui fonctionne réellement, pas un prototype abandonné.</p>
-                </div>
-                <div>
-                  <span>Le résultat avant tout</span>
-                  <p>Ce qui compte, c'est ce qui est mesurable à la fin: du temps récupéré, des erreurs évitées, un outil qui tient. Pas un rapport.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  setTimeout(() => { if (!botOpen && botHint) botHint.classList.add('is-visible'); }, 3000);
 
-          <div class="story-milestones">
-            <article class="card">
-              <span>2015–2021</span>
-              <p>Chef de cuisine à Genève — Le Scandale, La Citadella, Giovanni Pasta. Formation pratique à la gestion d'équipes, de flux et de production sous pression quotidienne.</p>
-            </article>
-            <article class="card">
-              <span>2021–2025</span>
-              <p>Chef de cuisine avec coordination opérationnelle d'équipes et de flux de production jusqu'à 250 repas par service. 11 ans d'environnements exigeants à Genève.</p>
-            </article>
-            <article class="card">
-              <span>Depuis 2023</span>
-              <p>Construction de systèmes digitaux opérationnels: dashboards, CRM, bots IA, automatisations. Des outils livrés, documentés, utilisés par de vraies équipes.</p>
-            </article>
-            <article class="card">
-              <span>Aujourd'hui</span>
-              <p>SERAFINO RÉSOUT — la synthèse du terrain et du code. Une méthode de consultant, une capacité de réalisation, une livraison sans dépendance.</p>
-            </article>
-          </div>
-        </section>
+  const contactEl = document.getElementById('contact');
+  if (contactEl && botHint2) {
+    new IntersectionObserver(([en]) => {
+      if (en.isIntersecting && !botOpen) {
+        botHint2.classList.add('is-visible');
+        setTimeout(() => botHint2.classList.remove('is-visible'), 8000);
+      }
+    }, {threshold: 0.2}).observe(contactEl);
+  }
 
-        <!-- ═══ CAS RÉELS ═══ -->
-        <section id="cas" class="section kitchen-section">
-          <div class="section-head">
-            <p class="eyebrow">Cas réels</p>
-            <h2>Des systèmes construits à partir du terrain, pas d'une théorie de bureau.</h2>
-          </div>
+  function openBot() {
+    if (!botLoaded) { botFrame.src = BOT_URL; botLoaded = true; }
+    botOpen = true;
+    if (botHint)  botHint.classList.remove('is-visible');
+    if (botHint2) botHint2.classList.remove('is-visible');
+    botPopup.classList.add('is-open');
+    botScrim.classList.add('is-open');
+    botFab.setAttribute('aria-expanded', 'true');
+    botPopup.setAttribute('aria-hidden', 'false');
+  }
+  function closeBot() {
+    botOpen = false;
+    botPopup.classList.remove('is-open');
+    botScrim.classList.remove('is-open');
+    botFab.setAttribute('aria-expanded', 'false');
+    botPopup.setAttribute('aria-hidden', 'true');
+  }
 
-          <!-- Cas 01 — Cuisine -->
-          <div class="kitchen-grid">
-            <div class="kitchen-copy">
-              <p class="case-label">Cas 01 — HORECA</p>
-              <h3 style="margin: 10px 0 18px; font-size: 1.4rem;">Système de gestion cuisine</h3>
-              <div class="timeline-note">
-                <span>2021</span>
-                <p>Constat: informations dispersées, prix reçus par email sous forme Excel, décisions d'achat chronophages.</p>
-              </div>
-              <p>
-                Dans une cuisine, les informations utiles sont souvent éparpillées: recettes,
-                inventaires, fournisseurs, prix, saisonnalité, besoins événementiels. Retrouver la
-                bonne information prenait trop de temps et ralentissait les décisions quotidiennes.
-              </p>
-              <p>
-                Le travail a consisté à transformer ces données dispersées en un système consultable,
-                directement relié aux besoins réels de la cuisine — sans complexité inutile.
-              </p>
-            </div>
-
-            <div class="kitchen-card">
-              <p class="panel-kicker">Ce qui a été mis en place</p>
-              <p class="panel-quote">
-                Une base de travail structurée autour des recettes, des fournisseurs, des
-                inventaires et des prix, pensée pour faire gagner du temps et améliorer la qualité
-                des décisions d'achat.
-              </p>
-              <ul class="kitchen-list">
-                <li>centralisation des prix reçus par email</li>
-                <li>transformation des fichiers Excel en base consultable</li>
-                <li>recherche rapide par produit, saison, fournisseur ou prix</li>
-                <li>support direct aux décisions d'inventaire et d'approvisionnement</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="case-screens">
-            <figure class="case-screenshot card">
-              <img src="./assets/screens/restaurant-dashboard-produits.png" alt="Capture d'écran d'un dashboard restaurant pour gérer les produits, prix et disponibilités" />
-              <figcaption>Dashboard restaurant: produits, prix, disponibilité et informations utiles au même endroit.</figcaption>
-            </figure>
-            <figure class="case-screenshot card">
-              <img src="./assets/screens/captain-slow-cook.png" alt="Capture d'écran de Captain Slow-Cook, assistant cuisine pour les techniques de cuisson" />
-              <figcaption>Assistant cuisine: une connaissance métier accessible simplement, sans chercher dans dix documents.</figcaption>
-            </figure>
-          </div>
-
-          <div class="kitchen-features">
-            <article class="card">
-              <h3>4 à 6h gagnées par semaine</h3>
-              <p>Sur la recherche de prix, la saisonnalité et les décisions d'achat — sans refaire le tri à chaque fois.</p>
-            </article>
-            <article class="card">
-              <h3>Saisonnalité en quelques secondes</h3>
-              <p>Identifier les produits disponibles au meilleur prix, directement exploitable pour composer les menus.</p>
-            </article>
-            <article class="card">
-              <h3>Connaissance du logiciel métier</h3>
-              <p>Expérience préalable avec Food Cost in Cloud — ce qui permet de comprendre les limites des outils existants avant de proposer une alternative.</p>
-            </article>
-            <article class="card">
-              <h3>Information utile, pas stockée</h3>
-              <p>L'information n'était plus archivée: elle devenait directement exploitable pour organiser les achats et piloter la cuisine.</p>
-            </article>
-          </div>
-
-          <!-- Séparateur -->
-          <div class="case-divider"></div>
-
-          <!-- Cas 02 — Planeto -->
-          <div class="kitchen-grid">
-            <div class="kitchen-copy">
-              <p class="case-label">Cas 02 — Acquisition B2B</p>
-              <h3 style="margin: 10px 0 18px; font-size: 1.4rem;">Planeto: du processus manuel à l'infrastructure autonome</h3>
-              <div class="timeline-note">
-                <span>Mars – Avril 2026</span>
-                <p>Point de départ: collecte manuelle, dispersée, chronophage. Risque élevé de doublons et de données perdues.</p>
-              </div>
-              <p>
-                L'objectif était de libérer l'équipe commerciale pour qu'elle se concentre sur
-                l'humain — pas sur la recherche de données. En un mois, le périmètre est passé
-                d'une liste à vérifier à un moteur d'acquisition complet, autonome et opérationnel.
-              </p>
-              <p>
-                L'enjeu n'était pas de produire un prototype, mais un système exploitable par
-                l'équipe dès le lendemain — sans aucune compétence en code requise.
-              </p>
-
-            </div>
-
-            <div class="kitchen-card">
-              <p class="panel-kicker">Le système livré</p>
-              <p class="panel-quote">
-                Transformer la prospection manuelle en un moteur technologique autonome, livrant
-                près de 2'200 cibles qualifiées dans un poste de pilotage conçu pour accélérer
-                les ventes.
-              </p>
-              <ul class="kitchen-list">
-                <li>2'195 leads UK + Suisse — 756 haute priorité, ~1'785 UK, ~396 CH</li>
-                <li>enrichissement: emails, téléphones, sites, noms des dirigeants, LinkedIn</li>
-                <li>CRM web synchronisé avec Google Sheets en temps réel</li>
-                <li>bot AI multilingue (FR/EN/DE/IT) sur la connaissance Planeto</li>
-                <li>livré sur clé USB, plug & play, zéro licence mensuelle</li>
-              </ul>
-            </div>
-          </div>
-
-          <figure class="case-screenshot card">
-            <img src="./assets/screens/crm-planeto-pilotage.png" alt="Capture d'écran du CRM Planeto, poste de pilotage des équipes" />
-            <figcaption>CRM opérationnel: information centralisée, actions rapides et synchronisation avec Google Sheets.</figcaption>
-          </figure>
-
-          <div class="kitchen-features">
-            <article class="card">
-              <h3>756 leads haute priorité</h3>
-              <p>Classés et prêts pour une action commerciale immédiate — sans tri manuel ni recherche préalable.</p>
-            </article>
-            <article class="card">
-              <h3>Zéro recherche manuelle</h3>
-              <p>L'équipe commerciale se concentre sur les discussions, pas sur la collecte. Suppression totale des tâches chronophages.</p>
-            </article>
-            <article class="card">
-              <h3>Souveraineté totale</h3>
-              <p>Données à 100% propriété du client, sur serveur interne. Aucune licence, aucun abonnement, aucune dépendance externe.</p>
-            </article>
-            <article class="card">
-              <h3>Architecture évolutive</h3>
-              <p>Conçue pour absorber facilement de nouveaux marchés — extension à l'Italie ou autres pays sans refaire le système.</p>
-            </article>
-          </div>
-
-          <blockquote class="testimonial-full">
-            <p>"Il est arrivé pour vérifier une liste. Il est reparti en ayant construit quelque chose que je n'avais pas imaginé. Il m'a donné des idées nouvelles que je n'avais pas évaluées — et le bot qu'il a créé avec notre connaissance métier sera bientôt sur notre site officiel. Vraiment impressionnant."</p>
-            <footer>— Stefano Cozza, CEO de Planeto</footer>
-          </blockquote>
-
-          <!-- Séparateur -->
-          <div class="case-divider"></div>
-
-          <!-- Cas 03 — Palais des Nations -->
-          <div class="kitchen-grid">
-            <div class="kitchen-copy">
-              <p class="case-label">Cas 03 — Restauration institutionnelle</p>
-              <h3 style="margin: 10px 0 18px; font-size: 1.4rem;">Palais des Nations, Genève: quand le système apprend à travailler comme toi</h3>
-              <div class="timeline-note">
-                <span>2021–2023</span>
-                <p>Constat: inventaire manuel 8h/mois, analyse fournisseurs 2–3h/semaine, planification menus plusieurs heures. Tout ça en dehors du temps de cuisine.</p>
-              </div>
-              <p>
-                En tant que chef au Palais des Nations, une grande partie de mon temps n'était pas
-                dans la cuisine. Elle était bloquée dans des tâches répétitives: produit par produit
-                dans un carnet, offres fournisseurs à comparer manuellement, menus à construire en
-                tâtonnant. Des heures soustraites à ce qui compte vraiment.
-              </p>
-              <p>
-                Ne trouvant pas d'outil adapté à la réalité d'une cuisine professionnelle, j'ai
-                construit le mien — sur mon vocabulaire, mon rythme, ma façon de travailler.
-                Pas l'inverse.
-              </p>
-              <p class="adapt-callout">
-                Si pour moi "un sac" voulait dire 2,5 kg, le système le comprenait. Ce n'est pas
-                moi qui m'adaptais à l'outil. C'est l'outil qui avait appris à travailler comme moi.
-              </p>
-            </div>
-
-            <div class="kitchen-card">
-              <p class="panel-kicker">Ce qui a été construit</p>
-              <p class="panel-quote">
-                Trois modules conçus sur ma façon de travailler — inventaire vocal, analyse
-                fournisseurs automatique, assistant menus — qui m'ont redonné plusieurs heures
-                par semaine.
-              </p>
-              <ul class="kitchen-list">
-                <li><strong>Inventaire vocal:</strong> je dictais en cellule froide, le système reconnaissait mes unités et mettait à jour le stock en temps réel</li>
-                <li><strong>Contrôle entrées/sorties:</strong> les bons de livraison alimentaient la base — comparaison automatique avec la semaine précédente</li>
-                <li><strong>Analyse fournisseurs:</strong> les offres reçues par email étaient filtrées selon saisonnalité et prix — liste d'achats avec projection food cost</li>
-                <li><strong>Assistant menus:</strong> propositions de menus hebdomadaires basées sur le stock réel et la saison, dans mon format d'envoi WhatsApp habituel</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="kitchen-features">
-            <article class="card">
-              <h3>8h → 30 min/mois</h3>
-              <p>L'inventaire complet passait de 2h par semaine à quelques minutes de dictée — même niveau de précision, fraction du temps.</p>
-            </article>
-            <article class="card">
-              <h3>Zéro calcul manuel</h3>
-              <p>Comparaison fournisseurs, projection food cost, saisonnalité: automatisés. Le chef décide, il ne calcule plus.</p>
-            </article>
-            <article class="card">
-              <h3>Menus en quelques minutes</h3>
-              <p>Des propositions structurées sur stock réel et saison — à affiner, pas à construire depuis zéro.</p>
-            </article>
-            <article class="card">
-              <h3>Construit sur ton langage</h3>
-              <p>Le système connaissait mes unités, mes habitudes, mon format d'envoi. Pas de formation, pas de compromis sur ma façon de faire.</p>
-            </article>
-          </div>
-
-        </section>
-
-        <!-- ═══ ENRICOBOT ═══ -->
-        <section id="serafinobot" class="section">
-          <div class="section-head">
-            <p class="eyebrow">SerafinoBot</p>
-            <h2>Un assistant construit avec la connaissance de votre métier — pas un chatbot générique.</h2>
-          </div>
-
-          <div class="kitchen-grid">
-            <div class="kitchen-copy">
-              <p>
-                SerafinoBot n'est pas un outil standard. C'est un assistant personnalisé, construit à
-                partir de la connaissance spécifique du client: ses produits, ses fournisseurs, ses
-                processus, son vocabulaire métier.
-              </p>
-              <p>
-                Le résultat est un outil qui répond comme quelqu'un qui connaît vraiment le terrain
-                — pas une réponse générique, mais une aide directement exploitable dans le contexte
-                réel du client.
-              </p>
-              <p>
-                Chez Planeto, un bot a été construit sur les offres, les prix et la connaissance
-                commerciale de l'équipe — multilingue (FR/EN/DE/IT), disponible en permanence
-                sans intervention humaine. Il sera intégré sur le site officiel de Planeto.
-              </p>
-            </div>
-
-            <div class="kitchen-card">
-              <p class="panel-kicker">Ce que le bot peut couvrir</p>
-              <p class="panel-quote">
-                Chaque bot est différent parce que chaque client est différent. Ce qui ne change
-                pas: construit à partir de ce que vous savez déjà, livré comme un outil que vous
-                possédez entièrement.
-              </p>
-              <ul class="kitchen-list">
-                <li>répondre aux questions métier avec la connaissance du client</li>
-                <li>support commercial: gérer les objections, préparer les argumentaires</li>
-                <li>créer des menus, listes de charge, propositions saisonnières</li>
-                <li>rédiger des emails fournisseurs, devis ou communications clients</li>
-                <li>multilingue — s'adapte à la langue de votre marché</li>
-                <li>n'importe quel domaine où la connaissance peut être structurée</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══ SECTEURS ═══ -->
-        <section id="secteurs" class="section">
-          <div class="section-head">
-            <p class="eyebrow">Secteurs prioritaires</p>
-            <h2>Une offre pensée pour les contextes où la qualité d'exécution compte plus que l'effet vitrine.</h2>
-          </div>
-
-          <div class="sector-grid">
-            <article class="card">
-              <h3>HORECA</h3>
-              <p>
-                Planning, stocks, coordination d'équipe, suivi opérationnel, outils de pilotage
-                simples pour restaurants et petites structures.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Artisans & commerces</h3>
-              <p>
-                Devis, fiches chantier, organisation, suivi administratif et simplification des
-                tâches répétitives pour artisans et commerces de proximité.
-              </p>
-            </article>
-            <article class="card">
-              <h3>PME & petites structures</h3>
-              <p>
-                Toute organisation où l'information circule encore par WhatsApp, Excel et mémoire
-                humaine a déjà des leviers clairs à activer — peu importe le secteur.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Professions libérales</h3>
-              <p>
-                Avocats, notaires, architectes, médecins, physiothérapeutes — suivi de dossiers,
-                relances automatiques, documents répétitifs et organisation simplifiée.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Startups & scale-ups</h3>
-              <p>
-                Pipeline commercial structuré, CRM léger, qualification de leads automatisée —
-                pour les équipes qui grandissent sans budget Sales Ops.
-              </p>
-            </article>
-            <article class="card">
-              <h3>Consulting & services B2B</h3>
-              <p>
-                Suivi de prospects, tableaux de bord clients, automatisation des relances et
-                centralisation de l'information pour cabinets et indépendants.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <!-- ═══ CONTACT ═══ -->
-        <section id="contact" class="section contact-section">
-          <div class="contact-panel">
-            <p class="eyebrow">Premier échange</p>
-            <h2>Si le travail s'alourdit, se disperse ou repose trop sur quelques personnes, il y a probablement quelque chose à remettre à plat.</h2>
-            <p>
-              Le premier échange sert à clarifier le problème, identifier le vrai point de friction
-              et voir s'il existe un levier d'amélioration réel.
-            </p>
-            <div class="contact-points">
-              <span>30 minutes</span>
-              <span>sans engagement</span>
-              <span>orientation concrète</span>
-            </div>
-          </div>
-
-          <div class="contact-box card">
-            <a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a>
-            <a href="tel:+41786583760">078 658 37 60</a>
-            <p>Avenue de Sécheron 12, 1202 Genève</p>
-            <a class="button button-primary" href="mailto:contact@serafino-resout.ch?subject=Premier%20%C3%A9change%20SERAFINO%20R%C3%89SOUT">
-              Réserver un premier échange
-            </a>
-          </div>
-        </section>
-
-      </main>
-    </div>
-
-    <!-- ── Bot floating widget ─────────────────────────────────────────── -->
-    <div class="bot-hint" id="botHint">Pas envie de lire tout ça ?</div>
-    <div class="bot-hint bot-hint-contact" id="botHint2">Diagnostic gratuit — 30 min pour voir si je peux vraiment t'aider.</div>
-    <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant Serafino" aria-expanded="false">
-      <span class="bot-fab-icon">
-        <img src="./assets/photos/avatar.png" alt="Serafino" onerror="this.onerror=null; this.src='./assets/photos/LA_NOCE_Enrico_v.jpg';" />
-      </span>
-      <span class="bot-fab-label">Une question ?</span>
-    </button>
-
-    <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout" aria-hidden="true">
-      <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">
-        Fermer
-      </button>
-      <iframe
-        class="bot-popup-frame"
-        id="botFrame"
-        src=""
-        title="Assistant Serafino Résout"
-        allow="clipboard-write"
-      ></iframe>
-    </div>
-
-    <div class="bot-popup-scrim" id="botScrim"></div>
-    <!-- ── End bot widget ────────────────────────────────────────────────── -->
-
-    <script src="./script.js"></script>
-  </body>
+  if (botFab)   botFab.addEventListener('click', () => botOpen ? closeBot() : openBot());
+  if (botScrim) botScrim.addEventListener('click', closeBot);
+  if (botClose) botClose.addEventListener('click', closeBot);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && botOpen) closeBot(); });
+  </script>
+</body>
 </html>
