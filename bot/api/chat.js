@@ -137,6 +137,24 @@ function buildSystemPrompt(language, memory) {
   return prompt;
 }
 
+function sanitizeReply(text) {
+  if (!text) return text;
+  // Replace forbidden formal openers with nothing (sentence continues after colon)
+  let t = text
+    .replace(/^Je comprends ton scepticisme\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends ton doute\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends votre\s*[:\-–—]\s*/i, '')
+    .replace(/^Bien sûr[,!]?\s*/i, '')
+    .replace(/^Bien entendu[,!]?\s*/i, '')
+    .replace(/protocole d['']usage convenu/gi, 'ce qu\'on a défini ensemble')
+    .replace(/résultat(?:s)? mesurable(?:s)? selon les critères/gi, 'résultat concret')
+    .replace(/mise en œuvre/gi, 'mise en place')
+    .replace(/utilisation conforme/gi, 'usage normal');
+  // Capitalise first letter if we stripped the opener
+  if (t !== text) t = t.charAt(0).toUpperCase() + t.slice(1);
+  return t;
+}
+
 function truncateToSentences(text, max) {
   const t = String(text || '').trim();
   // Match sentences ending with . ! ? (including ... and ?) followed by space or end
@@ -627,7 +645,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const result = await generateWithFallback(buildSystemPrompt(language, currentMemory), normalizedHistory, MAX_TOKENS);
-    const reply = truncateToSentences(result.text, 5);
+    const reply = sanitizeReply(truncateToSentences(result.text, 5));
     const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, reply);
     const userMessageCount = normalizedHistory.filter((m) => m.role === 'user').length;
     const proactiveEmail = userMessageCount === 3 && currentMemory.trim() && reply ? true : undefined;
