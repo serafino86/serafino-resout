@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Application sur mesure pour PME à Genève | SERAFINO RÉSOUT</title>
+  <meta name="description" content="Des outils web simples, construits exactement pour votre façon de travailler. Tableau de bord, CRM léger, app de planification — vous le possédez, aucune licence mensuelle." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/app-sur-mesure.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/app-sur-mesure.html" />
+  <meta property="og:title" content="Application sur mesure | SERAFINO RÉSOUT" />
+  <meta property="og:description" content="Un outil qui fait exactement ce dont vous avez besoin — rien de plus. Construit sur votre processus réel, livré documenté, possédé sans abonnement." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <meta property="og:site_name" content="SERAFINO RÉSOUT" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Application web sur mesure",
+    "description": "Conception et livraison d'outils web simples et opérationnels pour PME, restaurants et artisans à Genève. Tableaux de bord, CRM légers, apps de planification — sans abonnement, propriété totale.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "SERAFINO RÉSOUT",
+      "url": "https://www.serafino-resout.ch",
+      "telephone": "+41786583760",
+      "email": "contact@serafino-resout.ch"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Genève" },
+      { "@type": "AdministrativeArea", "name": "Suisse romande" }
+    ],
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.serafino-resout.ch/" },
+        { "@type": "ListItem", "position": 2, "name": "Application sur mesure", "item": "https://www.serafino-resout.ch/app-sur-mesure.html" }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #0f0e0d;
+      --bg2:         #141310;
+      --surface:     #1a1917;
+      --surface2:    #222019;
+      --text:        #f0ece4;
+      --muted:       #7a7468;
+      --subtle:      #38362f;
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.08);
+      --line:        rgba(240,236,228,0.07);
+      --line-strong: rgba(240,236,228,0.14);
+      --ease:        cubic-bezier(0.25,0,0,1);
+      --font-d:      'Cormorant Garamond', Georgia, serif;
+      --font-b:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    p { color: rgba(240,236,228,0.82); }
+    a { color: inherit; }
+    strong { color: var(--text); }
+
+    /* ── HEADER ── */
+    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(15,14,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .site-logo { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; color: var(--text); }
+    .site-logo span { color: var(--accent); }
+    .site-nav-sub { display: flex; gap: 0; }
+    .site-nav-sub a { font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: rgba(240,236,228,0.5); transition: color 0.2s; padding: 6px 12px; }
+    .site-nav-sub a:hover { color: var(--text); }
+    .site-nav-sub .nav-cta-sub { color: var(--accent) !important; border: 1px solid rgba(201,168,76,0.35); border-radius: 2px; padding: 6px 14px; }
+    .site-nav-sub .nav-cta-sub:hover { background: var(--accent); color: #0f0e0d !important; }
+    @media(max-width:768px) { .site-nav-sub { display: none; } }
+
+    /* ── HERO ── */
+    .page-hero { padding: 96px 48px 80px; max-width: 960px; margin: 0 auto; border-bottom: 1px solid var(--line); }
+    .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
+    .page-hero h1 { font-family: var(--font-d); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; line-height: 1.15; color: var(--text); margin-bottom: 28px; }
+    .page-hero .lead { font-size: 1.15rem; line-height: 1.7; color: rgba(240,236,228,0.75); max-width: 680px; margin-bottom: 40px; }
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-p { display: inline-block; background: var(--accent); color: #0f0e0d; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; border-radius: 2px; transition: opacity 0.2s; border: none; cursor: pointer; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-s { display: inline-block; border: 1px solid var(--line-strong); color: var(--muted); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 13px 24px; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    .section { max-width: 960px; margin: 0 auto; padding: 80px 48px; border-bottom: 1px solid var(--line); }
+    .section-head { margin-bottom: 48px; }
+    .section-head h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 600; line-height: 1.25; color: var(--text); margin-top: 12px; }
+    .section-head .lead-sm { font-size: 1rem; color: rgba(240,236,228,0.68); max-width: 600px; margin-top: 14px; line-height: 1.65; }
+
+    /* ── TYPES GRID ── */
+    .what-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .what-card { background: var(--surface); padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; }
+    .what-card .wc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .what-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .what-card p { font-size: 0.85rem; line-height: 1.6; }
+    .what-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+    .what-card ul li { font-size: 0.82rem; color: rgba(240,236,228,0.65); padding-left: 14px; position: relative; line-height: 1.4; }
+    .what-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
+
+    /* ── SCREENSHOTS ── */
+    .screens-block { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .screen-item { background: var(--surface2); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .screen-item img { width: 100%; height: auto; display: block; }
+    .screen-caption { padding: 14px 18px; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .screen-caption strong { color: rgba(240,236,228,0.75); font-weight: 500; display: block; margin-bottom: 4px; }
+
+    /* ── HOW ── */
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .how-step { background: var(--surface); padding: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .how-step .num { font-family: var(--font-d); font-size: 2.8rem; font-weight: 700; color: var(--subtle); line-height: 1; }
+    .how-step h3 { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+    .how-step p { font-size: 0.83rem; }
+
+    /* ── CASE ── */
+    .case-block { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .case-col { background: var(--surface); padding: 36px 32px; }
+    .case-col .cc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: block; margin-bottom: 14px; }
+    .case-col h3 { font-family: var(--font-d); font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.3; }
+    .case-col p { font-size: 0.88rem; line-height: 1.65; margin-bottom: 12px; }
+    .case-col .stat-row { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-item .sv { font-family: var(--font-d); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-item .sl { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .case-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .case-col ul li { font-size: 0.85rem; color: rgba(240,236,228,0.72); padding-left: 16px; position: relative; line-height: 1.45; }
+    .case-col ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+    .testimonial { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.88rem; font-style: italic; color: rgba(240,236,228,0.65); line-height: 1.65; }
+    .testimonial footer { font-style: normal; font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+
+    /* ── DIFFER ── */
+    .differ-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .differ-card { background: var(--surface); padding: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .differ-card .dc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .differ-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .differ-card p { font-size: 0.88rem; line-height: 1.6; }
+    .differ-card .vs { margin-top: 8px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .price-block { background: var(--surface2); border: 1px solid var(--line); border-radius: 4px; padding: 40px; }
+    .price-block .pb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .price-col { display: flex; flex-direction: column; gap: 10px; }
+    .price-col .price-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .price-col .price-val { font-family: var(--font-d); font-size: 2.4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .price-col .price-desc { font-size: 0.88rem; color: rgba(240,236,228,0.72); line-height: 1.6; }
+    .price-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 8px; }
+    .price-col ul li { font-size: 0.83rem; color: rgba(240,236,228,0.7); padding-left: 16px; position: relative; line-height: 1.4; }
+    .price-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
+    .guarantee { background: var(--accent-dim); border: 1px solid rgba(201,168,76,0.2); border-radius: 4px; padding: 24px 32px; margin-top: 24px; font-size: 0.88rem; line-height: 1.65; }
+    .guarantee strong { color: var(--accent); }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .faq-item { background: var(--surface); }
+    .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 22px 28px; cursor: pointer; color: var(--text); font-family: var(--font-b); font-size: 0.95rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; line-height: 1.4; transition: color 0.2s; }
+    .faq-question:hover { color: var(--accent); }
+    .fq-icon { flex-shrink: 0; width: 20px; height: 20px; border: 1px solid var(--line-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--muted); transition: transform 0.25s, border-color 0.2s; }
+    .faq-item.open .fq-icon { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s var(--ease); padding: 0 28px; }
+    .faq-answer-inner { padding-bottom: 22px; font-size: 0.88rem; color: rgba(240,236,228,0.72); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ── CTA ── */
+    .cta-section { max-width: 960px; margin: 0 auto; padding: 96px 48px; text-align: center; }
+    .cta-section h2 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 20px; }
+    .cta-section > p { max-width: 560px; margin: 0 auto 36px; }
+    .cta-meta { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    .site-footer { border-top: 1px solid var(--line); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .site-footer p { font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ── FADE ── */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── BOT WIDGET ── */
+    @keyframes botPulse { 0%{box-shadow:0 0 0 0 rgba(201,168,76,0.35)}70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)} }
+    .bot-hint { position: fixed; bottom: 90px; right: 24px; z-index: 999; background: #222019; border: 1px solid rgba(201,168,76,0.25); color: #f0ece4; font-size: 0.8rem; padding: 10px 14px; border-radius: 8px; max-width: 220px; line-height: 1.4; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s; }
+    .bot-hint.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-hint::after { content: ''; position: absolute; bottom: -7px; right: 18px; width: 12px; height: 7px; background: #222019; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+    .bot-fab { position: fixed; bottom: 24px; right: 24px; z-index: 1000; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 16px rgba(0,0,0,0.4); transition: transform 0.2s; }
+    .bot-fab:hover { transform: scale(1.08); }
+    .bot-fab.hint-active { animation: botPulse 1.8s ease-out 2; }
+    .bot-popup { position: fixed; bottom: 88px; right: 24px; z-index: 1001; width: 360px; height: 520px; background: #1a1917; border: 1px solid rgba(201,168,76,0.2); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 64px rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transform: translateY(12px) scale(0.97); transition: opacity 0.25s, transform 0.25s; }
+    .bot-popup.is-open { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-popup-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: #141310; border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .bot-header-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .bot-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .bot-header-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .bot-header-name { font-size: 0.78rem; font-weight: 600; color: #f0ece4; }
+    .bot-header-status { display: flex; align-items: center; gap: 5px; }
+    .bot-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+    .bot-status-label { font-size: 0.68rem; color: rgba(240,236,228,0.5); }
+    .bot-close { background: none; border: none; color: rgba(240,236,228,0.4); font-size: 0.72rem; cursor: pointer; letter-spacing: 0.04em; transition: color 0.2s; }
+    .bot-close:hover { color: var(--accent); }
+    .bot-popup iframe { flex: 1; border: none; width: 100%; }
+    .bot-scrim { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(0,0,0,0.4); }
+    .bot-scrim.is-open { display: block; }
+    @media(max-width:480px) { .bot-popup { width: calc(100vw - 16px); right: 8px; bottom: 80px; height: 70vh; } }
+
+    /* ── MOBILE ── */
+    @media(max-width:768px) {
+      .site-header { padding: 0 20px; }
+      .page-hero { padding: 64px 20px 56px; }
+      .section { padding: 56px 20px; }
+      .what-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .case-block { grid-template-columns: 1fr; }
+      .screens-block { grid-template-columns: 1fr; }
+      .differ-grid { grid-template-columns: 1fr; }
+      .price-block .pb-row { grid-template-columns: 1fr; }
+      .cta-section { padding: 72px 20px; }
+      .site-footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media(max-width:480px) { .how-steps { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
+    <nav class="site-nav-sub">
+      <a href="./index.html#offre">Services</a>
+      <a href="./index.html#secteurs">Secteurs</a>
+      <a href="./index.html#cas">Cas réels</a>
+      <a href="./index.html#faq">FAQ</a>
+      <a href="./index.html#contact" class="nav-cta-sub">Diagnostic gratuit →</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <span class="eyebrow">Application sur mesure — Genève &amp; Suisse romande</span>
+    <h1>Un outil qui fait exactement ce dont vous avez besoin — rien de plus.</h1>
+    <p class="lead">Pas un logiciel générique. Pas une agence à 15 000 CHF. Un outil web simple, construit sur votre processus réel, livré documenté, que vous possédez sans abonnement mensuel.</p>
+    <div class="cta-row">
+      <button class="btn-p" id="heroContactBtn">Parler de mon projet →</button>
+      <a class="btn-s" href="./diagnostic.html">Diagnostic gratuit d'abord</a>
+    </div>
+  </section>
+
+  <!-- ── TYPES D'OUTILS ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Ce qu'on peut construire</p>
+      <h2>Trois types d'outils, une seule logique : ça tient sans moi.</h2>
+      <p class="lead-sm">Chaque outil part d'un problème réel observé sur le terrain — pas d'une liste de fonctionnalités. On construit le minimum qui change vraiment quelque chose.</p>
+    </div>
+    <div class="what-grid">
+      <div class="what-card">
+        <span class="wc-tag">Visibilité &amp; suivi</span>
+        <h3>Tableau de bord opérationnel</h3>
+        <p>Voir en un coup d'œil ce qui se passe — commandes, stocks, présences, indicateurs clés — sans ouvrir cinq fichiers Excel.</p>
+        <ul>
+          <li>Données consolidées depuis vos sources existantes</li>
+          <li>Vue quotidienne ou hebdomadaire selon votre rythme</li>
+          <li>Alertes automatiques sur les seuils critiques</li>
+          <li>Accessible depuis mobile sans installation</li>
+        </ul>
+      </div>
+      <div class="what-card">
+        <span class="wc-tag">Relation client &amp; leads</span>
+        <h3>CRM léger &amp; qualification</h3>
+        <p>Suivre vos prospects et clients sans la complexité d'un Salesforce. Construit pour votre vocabulaire, votre cycle de vente, votre équipe.</p>
+        <ul>
+          <li>Fiches client adaptées à votre secteur</li>
+          <li>Historique des interactions et relances</li>
+          <li>Formulaires de qualification automatiques</li>
+          <li>Export vers votre comptable ou partenaires</li>
+        </ul>
+      </div>
+      <div class="what-card">
+        <span class="wc-tag">Organisation &amp; planification</span>
+        <h3>App de planification métier</h3>
+        <p>Gérer les plannings, les menus, les commandes fournisseurs ou les rendez-vous — dans un outil qui reflète vraiment votre logique de travail.</p>
+        <ul>
+          <li>Planification hebdomadaire ou mensuelle</li>
+          <li>Génération automatique de listes ou de tâches</li>
+          <li>Notifications ou rappels configurables</li>
+          <li>Partage avec votre équipe ou vos prestataires</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAS RÉEL : PLANETO ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Cas réel 01 — Commerce multilingue</p>
+      <h2>Planeto Geneva : CRM et qualification automatique en 4 langues.</h2>
+    </div>
+    <div class="case-block">
+      <div class="case-col">
+        <span class="cc-tag">Contexte</span>
+        <h3>Un shop international sans outil de suivi structuré.</h3>
+        <p>Planeto Geneva — boutique de cartes et produits du monde, clientèle internationale — gérait ses leads et ses relances dans des notes éparpillées. Aucun suivi structuré, aucune visibilité sur les opportunités ouvertes.</p>
+        <p>Le besoin : un CRM simple, multilingue, avec qualification automatique des visiteurs selon leur langue et leur intérêt.</p>
+        <div class="stat-row">
+          <div class="stat-item"><span class="sv">4</span><span class="sl">Langues gérées</span></div>
+          <div class="stat-item"><span class="sv">0</span><span class="sl">Intervention manuelle</span></div>
+          <div class="stat-item"><span class="sv">24h</span><span class="sl">Disponibilité</span></div>
+        </div>
+      </div>
+      <div class="case-col">
+        <span class="cc-tag">Ce qui a été livré</span>
+        <ul>
+          <li>Interface CRM légère avec fiches prospects adaptées au commerce de détail</li>
+          <li>Bot de qualification intégré — détecte la langue, qualifie l'intérêt, crée la fiche automatiquement</li>
+          <li>Tableau de bord des leads actifs avec statut et dernière interaction</li>
+          <li>Export hebdomadaire vers le propriétaire</li>
+          <li>Formation complète, outil opérationnel dès J+1</li>
+        </ul>
+        <blockquote class="testimonial">
+          "Avant, on perdait des contacts parce qu'on n'avait pas de système. Maintenant le bot qualifie, la fiche se crée, et je vois tout en un endroit. Simple."
+          <footer>— Stefano Cozza, Planeto Geneva</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAS RÉEL : NUTRITION APP ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Cas réel 02 — App de planification</p>
+      <h2>Plan alimentaire familial : une app construite pour un besoin précis.</h2>
+    </div>
+    <div class="case-block" style="margin-bottom:24px">
+      <div class="case-col">
+        <span class="cc-tag">Contexte</span>
+        <h3>Un nutritionniste avec un processus manuel coûteux en temps.</h3>
+        <p>Chaque semaine, création manuelle de plans alimentaires personnalisés pour plusieurs familles — tableaux Excel, calculs nutritionnels répétés, envoi par mail.</p>
+        <p>Le besoin : un outil qui génère automatiquement les plans selon les contraintes (allergies, préférences, nombre de personnes), et propose des recettes adaptées.</p>
+        <div class="stat-row">
+          <div class="stat-item"><span class="sv">−80%</span><span class="sl">Temps de création</span></div>
+          <div class="stat-item"><span class="sv">100%</span><span class="sl">Plans personnalisés</span></div>
+        </div>
+      </div>
+      <div class="case-col">
+        <span class="cc-tag">Ce qui a été livré</span>
+        <ul>
+          <li>Interface web de génération de plans hebdomadaires selon profil famille</li>
+          <li>Base de recettes enrichissable par le professionnel</li>
+          <li>Calcul automatique des apports nutritionnels</li>
+          <li>Export PDF du plan pour envoi aux familles</li>
+          <li>Panneau d'administration simple, sans formation technique</li>
+        </ul>
+      </div>
+    </div>
+    <div class="screens-block">
+      <div class="screen-item">
+        <img src="./assets/screens/piano-alimentare-semaine.png" loading="lazy" alt="Vue semaine du plan alimentaire" />
+        <div class="screen-caption">
+          <strong>Vue hebdomadaire</strong>
+          Plan généré automatiquement selon le profil famille — repas par jour, équilibre nutritionnel.
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="./assets/screens/piano-alimentare-repas.png" loading="lazy" alt="Génération de recette" />
+        <div class="screen-caption">
+          <strong>Génération de recette</strong>
+          Proposition adaptée aux contraintes et aux préférences — modifiable et exportable.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSUS ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Comment ça se passe</p>
+      <h2>Quatre étapes. Zéro surprise.</h2>
+      <p class="lead-sm">Chaque projet commence par observer comment vous travaillez vraiment — pas par une liste de spécifications. L'outil découle du terrain, pas l'inverse.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="num">01</span>
+        <h3>Observation du terrain</h3>
+        <p>On regarde ensemble comment vous travaillez aujourd'hui — outils existants, flux d'information, points de friction. Pas de questionnaire, une conversation.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">02</span>
+        <h3>Définition du périmètre</h3>
+        <p>On s'accorde sur ce que l'outil fait, ce qu'il ne fait pas, et le critère qui dira qu'il réussit. Budget, délai et propriété fixés par écrit avant de commencer.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">03</span>
+        <h3>Construction &amp; retours</h3>
+        <p>Livraison d'une première version utilisable en 1 à 3 semaines. Vous testez dans vos conditions réelles, on ajuste. Pas de surprise en fin de projet.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">04</span>
+        <h3>Livraison &amp; transmission</h3>
+        <p>L'outil est livré documenté, avec formation de votre équipe. Vous pouvez tout gérer sans moi — ou me rappeler pour l'étape suivante.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DIFFÉRENCIATEURS ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Pourquoi pas une autre solution</p>
+      <h2>Ce qui change quand l'outil est construit sur votre réalité.</h2>
+    </div>
+    <div class="differ-grid">
+      <div class="differ-card">
+        <span class="dc-tag">vs SaaS générique</span>
+        <h3>Pas de compromis sur votre processus</h3>
+        <p>Un SaaS vous demande d'adapter votre façon de travailler à son interface. Ici, c'est l'inverse : l'outil s'adapte à votre vocabulaire, vos étapes, vos contraintes réelles.</p>
+        <p class="vs">Lundi, Notion, Airtable : puissants, mais vous passerez des semaines à configurer pour votre cas — et vous dépendrez toujours de leur roadmap et de leur tarif.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">vs Agence web</span>
+        <h3>Propriété totale, paiement unique</h3>
+        <p>Vous possédez l'outil entièrement. Code, données, hébergement — tout vous appartient. Aucune licence mensuelle, aucun abonnement d'agence, aucune dépendance.</p>
+        <p class="vs">Une agence livre, puis facture la maintenance. Ici, la transmission fait partie du projet — votre équipe peut utiliser et faire évoluer l'outil sans passer par moi.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">vs Développeur freelance</span>
+        <h3>Conseil opérationnel + réalisation technique</h3>
+        <p>Un développeur code ce qu'on lui demande. Je commence par observer ce dont vous avez vraiment besoin — souvent différent de ce que vous pensiez demander.</p>
+        <p class="vs">Fréquent : un client commande une app de gestion alors que le vrai problème est un processus flou. On le clarifie d'abord, on code ensuite.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">vs Faire soi-même</span>
+        <h3>Simple, documenté, durable</h3>
+        <p>L'outil est construit pour que votre équipe puisse l'utiliser sans formation technique continue. Pas de dépendances obscures, pas de code non maintenu à reprendre dans 6 mois.</p>
+        <p class="vs">Les outils internes faits maison fonctionnent jusqu'à ce que la personne qui les a créés parte. La documentation et la transmission sont incluses dans chaque projet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Tarifs</p>
+      <h2>Un prix clair avant de commencer.</h2>
+    </div>
+    <div class="price-block">
+      <div class="pb-row">
+        <div class="price-col">
+          <span class="price-tag">Diagnostic</span>
+          <span class="price-val">Gratuit</span>
+          <p class="price-desc">Premier échange pour comprendre si une app sur mesure est la bonne solution — ou si un autre outil existant répond mieux à votre besoin.</p>
+          <ul>
+            <li>Observation de votre processus actuel</li>
+            <li>Identification du vrai problème</li>
+            <li>Recommandation honnête : construire ou pas</li>
+            <li>Sans engagement</li>
+          </ul>
+        </div>
+        <div class="price-col">
+          <span class="price-tag">Application complète</span>
+          <span class="price-val">Dès 1 200 CHF</span>
+          <p class="price-desc">Paiement unique. Propriété totale. Le prix exact est défini après le diagnostic — selon le périmètre, pas à l'heure.</p>
+          <ul>
+            <li>Observation terrain + définition du périmètre</li>
+            <li>Construction et ajustements sur feedback réel</li>
+            <li>Documentation complète utilisateur</li>
+            <li>Formation de votre équipe</li>
+            <li>Aucun abonnement ni licence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="guarantee">
+        <strong>Cadre clair, garantie simple.</strong> Le périmètre et le prix sont fixés par écrit avant le premier jour de travail. Si dans les 3 mois suivant la livraison, en suivant le protocole d'utilisation convenu, aucun résultat mesurable n'est observé — vous êtes remboursé intégralement.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce qu'on me demande avant de commencer.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          Combien de temps prend la livraison d'une app ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Pour un outil simple et ciblé, comptez 2 à 4 semaines entre le premier échange et la livraison finale. Les projets plus complexes ou avec intégrations multiples peuvent prendre 6 à 8 semaines. Le délai est toujours fixé avant le début — pas estimé en fin de sprint.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Je n'ai pas de compétences techniques. Est-ce que je peux gérer l'outil ensuite ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">C'est le critère principal de conception : l'outil doit être utilisable par votre équipe sans moi dès le lendemain de la livraison. La formation est incluse. Si trois mois plus tard vous avez une question, je réponds — sans facturer une heure de support.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Est-ce qu'on peut ajouter des fonctionnalités après la livraison ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Oui. C'est l'étape "Évolutions" du parcours Serafino Résout. Chaque ajout est traité comme une nouvelle mission : périmètre défini, prix fixé, livraison documentée. Rien n'est "en cours" en permanence — chaque intervention a un début et une fin clairs.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Qu'est-ce que "propriété totale" veut dire concrètement ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Le code source vous appartient. L'hébergement est sur votre propre serveur ou un compte que vous contrôlez. Aucune licence mensuelle envers moi. Vous pouvez confier la maintenance à un autre développeur demain — je livre tout ce qu'il faut pour ça.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Quelles technologies sont utilisées ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Des technologies standard, documentées et largement répandues — pas des frameworks exotiques. Le choix dépend du projet : applications web légères, bases de données simples, APIs tierces si nécessaire. L'objectif est toujours la maintenabilité à long terme, pas la performance technique pour elle-même.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Comment savoir si j'ai besoin d'une app sur mesure ou d'un bot ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">En règle générale : un bot sert à répondre, qualifier, rédiger — tout ce qui est conversationnel. Une app sert à structurer, visualiser, planifier — tout ce qui est opérationnel et récurrent. Souvent les deux se complètent. On détermine ça ensemble lors du diagnostic gratuit.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section fade-up">
+    <h2>Un outil précis vaut mieux qu'un logiciel général.</h2>
+    <p>Commencez par un échange gratuit. On regarde ensemble si une app sur mesure est la bonne réponse — ou si quelque chose d'autre résout le problème plus vite.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn-p" href="./diagnostic.html">Diagnostic gratuit →</a>
+      <a class="btn-s" href="mailto:contact@serafino-resout.ch?subject=App%20sur%20mesure%20—%20Premier%20échange">Envoyer un mail directement</a>
+    </div>
+    <p class="cta-meta">Réponse sous 24h · Genève &amp; Suisse romande · Sans engagement</p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2025 SERAFINO RÉSOUT · <a href="./index.html">Accueil</a> · <a href="./bot-personalise.html">Bot personnalisé</a> · <a href="./automatisation.html">Automatisation</a></p>
+    <p><a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a></p>
+  </footer>
+
+  <!-- ── BOT WIDGET ── -->
+  <div class="bot-scrim" id="botScrim"></div>
+  <div class="bot-hint" id="botHint">Besoin d'infos sur une app sur mesure ? Le bot répond.</div>
+  <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant">💬</button>
+  <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout">
+    <div class="bot-popup-header">
+      <div class="bot-header-avatar"><img src="./assets/photos/avatar.png" alt="Serafino" /></div>
+      <div class="bot-header-info">
+        <span class="bot-header-name">SERAFINO RÉSOUT</span>
+        <div class="bot-header-status"><span class="bot-status-dot"></span><span class="bot-status-label">Assistant en ligne</span></div>
+      </div>
+      <button class="bot-close" id="botClose">FERMER ✕</button>
+    </div>
+    <iframe src="https://serafino-bot.vercel.app" title="Assistant Serafino Résout" loading="lazy"></iframe>
+  </div>
+
+  <script defer>
+    (function () {
+      const fab = document.getElementById('botFab');
+      const popup = document.getElementById('botPopup');
+      const scrim = document.getElementById('botScrim');
+      const closeBtn = document.getElementById('botClose');
+      const hint = document.getElementById('botHint');
+      const heroBtn = document.getElementById('heroContactBtn');
+
+      function openBot() { popup.classList.add('is-open'); scrim.classList.add('is-open'); hint.classList.remove('is-visible'); fab.classList.remove('hint-active'); }
+      function closeBot() { popup.classList.remove('is-open'); scrim.classList.remove('is-open'); }
+
+      fab.addEventListener('click', () => popup.classList.contains('is-open') ? closeBot() : openBot());
+      closeBtn.addEventListener('click', closeBot);
+      scrim.addEventListener('click', closeBot);
+      if (heroBtn) heroBtn.addEventListener('click', openBot);
+
+      setTimeout(() => { hint.classList.add('is-visible'); fab.classList.add('hint-active'); }, 5000);
+      setTimeout(() => hint.classList.remove('is-visible'), 12000);
+
+      // Fade-up
+      const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { threshold: 0.1 });
+      document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+      // FAQ
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
