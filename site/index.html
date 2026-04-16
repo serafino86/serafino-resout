@@ -660,6 +660,23 @@
     .do-panel.dont .di { color: var(--subtle); }
     @media (max-width: 640px) { .do-dont { grid-template-columns: 1fr; } }
 
+    /* ── EXEMPLES CONCRETS ───────────────────────────────────────────────── */
+    .exemples-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .exemple-col { background: var(--surface); padding: 28px 28px 32px; }
+    .exemple-sector {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 14px; display: block;
+    }
+    .exemple-col h3 { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 16px; line-height: 1.3; }
+    .exemple-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .exemple-list li { font-size: 0.85rem; color: rgba(240,236,228,0.72); padding-left: 16px; position: relative; line-height: 1.45; }
+    .exemple-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.78rem; }
+    @media(max-width:768px){ .exemples-grid { grid-template-columns: 1fr; } }
+
     /* ── STEPS / METHOD ──────────────────────────────────────────────────── */
     .steps {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -1326,6 +1343,49 @@
             <div class="do-item"><span class="di">—</span><span>Projets démarrés sans accord clair sur ce qui change et pourquoi</span></div>
             <div class="do-item"><span class="di">—</span><span>Plus de 3–4 missions en parallèle — pour garantir une vraie attention</span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXEMPLES CONCRETS ────────────────────────────────────────────────── -->
+    <section class="section fade-up">
+      <div class="section-head">
+        <p class="eyebrow">Exemples concrets</p>
+        <h2>Ce qu'on peut automatiser — dans votre réalité, pas dans un slide.</h2>
+      </div>
+      <div class="exemples-grid">
+        <div class="exemple-col">
+          <span class="exemple-sector">Restauration &amp; HORECA</span>
+          <h3>Cuisine, service &amp; gestion</h3>
+          <ul class="exemple-list">
+            <li>Inventaire vocal mis à jour en temps réel depuis la cuisine</li>
+            <li>Offres fournisseurs comparées automatiquement par saison et prix</li>
+            <li>Planning d'équipe centralisé, accessible depuis n'importe quel téléphone</li>
+            <li>Menu hebdomadaire généré à partir du stock réel</li>
+            <li>Relances clients post-réservation ou post-événement automatisées</li>
+          </ul>
+        </div>
+        <div class="exemple-col">
+          <span class="exemple-sector">Artisans &amp; Commerces</span>
+          <h3>Terrain, chantiers &amp; clients</h3>
+          <ul class="exemple-list">
+            <li>Devis pré-remplis envoyés en 10 minutes au lieu d'une heure</li>
+            <li>Relance automatique après X jours sans réponse du client</li>
+            <li>Planning chantier centralisé avec confirmations par message</li>
+            <li>Base fournisseurs: prix, contacts, délais en quelques secondes</li>
+            <li>Suivi des paiements et rappels de facturation sans ressaisie</li>
+          </ul>
+        </div>
+        <div class="exemple-col">
+          <span class="exemple-sector">PME &amp; Professions libérales</span>
+          <h3>Prospection, CRM &amp; opérations</h3>
+          <ul class="exemple-list">
+            <li>CRM avec enrichissement automatique: emails, téléphones, LinkedIn</li>
+            <li>Leads qualifiés et priorisés sans recherche manuelle</li>
+            <li>Onboarding nouveaux clients standardisé et documenté</li>
+            <li>Tableau de bord opérationnel mis à jour en temps réel</li>
+            <li>Relances et suivis automatiques sans intervention de l'équipe</li>
+          </ul>
         </div>
       </div>
     </section>
