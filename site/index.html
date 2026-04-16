@@ -686,19 +686,20 @@
     .story-notes p { font-size: 0.85rem; }
 
     .story-milestones {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+      margin-top: 48px;
     }
-    .story-milestones .card {
-      border: none; border-radius: 0;
-      display: flex; flex-direction: column; justify-content: space-between;
-      height: 100%; min-height: 160px;
+    .story-milestones .tl-cell {
+      background: var(--surface); padding: 20px 24px;
+      display: flex; flex-direction: column; gap: 6px;
     }
-    .story-milestones span {
-      display: block; font-family: var(--font-d); font-size: 1.1rem;
-      font-weight: 600; color: var(--accent); margin-bottom: 10px;
+    .story-milestones .tl-year {
+      font-family: var(--font-d); font-size: 0.95rem; font-weight: 600;
+      color: var(--accent); line-height: 1;
     }
-    .story-milestones p { font-size: 0.88rem; }
+    .story-milestones .tl-desc { font-size: 0.82rem; color: rgba(240,236,228,0.65); line-height: 1.5; }
 
     /* ── KITCHEN / CASES ─────────────────────────────────────────────────── */
     .kitchen-grid {
@@ -1335,22 +1336,22 @@
         </div>
       </div>
       <div class="story-milestones">
-        <article class="card">
-          <span>2015–2021</span>
-          <p>Chef de cuisine à Genève — Le Scandale, La Citadella, Giovanni Pasta. Formation pratique à la gestion d'équipes, de flux et de production sous pression quotidienne.</p>
-        </article>
-        <article class="card">
-          <span>2021–2025</span>
-          <p>Chef de cuisine avec coordination opérationnelle d'équipes et de flux de production jusqu'à 250 repas par service. 11 ans d'environnements exigeants à Genève.</p>
-        </article>
-        <article class="card">
-          <span>Depuis 2023</span>
-          <p>Construction de systèmes digitaux opérationnels: dashboards, CRM, bots IA, automatisations. Des outils livrés, documentés, utilisés par de vraies équipes.</p>
-        </article>
-        <article class="card">
-          <span>Aujourd'hui</span>
-          <p>SERAFINO RÉSOUT — la synthèse du terrain et du code. Une méthode de consultant, une capacité de réalisation, une livraison sans dépendance.</p>
-        </article>
+        <div class="tl-cell">
+          <span class="tl-year">2015–2021</span>
+          <span class="tl-desc">Chef de cuisine — Le Scandale, La Citadella, Giovanni Pasta. Gestion d'équipes, flux, production sous pression.</span>
+        </div>
+        <div class="tl-cell">
+          <span class="tl-year">2021–2025</span>
+          <span class="tl-desc">Coordination opérationnelle jusqu'à 250 repas/service. 11 ans d'environnements exigeants à Genève.</span>
+        </div>
+        <div class="tl-cell">
+          <span class="tl-year">Depuis 2023</span>
+          <span class="tl-desc">Systèmes digitaux: dashboards, CRM, bots IA, automatisations. Livrés, documentés, utilisés.</span>
+        </div>
+        <div class="tl-cell">
+          <span class="tl-year">Aujourd'hui</span>
+          <span class="tl-desc">SERAFINO RÉSOUT — terrain + code. Méthode de consultant, capacité de réalisation, livraison sans dépendance.</span>
+        </div>
       </div>
     </section>
 
