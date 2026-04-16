@@ -710,15 +710,29 @@
       font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 4px;
     }
-    .timeline-note {
-      display: flex; gap: 16px; padding: 16px 0; margin: 16px 0;
-      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    .ba-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      border-radius: 4px; margin: 20px 0;
     }
-    .timeline-note span {
-      font-family: var(--font-d); font-size: 1rem; font-weight: 600;
-      color: var(--accent); flex-shrink: 0;
+    .ba-col { padding: 20px 24px; }
+    .ba-col.avant { background: var(--surface2); }
+    .ba-col.apres { background: var(--surface); }
+    .ba-label {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 12px; display: flex;
+      align-items: center; gap: 8px; color: var(--muted);
     }
-    .timeline-note p { font-size: 0.88rem; }
+    .ba-label.apres { color: var(--accent); }
+    .ba-year { font-family: var(--font-d); font-size: 0.9rem; font-weight: 600; margin-left: auto; }
+    .ba-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .ba-col ul li {
+      font-size: 0.82rem; color: rgba(240,236,228,0.72);
+      padding-left: 16px; position: relative; line-height: 1.45;
+    }
+    .ba-col.avant ul li::before { content: '×'; position: absolute; left: 0; color: var(--muted); font-size: 0.78rem; }
+    .ba-col.apres ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.78rem; }
+    @media(max-width:600px){ .ba-block { grid-template-columns: 1fr; } }
 
     .kitchen-copy p { font-size: 0.95rem; margin-bottom: 14px; }
     .adapt-callout {
@@ -1367,9 +1381,23 @@
         <div class="kitchen-copy">
           <p class="case-label">Cas 01 — HORECA</p>
           <h3 style="margin:10px 0 18px">Système de gestion cuisine</h3>
-          <div class="timeline-note">
-            <span>2021</span>
-            <p>Constat: informations dispersées, prix reçus par email sous forme Excel, décisions d'achat chronophages.</p>
+          <div class="ba-block">
+            <div class="ba-col avant">
+              <span class="ba-label">Avant <span class="ba-year">2021</span></span>
+              <ul>
+                <li>Prix fournisseurs reçus par email, formats Excel non structurés</li>
+                <li>Informations dispersées dans plusieurs documents et fichiers</li>
+                <li>Chaque décision d'achat reconstruite depuis zéro</li>
+              </ul>
+            </div>
+            <div class="ba-col apres">
+              <span class="ba-label apres">Après</span>
+              <ul>
+                <li>Base centralisée consultable par produit, fournisseur ou saison</li>
+                <li>Décisions fondées sur des données réelles et à jour</li>
+                <li>Information utile à portée de main, pas archivée</li>
+              </ul>
+            </div>
           </div>
           <p>Dans une cuisine, les informations utiles sont souvent éparpillées: recettes, inventaires, fournisseurs, prix, saisonnalité, besoins événementiels. Retrouver la bonne information prenait trop de temps et ralentissait les décisions quotidiennes.</p>
           <p>Le travail a consisté à transformer ces données dispersées en un système consultable, directement relié aux besoins réels de la cuisine — sans complexité inutile.</p>
@@ -1411,9 +1439,23 @@
           <p class="case-label">Cas 02 — Acquisition B2B</p>
           <h3 style="margin:10px 0 18px">Planeto: du processus manuel à l'infrastructure autonome</h3>
           <a href="./cas-planeto.html" style="display:inline-block;margin-bottom:16px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">Lire le cas complet →</a>
-          <div class="timeline-note">
-            <span>Mars – Avril 2026</span>
-            <p>Point de départ: collecte manuelle, dispersée, chronophage. Risque élevé de doublons et de données perdues.</p>
+          <div class="ba-block">
+            <div class="ba-col avant">
+              <span class="ba-label">Avant <span class="ba-year">Mars 2026</span></span>
+              <ul>
+                <li>Collecte de leads manuelle, dispersée, chronophage</li>
+                <li>Doublons fréquents, données incomplètes ou perdues</li>
+                <li>Équipe commerciale absorbée par la recherche, pas la vente</li>
+              </ul>
+            </div>
+            <div class="ba-col apres">
+              <span class="ba-label apres">Après</span>
+              <ul>
+                <li>Moteur d'acquisition autonome, opérationnel en 5 semaines</li>
+                <li>Données enrichies et centralisées, propriété exclusive du client</li>
+                <li>Équipe libérée pour les conversations commerciales</li>
+              </ul>
+            </div>
           </div>
           <p>L'objectif était de libérer l'équipe commerciale pour qu'elle se concentre sur l'humain — pas sur la recherche de données. En un mois, le périmètre est passé d'une liste à vérifier à un moteur d'acquisition complet, autonome et opérationnel.</p>
           <p>L'enjeu n'était pas de produire un prototype, mais un système exploitable par l'équipe dès le lendemain — sans aucune compétence en code requise.</p>
@@ -1452,9 +1494,23 @@
         <div class="kitchen-copy">
           <p class="case-label">Cas 03 — Restauration institutionnelle</p>
           <h3 style="margin:10px 0 18px">Palais des Nations, Genève: quand le système apprend à travailler comme toi</h3>
-          <div class="timeline-note">
-            <span>2021–2023</span>
-            <p>Constat: inventaire manuel 8h/mois, analyse fournisseurs 2–3h/semaine, planification menus plusieurs heures — tout ça en dehors du temps de cuisine.</p>
+          <div class="ba-block">
+            <div class="ba-col avant">
+              <span class="ba-label">Avant <span class="ba-year">2021</span></span>
+              <ul>
+                <li>Inventaire produit par produit dans un carnet physique</li>
+                <li>Offres fournisseurs comparées manuellement, semaine après semaine</li>
+                <li>Menus construits de zéro, sans appui sur le stock réel</li>
+              </ul>
+            </div>
+            <div class="ba-col apres">
+              <span class="ba-label apres">Après</span>
+              <ul>
+                <li>Inventaire par dictée vocale, mis à jour en temps réel</li>
+                <li>Analyse fournisseurs automatisée selon saison et prix</li>
+                <li>Menus proposés sur stock réel, dans le format d'envoi habituel</li>
+              </ul>
+            </div>
           </div>
           <p>En tant que chef au Palais des Nations, une grande partie de mon temps n'était pas dans la cuisine. Elle était bloquée dans des tâches répétitives: produit par produit dans un carnet, offres fournisseurs à comparer manuellement, menus à construire en tâtonnant.</p>
           <p>Ne trouvant pas d'outil adapté à la réalité d'une cuisine professionnelle, j'ai construit le mien — sur mon vocabulaire, mon rythme, ma façon de travailler. Pas l'inverse.</p>
