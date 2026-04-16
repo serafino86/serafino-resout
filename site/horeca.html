@@ -48,6 +48,12 @@
     .site-logo span{color:var(--accent)}
     .nav-back{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
     .nav-back:hover{color:var(--accent)}
+    .site-nav-sub{display:flex;gap:0}
+    .site-nav-sub a{font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(240,236,228,0.5);transition:color 0.2s;padding:6px 12px}
+    .site-nav-sub a:hover{color:var(--text)}
+    .site-nav-sub .nav-cta-sub{color:var(--accent)!important;border:1px solid rgba(201,168,76,0.35);border-radius:2px;padding:6px 14px}
+    .site-nav-sub .nav-cta-sub:hover{background:var(--accent);color:#0f0e0d!important}
+    @media(max-width:768px){.site-nav-sub{display:none}}
     .page-hero{padding:96px 48px 80px;max-width:960px;margin:0 auto;border-bottom:1px solid var(--line)}
     .eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:block}
     .page-hero h1{font-family:var(--font-d);font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:28px}
@@ -120,7 +126,13 @@
 <body>
   <header class="site-header">
     <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
-    <a class="nav-back" href="./index.html">← Accueil</a>
+    <nav class="site-nav-sub">
+      <a href="./index.html#offre">Services</a>
+      <a href="./index.html#secteurs">Secteurs</a>
+      <a href="./index.html#cas">Cas réels</a>
+      <a href="./index.html#faq">FAQ</a>
+      <a href="./index.html#contact" class="nav-cta-sub">Diagnostic gratuit →</a>
+    </nav>
   </header>
 
   <section class="page-hero">
