@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Bot IA personnalisé pour PME à Genève | SERAFINO RÉSOUT</title>
+  <meta name="description" content="Un assistant IA construit sur la connaissance de votre activité — vos produits, vos processus, votre vocabulaire. Disponible 24h/24, multilingue, sans abonnement mensuel." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/bot-personalise.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/bot-personalise.html" />
+  <meta property="og:title" content="Bot IA personnalisé | SERAFINO RÉSOUT" />
+  <meta property="og:description" content="Un assistant qui connaît votre activité, répond à vos clients, qualifie vos leads et rédige vos documents — sans intervention humaine." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <meta property="og:site_name" content="SERAFINO RÉSOUT" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Bot IA personnalisé",
+    "description": "Conception et déploiement d'assistants IA sur mesure pour PME, restaurants et artisans à Genève. Construits sur votre base de connaissance métier, multilingues, sans abonnement.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "SERAFINO RÉSOUT",
+      "url": "https://www.serafino-resout.ch",
+      "telephone": "+41786583760",
+      "email": "contact@serafino-resout.ch"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Genève" },
+      { "@type": "AdministrativeArea", "name": "Suisse romande" }
+    ],
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.serafino-resout.ch/" },
+        { "@type": "ListItem", "position": 2, "name": "Bot IA personnalisé", "item": "https://www.serafino-resout.ch/bot-personalise.html" }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #0f0e0d;
+      --bg2:         #141310;
+      --surface:     #1a1917;
+      --surface2:    #222019;
+      --text:        #f0ece4;
+      --muted:       #7a7468;
+      --subtle:      #38362f;
+      --accent:      #c9a84c;
+      --accent-dim:  rgba(201,168,76,0.08);
+      --line:        rgba(240,236,228,0.07);
+      --line-strong: rgba(240,236,228,0.14);
+      --ease:        cubic-bezier(0.25,0,0,1);
+      --font-d:      'Cormorant Garamond', Georgia, serif;
+      --font-b:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    p { color: rgba(240,236,228,0.82); }
+    a { color: inherit; }
+    strong { color: var(--text); }
+
+    /* ── HEADER ── */
+    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(15,14,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .site-logo { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; color: var(--text); }
+    .site-logo span { color: var(--accent); }
+    .site-nav-sub { display: flex; gap: 0; }
+    .site-nav-sub a { font-size: 12px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: rgba(240,236,228,0.5); transition: color 0.2s; padding: 6px 12px; }
+    .site-nav-sub a:hover { color: var(--text); }
+    .site-nav-sub .nav-cta-sub { color: var(--accent) !important; border: 1px solid rgba(201,168,76,0.35); border-radius: 2px; padding: 6px 14px; }
+    .site-nav-sub .nav-cta-sub:hover { background: var(--accent); color: #0f0e0d !important; }
+    @media(max-width:768px) { .site-nav-sub { display: none; } }
+
+    /* ── HERO ── */
+    .page-hero { padding: 96px 48px 80px; max-width: 960px; margin: 0 auto; border-bottom: 1px solid var(--line); }
+    .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
+    .page-hero h1 { font-family: var(--font-d); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; line-height: 1.15; color: var(--text); margin-bottom: 28px; }
+    .page-hero .lead { font-size: 1.15rem; line-height: 1.7; color: rgba(240,236,228,0.75); max-width: 680px; margin-bottom: 40px; }
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-p { display: inline-block; background: var(--accent); color: #0f0e0d; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; border-radius: 2px; transition: opacity 0.2s; border: none; cursor: pointer; }
+    .btn-p:hover { opacity: 0.88; }
+    .btn-s { display: inline-block; border: 1px solid var(--line-strong); color: var(--muted); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 13px 24px; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-s:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    .section { max-width: 960px; margin: 0 auto; padding: 80px 48px; border-bottom: 1px solid var(--line); }
+    .section-head { margin-bottom: 48px; }
+    .section-head h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 600; line-height: 1.25; color: var(--text); margin-top: 12px; }
+    .section-head .lead-sm { font-size: 1rem; color: rgba(240,236,228,0.68); max-width: 600px; margin-top: 14px; line-height: 1.65; }
+
+    /* ── DEMO BLOCK ── */
+    .demo-block {
+      background: var(--surface2); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px; padding: 48px 40px; text-align: center;
+    }
+    .demo-block .db-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: block; margin-bottom: 16px; }
+    .demo-block h2 { font-family: var(--font-d); font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.3; }
+    .demo-block p { max-width: 520px; margin: 0 auto 28px; font-size: 0.95rem; }
+    .demo-block .db-sub { display: block; margin-top: 14px; font-size: 0.78rem; color: var(--muted); }
+
+    /* ── WHAT GRID ── */
+    .what-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .what-card { background: var(--surface); padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; }
+    .what-card .wc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .what-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .what-card p { font-size: 0.85rem; line-height: 1.6; }
+    .what-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+    .what-card ul li { font-size: 0.82rem; color: rgba(240,236,228,0.65); padding-left: 14px; position: relative; line-height: 1.4; }
+    .what-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
+
+    /* ── HOW ── */
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .how-step { background: var(--surface); padding: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .how-step .num { font-family: var(--font-d); font-size: 2.8rem; font-weight: 700; color: var(--subtle); line-height: 1; }
+    .how-step h3 { font-size: 0.95rem; font-weight: 500; color: var(--text); }
+    .how-step p { font-size: 0.83rem; }
+
+    /* ── CASE ── */
+    .case-block { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .case-col { background: var(--surface); padding: 36px 32px; }
+    .case-col .cc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: block; margin-bottom: 14px; }
+    .case-col h3 { font-family: var(--font-d); font-size: 1.3rem; font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.3; }
+    .case-col p { font-size: 0.88rem; line-height: 1.65; margin-bottom: 12px; }
+    .case-col .stat-row { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-item .sv { font-family: var(--font-d); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-item .sl { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .case-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .case-col ul li { font-size: 0.85rem; color: rgba(240,236,228,0.72); padding-left: 16px; position: relative; line-height: 1.45; }
+    .case-col ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+    .testimonial { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.88rem; font-style: italic; color: rgba(240,236,228,0.65); line-height: 1.65; }
+    .testimonial footer { font-style: normal; font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+
+    /* ── DIFFER ── */
+    .differ-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .differ-card { background: var(--surface); padding: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .differ-card .dc-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .differ-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .differ-card p { font-size: 0.88rem; line-height: 1.6; }
+    .differ-card .vs { margin-top: 8px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .price-block { background: var(--surface2); border: 1px solid var(--line); border-radius: 4px; padding: 40px; }
+    .price-block .pb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .price-col { display: flex; flex-direction: column; gap: 10px; }
+    .price-col .price-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .price-col .price-val { font-family: var(--font-d); font-size: 2.4rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .price-col .price-desc { font-size: 0.88rem; color: rgba(240,236,228,0.72); line-height: 1.6; }
+    .price-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 8px; }
+    .price-col ul li { font-size: 0.83rem; color: rgba(240,236,228,0.7); padding-left: 16px; position: relative; line-height: 1.4; }
+    .price-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.72rem; }
+    .guarantee { background: var(--accent-dim); border: 1px solid rgba(201,168,76,0.2); border-radius: 4px; padding: 24px 32px; margin-top: 24px; font-size: 0.88rem; line-height: 1.65; }
+    .guarantee strong { color: var(--accent); }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .faq-item { background: var(--surface); }
+    .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 22px 28px; cursor: pointer; color: var(--text); font-family: var(--font-b); font-size: 0.95rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; line-height: 1.4; transition: color 0.2s; }
+    .faq-question:hover { color: var(--accent); }
+    .fq-icon { flex-shrink: 0; width: 20px; height: 20px; border: 1px solid var(--line-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--muted); transition: transform 0.25s, border-color 0.2s; }
+    .faq-item.open .fq-icon { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s var(--ease); padding: 0 28px; }
+    .faq-answer-inner { padding-bottom: 22px; font-size: 0.88rem; color: rgba(240,236,228,0.72); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 260px; }
+
+    /* ── CTA ── */
+    .cta-section { max-width: 960px; margin: 0 auto; padding: 96px 48px; text-align: center; }
+    .cta-section h2 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.2; color: var(--text); margin-bottom: 20px; }
+    .cta-section > p { max-width: 560px; margin: 0 auto 36px; }
+    .cta-meta { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    .site-footer { border-top: 1px solid var(--line); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .site-footer p { font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ── FADE ── */
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── BOT WIDGET ── */
+    @keyframes botPulse { 0%{box-shadow:0 0 0 0 rgba(201,168,76,0.35)}70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)} }
+    .bot-hint { position: fixed; bottom: 90px; right: 24px; z-index: 999; background: #222019; border: 1px solid rgba(201,168,76,0.25); color: #f0ece4; font-size: 0.8rem; padding: 10px 14px; border-radius: 8px; max-width: 220px; line-height: 1.4; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s; }
+    .bot-hint.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-hint::after { content: ''; position: absolute; bottom: -7px; right: 18px; width: 12px; height: 7px; background: #222019; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+    .bot-fab { position: fixed; bottom: 24px; right: 24px; z-index: 1000; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 16px rgba(0,0,0,0.4); transition: transform 0.2s; }
+    .bot-fab:hover { transform: scale(1.08); }
+    .bot-fab.hint-active { animation: botPulse 1.8s ease-out 2; }
+    .bot-popup { position: fixed; bottom: 88px; right: 24px; z-index: 1001; width: 360px; height: 520px; background: #1a1917; border: 1px solid rgba(201,168,76,0.2); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 64px rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transform: translateY(12px) scale(0.97); transition: opacity 0.25s, transform 0.25s; }
+    .bot-popup.is-open { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-popup-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: #141310; border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .bot-header-avatar { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .bot-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .bot-header-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .bot-header-name { font-size: 0.78rem; font-weight: 600; color: #f0ece4; }
+    .bot-header-status { display: flex; align-items: center; gap: 5px; }
+    .bot-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+    .bot-status-label { font-size: 0.68rem; color: rgba(240,236,228,0.5); }
+    .bot-close { background: none; border: none; color: rgba(240,236,228,0.4); font-size: 0.72rem; cursor: pointer; letter-spacing: 0.04em; transition: color 0.2s; }
+    .bot-close:hover { color: var(--accent); }
+    .bot-popup iframe { flex: 1; border: none; width: 100%; }
+    .bot-scrim { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(0,0,0,0.4); }
+    .bot-scrim.is-open { display: block; }
+    @media(max-width:480px) { .bot-popup { width: calc(100vw - 16px); right: 8px; bottom: 80px; height: 70vh; } }
+
+    /* ── MOBILE ── */
+    @media(max-width:768px) {
+      .site-header { padding: 0 20px; }
+      .page-hero { padding: 64px 20px 56px; }
+      .section { padding: 56px 20px; }
+      .what-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .case-block { grid-template-columns: 1fr; }
+      .differ-grid { grid-template-columns: 1fr; }
+      .price-block .pb-row { grid-template-columns: 1fr; }
+      .cta-section { padding: 72px 20px; }
+      .site-footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media(max-width:480px) { .how-steps { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
+    <nav class="site-nav-sub">
+      <a href="./index.html#offre">Services</a>
+      <a href="./index.html#secteurs">Secteurs</a>
+      <a href="./index.html#cas">Cas réels</a>
+      <a href="./index.html#faq">FAQ</a>
+      <a href="./index.html#contact" class="nav-cta-sub">Diagnostic gratuit →</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <span class="eyebrow">Bot IA personnalisé — Genève &amp; Suisse romande</span>
+    <h1>Un assistant qui connaît votre activité — pas ChatGPT, votre activité.</h1>
+    <p class="lead">Construit sur votre base de connaissance métier : vos produits, vos processus, votre vocabulaire. Disponible 24h/24, multilingue, sans intervention humaine — et vous le possédez entièrement.</p>
+    <div class="cta-row">
+      <button class="btn-p" id="heroTryBtn">Voir un exemple en direct →</button>
+      <a class="btn-s" href="mailto:contact@serafino-resout.ch?subject=Bot%20IA%20personnalisé%20—%20Premier%20échange">Discuter de mon projet</a>
+    </div>
+  </section>
+
+  <!-- ── DEMO ── -->
+  <div class="section fade-up" style="border-bottom:none;padding-bottom:0">
+    <div class="demo-block">
+      <span class="db-tag">Démo live</span>
+      <h2>Ce bot est un exemple réel.</h2>
+      <p>L'assistant ci-dessous a été construit sur la connaissance de Serafino Résout — offre, méthode, cas réels, objections. Ce que vous pouvez essayer ici, vous pouvez le commander pour votre activité.</p>
+      <button class="btn-p" id="demoTryBtn">Essayer le bot maintenant →</button>
+      <span class="db-sub">Gratuit · Aucune inscription · Répond en français, anglais, italien, allemand</span>
+    </div>
+  </div>
+
+  <!-- ── CE QUE LE BOT PEUT FAIRE ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Cas d'usage</p>
+      <h2>Un bot différent pour chaque activité.</h2>
+      <p class="lead-sm">Ce n'est pas un template. C'est un assistant construit à partir de ce que vous savez déjà — vos données, vos mots, vos façons de travailler.</p>
+    </div>
+    <div class="what-grid">
+      <div class="what-card">
+        <span class="wc-tag">Commerce &amp; HORECA</span>
+        <h3>Support client &amp; produit</h3>
+        <p>Répond aux questions sur vos produits, vos horaires, vos tarifs, vos offres — 24h/24, dans la langue du client.</p>
+        <ul>
+          <li>Questions sur le menu ou les disponibilités</li>
+          <li>Informations sur les allergènes ou les options</li>
+          <li>Réservations et confirmations automatiques</li>
+          <li>Aiguillage vers un humain si besoin</li>
+        </ul>
+      </div>
+      <div class="what-card">
+        <span class="wc-tag">PME &amp; B2B</span>
+        <h3>Qualification de leads</h3>
+        <p>Engage les visiteurs de votre site, pose les bonnes questions et identifie les prospects sérieux — avant qu'un humain intervienne.</p>
+        <ul>
+          <li>Qualification selon critères métier définis</li>
+          <li>Collecte d'informations et prise de contexte</li>
+          <li>Résumé structuré transmis à l'équipe commerciale</li>
+          <li>Gestion des objections courantes</li>
+        </ul>
+      </div>
+      <div class="what-card">
+        <span class="wc-tag">Tous secteurs</span>
+        <h3>Connaissance interne</h3>
+        <p>Un assistant qui connaît vos processus, vos documents, votre vocabulaire — pour votre équipe ou vos clients.</p>
+        <ul>
+          <li>Réponses sur les procédures internes</li>
+          <li>Accès rapide à l'information métier</li>
+          <li>Rédaction de documents répétitifs</li>
+          <li>Formation et onboarding accéléré</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAS PLANETO ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Cas réel</p>
+      <h2>Planeto : un bot multilingue sur la connaissance commerciale de l'équipe.</h2>
+    </div>
+    <div class="case-block">
+      <div class="case-col">
+        <span class="cc-tag">Le contexte</span>
+        <h3>Une équipe commerciale qui avait besoin d'un support disponible en permanence.</h3>
+        <p>Planeto opère sur plusieurs marchés (UK, Suisse, Europe). L'équipe commerciale ne pouvait pas répondre à toutes les questions entrantes — et certains marchés demandaient des réponses dans une langue que personne ne maîtrisait parfaitement.</p>
+        <p>Le bot a été construit sur toute la connaissance commerciale de Planeto : offres, prix, argumentaires, objections, processus. Multilingue dès le départ.</p>
+        <div class="stat-row">
+          <div class="stat-item"><span class="sv">4</span><span class="sl">Langues (FR/EN/DE/IT)</span></div>
+          <div class="stat-item"><span class="sv">0</span><span class="sl">Intervention humaine requise</span></div>
+          <div class="stat-item"><span class="sv">24h</span><span class="sl">Disponibilité</span></div>
+        </div>
+        <blockquote class="testimonial">
+          "Il m'a donné des idées nouvelles que je n'avais pas évaluées — et le bot qu'il a créé avec notre connaissance métier sera bientôt sur notre site officiel. Vraiment impressionnant."
+          <footer>— Stefano Cozza, CEO de Planeto</footer>
+        </blockquote>
+      </div>
+      <div class="case-col">
+        <span class="cc-tag">Ce qui a été livré</span>
+        <h3>Un assistant commercial qui connaît Planeto mieux qu'un nouvel employé.</h3>
+        <ul>
+          <li>Base de connaissance structurée sur l'offre Planeto complète</li>
+          <li>Gestion des objections commerciales courantes</li>
+          <li>Réponses en français, anglais, allemand, italien</li>
+          <li>Intégration sur site web — sans plugin, sans abonnement tiers</li>
+          <li>Propriété totale : le client possède le bot et la base de connaissance</li>
+          <li>Documentation complète pour évolution autonome</li>
+        </ul>
+        <div style="margin-top:28px">
+          <a href="./cas-planeto.html" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);">Lire le cas complet Planeto →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMMENT ÇA MARCHE ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Comment ça se passe</p>
+      <h2>De votre connaissance métier à un assistant opérationnel.</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="num">01</span>
+        <h3>Audit de connaissance</h3>
+        <p>On identifie ce que le bot doit savoir : produits, processus, objections, vocabulaire, cas limites. Vous avez déjà tout — on le structure.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">02</span>
+        <h3>Construction de la base</h3>
+        <p>La base de connaissance est rédigée, organisée et testée. C'est ce qui rend le bot utile — pas le modèle d'IA, mais la qualité de ce qu'il contient.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">03</span>
+        <h3>Configuration &amp; ton</h3>
+        <p>Le bot apprend à parler comme vous — votre registre, vos formulations, vos limites. Pas un chatbot générique. Votre façon de travailler.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">04</span>
+        <h3>Livraison &amp; autonomie</h3>
+        <p>Le bot est déployé sur votre site ou intégré où vous en avez besoin. Documentation complète — vous pouvez le faire évoluer sans moi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DIFFÉRENCIATEURS ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Pourquoi pas ChatGPT ou un chatbot générique</p>
+      <h2>La différence entre un bot qui répond et un bot qui connaît votre activité.</h2>
+    </div>
+    <div class="differ-grid">
+      <div class="differ-card">
+        <span class="dc-tag">Votre connaissance, pas l'internet</span>
+        <h3>Il sait ce que vous lui avez appris — rien de plus, rien de moins.</h3>
+        <p>Un bot générique hallucine, invente, répond à côté. Un bot construit sur votre base de connaissance répond uniquement sur ce que vous avez validé — avec votre vocabulaire, vos prix, vos processus réels.</p>
+        <p class="vs">ChatGPT ne connaît pas votre menu, vos tarifs ou vos contraintes. Ce bot, si.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">Vous possédez tout</span>
+        <h3>Aucun abonnement. Aucune dépendance. Vous gardez tout.</h3>
+        <p>La base de connaissance vous appartient. Le code vous appartient. Si vous décidez de l'héberger ailleurs ou de le faire évoluer seul — vous pouvez. Aucune clé API enfermée chez un prestataire.</p>
+        <p class="vs">La plupart des solutions chatbot vous facturent chaque mois pour accéder à vos propres données.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">Multilingue par conception</span>
+        <h3>Il répond dans la langue du visiteur — sans configuration supplémentaire.</h3>
+        <p>Français, anglais, italien, allemand suisse — détection automatique et réponse dans la même langue. Conçu pour le marché romand et les activités à clientèle internationale.</p>
+        <p class="vs">La plupart des chatbots nécessitent une version distincte par langue.</p>
+      </div>
+      <div class="differ-card">
+        <span class="dc-tag">Construit en terrain réel</span>
+        <h3>Pas un prototype. Un outil qui tourne déjà chez des clients réels.</h3>
+        <p>Le bot que vous pouvez essayer sur ce site fonctionne en production. Planeto utilise le même système sur son pipeline commercial. Ce n'est pas une démo — c'est la réalité du produit.</p>
+        <p class="vs">Beaucoup de prestataires montrent des démos. Ce que vous voyez ici est déployé et utilisé.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Tarif</p>
+      <h2>Un prix fixe, une livraison complète.</h2>
+    </div>
+    <div class="price-block">
+      <div class="pb-row">
+        <div class="price-col">
+          <span class="price-tag">Bot personnalisé — clé en main</span>
+          <span class="price-val">Dès 800 CHF</span>
+          <p class="price-desc">Payé une seule fois. Pas d'abonnement mensuel, pas de licence tierce. Le prix final dépend du volume de connaissance à structurer et de la complexité d'intégration.</p>
+          <ul>
+            <li>Audit et structuration de la base de connaissance</li>
+            <li>Configuration du ton et du comportement</li>
+            <li>Tests et validation sur cas réels</li>
+            <li>Intégration sur votre site ou canal</li>
+            <li>Documentation pour évolution autonome</li>
+          </ul>
+        </div>
+        <div class="price-col">
+          <span class="price-tag">Entrée sans engagement</span>
+          <span class="price-val">Gratuit</span>
+          <p class="price-desc">30 minutes pour voir si un bot a du sens dans votre contexte. On regarde ce que vous avez, ce qui manque, et si la valeur attendue justifie l'investissement.</p>
+          <ul>
+            <li>Analyse de votre cas d'usage réel</li>
+            <li>Identification de ce que le bot peut couvrir</li>
+            <li>Estimation honnête du ROI attendu</li>
+            <li>Zéro engagement à l'issue de l'échange</li>
+          </ul>
+        </div>
+      </div>
+      <div class="guarantee">
+        <strong>Garantie de résultat.</strong> Si dans les 3 mois suivant la livraison, en utilisant le bot comme convenu, aucun résultat mesurable n'est observé — remboursement intégral. C'est écrit dans le contrat.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce que les clients demandent avant de commander un bot.</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">En quoi c'est différent de ChatGPT ou d'un plugin chatbot ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">ChatGPT répond sur tout — souvent à côté de votre réalité. Un plugin chatbot générique suit des arbres de décision rigides. Ce bot est construit sur ce que <em>vous</em> savez : vos produits, vos prix, vos processus, vos objections habituelles. Il ne peut pas inventer ce que vous n'avez pas validé.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Que se passe-t-il si mes informations changent ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">La base de connaissance est un ensemble de fichiers texte simples que vous pouvez modifier vous-même. Je vous forme à le faire — aucune compétence technique requise. Si vous préférez que je m'en charge, c'est possible aussi, sur demande.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Peut-il répondre dans plusieurs langues ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Oui — français, anglais, italien, allemand suisse, par défaut. Il détecte la langue du visiteur et répond dans la même. Si votre marché demande d'autres langues, c'est configurable.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Où est-ce qu'il peut être intégré ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sur votre site web en priorité — widget flottant ou page dédiée. Sur demande : intégration WhatsApp Business, Telegram, ou application interne. Chaque contexte a ses contraintes, on en discute au moment du diagnostic.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Le bot peut-il prendre des rendez-vous ou traiter des commandes ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Pour l'instant, il répond, qualifie et oriente — il ne traite pas de transactions directement. Il peut préparer un email récapitulatif à envoyer, déclencher une notification ou transmettre les informations collectées à votre système. Les intégrations actives (agenda, CRM) sont possibles selon le périmètre du projet.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Que se passe-t-il si le bot ne sait pas répondre ?<span class="fq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Il l'indique clairement et oriente vers un humain ou une action de contact. On configure ce comportement ensemble — il vaut mieux un bot honnête qu'un bot qui invente.</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="cta-section fade-up">
+    <p class="eyebrow">Premier échange gratuit</p>
+    <h2>30 minutes pour voir si un bot fait sens pour votre activité.</h2>
+    <p>On regarde ensemble ce que vous avez, ce que le bot pourrait couvrir, et si l'investissement se justifie. Gratuit, sans engagement.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn-p" href="mailto:contact@serafino-resout.ch?subject=Bot%20IA%20personnalisé%20—%20Premier%20échange">Réserver 30 min — gratuit</a>
+      <a class="btn-s" href="./index.html#cas">Voir les autres cas réels</a>
+    </div>
+    <p class="cta-meta">contact@serafino-resout.ch &nbsp;·&nbsp; +41 78 658 37 60 &nbsp;·&nbsp; Genève</p>
+  </div>
+
+  <footer class="site-footer">
+    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./automatisation.html">Automatisation</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p><a href="./index.html">serafino-resout.ch</a></p>
+  </footer>
+
+  <!-- ── BOT WIDGET ── -->
+  <div class="bot-hint" id="botHint">Vous voulez voir un exemple concret ? Le bot est là.</div>
+  <button class="bot-fab" id="botFab" aria-label="Essayer le bot">💬</button>
+  <div class="bot-scrim" id="botScrim"></div>
+  <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino">
+    <div class="bot-popup-header">
+      <div class="bot-header-avatar"><img src="./assets/photos/avatar.png" alt="Serafino" /></div>
+      <div class="bot-header-info">
+        <span class="bot-header-name">Assistant Serafino</span>
+        <div class="bot-header-status"><span class="bot-status-dot"></span><span class="bot-status-label">En ligne</span></div>
+      </div>
+      <button class="bot-close" id="botClose">Fermer ✕</button>
+    </div>
+    <iframe src="https://serafino-bot.vercel.app" title="Assistant Serafino" loading="lazy"></iframe>
+  </div>
+
+  <script defer>
+    // Fade
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // FAQ
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Bot
+    (function() {
+      const fab = document.getElementById('botFab');
+      const popup = document.getElementById('botPopup');
+      const close = document.getElementById('botClose');
+      const scrim = document.getElementById('botScrim');
+      const hint = document.getElementById('botHint');
+      let open = false;
+
+      function openBot() { open = true; popup.classList.add('is-open'); scrim.classList.add('is-open'); hint.classList.remove('is-visible'); fab.classList.remove('hint-active'); }
+      function closeBot() { open = false; popup.classList.remove('is-open'); scrim.classList.remove('is-open'); }
+
+      fab.addEventListener('click', () => open ? closeBot() : openBot());
+      close.addEventListener('click', closeBot);
+      scrim.addEventListener('click', closeBot);
+
+      document.getElementById('heroTryBtn').addEventListener('click', openBot);
+      document.getElementById('demoTryBtn').addEventListener('click', openBot);
+
+      function showHint() {
+        if (open) return;
+        hint.classList.add('is-visible'); fab.classList.add('hint-active');
+        setTimeout(() => { hint.classList.remove('is-visible'); fab.classList.remove('hint-active'); }, 4000);
+      }
+      setTimeout(showHint, 3000);
+      setInterval(() => { if (!open) showHint(); }, 45000);
+      document.addEventListener('mouseleave', e => { if (e.clientY <= 0 && !open) showHint(); });
+    })();
+  </script>
+</body>
+</html>
