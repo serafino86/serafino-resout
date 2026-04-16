@@ -172,6 +172,10 @@
       font-weight: 600; line-height: 1.25; color: var(--text);
       margin-top: 12px;
     }
+    .section-head p.lead-sm {
+      font-size: 1rem; color: rgba(240,236,228,0.68);
+      max-width: 600px; margin-top: 14px; line-height: 1.65;
+    }
 
     /* ── COST STRIP ── */
     .cost-strip {
@@ -189,6 +193,32 @@
       color: var(--accent); line-height: 1;
     }
     .cost-item p { font-size: 0.88rem; }
+
+    /* ── POURQUOI ── */
+    .pourquoi-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .pourquoi-card {
+      background: var(--surface); padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pourquoi-card .pq-label {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500;
+    }
+    .pourquoi-card h3 {
+      font-family: var(--font-d); font-size: 1.15rem; font-weight: 600;
+      color: var(--text); line-height: 1.3;
+    }
+    .pourquoi-card p { font-size: 0.88rem; line-height: 1.6; }
+    .pourquoi-card .vs {
+      margin-top: 6px; font-size: 0.8rem;
+      color: var(--muted); border-top: 1px solid var(--line);
+      padding-top: 10px; line-height: 1.5;
+    }
+    .pourquoi-card .vs em { color: rgba(240,236,228,0.55); font-style: normal; }
 
     /* ── PROBLEM LIST ── */
     .problem-grid {
@@ -230,6 +260,29 @@
       display: flex; flex-direction: column; gap: 6px;
     }
     .solution-card li { font-size: 0.85rem; color: rgba(240,236,228,0.7); }
+
+    /* ── SECTOR EXAMPLES ── */
+    .sector-examples {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--line);
+      border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    }
+    .sector-ex { background: var(--surface); padding: 28px 32px; }
+    .sector-ex-tag {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 12px; display: block;
+    }
+    .sector-ex h3 {
+      font-family: var(--font-d); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin-bottom: 14px;
+    }
+    .sector-ex ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .sector-ex ul li {
+      font-size: 0.83rem; color: rgba(240,236,228,0.7);
+      padding-left: 16px; position: relative; line-height: 1.45;
+    }
+    .sector-ex ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+    @media(max-width:640px){ .sector-examples { grid-template-columns: 1fr; } }
 
     /* ── RESULTS ── */
     .result-strip {
@@ -273,6 +326,63 @@
     }
     .guarantee strong { color: var(--accent); }
 
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .faq-item { background: var(--surface); }
+    .faq-question {
+      width: 100%; text-align: left; background: none; border: none;
+      padding: 24px 28px; cursor: pointer; color: var(--text);
+      font-family: var(--font-b); font-size: 0.97rem; font-weight: 500;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; line-height: 1.4; transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-question .fq-icon {
+      flex-shrink: 0; width: 20px; height: 20px;
+      border: 1px solid var(--line-strong); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: var(--muted); transition: transform 0.25s, border-color 0.2s;
+    }
+    .faq-item.open .fq-icon { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s var(--ease), padding 0.3s;
+      padding: 0 28px;
+    }
+    .faq-answer-inner { padding-bottom: 24px; font-size: 0.9rem; color: rgba(240,236,228,0.72); line-height: 1.7; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ── BOT CTA ── */
+    .bot-invite {
+      background: var(--surface2);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px; padding: 48px 40px;
+      text-align: center;
+      max-width: 960px; margin: 0 auto;
+    }
+    .bot-invite .bi-tag {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; display: block; margin-bottom: 16px;
+    }
+    .bot-invite h2 {
+      font-family: var(--font-d); font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 600; color: var(--text); margin-bottom: 14px; line-height: 1.3;
+    }
+    .bot-invite p { max-width: 520px; margin: 0 auto 28px; font-size: 0.95rem; }
+    .bot-invite .btn-bot {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: #0f0e0d;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 14px 28px; border-radius: 2px;
+      cursor: pointer; border: none; transition: opacity 0.2s;
+    }
+    .bot-invite .btn-bot:hover { opacity: 0.88; }
+    .bot-invite .bi-sub {
+      display: block; margin-top: 14px;
+      font-size: 0.78rem; color: var(--muted);
+    }
+
     /* ── CTA SECTION ── */
     .cta-section {
       max-width: 960px; margin: 0 auto;
@@ -308,14 +418,92 @@
     }
     .fade-up.visible { opacity: 1; transform: none; }
 
+    /* ── BOT WIDGET ── */
+    @keyframes botPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.35); }
+      70%  { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    }
+    .bot-hint {
+      position: fixed; bottom: 88px; right: 24px; z-index: 999;
+      background: #222019; border: 1px solid rgba(201,168,76,0.25);
+      color: #f0ece4; font-size: 0.8rem; padding: 10px 14px;
+      border-radius: 8px; max-width: 220px; line-height: 1.4;
+      opacity: 0; pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+      font-family: var(--font-b);
+    }
+    .bot-hint.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-hint::after {
+      content: ''; position: absolute; bottom: -7px; right: 18px;
+      width: 12px; height: 7px;
+      background: #222019;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+    .bot-fab {
+      position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+    .bot-fab:hover { transform: scale(1.08); }
+    .bot-fab.hint-active { animation: botPulse 1.8s ease-out 2; }
+    .bot-popup {
+      position: fixed; bottom: 88px; right: 24px; z-index: 1001;
+      width: 360px; height: 520px;
+      background: #1a1917; border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+      opacity: 0; pointer-events: none;
+      transform: translateY(12px) scale(0.97);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .bot-popup.is-open { opacity: 1; pointer-events: auto; transform: none; }
+    .bot-popup-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px;
+      background: #141310;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .bot-header-avatar {
+      width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    }
+    .bot-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .bot-header-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .bot-header-name { font-size: 0.78rem; font-weight: 600; color: #f0ece4; font-family: var(--font-b); }
+    .bot-header-status { display: flex; align-items: center; gap: 5px; }
+    .bot-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+    .bot-status-label { font-size: 0.68rem; color: rgba(240,236,228,0.5); font-family: var(--font-b); }
+    .bot-close {
+      background: none; border: none; color: rgba(240,236,228,0.4);
+      font-size: 0.72rem; cursor: pointer; letter-spacing: 0.04em;
+      font-family: var(--font-b); transition: color 0.2s;
+    }
+    .bot-close:hover { color: var(--accent); }
+    .bot-popup iframe { flex: 1; border: none; width: 100%; }
+    .bot-scrim {
+      display: none; position: fixed; inset: 0; z-index: 998;
+      background: rgba(0,0,0,0.4);
+    }
+    .bot-scrim.is-open { display: block; }
+    @media(max-width:480px){
+      .bot-popup { width: calc(100vw - 16px); right: 8px; bottom: 80px; height: 70vh; }
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       .site-header { padding: 0 20px; }
       .page-hero { padding: 64px 20px 56px; }
       .section { padding: 56px 20px; }
+      .pourquoi-grid { grid-template-columns: 1fr; }
       .method-steps { grid-template-columns: 1fr 1fr; }
       .result-strip { grid-template-columns: 1fr; }
       .cta-section { padding: 72px 20px; }
+      .bot-invite { padding: 36px 24px; }
       .site-footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
     }
     @media (max-width: 480px) {
@@ -330,6 +518,7 @@
     <a class="nav-back" href="./index.html">← Retour à l'accueil</a>
   </header>
 
+  <!-- ── HERO ── -->
   <section class="page-hero">
     <p class="eyebrow">Automatisation des processus — Genève &amp; Suisse romande</p>
     <h1>Chaque heure perdue sur une tâche répétitive est une heure que vous ne récupérerez pas.</h1>
@@ -340,6 +529,7 @@
     </div>
   </section>
 
+  <!-- ── CHIFFRES ── -->
   <section class="section fade-up">
     <div class="section-head">
       <p class="eyebrow">Ce que ça coûte vraiment</p>
@@ -365,6 +555,42 @@
     </div>
   </section>
 
+  <!-- ── POURQUOI SERAFINO ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Pourquoi SERAFINO RÉSOUT</p>
+      <h2>Ce qui différencie une vraie automatisation d'un beau PDF.</h2>
+      <p class="lead-sm">Beaucoup vendent de l'automatisation. Peu viennent voir comment votre activité fonctionne vraiment avant de proposer quoi que ce soit.</p>
+    </div>
+    <div class="pourquoi-grid">
+      <div class="pourquoi-card">
+        <span class="pq-label">Diagnostic terrain</span>
+        <h3>Je viens voir avant de construire.</h3>
+        <p>Avant de coder quoi que ce soit, je passe du temps dans votre activité réelle — cuisine, atelier, bureau. J'observe les flux, je mesure les pertes, je comprends le contexte humain.</p>
+        <p class="vs"><em>Vs agences :</em> elles construisent sur vos réponses à un questionnaire. Pas sur ce que vous faites vraiment.</p>
+      </div>
+      <div class="pourquoi-card">
+        <span class="pq-label">Propriété totale</span>
+        <h3>Les outils vous appartiennent — pour toujours.</h3>
+        <p>Aucun abonnement mensuel, aucune dépendance à ma plateforme. Les automatisations que je construis sont livrées avec documentation complète. Vous les utilisez, les modifiez, les transmettez.</p>
+        <p class="vs"><em>Vs SaaS :</em> vous payez chaque mois pour accéder à votre propre données. Ici, vous payez une fois.</p>
+      </div>
+      <div class="pourquoi-card">
+        <span class="pq-label">Résultats mesurables</span>
+        <h3>Je m'engage sur un résultat, pas sur une livraison.</h3>
+        <p>Le succès n'est pas "le workflow est déployé". Le succès c'est "vous gagnez X heures par semaine" ou "les relances partent sans intervention". C'est ça qu'on mesure ensemble.</p>
+        <p class="vs"><em>Vs consultants :</em> ils livrent un plan. Je livre un système qui fonctionne — ou je rembourse.</p>
+      </div>
+      <div class="pourquoi-card">
+        <span class="pq-label">Garantie 3 mois</span>
+        <h3>Si ça ne marche pas, vous ne payez pas.</h3>
+        <p>C'est écrit dans le contrat, pas juste dit en réunion. Si dans les 3 mois suivant la mise en place, en faisant ce qu'on a défini ensemble, aucun résultat mesurable n'apparaît — remboursement intégral.</p>
+        <p class="vs"><em>Vs prestataires classiques :</em> le risque est chez vous. Ici, il est chez moi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROBLÈMES ── -->
   <section class="section fade-up">
     <div class="section-head">
       <p class="eyebrow">Vous reconnaissez-vous ?</p>
@@ -404,6 +630,7 @@
     </div>
   </section>
 
+  <!-- ── SOLUTIONS ── -->
   <section class="section fade-up">
     <div class="section-head">
       <p class="eyebrow">Les automatisations les plus impactantes</p>
@@ -473,6 +700,61 @@
     </div>
   </section>
 
+  <!-- ── PAR SECTEUR ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Par secteur</p>
+      <h2>Ce qu'on automatise concrètement — selon votre activité.</h2>
+    </div>
+    <div class="sector-examples">
+      <div class="sector-ex">
+        <span class="sector-ex-tag">Restauration &amp; HORECA</span>
+        <h3>Cuisine, service &amp; fournisseurs</h3>
+        <ul>
+          <li>Bon de commande fournisseur généré sur la base du stock réel</li>
+          <li>Alerte automatique quand un produit passe sous le seuil minimal</li>
+          <li>Planning cuisine synchronisé avec les réservations du jour</li>
+          <li>Confirmation de réservation ou d'événement envoyée automatiquement</li>
+          <li>Rapport food cost hebdomadaire sans intervention manuelle</li>
+        </ul>
+      </div>
+      <div class="sector-ex">
+        <span class="sector-ex-tag">Artisans &amp; Commerces</span>
+        <h3>Devis, chantiers &amp; facturation</h3>
+        <ul>
+          <li>Devis structuré depuis un modèle — envoyé en moins de 10 minutes</li>
+          <li>Confirmation de chantier par message automatique après accord</li>
+          <li>Relance automatique des devis sans réponse après 5 jours</li>
+          <li>Facture générée et envoyée automatiquement à clôture du chantier</li>
+          <li>Demande d'avis Google automatique après fin de prestation</li>
+        </ul>
+      </div>
+      <div class="sector-ex">
+        <span class="sector-ex-tag">PME &amp; Startups</span>
+        <h3>CRM, prospection &amp; reporting</h3>
+        <ul>
+          <li>Enrichissement automatique des leads: email, téléphone, LinkedIn</li>
+          <li>Séquence d'onboarding email pour chaque nouveau client</li>
+          <li>Qualification et scoring des prospects selon critères métier</li>
+          <li>Rapport de pipeline commercial envoyé chaque lundi matin</li>
+          <li>Archivage et nommage automatique des documents clients</li>
+        </ul>
+      </div>
+      <div class="sector-ex">
+        <span class="sector-ex-tag">Professions libérales</span>
+        <h3>Dossiers, agenda &amp; administratif</h3>
+        <ul>
+          <li>Rappel de rendez-vous par SMS ou email 24h avant</li>
+          <li>Relance automatique des dossiers en attente de pièces</li>
+          <li>Génération automatique de la lettre de mission ou du mandat</li>
+          <li>Centralisation des notes de frais et envoi mensuel au comptable</li>
+          <li>Suivi des factures impayées avec relances progressives</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RÉSULTATS ── -->
   <section class="section fade-up">
     <div class="section-head">
       <p class="eyebrow">Résultats mesurables</p>
@@ -502,6 +784,7 @@
     </div>
   </section>
 
+  <!-- ── MÉTHODE ── -->
   <section class="section fade-up">
     <div class="section-head">
       <p class="eyebrow">Comment ça se passe</p>
@@ -530,10 +813,115 @@
       </div>
     </div>
     <div class="guarantee">
-      <p><strong>Garantie de résultat.</strong> 800 CHF pour une mise en place stand-alone, payé une seule fois. Si dans les 3 mois suivant la mise en place, en suivant le protocole convenu, aucun résultat mesurable n'est observé — remboursement intégral.</p>
+      <p><strong>Garantie de résultat.</strong> 800 CHF pour une mise en place stand-alone, payé une seule fois. Si dans les 3 mois suivant la mise en place, en faisant ce qu'on a défini ensemble, aucun résultat mesurable n'est observé — remboursement intégral.</p>
     </div>
   </section>
 
+  <!-- ── FAQ ── -->
+  <section class="section fade-up">
+    <div class="section-head">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce que les clients demandent avant de se lancer.</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Combien coûte une automatisation ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Le diagnostic est gratuit — 30 minutes pour voir si une automatisation a du sens dans votre contexte. Si on va plus loin, le plan de simplification coûte 300 CHF et la mise en place démarre à 800 CHF, payé une seule fois, sans abonnement. Le prix final dépend de la complexité réelle, pas d'un catalogue.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Combien de temps avant de voir les premiers résultats ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Les premières automatisations sont souvent en place en 1 à 3 semaines. Les résultats sont visibles immédiatement — si l'inventaire prenait 8h et prend maintenant 30 minutes, vous le savez dès la première utilisation. Pas besoin d'attendre 6 mois pour voir si ça fonctionne.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Qui gère les outils après la mise en place ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Vous. C'est le principe. Chaque automatisation est livrée avec une documentation simple, adaptée à votre équipe. L'objectif est que vous soyez autonomes — pas que vous ayez besoin de moi chaque fois qu'il y a un changement. Si une évolution est nécessaire, je suis disponible, mais ce n'est pas une obligation.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quels outils utilisez-vous ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Ça dépend de ce que vous avez déjà et de ce qui correspond à votre contexte. J'utilise Google Sheets, Notion, Make, n8n, Airtable, des scripts Python, des bots sur WhatsApp ou Telegram. Jamais de plateforme qui crée une dépendance externe inutile. Et si vous avez déjà des outils qui fonctionnent — je construis autour, pas par-dessus.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Faut-il changer tous nos systèmes existants ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Non. La plupart du temps, les outils existants sont bons — c'est la façon dont ils sont reliés qui crée du travail inutile. On automatise les connexions entre vos systèmes actuels plutôt que de tout remplacer. Moins de friction pour votre équipe, moins de risque, résultat plus rapide.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Est-ce que ça marche pour une petite structure — 2 ou 3 personnes ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          C'est souvent là que l'impact est le plus fort. Quand vous êtes 3, chaque heure perdue pèse lourd. Une automatisation bien ciblée — relances, inventaire, rapports — peut libérer 4 à 6 heures par semaine. Sur une petite équipe, c'est significatif.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Quelle est la différence avec un SaaS comme Monday, Notion ou Zapier ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Un SaaS est une solution générique que vous adaptez à votre activité — souvent incomplètement. Ce que je construis est fait pour votre activité spécifique, vos données réelles, vos contraintes. Et vous ne payez pas chaque mois pour y accéder : vous l'avez. Si Notion ou Monday couvre déjà un besoin, je l'intègre — je ne le remplace pas pour le remplacer.
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Que se passe-t-il si ça ne fonctionne pas ?
+          <span class="fq-icon">+</span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Je rembourse. C'est écrit dans le contrat. Si dans les 3 mois suivant la mise en place, en faisant ce qu'on a défini ensemble, aucun résultat mesurable n'apparaît — vous récupérez votre investissement. Pas de discussion, pas de condition cachée. C'est comme ça que je travaille.
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── BOT INVITE ── -->
+  <div class="section fade-up" style="padding-top:0;border-bottom:none;">
+    <div class="bot-invite">
+      <span class="bi-tag">Assistant SERAFINO RÉSOUT</span>
+      <h2>Pas sûr que ce soit pour vous ? Posez la question au bot.</h2>
+      <p>Décrivez votre activité et votre situation en 2 minutes. Le bot pose les bonnes questions, identifie si une automatisation a du sens, et prépare un résumé que vous pouvez m'envoyer directement.</p>
+      <button class="btn-bot" id="botInviteBtn">
+        <span>💬</span> Essayer le bot maintenant
+      </button>
+      <span class="bi-sub">Gratuit · Aucune inscription · Résumé prêt à envoyer</span>
+    </div>
+  </div>
+
+  <!-- ── CTA FINAL ── -->
   <div class="cta-section fade-up">
     <p class="eyebrow">Premier échange gratuit</p>
     <h2>30 minutes pour savoir si une automatisation peut changer quelque chose.</h2>
@@ -550,7 +938,29 @@
     <p><a href="./index.html">serafino-resout.ch</a></p>
   </footer>
 
+  <!-- ── BOT WIDGET ── -->
+  <div class="bot-hint" id="botHint">Une question sur l'automatisation ? Le bot répond.</div>
+  <button class="bot-fab" id="botFab" aria-label="Assistant Serafino">💬</button>
+  <div class="bot-scrim" id="botScrim"></div>
+  <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino">
+    <div class="bot-popup-header">
+      <div class="bot-header-avatar">
+        <img src="./assets/photos/avatar.png" alt="Serafino" />
+      </div>
+      <div class="bot-header-info">
+        <span class="bot-header-name">Assistant Serafino</span>
+        <div class="bot-header-status">
+          <span class="bot-status-dot"></span>
+          <span class="bot-status-label">En ligne</span>
+        </div>
+      </div>
+      <button class="bot-close" id="botClose">Fermer ✕</button>
+    </div>
+    <iframe src="https://serafino-bot.vercel.app" title="Assistant Serafino" loading="lazy"></iframe>
+  </div>
+
   <script defer>
+    // Fade-up
     const fadeEls = document.querySelectorAll('.fade-up');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
@@ -558,6 +968,55 @@
       });
     }, { threshold: 0.08 });
     fadeEls.forEach(el => io.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Bot widget
+    (function() {
+      const fab = document.getElementById('botFab');
+      const popup = document.getElementById('botPopup');
+      const close = document.getElementById('botClose');
+      const scrim = document.getElementById('botScrim');
+      const hint = document.getElementById('botHint');
+      const inviteBtn = document.getElementById('botInviteBtn');
+      let botOpen = false;
+
+      function openBot() {
+        botOpen = true;
+        popup.classList.add('is-open');
+        scrim.classList.add('is-open');
+        hint.classList.remove('is-visible');
+        fab.classList.remove('hint-active');
+      }
+      function closeBot() {
+        botOpen = false;
+        popup.classList.remove('is-open');
+        scrim.classList.remove('is-open');
+      }
+
+      fab.addEventListener('click', () => botOpen ? closeBot() : openBot());
+      close.addEventListener('click', closeBot);
+      scrim.addEventListener('click', closeBot);
+      if (inviteBtn) inviteBtn.addEventListener('click', openBot);
+
+      function showHint() {
+        if (botOpen || !hint) return;
+        hint.classList.add('is-visible');
+        fab.classList.add('hint-active');
+        setTimeout(() => { hint.classList.remove('is-visible'); fab.classList.remove('hint-active'); }, 4000);
+      }
+      setTimeout(showHint, 4000);
+      setInterval(() => { if (!botOpen) showHint(); }, 45000);
+      document.addEventListener('mouseleave', e => { if (e.clientY <= 0 && !botOpen) showHint(); });
+    })();
   </script>
 </body>
 </html>
