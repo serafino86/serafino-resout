@@ -293,6 +293,13 @@
       transition: color 0.2s;
     }
     .site-nav a:hover { color: var(--text); }
+    .site-nav .nav-cta {
+      color: var(--accent) !important;
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 6px 14px; border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .site-nav .nav-cta:hover { background: var(--accent); color: #0f0e0d !important; }
 
     .menu-toggle {
       display: none; background: none; border: none; cursor: pointer;
@@ -333,6 +340,22 @@
       font-size: 13px; color: rgba(240,236,228,0.5);
       letter-spacing: 0.08em; margin-top: 10px;
     }
+    .hero-sector-strip {
+      display: flex; gap: 1px; margin-top: 20px;
+      pointer-events: all;
+    }
+    .hero-sector-card {
+      background: rgba(26,25,23,0.75); border: 1px solid rgba(201,168,76,0.15);
+      backdrop-filter: blur(6px);
+      padding: 12px 20px; text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      font-family: var(--font-b); font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+      border-radius: 2px;
+    }
+    .hero-sector-card:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.4); }
+    .hero-sector-card .hsc-arrow { color: var(--accent); font-size: 0.85rem; }
     @media(max-width:768px){ .hero-intro { display: none; } }
 
     /* Mobile: no scroll hijack */
@@ -1067,14 +1090,11 @@
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
-      <a href="#offre">Offre</a>
-      <a href="#methode">Méthode</a>
-      <a href="#histoire">Histoire</a>
-      <a href="#cas">Cas réels</a>
-      <a href="#serafinobot">SerafinoBot</a>
+      <a href="#offre">Services</a>
       <a href="#secteurs">Secteurs</a>
+      <a href="#cas">Cas réels</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Diagnostic gratuit →</a>
     </nav>
   </header>
 
@@ -1086,10 +1106,15 @@
         <canvas id="network" aria-hidden="true"></canvas>
 
         <!-- Visible before scroll: immediate clarity for cold visitors -->
-        <div class="hero-intro" aria-hidden="true">
+        <div class="hero-intro">
           <span class="hero-intro-tag">Automatisation &amp; conseil opérationnel · Genève</span>
           <div class="hero-intro-title">J'automatise les tâches répétitives et construis des outils sur mesure pour PME, restaurants et artisans.</div>
           <span class="hero-intro-sub">Sans abonnement · Sans formation · Résultats mesurables</span>
+          <div class="hero-sector-strip">
+            <a href="./horeca.html" class="hero-sector-card">🍽 Restaurants <span class="hsc-arrow">→</span></a>
+            <a href="./artisans.html" class="hero-sector-card">🔧 Artisans <span class="hsc-arrow">→</span></a>
+            <a href="./pme.html" class="hero-sector-card">📊 PME <span class="hsc-arrow">→</span></a>
+          </div>
         </div>
 
         <div class="hero-beats" aria-hidden="true">
