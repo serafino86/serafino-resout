@@ -1892,7 +1892,16 @@
   const BOT_URL  = 'https://serafino-bot.vercel.app';
   let botOpen = false, botLoaded = false;
 
-  setTimeout(() => { if (!botOpen && botHint) botHint.classList.add('is-visible'); }, 3000);
+  // Show hint briefly, hide, then re-show occasionally
+  function showHintBriefly() {
+    if (botOpen || !botHint) return;
+    botHint.classList.add('is-visible');
+    setTimeout(() => botHint.classList.remove('is-visible'), 4000);
+  }
+  // First appearance after 4s
+  setTimeout(showHintBriefly, 4000);
+  // Re-appear every 45s (non-intrusive reminder)
+  setInterval(() => { if (!botOpen) showHintBriefly(); }, 45000);
 
   const contactEl = document.getElementById('contact');
   if (contactEl && botHint2) {
