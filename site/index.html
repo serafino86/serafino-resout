@@ -523,27 +523,6 @@
     }
     .card:hover { border-color: var(--line-strong); background: var(--surface2); }
 
-    /* ── DIAGNOSIS ───────────────────────────────────────────────────────── */
-    .diagnosis-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      background: var(--line); border: 1px solid var(--line); border-radius: 4px;
-      overflow: hidden;
-    }
-    .diagnosis-card { background: var(--surface); padding: 40px; }
-    .diagnosis-card.strong { background: var(--surface2); }
-    .diagnosis-card h3 {
-      font-size: 1.1rem; font-weight: 500;
-      margin-bottom: 20px; color: var(--text);
-    }
-    .diagnosis-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .diagnosis-card li {
-      padding-left: 18px; position: relative;
-      font-size: 0.95rem; color: rgba(240,236,228,0.85);
-    }
-    .diagnosis-card li::before {
-      content: '—'; position: absolute; left: 0;
-      color: var(--accent); font-size: 0.8rem;
-    }
 
     /* ── FLIP CARDS ──────────────────────────────────────────────────────── */
     .flip-grid {
@@ -993,7 +972,6 @@
       .story-side { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
       .kitchen-grid { grid-template-columns: 1fr; }
       .contact-section { grid-template-columns: 1fr; gap: 40px; }
-      .diagnosis-grid { grid-template-columns: 1fr; }
       .case-screens { grid-template-columns: 1fr; }
       .case-screens-3col { grid-template-columns: 1fr; }
       .flip-grid { grid-template-columns: 1fr 1fr; }
@@ -1119,39 +1097,11 @@
     </nav>
 
 
-    <!-- ── DIAGNOSTIC ────────────────────────────────────────────────────── -->
+    <!-- ── SITUATIONS CONCRÈTES ─────────────────────────────────────────── -->
     <section id="diagnostic" class="section fade-up">
       <div class="section-head">
-        <p class="eyebrow">Quand intervenir</p>
+        <p class="eyebrow">Vous reconnaissez-vous ?</p>
         <h2>Le vrai signal d'alerte: quand l'organisation tient surtout grâce aux personnes les plus débrouillardes.</h2>
-      </div>
-      <div class="diagnosis-grid">
-        <article class="diagnosis-card">
-          <h3>Vous êtes concerné si…</h3>
-          <ul>
-            <li>les infos vivent entre WhatsApp, Excel, mémoire et coups de téléphone</li>
-            <li>une seule personne sait vraiment comment les choses tiennent</li>
-            <li>les doubles saisies et les oublis deviennent normaux</li>
-            <li>vous perdez du temps à corriger plutôt qu'à avancer</li>
-          </ul>
-        </article>
-        <article class="diagnosis-card strong">
-          <h3>Ce qu'on cherche à obtenir</h3>
-          <ul>
-            <li>des flux plus lisibles</li>
-            <li>moins de tâches répétitives</li>
-            <li>des outils que l'équipe comprend</li>
-            <li>un système plus stable, sans dépendance cachée</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- ── FLIP CARDS ────────────────────────────────────────────────────── -->
-    <section class="section fade-up">
-      <div class="section-head">
-        <p class="eyebrow">Situations concrètes</p>
-        <h2>Retournez la carte si vous vous reconnaissez.</h2>
       </div>
       <div class="flip-grid">
         <div class="flip-card" tabindex="0" role="button" aria-label="Retourner la carte">
