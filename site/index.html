@@ -890,6 +890,11 @@
     }
 
     /* ── BOT WIDGET ──────────────────────────────────────────────────────── */
+    @keyframes botPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.35); }
+      70%  { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    }
     .bot-hint {
       position: fixed; bottom: 90px; right: 24px; z-index: 800;
       background: var(--surface2); border: 1px solid var(--line-strong);
@@ -898,6 +903,13 @@
       max-width: min(280px, calc(100vw - 96px));
       opacity: 0; transform: translateY(8px) scale(0.95);
       transition: opacity 0.3s, transform 0.3s; pointer-events: none;
+      line-height: 1.45;
+    }
+    .bot-hint::after {
+      content: ''; position: absolute; bottom: -7px; right: 18px;
+      width: 12px; height: 7px;
+      background: var(--surface2);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
     }
     .bot-hint.is-visible { opacity: 1; transform: none; pointer-events: auto; }
     .bot-hint-contact { border-radius: 20px 20px 4px 20px; bottom: 148px; }
@@ -911,9 +923,10 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .bot-fab:hover { border-color: var(--accent); box-shadow: 0 4px 32px rgba(201,168,76,0.15); }
+    .bot-fab.hint-active { animation: botPulse 1.8s ease-out 2; }
     .bot-fab-icon {
       width: 36px; height: 36px; border-radius: 50%; overflow: hidden;
-      background: var(--surface); flex-shrink: 0;
+      background: var(--surface); flex-shrink: 0; position: relative;
     }
     .bot-fab-icon img { width: 100%; height: 100%; object-fit: cover; }
     .bot-fab-label { font-size: 13px; color: rgba(240,236,228,0.8); white-space: nowrap; }
@@ -925,25 +938,29 @@
       border-radius: 12px; overflow: hidden;
       display: flex; flex-direction: column;
       box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-      display: flex; flex-direction: column;
       opacity: 0; transform: translateY(16px) scale(0.97);
       pointer-events: none; transition: opacity 0.25s, transform 0.25s var(--ease);
     }
     .bot-popup.is-open { opacity: 1; transform: none; pointer-events: auto; }
     .bot-popup-header {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; gap: 10px;
       padding: 10px 14px; border-bottom: 1px solid var(--line);
       background: var(--surface2); flex-shrink: 0;
     }
-    .bot-popup-header span {
-      font-size: 12px; color: var(--muted);
-      letter-spacing: 0.08em; text-transform: uppercase;
+    .bot-header-avatar {
+      width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
     }
+    .bot-header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .bot-header-info { display: flex; flex-direction: column; flex: 1; }
+    .bot-header-name { font-size: 12px; color: var(--text); font-weight: 500; line-height: 1.2; }
+    .bot-header-status { display: flex; align-items: center; gap: 5px; }
+    .bot-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+    .bot-status-label { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; }
     .bot-close {
       background: transparent; border: 1px solid var(--line);
       color: var(--muted); font-size: 11px; padding: 4px 10px;
       border-radius: 4px; cursor: pointer;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-left: auto;
     }
     .bot-close:hover { border-color: var(--accent); color: var(--accent); }
     .bot-popup-frame { flex: 1; border: none; width: 100%; }
@@ -1571,6 +1588,10 @@
           </ul>
         </div>
       </div>
+      <div style="margin-top:32px">
+        <button onclick="document.getElementById('botFab').click()" style="background:var(--accent);color:#0f0e0d;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:opacity 0.2s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Essayer le bot →</button>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px">Décrivez votre situation — le bot prépare un récapitulatif structuré.</p>
+      </div>
     </section>
 
     <!-- ── SECTEURS ────────────────────────────────────────────────────────── -->
@@ -1654,7 +1675,16 @@
   </button>
   <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino Résout" aria-hidden="true">
     <div class="bot-popup-header">
-      <span>Assistant Serafino</span>
+      <div class="bot-header-avatar">
+        <img src="./assets/photos/avatar.png" alt="Serafino" onerror="this.src='./assets/photos/LA_NOCE_Enrico_v.jpg'" />
+      </div>
+      <div class="bot-header-info">
+        <span class="bot-header-name">Assistant Serafino</span>
+        <div class="bot-header-status">
+          <span class="bot-status-dot"></span>
+          <span class="bot-status-label">En ligne</span>
+        </div>
+      </div>
       <button class="bot-close" id="botClose" type="button" aria-label="Fermer l'assistant">Fermer ✕</button>
     </div>
     <iframe class="bot-popup-frame" id="botFrame" src="" title="Assistant Serafino Résout" allow="clipboard-write"></iframe>
@@ -1860,18 +1890,34 @@
   const botHint  = document.getElementById('botHint');
   const botHint2 = document.getElementById('botHint2');
   const BOT_URL  = 'https://serafino-bot.vercel.app';
-  let botOpen = false, botLoaded = false;
+  let botOpen = false, botLoaded = false, hintIdx = 0;
 
-  // Show hint briefly, hide, then re-show occasionally
+  const hintMessages = [
+    "Décrivez votre situation — le bot structure et prépare un résumé.",
+    "Une question sur les tarifs ou les délais ? Le bot répond.",
+    "Pas sûr d'avoir besoin d'aide ? Décrivez votre contexte en 2 min.",
+    "Le bot prépare un récapitulatif prêt à envoyer — sans effort."
+  ];
+
   function showHintBriefly() {
     if (botOpen || !botHint) return;
+    botHint.textContent = hintMessages[hintIdx % hintMessages.length];
+    hintIdx++;
     botHint.classList.add('is-visible');
-    setTimeout(() => botHint.classList.remove('is-visible'), 4000);
+    botFab.classList.add('hint-active');
+    setTimeout(() => {
+      botHint.classList.remove('is-visible');
+      botFab.classList.remove('hint-active');
+    }, 4000);
   }
-  // First appearance after 4s
+
   setTimeout(showHintBriefly, 4000);
-  // Re-appear every 45s (non-intrusive reminder)
   setInterval(() => { if (!botOpen) showHintBriefly(); }, 45000);
+
+  // Exit intent
+  document.addEventListener('mouseleave', e => {
+    if (e.clientY <= 0 && !botOpen) showHintBriefly();
+  });
 
   const contactEl = document.getElementById('contact');
   if (contactEl && botHint2) {
@@ -1888,6 +1934,7 @@
     botOpen = true;
     if (botHint)  botHint.classList.remove('is-visible');
     if (botHint2) botHint2.classList.remove('is-visible');
+    botFab.classList.remove('hint-active');
     botPopup.classList.add('is-open');
     botScrim.classList.add('is-open');
     botFab.setAttribute('aria-expanded', 'true');
