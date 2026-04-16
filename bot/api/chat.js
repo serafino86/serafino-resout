@@ -139,19 +139,27 @@ function buildSystemPrompt(language, memory) {
 
 function sanitizeReply(text) {
   if (!text) return text;
-  // Replace forbidden formal openers with nothing (sentence continues after colon)
+  const before = text;
   let t = text
+    // Strip formal empathy openers (keep rest of sentence after colon/dash)
     .replace(/^Je comprends ton scepticisme\s*[:\-–—]\s*/i, '')
     .replace(/^Je comprends ton doute\s*[:\-–—]\s*/i, '')
     .replace(/^Je comprends votre\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends que\s+tu\s+[a-zéèêëàùûüôîï]+\s+[a-zéèêëàùûüôîï]+\s*[:\-–—,]?\s*/i, 'Normal — ')
     .replace(/^Bien sûr[,!]?\s*/i, '')
     .replace(/^Bien entendu[,!]?\s*/i, '')
+    .replace(/^Absolument[,!]?\s*/i, '')
+    // Replace jargon
     .replace(/protocole d['']usage convenu/gi, 'ce qu\'on a défini ensemble')
     .replace(/résultat(?:s)? mesurable(?:s)? selon les critères/gi, 'résultat concret')
     .replace(/mise en œuvre/gi, 'mise en place')
-    .replace(/utilisation conforme/gi, 'usage normal');
+    .replace(/utilisation conforme/gi, 'usage normal')
+    .replace(/point(?:s)? de friction opérationnel(?:le)?(?:s)?/gi, 'ce qui coince')
+    .replace(/problème(?:s)? opérationnel(?:le)?(?:s)?/gi, 'problème concret')
+    .replace(/levier(?:s)? stratégique(?:s)?/gi, 'levier concret')
+    .replace(/enjeu(?:x)? clé(?:s)?/gi, 'enjeu principal');
   // Capitalise first letter if we stripped the opener
-  if (t !== text) t = t.charAt(0).toUpperCase() + t.slice(1);
+  if (t !== before) t = t.charAt(0).toUpperCase() + t.slice(1);
   return t;
 }
 
