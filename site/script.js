@@ -33,7 +33,7 @@ const botFrame = document.getElementById("botFrame");
 const botClose = document.getElementById("botClose");
 const botHint  = document.getElementById("botHint");
 const botHint2 = document.getElementById("botHint2");
-const BOT_URL  = "https://bot-ochre-nu.vercel.app";
+const BOT_URL  = "https://serafino-bot.vercel.app";
 
 let botOpen   = false;
 let botLoaded = false;

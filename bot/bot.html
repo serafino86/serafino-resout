@@ -338,7 +338,7 @@
   <div class="bot-composer-wrap">
     <div class="bot-actions" id="botActions">
       <button type="button" class="bot-action-chip" id="prepareMail">
-        Préparer une mail
+        Préparer un mail
       </button>
     </div>
     <div class="bot-suggestions" id="botSuggestions"></div>
@@ -390,16 +390,16 @@ const botState = {
 
 const BOT_COPY = {
   fr: {
-    welcome: "Bonjour. Je suis l'assistant de Serafino Résout. Je peux t'aider à comprendre si l'offre de Serafino correspond à ta situation — de façon claire et concrète. Commence par me parler de ton activité ou pose une question directe.",
+    welcome: "Bonjour. Je suis l'assistant virtuel de SERAFINO RÉSOUT. Je peux t'aider à comprendre si l'offre de Serafino correspond à ta situation — de façon claire et concrète. Commence par me parler de ton activité ou pose une question directe.",
     placeholder: 'Décris ton problème ou pose une question...',
-    prepareMail: 'Préparer une mail',
-    preparingMail: 'Je prépare la mail...',
-    mailIntro: "J’ai préparé une mail pour Serafino avec ce qui est déjà clair.",
+    prepareMail: ‘Préparer un mail’,
+    preparingMail: ‘Je prépare le mail...’,
+    mailIntro: "J’ai préparé un mail pour Serafino avec ce qui est déjà clair.",
     missingIntro: '\u00c0 compléter si tu veux\u00a0:',
-    openMail: 'Ouvrir la mail',
-    mailError: "Je n’ai pas réussi à préparer la mail. Tu peux écrire directement à contact@serafino-resout.ch.",
-    mailAskMissing: "Pour finaliser la mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Réponds ici en quelques mots et je la préparerai aussitôt.",
-    proactiveEmail: "On a déjà bien cerné ta situation. Tu veux que je prépare une mail récapitulative pour Serafino, prête à envoyer en un clic ?",
+    openMail: ‘Ouvrir le mail’,
+    mailError: "Je n’ai pas réussi à préparer le mail. Tu peux écrire directement à contact@serafino-resout.ch.",
+    mailAskMissing: "Pour finaliser le mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Réponds ici en quelques mots et je le préparerai aussitôt.",
+    proactiveEmail: "On a déjà bien cerné ta situation. Tu veux que je prépare un mail récapitulatif pour Serafino, prêt à envoyer en un clic ?",
     suggestions: [
       "C'est quoi Serafino Résout ?",
       'Comment fonctionne le diagnostic gratuit ?',
@@ -555,7 +555,7 @@ function addMailDraft(draft) {
       <p>${esc(copy.mailIntro)}</p>
       ${missing}
       <p><strong>${esc(draft.subject || '')}</strong></p>
-      <a class="bot-mail-button" href="${esc(makeMailto(draft))}" target="_top">${esc(copy.openMail)}</a>
+      <a class="bot-mail-button" href="${esc(makeMailto(draft))}" target="_blank" rel="noopener">${esc(copy.openMail)}</a>
     </div>
   `;
   thread.appendChild(row);

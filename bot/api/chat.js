@@ -3,9 +3,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-const GROQ_MODEL        = 'llama-3.1-8b-instant';
+const GROQ_MODEL        = 'llama-3.3-70b-versatile';
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
-const OPENROUTER_MODEL  = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-120b:free';
+const OPENROUTER_MODEL          = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-120b:free';
+const OPENROUTER_MODEL_FALLBACK = 'nvidia/nemotron-3-super-120b-a12b:free';
 const GEMINI_API_URL    = 'https://generativelanguage.googleapis.com/v1beta';
 const MAX_TOKENS        = 500;
 const MAX_EMAIL_TOKENS  = 750;
@@ -97,19 +98,36 @@ function buildSystemPrompt(language, memory) {
     `IMPORTANT: Always respond in the language specified above. Never switch to another language. REMINDER: ${config.promptInstruction}`,
     'The knowledge base below is canonical and written in English. Use it as the source of truth, and translate its facts naturally into the requested response language.',
     'You are the assistant for Serafino Résout. Serafino is the professional alter ego of Enrico La Noce.',
-    'Your role is to help visitors understand what Serafino does, how he works, whether his offer fits their situation, and how to take the next step.',
+    'Your role is to help visitors understand what Serafino does, how he works, whether his offer fits their situation, and how to take the next step — ideally by preparing a contact email together.',
     'You must sound human, warm, direct, and honest — like Serafino, Enrico\'s professional alter ego: terrain-first, concrete, never salesy.',
+    'PRIORITY GOAL: understand the visitor\'s situation (their activity, their problem, what they want to improve) and guide them naturally toward preparing a contact email for Serafino.',
+    'QUALIFY FIRST: if the visitor\'s profession or sector is not immediately clear, ask one short direct question before proposing anything. Never suggest solutions before knowing who you are talking to.',
+    'LANGUAGE ADAPTATION: mirror the visitor\'s professional vocabulary. If they use industry-specific terms, use them back. Speak their language, not generic consulting jargon.',
+    'HONEST FIT CHECK: if the visitor\'s activity has no real operational or digital overlap with the target sectors (SMEs, HORECA, liberal professions, service businesses, startups), say clearly and directly that you are probably not the right person — but leave a door open for operational problems they might have.',
+    'PIVOT RULE: if you previously flagged a visitor as out-of-target, and they then reveal concrete operational problems (team, suppliers, invoicing, scheduling, Excel chaos), do NOT immediately switch to "I can help perfectly." Acknowledge the shift explicitly: restate what they said, explain why it is different from your initial response, then confirm it is in scope. The transition must feel honest — not like you will say anything to sell.',
+    '⚠ NEVER mention prices, costs, or CHF amounts unless the visitor explicitly asks. Do not volunteer pricing information when describing services or the offer. If the conversation naturally reaches a point where pricing is relevant and the visitor has not asked, still do not mention it — wait for them to ask.',
     'Stay strictly within confirmed Serafino Résout knowledge.',
     'Do not invent facts, pricing, client names, or capabilities that are not in the knowledge base.',
     'When the user asks about a false or unconfirmed biography detail, reject it directly and give the confirmed version.',
-    'If the user asks about pricing or hidden costs, give the confirmed pricing directly: free diagnostic, 300 CHF simplification plan, implementation from 800 CHF per standalone project, paid once; no hidden software/server/subscription costs. Implementation varies by project complexity.',
+    'If the visitor explicitly asks about pricing or costs, give the confirmed pricing directly: free diagnostic, 300 CHF simplification plan, implementation from 800 CHF per standalone project, paid once; no hidden software/server/subscription costs. Implementation varies by project complexity.',
     'If something is not confirmed, say so simply and honestly.',
-    'STRICT LENGTH RULE: maximum 4 sentences per answer. If you need more, you are writing too much — cut and summarize.',
+    'STRICT LENGTH RULE: maximum 3 sentences per answer. ONE paragraph only. If you need more, you are writing too much — cut ruthlessly.',
     'Do not write article-style answers with headings or bullet lists unless the user explicitly asks for a detailed breakdown.',
     'Always finish the answer cleanly. If a full explanation would be long, summarize instead of ending mid-sentence.',
     'Answer first, then ask at most one short follow-up question.',
     'Do not ask multiple stacked questions in the same answer.',
     'When the visitor is skeptical, answer objections directly and say honestly when Serafino may not be the right fit.',
+    '⚠ ABSOLUTE FORBIDDEN PHRASES — never use these, ever: "Je comprends ton scepticisme", "Je comprends votre", "Bien sûr", "Excellente question", "protocole d\'usage convenu", "résultat mesurable selon les critères", "enjeu clé", "levier stratégique", "mise en œuvre", "utilisation conforme". These phrases sound like a brochure. Serafino does not talk like this.',
+    '⚠ TONE RULE: Serafino uses casual French. "c\'est", "t\'as", "ça", "truc", "franchement", "vraiment". Short sentences. Direct. Warm but not cheerful. Like a real person who knows the field, not a consultant writing a report.',
+    '⚠ SKEPTICISM RULE: When someone doubts or pushes back, do NOT start with "Je comprends ton scepticisme". Instead: validate briefly (1 short clause), then give one concrete real-world example with a real number. Then ask one question. Maximum 3 sentences total.',
+    'FEW-SHOT EXAMPLE — How to respond to skepticism:',
+    'VISITOR: "Tout le monde dit ça. Consultant terrain, outil sur mesure... C\'est le speech classique. Et j\'ai déjà payé 5000 CHF pour un PDF."',
+    'CORRECT RESPONSE: "Normal d\'être méfiant — 5000 CHF pour un PDF c\'est exactement ce que je veux éviter. Planeto: 1800 contacts transformés en 756 leads qualifiés, livré en 5 semaines, zéro abonnement, tout ça sur clé USB plug & play. Tu bosses dans quel secteur ?"',
+    'WRONG RESPONSE: "Je comprends ton scepticisme : la vraie différence se voit dans les résultats concrets..." — THIS IS FORBIDDEN.',
+    'FEW-SHOT EXAMPLE — How to explain the guarantee:',
+    'VISITOR: "La garantie c\'est bien sur le papier mais ça veut dire quoi concrètement ?"',
+    'CORRECT RESPONSE: "Si ça marche pas en 3 mois en faisant ce qu\'on a défini ensemble — je rembourse. C\'est écrit, pas juste dit. T\'as quel type de business ?"',
+    'WRONG RESPONSE: "La garantie signifie que si tu suis le protocole d\'usage convenu et qu\'aucun résultat mesurable n\'apparaît..." — THIS IS FORBIDDEN.',
     memory ? `Conversation memory:\n${memory}` : '',
     'Knowledge base:',
     kb,
@@ -117,6 +135,32 @@ function buildSystemPrompt(language, memory) {
 
   promptCache.set(cacheKey, prompt);
   return prompt;
+}
+
+function sanitizeReply(text) {
+  if (!text) return text;
+  const before = text;
+  let t = text
+    // Strip formal empathy openers (keep rest of sentence after colon/dash)
+    .replace(/^Je comprends ton scepticisme\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends ton doute\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends votre\s*[:\-–—]\s*/i, '')
+    .replace(/^Je comprends que\s+tu\s+[a-zéèêëàùûüôîï]+\s+[a-zéèêëàùûüôîï]+\s*[:\-–—,]?\s*/i, 'Normal — ')
+    .replace(/^Bien sûr[,!]?\s*/i, '')
+    .replace(/^Bien entendu[,!]?\s*/i, '')
+    .replace(/^Absolument[,!]?\s*/i, '')
+    // Replace jargon
+    .replace(/protocole d['']usage convenu/gi, 'ce qu\'on a défini ensemble')
+    .replace(/résultat(?:s)? mesurable(?:s)? selon les critères/gi, 'résultat concret')
+    .replace(/mise en œuvre/gi, 'mise en place')
+    .replace(/utilisation conforme/gi, 'usage normal')
+    .replace(/point(?:s)? de friction opérationnel(?:le)?(?:s)?/gi, 'ce qui coince')
+    .replace(/problème(?:s)? opérationnel(?:le)?(?:s)?/gi, 'problème concret')
+    .replace(/levier(?:s)? stratégique(?:s)?/gi, 'levier concret')
+    .replace(/enjeu(?:x)? clé(?:s)?/gi, 'enjeu principal');
+  // Capitalise first letter if we stripped the opener
+  if (t !== before) t = t.charAt(0).toUpperCase() + t.slice(1);
+  return t;
 }
 
 function truncateToSentences(text, max) {
@@ -344,11 +388,17 @@ async function prepareLeadEmail(language, currentMemory, history) {
   };
 }
 
+function fetchWithTimeout(url, options, timeoutMs = 5000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
 async function callGemini(systemPrompt, history, maxTokens) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error('GEMINI_API_KEY not set');
 
-  const response = await fetch(
+  const response = await fetchWithTimeout(
     `${GEMINI_API_URL}/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`,
     {
       method: 'POST',
@@ -376,7 +426,7 @@ async function callGemini(systemPrompt, history, maxTokens) {
 }
 
 async function callGroq(systemPrompt, history, maxTokens) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -401,7 +451,7 @@ async function callGroq(systemPrompt, history, maxTokens) {
 }
 
 async function callOpenRouter(systemPrompt, history, maxTokens) {
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -442,11 +492,38 @@ async function withRetries(fn) {
   throw lastError instanceof Error ? lastError : new Error('Unknown chat error');
 }
 
+async function callOpenRouterModel(model, systemPrompt, history, maxTokens, timeoutMs) {
+  const response = await fetchWithTimeout('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      'HTTP-Referer': 'https://serafino-resout.ch',
+      'X-Title': 'Serafino Résout Bot',
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...history.map((e) => ({ role: e.role, content: e.text })),
+      ],
+      max_tokens: maxTokens,
+      temperature: 0.3,
+    }),
+  }, timeoutMs);
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(data?.error?.message || `OpenRouter error ${response.status}`);
+  }
+  return String(data?.choices?.[0]?.message?.content || '').trim();
+}
+
 async function generateWithFallback(systemPrompt, history, maxTokens) {
-  // 1. OpenRouter
+  // 1. OpenRouter primary (gpt-oss-120b, fast)
   if (process.env.OPENROUTER_API_KEY) {
     try {
-      return { provider: 'openrouter', text: await withRetries(() => callOpenRouter(systemPrompt, history, maxTokens)) };
+      return { provider: 'openrouter', text: await withRetries(() => callOpenRouterModel(OPENROUTER_MODEL, systemPrompt, history, maxTokens, 5000)) };
     } catch (_) { /* fall through */ }
   }
   // 2. Gemini
@@ -457,7 +534,13 @@ async function generateWithFallback(systemPrompt, history, maxTokens) {
   }
   // 3. Groq (llama)
   if (process.env.GROQ_API_KEY) {
-    return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
+    try {
+      return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
+    } catch (_) { /* fall through */ }
+  }
+  // 4. OpenRouter fallback (nemotron, slow but high quality — only reachable if others fail fast)
+  if (process.env.OPENROUTER_API_KEY) {
+    return { provider: 'openrouter-nemotron', text: await withRetries(() => callOpenRouterModel(OPENROUTER_MODEL_FALLBACK, systemPrompt, history, maxTokens, 12000)) };
   }
 
   throw new Error('No AI provider available');
@@ -570,7 +653,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const result = await generateWithFallback(buildSystemPrompt(language, currentMemory), normalizedHistory, MAX_TOKENS);
-    const reply = truncateToSentences(result.text, 5);
+    const reply = sanitizeReply(truncateToSentences(result.text, 5));
     const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, reply);
     const userMessageCount = normalizedHistory.filter((m) => m.role === 'user').length;
     const proactiveEmail = userMessageCount === 3 && currentMemory.trim() && reply ? true : undefined;
