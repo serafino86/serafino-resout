@@ -1,42 +1,79 @@
 # Serafino Résout - Services
 
-## The three-step offer
+## The offer in one sentence
 
-### Step 1: Targeted diagnostic (free)
-- Analysis of workflows, repetitive tasks, friction points, and lost time
-- Identification of high-impact priorities
-- Deliverable: a clear diagnostic report, without jargon
-- Commitment: none, the diagnostic is offered without conditions
+A silent secretary that works 24/7, belongs entirely to the client, costs less than 3 hours of a real secretary per month, and is deployed in 24 hours.
 
-### Step 2: Simplification plan (300 CHF)
-- Formalization of a concrete action plan
-- Content: objectives, priority actions, responsibilities, deadlines, success indicators
-- Deliverable: a structured document the client can reuse even if the mission stops there
-- Standalone value: the plan has value even without implementation
-- Public example available on the website: a downloadable PDF named "Plan de simplification opérationnel" for a "Chef ONU" case. Direct link: https://serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf. It is a client-style sample after the free diagnostic, showing audit, inventory, suppliers, stock, menus, roadmap, web app evolution, and success indicators.
+---
 
-### Step 3: Implementation (from 800 CHF per standalone project, paid once)
-- Progressive deployment of solutions: organization, automation, digital tools
-- Adaptation to the real level of the client and their team
-- Result tracking: time saved, errors reduced, costs avoided, service quality
-- Full transfer to the client at the end of the mission
+## The main product: Centralina
+
+Centralina is an operational system built specifically for one business. It is not a SaaS, not a template, not a subscription. It is custom-built, deployed in 24 hours, and the client owns it fully.
+
+**What it does:**
+1. Responds to quote requests automatically — under 2 minutes
+2. Manages team scheduling — no conflicts, no coordination calls
+3. Sends each operator their daily program every morning on Telegram
+4. Updates accounting (Bexio) automatically when a client signs a quote
+5. Gives the manager a real-time dashboard from their phone
+
+→ Full details in file 10-centralina.md
+
+---
+
+## The full funnel (how clients progress)
+
+```
+[0 CHF]        Diagnostic — 45 min, 3 bottlenecks identified, no commitment
+     ↓
+[300 CHF]      Simplification plan — concrete PDF, applicable immediately
+     ↓
+[800 CHF]      Light setup — Google Workspace, basic automations (small businesses)
+     OR
+[2 500 CHF]    Centralina Standard — full system, service SMEs (24h deploy)
+     OR
+[4 500–6 000]  Centralina Pro — HORECA, advanced integrations
+     ↓
+[300–800 CHF]  Brain Updates — new modules added later
+[100 CHF/year] VPS hosting (optional)
+```
+
+The client only moves forward if they see value at each step. The free diagnostic eliminates any entry barrier.
+
+---
+
+## What the 3-month accompaniment means
+
+After Centralina is delivered:
+- **24 hours**: system installed and live
+- **2 weeks**: fixing period — bugs corrected, edge cases handled, flow refined with the real team
+- **3 months**: accompaniment to autonomy — the system adapts to how the team actually works in practice
+
+This is not a bug warranty. It is a guarantee that the system integrates into the real business, not just runs technically.
+
+---
 
 ## What Enrico builds concretely
 
-- Lightweight CRM on Google Sheets with automations (follow-ups, statuses, dashboard)
-- AI bots with a business knowledge base (like the multilingual bot built for Planeto)
+- Telegram bots (client-facing, operator-facing, manager-facing)
+- Quote generation systems (PDF, automatic)
+- Team scheduling with conflict detection
+- Real-time manager dashboards (web, mobile-accessible)
+- Bexio accounting integration
+- CRM on Google Sheets with automations
 - Operational dashboards (stock, orders, team performance)
-- Web apps connected to Excel / Google Sheets to keep all key information under control from a dashboard
-- Mobile-friendly interfaces to update the spreadsheet, assign tasks, set reminders, and track what remains to be done from a phone
-- Automations for repetitive tasks (emails, reminders, exports)
-- Lead management and commercial pipeline systems
-- Client follow-up tools (hairdresser reminders, dentist reminders, B2B follow-up)
+- Lead qualification and pipeline systems
+- Supplier management and procurement automation
+
+---
 
 ## Delivery philosophy
 
 **The final product works without Enrico.**
-This is not a subscription service or a dependency. The client receives a documented tool that they own, can modify, and that runs in their existing Google ecosystem. Enrico only comes back if the client wants to evolve it or add new features.
+No dependency. No ongoing subscription to Serafino. The client receives a documented system they own, can operate, and can evolve. Enrico only comes back if the client wants to add something new (Brain Update).
+
+---
 
 ## Guarantee
 
-Satisfied or refunded within 3 months. If within 3 months after implementation, following the agreed usage protocol, no measurable result is observed — the client is fully refunded.
+3-month accompaniment included. If after 3 months, following the agreed usage protocol, no measurable result is observed — full refund.

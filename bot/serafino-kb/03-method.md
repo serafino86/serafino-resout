@@ -1,33 +1,46 @@
 # Serafino Résout - Method
 
-## The 4 intervention steps
+## How a mission works
 
-### 1. Targeted diagnostic
-Enrico always starts by understanding the field reality before proposing a tool. He analyzes real workflows, identifies repetitive tasks, friction points, and lost time. He does not prescribe anything before understanding the problem.
+### Step 1 — Diagnostic (0 CHF, 45 minutes)
+Not a sales call. Enrico looks at how the business actually works — in person or by video.
+Identifies the 3 main bottlenecks: where time is lost, where errors happen, where the team wastes energy on avoidable manual tasks.
+Honest conclusion: either there is something concrete to do, or there isn't. No commitment either way.
 
-### 2. Simplification plan
-He formalizes a concrete action plan: what to do, in what order, and with which indicators. The plan is readable by the client, without technical jargon.
+### Step 2 — Plan or direct implementation
+Depending on what the diagnostic reveals:
+- **Simplification plan (300 CHF)**: concrete PDF with actions and indicators — useful even without implementation
+- **Light setup (800 CHF)**: for smaller needs — Google Workspace, basic automations
+- **Centralina Standard (2 500 CHF)**: full operational system — goes live in 24 hours
+- **Centralina Pro (4 500–6 000 CHF)**: for HORECA and complex businesses
 
-There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. The example is in French and is written as if delivered after the free diagnostic: client, audit, observed losses, proposed system, roadmap, measurement, and possible evolution toward a web app dashboard.
+### Step 3 — Delivery and accompaniment
+- **24 hours**: Centralina installed and live
+- **2 weeks**: fixing period — the system is refined with the real team in real conditions
+- **3 months**: accompaniment to autonomy — Serafino is available for fixes and adaptation to the actual workflow as it emerges in practice
 
-### 3. Pragmatic implementation
-Progressive deployment, adapted to the team's level. No large disruptive changes all at once. Validation at each step. Real-time adjustments.
+This 3-month period is not a warranty against bugs. It is an acknowledgement that a system on paper and a system in the field are two different things. The goal is that the team reaches full autonomy — not just that the system runs technically.
 
-If the client starts with Excel or Google Sheets, Enrico can keep that file as the operational base and build a simple web app around it. The web app can provide a dashboard, mobile updates, task assignment, reminders, and a clearer interface for non-technical users.
+After 3 months: the client is autonomous. The system belongs to them. If they want to evolve it → Brain Update.
 
-### 4. Measurement and stabilization
-Tracking of measurable results: time saved per week, errors reduced, costs avoided. Full transfer to the client with documentation. The tool belongs to the client.
+---
 
-## What differentiates the method
+## Core principles
 
-- **Field first**: Enrico spends time understanding the client's business before touching a keyboard
-- **Measurable results**: every mission starts with defined success indicators
-- **Client autonomy**: the goal is for the client to no longer need Enrico to run the tool
-- **Existing ecosystem**: Enrico mainly works with Google Workspace (Sheets, Forms, Apps Script, Gmail), which clients already have - no new software to learn, no migration
+**The system adapts to you — never the other way around.**
+Serafino starts by understanding how the client actually works, then builds around that. He does not impose a new workflow. He asks: "Show me what you do every day." Then he builds something that fits into that reality, not a generic template.
 
-## What Serafino Résout does NOT do
+**No dependency on Serafino after delivery.**
+The client must be able to run the system without calling Serafino every week. All systems are documented. The client's team is trained. The system is designed to be understood, not just used.
 
-- Does not sell subscriptions or permanent dependencies
-- Does not offer generic turnkey solutions without a diagnostic first
-- Does not work on more than 3-4 projects at the same time, to protect quality
-- Does not take projects where the client is not involved in defining the problem
+**Measurable result or refund.**
+If after 3 months of accompaniment, following the agreed protocol, no measurable result is observed — full refund. No ambiguity.
+
+---
+
+## What Serafino does NOT do
+
+- Does not sell subscriptions or monthly services (except Brain Updates on demand)
+- Does not build systems that require Serafino to run them
+- Does not take projects where the client is not willing to participate in defining the problem
+- Does not pretend a project is a good fit when it is not

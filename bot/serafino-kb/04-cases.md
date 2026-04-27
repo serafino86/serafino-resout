@@ -1,66 +1,77 @@
 # Serafino Résout - Real cases
 
-## Case 1 - Planeto (energy scale-up, Switzerland/UK/Italy)
+## Case 1 — Service SME, Geneva (Centralina Standard, Q1 2026)
 
-**Context:** Planeto SA is a Swiss startup specialized in planning thermal networks (5G DHC). Founded by Stefano Cozza and Jonathan Chambers, it had a prospect base scattered across Europe but no system to prioritize, contact, or track them.
+**Context:** Geneva-based service company (cleaning sector). Manual operations: quotes on WhatsApp, paper scheduling, manual accounting entry.
 
-**Problem:** No structured CRM. Hundreds of unqualified prospects in scattered spreadsheets. The team was losing time on irrelevant contacts and had no clear view of the commercial pipeline.
+**The problem:**
+- Quotes took 15–20 minutes each, done by hand on WhatsApp
+- Planning on paper — conflicts every week, operators calling to check their schedule
+- Accounting: manual entry after every job
+- Manager had no real-time visibility — had to call operators to know the situation
 
-**What Enrico delivered:**
-- Automatic lead scraping and enrichment system (CH, UK, IT)
-- Base of 756 high-priority leads identified from about 1785 UK contacts + about 396 CH contacts
-- Full CRM on Google Sheets with automatic synchronization, statuses, pipeline, dashboard
-- Multilingual AI bot (FR/EN/DE/IT) with the Planeto knowledge base, delivered as plug-and-play on a USB key
-- Follow-up and tracking automations
+**What Centralina delivered:**
+- Automatic quote bot via Telegram — client sends a message, Centralina collects info, sends PDF quote in under 2 minutes
+- Automatic team scheduling — conflicts detected before they happen
+- Morning briefing: each operator receives their day's program on Telegram every morning
+- Bexio integration: accounting updated automatically when client signs quote
+- Manager dashboard: real-time view from phone, 24/7
 
-**Impact:** The Planeto team can now focus on high-potential human conversations without spending hours manually sorting and qualifying contacts. The system runs without continuous technical intervention.
+**Timeline:**
+- System installed and live: 24 hours
+- Fixing and refinement: 2 weeks
+- Accompaniment to autonomy: 3 months included
+
+**Cost:** 2 500 CHF one-time + 100 CHF/year hosting
+**ROI:** reached by month 3
 
 ---
 
-## Case 2 - Palais des Nations (UN canteen, Geneva)
+## Case 2 — Palais des Nations, Geneva (kitchen management system)
 
-**Context:** Enrico worked as chef at the Palais des Nations (United Nations headquarters in Geneva). A large portion of his working time was consumed by repetitive tasks outside the kitchen: manual inventory, supplier offer analysis, and menu planning.
+**Context:** Enrico worked as chef at the Palais des Nations (UN headquarters in Geneva). 250+ meals per service. A large portion of working time was consumed by repetitive administrative tasks outside the kitchen.
 
-**Problem:**
-- Manual inventory: 2h per session, done weekly = up to 8h/month lost, one person immobilized
-- Supplier analysis: 2–3h/week comparing Excel price lists, checking seasonality, estimating food cost
-- Menu planning: several additional hours per week building menus from scratch
+**The problem:**
+- Manual inventory: 2h per session, weekly = up to 8h/month lost
+- Supplier analysis: 2–3h/week comparing Excel price lists manually
+- Menu planning: several hours per week from scratch
 
-**What Enrico built (for himself):**
-- **Voice inventory:** dictated products in the cold room, the system recognized his personal units (e.g. "un sac" = 2.5 kg) and updated the stock database automatically. Incoming deliveries (delivery notes, invoices) were also entered to track movements.
-- **Supplier offer analysis:** supplier Excel files received by email were automatically filtered by seasonality and price. The system produced an optimized shopping list with food cost projection.
-- **Menu assistant:** based on real stock and season, the system proposed weekly menu structures in Enrico's own format — ready to refine and send via WhatsApp.
+**What Enrico built (for himself, as the user):**
+- Voice inventory: dictated products, system recognized personal units ("un sac" = 2.5 kg) and updated stock automatically. Delivery notes and invoices processed to track movements.
+- Supplier analysis: supplier Excel files received by email automatically filtered by seasonality and price → optimized shopping list with food cost projection
+- Menu assistant: based on real stock and season, proposed weekly menus in Enrico's format — ready to refine and send via WhatsApp
 
-**Key differentiator:** The system was built around Enrico's vocabulary, habits, and way of working — not the other way around. "Un sac" meant 2.5 kg because that is how Enrico thinks. He did not adapt to the tool. The tool learned to work like him. This is the core principle behind all systems Enrico builds for clients.
+**Key principle illustrated:** The system was built around how Enrico actually worked — his vocabulary, his units, his habits. "Un sac" meant 2.5 kg because that is how he thought. He did not adapt to the tool. The tool learned to work like him. **This is the core principle behind every system Serafino builds for clients.**
 
 **Impact:**
-- Inventory: from 2h/week to a few minutes of dictation — same precision, fraction of the time
-- Supplier analysis: fully automated, zero manual calculation
-- Menu planning: proposals generated in minutes instead of hours
-- Total: several hours recovered every week, with no loss of quality or control
+- Inventory: from 2h/week → a few minutes of dictation
+- Supplier analysis: fully automated
+- Menu planning: minutes instead of hours
 
 ---
 
-## Case 3 - NGC Alliance Hub (200+ member community)
+## Case 3 — Planeto (lead pipeline, Switzerland/UK/Italy)
 
-**Problem:** Scattered information, tedious manual tracking, slow decisions. Coordination between members and responsible people took too much time and lacked traceability.
+**Context:** Swiss energy startup (thermal network planning, 5G DHC). Hundreds of unqualified prospects in scattered spreadsheets across Europe. No CRM, no tracking system.
 
 **What Enrico delivered:**
-- Centralized dashboard with real-time tracking
-- Automatic prioritization of high-value actions
-- Coordination system that works without continuous manual intervention
+- Automatic lead scraping and enrichment (CH, UK, IT)
+- 756 high-priority leads identified from ~1 785 UK contacts + ~396 CH contacts
+- Full CRM on Google Sheets: automatic sync, statuses, pipeline, dashboard
+- Multilingual AI bot (FR/EN/DE/IT) with Planeto knowledge base
 
-**Impact:** Faster coordination, better decision quality, recurring time savings for the people in charge.
+**Impact:** Team focused on high-potential conversations without manual sorting. System runs without continuous intervention.
 
 ---
 
-## Case 4 - Administrative digitalization (SME)
+## How to use cases in conversation
 
-**Problem:** Repetitive re-entry tasks, weak traceability, frequent errors. Staff were losing hours per week on avoidable manual processes.
+When a prospect describes their problem, connect it to the relevant case:
 
-**What Enrico delivered:**
-- Targeted automation of administrative flows
-- Clear document structure in the existing Google ecosystem
-- Simplified flow with automatic validation
+- **"On fait tout sur WhatsApp"** → Case 1 (service SME) — quotes 15–20 min → under 2 min
+- **"Mon équipe ne sait pas ce qu'ils font le matin"** → Case 1 — morning briefing on Telegram
+- **"Je dois tout ressaisir à la main"** → Case 1 — Bexio auto-update at signature
+- **"Je perds des heures en inventaire / planification"** → Case 2 (Palais des Nations)
+- **"J'ai des leads mais pas de suivi"** → Case 3 (Planeto CRM)
 
-**Impact:** Estimated recurring time savings, reduced error risk, no new tool to learn.
+Always use specific numbers when available. Never invent numbers.

@@ -1,134 +1,74 @@
-# FAQ - Key questions by visitor type
+# Serafino Résout - FAQ
 
-## UNDERSTANDING THE OFFER
+## About Centralina
 
-**Q: Concretely, what do you do?**
-I spend time inside your activity to understand where you are losing time and money. Then I build the tool or process that solves it: CRM, automation, AI bot, dashboard. And I deliver it so it can run without me.
+**Q: What exactly is Centralina?**
+A: An operational system built specifically for one business — not a SaaS, not a template. It handles quotes automatically, schedules the team, sends daily briefings to each operator on Telegram, and updates accounting (Bexio) when a client signs. The manager sees everything in real-time from their phone. You own it entirely, no monthly subscription.
+
+**Q: How long does it take to deploy?**
+A: 24 hours for installation. 2 weeks of fixing with the real team. 3 months of accompaniment where I adapt the system to how the team actually works in practice.
+
+**Q: Do my team members need to learn new software?**
+A: No. Operators use Telegram — already on their phones. The manager uses a web interface. Nothing to install, no training sessions.
+
+**Q: What if my team doesn't use Telegram?**
+A: Telegram is free, takes 2 minutes to install, and works on any phone. In practice this has never been a blocker.
+
+**Q: Is Centralina connected to my accounting?**
+A: Yes — Bexio by default. When a client signs a quote, Bexio is updated automatically. Other integrations possible in Pro version.
+
+**Q: Can I see what my team is doing right now?**
+A: Yes. Manager dashboard, real-time, accessible from your phone or computer.
+
+**Q: What if something breaks?**
+A: 2-week fixing period after deploy, then 3 months of accompaniment included. After 3 months, Brain Updates on demand. In practice the system is stable — it runs on a VPS with monitoring.
+
+**Q: How much does it cost exactly?**
+A: Centralina Standard: 2 500 CHF one-time. Centralina Pro (HORECA, advanced): 4 500–6 000 CHF. VPS hosting: 100 CHF/year optional. No other costs.
+
+**Q: Is there a real example I can look at?**
+A: Yes. A Geneva service company has been running Centralina since Q1 2026. Before: quotes by hand on WhatsApp (15–20 min each), paper planning with weekly conflicts. After: automatic quotes in under 2 min, zero planning conflicts, automatic accounting. ROI reached at month 3.
+
+---
+
+## About the offer in general
 
 **Q: Can I see an example of the simplification plan before paying 300 CHF?**
-Yes. There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. Direct link: https://serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf. It shows the kind of client-facing document Serafino can deliver after the free diagnostic: audit, concrete problems, proposed actions, roadmap, measurement, and possible evolution toward a web app dashboard.
+A: Yes. A sample is available on the website: serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf — a real client-style plan showing audit, priorities, and roadmap.
 
-**Q: What is the difference between you and a freelance developer?**
-A freelance developer codes what they are asked to code. I start by understanding the field problem. Often the real problem is not the one people think it is. I had 11 years of operational experience before learning to code.
+**Q: How is Serafino different from an agency?**
+A: An agency builds something generic for 10–15k CHF, by someone who has never worked in the field. Serafino builds specifically for your workflow, at 2 500–6 000 CHF, and stays for 3 months to make sure it actually works in practice. You own the result — no dependency, no subscription.
 
-**Q: What about compared with a web agency?**
-An agency builds you a site or app for 10-15K CHF, often by someone who has never lived the operational side. I build what you actually need, in the ecosystem you already have, for 10 to 20 times less.
+**Q: How is Serafino different from a SaaS tool?**
+A: SaaS gives you 200 features you adapt yourself to. Serafino builds exactly what you need, in 24 hours, and adapts to how you work — not the other way around. And you pay once.
 
-**Q: What exactly do you do during implementation?**
-I build the tool and teach you how to use it. I make sure it really works in your context, not only in a demo. And I transfer everything to you: access, documentation, logic.
+**Q: Can I stop after the free diagnostic?**
+A: Yes. The diagnostic is free and there is no commitment. Enrico gives an honest assessment — if there is nothing concrete to do, he will say so.
 
-**Q: You mention an "AI bot" — what is that concretely?**
-A conversational assistant that knows your activity. Like the bot you are using now, but with your own knowledge inside. Planeto did this — their bot is multilingual and integrated on their official site.
+**Q: Can I stop after the 300 CHF plan?**
+A: Yes. Many clients implement parts of it themselves. The plan has standalone value.
 
----
-
-## RESTAURANT / HORECA
-
-**Q: I run a restaurant. I spend hours on staff schedules and Excel tables.**
-This is exactly the kind of problem I solve. An automated schedule, WhatsApp reminders, an availability system — it can save you 3-4 hours per week. I start with a free 30-minute diagnostic.
-
-**Q: My supplier orders are chaotic — I forget things or order duplicates.**
-A standardized ordering system with a Sheets template, automatic stock alerts, and visible order history. Simple to build, simple to use.
-
-**Q: Can this become a web app instead of only an Excel or Google Sheet?**
-Yes. The spreadsheet can remain the data base, while a simple web app becomes the cockpit: dashboard, stock view, supplier orders, tasks, reminders, and mobile updates. The point is not to replace the file for the sake of it, but to make it easier to control and update from a phone or computer.
+**Q: What if it doesn't work?**
+A: If after 3 months of accompaniment, following the agreed protocol, no measurable result is observed — full refund.
 
 ---
 
-## CRM AND COMMERCIAL MANAGEMENT
+## Sector-specific questions
 
-**Q: I have a list of 300 prospects in an Excel file. I do not know where to start.**
-A lightweight CRM on Google Sheets with a simple scoring system can turn that list into an actionable pipeline. I did this for Planeto: 756 high-priority leads extracted from a much larger base.
+**Q: I run a restaurant — can Centralina handle my specific needs?**
+A: Centralina Pro is built for HORECA. Modules available: team scheduling by brigade, supplier orders, menu planning, daily specials management, table reservations, event management. The base is the same as Standard — the Pro version adds HORECA-specific modules.
 
-**Q: How many leads did Planeto actually get from this work?**
-For Planeto, the concrete result was 756 high-priority leads identified from a larger prospect base, notably about 1785 UK contacts and about 396 CH contacts. The important point is not a vanity volume number, but the fact that the list became usable: prioritized, structured, and ready for follow-up inside a working CRM.
+**Q: I'm a craftsman — is it too complex for me?**
+A: Start with the free diagnostic. For smaller needs, the 800 CHF light setup (Google Workspace + automations) is often the right fit. Centralina is for businesses with a recurring quote and scheduling problem — if that's you, it fits.
 
-**Q: I am a consultant. I lose track of prospects and follow up too late.**
-A CRM with automatic reminders in Google Calendar or by email, fed by a Sheet you update in 2 minutes after each exchange.
+**Q: I already use a quote software — why change?**
+A: If it works, don't change. If you're still spending 15–20 minutes per quote or your team still has planning conflicts — there is a problem worth solving. The diagnostic will tell you honestly.
 
----
+**Q: I have a commercial pipeline but no tracking**
+A: A CRM with statuses, pipeline, and automatic follow-ups — that's a Brain Update or light setup depending on complexity. Real example: Planeto, 756 qualified leads extracted and tracked from scattered European data.
 
-## ADMINISTRATION AND INTERNAL PROCESSES
+**Q: My team doesn't know what they need to do each morning**
+A: That's exactly what the Centralina morning briefing solves. Each operator receives their day's schedule on Telegram automatically, every morning at a set time. No calls, no paper, no confusion.
 
-**Q: My invoices are always late because I forget to send them.**
-A semi-automatic invoicing system: you validate, the script generates and sends the PDF invoice. With automatic follow-up if unpaid at D+30.
-
-**Q: My law firm / clinic / studio has scattered case tracking.**
-A shared tracking table with statuses, deadlines, responsibilities, and alerts. In your existing Google ecosystem — nothing new to learn.
-
----
-
-## DOUBTS AND OBJECTIONS
-
-**Q: I already tried a CRM (HubSpot, Salesforce). The team does not use it.**
-This is the classic mistake: imposing a tool nobody understands. I build in Google Sheets — your team already knows it, nothing to learn. Exactly what they need, not 200 features they will never use.
-
-**Q: I am not sure this is the right time. We are overloaded right now.**
-That is often the best time, paradoxically. The diagnostic takes 30 minutes. It can reveal where the most energy is being lost — and sometimes it changes priorities.
-
-**Q: Our problems are too specific. I do not think they can be digitalized.**
-That is what most clients think before the diagnostic. Afterward, we often realize that 80% of the problem comes from 2-3 repetitive tasks that can be automated.
-
-**Q: We do not have budget for this.**
-The diagnostic is free. The plan costs 300 CHF. If within 3 months, following the agreed usage protocol, no measurable result is observed — you are fully refunded. The financial risk is almost zero.
-
-**Q: It will work for a while and then you leave and it stops.**
-I document everything, train you, and the tool belongs to you — not to me. My goal is for you to no longer need me to run it.
-
-**Q: How long does it take to see results?**
-For simple automations, often from the first week. For more complex projects, we define success indicators at the start. If within 3 months, following the agreed usage protocol, nothing measurable is observed — you are fully refunded.
-
-**Q: I am afraid it will be too complicated for my team.**
-I build for your team, not for myself: simple interface, short documentation, training included.
-
-**Q: My accountant or IT person says they can do it. Why pay you?**
-Maybe they can — if true, it is the best option. What I bring: I understand the operational business, I deliver fast, and I focus on the field problem — not on general IT priorities.
-
-**Q: What if needs change after implementation?**
-We plan for it from the start: the tool is built to be modifiable. If you need an evolution, it is a new mission. No hidden subscription.
-
----
-
-## STARTUP AND SCALE-UP
-
-**Q: We are an 8-person startup with a commercial tracking problem but no Sales Ops budget.**
-That is exactly the gap I fill. A lightweight CRM, clear processes, targeted automations — without hiring someone full-time.
-
-**Q: We want an AI bot to answer frequent prospect questions. Is this possible without a huge tech budget?**
-Yes. This is what I delivered to Planeto. A multilingual bot with their knowledge base, delivered turnkey. Well below custom development costs.
-
----
-
-## LIBERAL PROFESSIONS
-
-**Q: I am a physiotherapist. Last-minute cancellations cost me money.**
-An automatic reminder system and a clear cancellation policy can reduce cancellations by 30-50%. I build the reminder system; you define the policy.
-
-**Q: I am a notary / architect / therapist. My files and notes are scattered.**
-A structured tracking or note system in Google Drive, with templates and easier search. Simple, in your existing account.
-
----
-
-## QUESTIONS ABOUT ENRICO AND THE METHOD
-
-**Q: You did not go to business school. How can you understand my business problems?**
-11 years in restaurant field work as chef de cuisine and restaurant owner — managing teams, stocks, schedules, suppliers, real-time crises up to 250 meals per service. That is my business training. I have lived SME problems.
-
-**Q: You cannot do everything alone. Do your projects have limits?**
-Yes. I work on a maximum of 3-4 projects at the same time. If I am at capacity, I say it clearly rather than accepting and delivering badly.
-
-**Q: Why not simply use a SaaS like Monday or Notion?**
-If a standard SaaS solves your problem, take it. But 80% of my clients already tried a generic SaaS that did not adapt to their specific business and that nobody really used.
-
----
-
-## GETTING IN TOUCH
-
-**Q: Where should we start?**
-The diagnostic is free and without commitment. We meet for 30 minutes, I ask questions about your activity, and I give you a clear report on the priorities. Then you decide.
-
-**Q: How long does the diagnostic take?**
-30 minutes of conversation, then a few days for a written report. Without commitment from your side.
-
-**Q: Do you work remotely or in person?**
-Both. For HORECA especially, I prefer to start in person — seeing the field makes a real difference. Most missions then happen remotely.
+**Q: I lose hours on inventory / supplier management**
+A: Real case: at the Palais des Nations, inventory went from 2h/week to a few minutes of dictation. Supplier offer analysis went from 2–3h/week to fully automated. These are solvable problems.
