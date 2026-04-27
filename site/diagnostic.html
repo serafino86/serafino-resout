@@ -332,6 +332,8 @@
     .bot-hint.is-visible{opacity:1;pointer-events:auto;transform:none}
     .bot-hint::after{content:'';position:absolute;bottom:-7px;right:18px;width:12px;height:7px;background:#222019;clip-path:polygon(0 0,100% 0,50% 100%)}
     .bot-fab{position:fixed;bottom:24px;right:24px;z-index:1000;width:52px;height:52px;border-radius:50%;background:#c9a84c;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:transform 0.2s}
+    .bot-fab { overflow: hidden; padding: 0; }
+    .bot-fab img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     .bot-fab:hover{transform:scale(1.08)}
     .bot-fab.hint-active{animation:botPulse 1.8s ease-out 2}
     .bot-popup{position:fixed;bottom:88px;right:24px;z-index:1001;width:360px;height:520px;background:#1a1917;border:1px solid rgba(201,168,76,0.2);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transform:translateY(12px) scale(0.97);transition:opacity 0.25s,transform 0.25s}
@@ -616,7 +618,9 @@
 
   <!-- BOT WIDGET -->
   <div class="bot-hint" id="botHint">Vous avez une question sur le diagnostic ? Le bot répond.</div>
-  <button class="bot-fab" id="botFab" aria-label="Assistant Serafino">💬</button>
+  <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant Serafino" aria-expanded="false">
+  <img src="./assets/photos/avatar.png" alt="Serafino" loading="lazy" onerror="this.style.display='none'" />
+</button>
   <div class="bot-scrim" id="botScrim"></div>
   <div class="bot-popup" id="botPopup" role="dialog" aria-label="Assistant Serafino">
     <div class="bot-popup-header">
