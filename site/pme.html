@@ -34,7 +34,7 @@
   <style>
     :root {
       --bg:#0f0e0d;--surface:#1a1917;--surface2:#222019;--text:#f0ece4;
-      --muted:#7a7468;--subtle:#38362f;--accent:#c9a84c;
+      --muted:#8c8378;--subtle:#38362f;--accent:#c9a84c;
       --accent-dim:rgba(201,168,76,0.08);--line:rgba(240,236,228,0.07);
       --line-strong:rgba(240,236,228,0.14);--ease:cubic-bezier(0.25,0,0,1);
       --font-d:'Cormorant Garamond',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
@@ -122,8 +122,8 @@
     .bot-header-name{font-size:12px;color:#f0ece4;font-weight:500;line-height:1.2;font-family:'DM Sans',system-ui,sans-serif}
     .bot-header-status{display:flex;align-items:center;gap:5px}
     .bot-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
-    .bot-status-label{font-size:10px;color:#7a7468;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#7a7468;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-status-label{font-size:10px;color:#8c8378;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#8c8378;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
     .bot-close:hover{border-color:#c9a84c;color:#c9a84c}
     .bot-popup-frame{flex:1;border:none;width:100%}
     .bot-popup-scrim{position:fixed;inset:0;z-index:799;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.25s}
@@ -199,7 +199,7 @@
     <div class="offer-strip">
       <div class="os-item"><span class="os-price">Gratuit</span><span class="os-name">Premier échange</span><span class="os-desc">30 min pour clarifier la situation et voir si une intervention a du sens</span></div>
       <div class="os-item"><span class="os-price">300 CHF</span><span class="os-name">Plan de simplification</span><span class="os-desc">Diagnostic terrain + plan d'action priorisé, livré par écrit</span></div>
-      <div class="os-item"><span class="os-price">dès 800 CHF</span><span class="os-name">Mise en place</span><span class="os-desc">Déploiement complet, documenté, garanti — payé une fois, sans abonnement</span></div>
+      <div class="os-item"><span class="os-price">dès 2 500 CHF</span><span class="os-name">Mise en place</span><span class="os-desc">Déploiement complet, documenté, garanti — payé une fois, sans abonnement</span></div>
     </div>
   </section>
 
@@ -250,7 +250,7 @@
       const fab=document.getElementById('botFab'),popup=document.getElementById('botPopup'),
         scrim=document.getElementById('botScrim'),frame=document.getElementById('botFrame'),
         close=document.getElementById('botClose'),hint=document.getElementById('botHint'),
-        URL='https://serafino-bot.vercel.app';
+        URL='https://bot.serafino-resout.ch';
       let open=false,loaded=false;
       function showHint(){if(open||!hint)return;hint.classList.add('is-visible');fab.classList.add('hint-active');setTimeout(()=>{hint.classList.remove('is-visible');fab.classList.remove('hint-active');},4000);}
       setTimeout(showHint,4000);

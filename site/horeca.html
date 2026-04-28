@@ -34,7 +34,7 @@
   <style>
     :root {
       --bg:#0f0e0d;--surface:#1a1917;--surface2:#222019;--text:#f0ece4;
-      --muted:#7a7468;--subtle:#38362f;--accent:#c9a84c;
+      --muted:#8c8378;--subtle:#38362f;--accent:#c9a84c;
       --accent-dim:rgba(201,168,76,0.08);--line:rgba(240,236,228,0.07);
       --line-strong:rgba(240,236,228,0.14);--ease:cubic-bezier(0.25,0,0,1);
       --font-d:'Cormorant Garamond',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
@@ -78,6 +78,29 @@
     .r-cell p{font-size:0.8rem}
     .credential{background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:32px 40px;margin-top:40px;border-left:3px solid var(--accent)}
     .credential p{font-size:0.92rem;line-height:1.7}
+    .screens-block{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
+    .screen-item{background:var(--surface2);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+    .screen-item img{width:100%;height:auto;display:block}
+    .screen-caption{padding:14px 18px;font-size:0.8rem;color:var(--muted);line-height:1.5}
+    .screen-caption strong{color:rgba(240,236,228,0.75);font-weight:500;display:block;margin-bottom:4px}
+    .ba-block{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:32px}
+    .ba-col{background:var(--surface);padding:28px 32px}
+    .ba-col.apres{background:var(--surface2)}
+    .ba-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block}
+    .ba-col.apres .ba-label{color:var(--accent)}
+    .ba-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .ba-col ul li{font-size:0.88rem;color:rgba(240,236,228,0.8);padding-left:16px;position:relative;line-height:1.5}
+    .ba-col ul li::before{content:'—';position:absolute;left:0;color:var(--subtle);font-size:0.8rem}
+    .ba-col.apres ul li::before{content:'→';color:var(--accent)}
+    .case-narrative{margin:28px 0;padding:24px 28px;background:var(--surface);border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
+    .case-narrative p{font-size:0.92rem;line-height:1.75;margin-bottom:12px}
+    .case-narrative p:last-child{margin-bottom:0}
+    .case-callout{font-style:italic;color:rgba(240,236,228,0.7)!important;font-size:0.88rem!important}
+    .feature-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:24px}
+    .feat-card{background:var(--surface);padding:24px}
+    .feat-card h3{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--accent);margin-bottom:6px}
+    .feat-card p{font-size:0.84rem;line-height:1.55}
+    @media(max-width:600px){.screens-block{grid-template-columns:1fr}.ba-block{grid-template-columns:1fr}.feature-cards{grid-template-columns:1fr 1fr}}
     .cta-section{max-width:960px;margin:0 auto;padding:96px 48px;text-align:center}
     .cta-section h2{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.2;color:var(--text);margin-bottom:20px}
     .cta-section>p{max-width:560px;margin:0 auto 36px}
@@ -115,8 +138,8 @@
     .bot-header-name{font-size:12px;color:#f0ece4;font-weight:500;line-height:1.2;font-family:'DM Sans',system-ui,sans-serif}
     .bot-header-status{display:flex;align-items:center;gap:5px}
     .bot-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
-    .bot-status-label{font-size:10px;color:#7a7468;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#7a7468;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-status-label{font-size:10px;color:#8c8378;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#8c8378;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
     .bot-close:hover{border-color:#c9a84c;color:#c9a84c}
     .bot-popup-frame{flex:1;border:none;width:100%}
     .bot-popup-scrim{position:fixed;inset:0;z-index:799;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.25s}
@@ -189,6 +212,105 @@
     </div>
   </section>
 
+  <section class="section fade-up">
+    <div class="section-head">
+      <span class="eyebrow">Cas réel — Restauration institutionnelle</span>
+      <h2>Cantine DGE, Palais des Nations : quand le système apprend à travailler comme toi.</h2>
+    </div>
+    <div class="results-bar" style="margin-bottom:32px">
+      <div class="r-cell"><span class="stat">8h→30min</span><span class="label">Inventaire mensuel</span><p>Dictée vocale remplace le carnet physique — même précision, fraction du temps</p></div>
+      <div class="r-cell"><span class="stat">250</span><span class="label">Repas par service</span><p>Volume géré quotidiennement — le système construit sous contrainte réelle</p></div>
+      <div class="r-cell"><span class="stat">0</span><span class="label">Calcul manuel</span><p>Fournisseurs, saisonnalité, food cost — tout automatisé</p></div>
+      <div class="r-cell"><span class="stat">5 outils</span><span class="label">Modules livrés</span><p>Inventaire, menus, dispensa, commandes, assistant IA cuisine</p></div>
+    </div>
+
+    <div class="ba-block">
+      <div class="ba-col">
+        <span class="ba-label">Avant</span>
+        <ul>
+          <li>Inventaire au carnet physique — puis ressaisie manuelle</li>
+          <li>Menus planifiés à la main, sans visibilité sur le stock réel</li>
+          <li>Commandes fournisseurs estimées de tête — surstock ou ruptures</li>
+          <li>Food cost calculé une fois par mois, souvent en retard</li>
+          <li>Aucun historique exploitable — chaque semaine recommence à zéro</li>
+        </ul>
+      </div>
+      <div class="ba-col apres">
+        <span class="ba-label">Après</span>
+        <ul>
+          <li>Dictée vocale dans le frigo — stock mis à jour en temps réel</li>
+          <li>Menus proposés par l'IA sur la base du stock et de la saisonnalité</li>
+          <li>Commandes calculées automatiquement selon consommation réelle</li>
+          <li>Food cost visible à tout moment, par plat et par service</li>
+          <li>Historique complet — l'outil apprend et s'améliore chaque semaine</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="case-narrative">
+      <p>En tant que chef au Palais des Nations, je gérais jusqu'à 250 repas par service avec une brigade réduite. L'inventaire prenait une demi-journée chaque mois — carnet physique, ressaisie tableur, calculs à la main. Les erreurs coûtaient cher : surstock sur des produits frais, ruptures sur les jours de forte demande.</p>
+      <p>J'ai construit ce système pour moi d'abord. Pas une idée théorique — une réponse à un problème réel, dans une cuisine réelle, sous contrainte réelle. La dictée vocale dans la dispensa : tu parles en marchant entre les étagères, le stock se met à jour. Les menus de la semaine : l'IA propose sur la base de ce que tu as, de la saison, des préférences relevées. Les commandes : générées automatiquement, tu valides ou tu ajustes.</p>
+      <p class="case-callout">Ce que j'ai appris en construisant ça : un outil de cuisine doit fonctionner avec le langage du cuisinier, pas l'inverse. Pas de formulaires. Pas de catégories imposées. Le système s'adapte à ta façon de travailler.</p>
+    </div>
+
+    <div class="screens-block">
+      <div class="screen-item">
+        <img src="./assets/screens/mensa-settimana.png" loading="lazy" alt="Cantine DGE — planification menu semaine" />
+        <div class="screen-caption">
+          <strong>Planification menu semaine</strong>
+          Vue calendaire lundi–vendredi : antipasti, primi, secondi, contorni, dessert. Proposition IA + sauvegarde en un clic.
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="./assets/screens/mensa-dispensa.png" loading="lazy" alt="Cantine DGE — dispensa et inventaire" />
+        <div class="screen-caption">
+          <strong>Dispensa &amp; inventaire</strong>
+          Stock en temps réel, alertes seuil, historique — sans carnet physique ni tableur.
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="./assets/screens/restaurant-dashboard-produits.png" loading="lazy" alt="Dashboard ristorante — gestion produits" />
+        <div class="screen-caption">
+          <strong>Gestion produits &amp; disponibilité</strong>
+          Catalogue par catégorie avec disponibilité hebdomadaire configurable. Tarifs CHF inclus.
+        </div>
+      </div>
+      <div class="screen-item">
+        <img src="./assets/screens/IMG_2330.jpg" loading="lazy" alt="Dashboard ristorante — commandes du jour" />
+        <div class="screen-caption">
+          <strong>Commandes du jour</strong>
+          Vue opérationnelle : ordini oggi par service (pranzo/cena), auto-refresh, impression directe.
+        </div>
+      </div>
+      <div class="screen-item" style="grid-column:span 2">
+        <img src="./assets/screens/captain-slow-cook.png" loading="lazy" alt="Captain Slow-Cook — assistant IA cuisine" style="max-width:480px;margin:0 auto;display:block" />
+        <div class="screen-caption" style="max-width:480px;margin:12px auto 0">
+          <strong>Assistant IA cuisine — Captain Slow-Cook</strong>
+          Bot Claude spécialisé basse température et techniques culinaires avancées. Construit sur la base de connaissance du chef, répond avec ses mots.
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-cards">
+      <div class="feat-card">
+        <h3>8h → 30 min</h3>
+        <p>L'inventaire mensuel complet passe de demi-journée à 30 minutes — dictée vocale, zéro ressaisie, même précision.</p>
+      </div>
+      <div class="feat-card">
+        <h3>Zéro calcul manuel</h3>
+        <p>Food cost, quantités commandes, saisonnalité — tout calculé automatiquement sur la base du stock et de l'historique.</p>
+      </div>
+      <div class="feat-card">
+        <h3>Menus en quelques minutes</h3>
+        <p>L'IA propose la semaine sur la base de ce que tu as en stock, de la saison, et des plats qui ont bien fonctionné.</p>
+      </div>
+      <div class="feat-card">
+        <h3>Construit sur ton langage</h3>
+        <p>Pas de formulaires imposés. Le système s'adapte à ta façon de nommer les produits, tes habitudes, ton flux.</p>
+      </div>
+    </div>
+  </section>
+
   <div class="cta-section fade-up">
     <span class="eyebrow">Premier échange gratuit</span>
     <h2>30 minutes pour voir ce qui peut changer dans votre cuisine.</h2>
@@ -208,7 +330,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p>© 2026 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
     <p><a href="./index.html">serafino-resout.ch</a></p>
   </footer>
   <div class="bot-hint" id="botHint">Une question sur votre restaurant ? Le bot répond.</div>
@@ -236,7 +358,7 @@
       const fab=document.getElementById('botFab'),popup=document.getElementById('botPopup'),
         scrim=document.getElementById('botScrim'),frame=document.getElementById('botFrame'),
         close=document.getElementById('botClose'),hint=document.getElementById('botHint'),
-        URL='https://serafino-bot.vercel.app';
+        URL='https://bot.serafino-resout.ch';
       let open=false,loaded=false;
       function showHint(){if(open||!hint)return;hint.classList.add('is-visible');fab.classList.add('hint-active');setTimeout(()=>{hint.classList.remove('is-visible');fab.classList.remove('hint-active');},4000);}
       setTimeout(showHint,4000);

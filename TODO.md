@@ -1,106 +1,5 @@
 # TODO — serafino-resout-site
-## Aggiornato: 27 aprile 2026, sera
-
----
-
-## PRIORITA IMMEDIATA (riprendere tra 5h)
-
-### A. Fix FAB bot button — avatar mancante
-**Problema**: index.html (VPS commit 48a3e66) usa `💬` emoji sul bottone floating.
-Versione vecchia (commit 1af624e, righe 1766–1768) aveva avatar con immagine.
-
-**CSS che manca nel merged index.html** (era in 1af624e, righe 963–978):
-```css
-.bot-fab-icon {
-  width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
-}
-.bot-fab-icon img { width: 100%; height: 100%; object-fit: cover; }
-.bot-fab-label { font-size: 13px; color: rgba(240,236,228,0.8); white-space: nowrap; }
-```
-
-**HTML che manca** (sostituire il `<button class="bot-fab">💬</button>` attuale):
-```html
-<button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant Serafino" aria-expanded="false">
-  <span class="bot-fab-icon">
-    <img src="./assets/photos/avatar.png" alt="Serafino" loading="lazy" onerror="this.src='./assets/photos/LA_NOCE_Enrico_v.jpg'" />
-  </span>
-</button>
-```
-
-**File da aggiornare** (VPS + tutte le pagine secondarie):
-- `site/index.html` (VPS 48a3e66)
-- `site/app-sur-mesure.html`
-- `site/artisans.html`
-- `site/automatisation.html`
-- `site/bot-personalise.html`
-- `site/diagnostic.html`
-- `site/geneve.html`
-- `site/horeca.html`
-- `site/pme.html`
-
----
-
-### B. Ripristinare mail feature nel bot
-**Problema**: `serafino-bot.vercel.app` serve versione vecchia (543 righe, senza mail).
-`git HEAD` ha la versione giusta (762 righe, con `prepareMail`).
-**Working tree locale** `bot/bot.html` (526 righe) è modificato/degradato — NON committare.
-
-**Piano**:
-1. Ripristinare `bot/bot.html` da git HEAD: `git checkout HEAD -- bot/bot.html`
-2. Verificare che la working tree ora abbia mail feature
-3. Verificare che `bot/api/chat.js` abbia l'endpoint `prepareMail` funzionante
-4. Commit + push → verificare se Vercel auto-deploya
-5. Se Vercel non deploya → indagare (link branch? progetto diverso?)
-
-**Come funziona la mail feature** (in git HEAD):
-- Bottone "Préparer un mail" in `bot.html`
-- Al click → chiama `/api/chat` con `{ action: 'prepareMail' }`
-- API genera riassunto conversazione + mailto precompilato
-- Bottone "Ouvrir le mail" → apre client mail con `contact@serafino-resout.ch`
-- Copy disponibile in FR/EN/IT/DE
-
----
-
-### C. Decisione: migrare bot da Vercel → VPS
-**Stato attuale**: bot su `serafino-bot.vercel.app`, Vercel fuori sync con git
-**Proposta**: Docker container su VPS + Traefik label → `bot.serafino-resout.ch`
-
-**Pro VPS**:
-- Nessun cold start (primo load iframe molto lento su Vercel free)
-- Stessa infrastruttura Centralina (Traefik già attivo, HTTPS automatico)
-- Deploy unico (scp/git sul VPS)
-- Nessuna dipendenza piattaforma esterna per funzione critica sito
-
-**Lavoro necessario**:
-- Creare `docker-compose.yml` per bot (già ha `server.js` Express)
-- Aggiungere Traefik labels per `bot.serafino-resout.ch`
-- Aggiornare iframe src in tutte le pagine: `serafino-bot.vercel.app` → `bot.serafino-resout.ch`
-- Env vars: `ANTHROPIC_API_KEY`, `OPENAI_API_KEY` se usata, `PORT`
-
----
-
-## PRIORITA 2 — Sync repo locale con VPS
-
-**Problema**: VPS è avanti di 1 commit (48a3e66) rispetto al repo locale (1af624e).
-Il merged index.html è stato pushato via `scp` direttamente sul VPS e committato lì.
-
-**Fix**:
-```bash
-# Sul locale, pull dal VPS o cherry-pick il commit
-git remote add vps root@serafino-resout.ch:/var/www/serafino-resout
-git fetch vps && git merge vps/main
-```
-O più semplicemente: scaricare index.html aggiornato e committare localmente.
-
----
-
-## PRIORITA 3 — Contenuti sito (backlog)
-
-- [ ] `puliziapro.html` — verificare che corrisponda al nuovo cas réel in index.html
-- [ ] `horeca.html` — è ancora placeholder/vecchio, manca case study Mensa DGE
-- [ ] `cas-planeto.html` — decidere se mantenere o aggiornare (Planeto rimosso da homepage)
-- [ ] `concept-homepage.html` — file non tracciato, eliminare o ignorare
-- [ ] Pagine secondarie (artisans, pme, geneve) — verificare coerenza con nuovi prezzi Centralina
+## Aggiornato: 28 aprile 2026
 
 ---
 
@@ -109,20 +8,110 @@ O più semplicemente: scaricare index.html aggiornato e committare localmente.
 | Item | Dove | Stato |
 |------|------|-------|
 | serafino-resout.ch | VPS (Traefik + nginx Docker) | LIVE, HTTPS ✅ |
-| Homepage index.html | VPS commit 48a3e66 | Swiss editorial + canvas ✅ |
-| Bot iframe | serafino-bot.vercel.app | LIVE ma old, mail mancante ⚠️ |
-| Bot mail feature | git HEAD bot/bot.html | Presente in git, non deployato ⚠️ |
-| Avatar FAB button | Tutte le pagine | Mancante — emoji 💬 ⚠️ |
+| Homepage index.html | VPS commit a0fd846 | Swiss editorial + canvas ✅ |
+| Bot VPS | bot.serafino-resout.ch | LIVE, HTTPS, GPT-4o-mini ✅ |
+| Bot mail feature | bot.html | Funzionante ✅ |
+| Bot suggestion chips | bot.html | Fix curly quotes ✅ |
+| Avatar FAB button | Tutte le pagine | ✅ |
+| Iframe sito → bot | Tutte le pagine | bot.serafino-resout.ch ✅ |
 | Centralina | VPS porta 8091/8092/8093 | LIVE ✅ |
-| puliziapro.html | VPS | LIVE (da verificare coerenza) |
+| puliziapro.html | VPS | LIVE — da incorniciare come demo ⚠️ |
+| centralina.html | — | DA CREARE 🔴 |
+| app-sur-mesure.html | VPS | LIVE — prezzi sbagliati, casi sbagliati ⚠️ |
 
 ---
 
-## APPUNTO — Proposta Centralina (tempi reali)
+## PIANO OPERATIVO IN CORSO
 
-- **Installazione**: 24 ore
-- **Fixing/adattamento iniziale**: 2 settimane post-install
-- **Accompagnamento autonomia**: 3 mesi — fix + adeguamento al flusso di lavoro reale del cliente
-- **Filosofia**: non "garanzia bug" ma accompagnamento all'autonomia — il sistema si adatta al modo di lavorare vero del cliente, non il contrario
+### STEP 1 — FATTO ORA: `centralina.html` (pagina prodotto Centralina)
 
-→ Da integrare in KB (10-centralina.md), business plan, sito (sezione méthode/garantie)
+**Problema**: "Centralina → en savoir plus" su homepage punta a `app-sur-mesure.html`
+che parla di app generiche, prezzi 1200 CHF, casi Planeto + piani alimentari.
+Nessun link a demo, nessun flusso Centralina, nessuno screenshot.
+
+**Soluzione**: creare `centralina.html` dedicata, aggiornare link su `index.html`.
+
+**Struttura `centralina.html`**:
+1. Hero — "La Centralina. La secrétaire silencieuse qui travaille 24/7."
+2. Flusso concreto (cliente → devis 2min → planning → briefing mattutino → firma → Bexio)
+3. Moduli inclusi (bot devis, scheduling, dashboard manager, Bexio)
+4. Versioni + prezzi corretti (Standard 2500 / Pro 4500-6000 / Hosting 100/anno)
+5. Accompagnamento: 24h install, 2 settimane fix, 3 mesi autonomia + rimborso
+6. Sezione "Voir la démo en production" → link a puliziapro.html con numeri reali PuliziaPro
+7. Placeholder screenshot (sostituire quando disponibili)
+8. CTA: diagnostic gratuit
+
+**Fix contestuale**:
+- `index.html`: link "en savoir plus Centralina" → `./centralina.html`
+- `app-sur-mesure.html`: lasciare per app custom generiche, correggere prezzi
+
+### STEP 2 — `puliziapro.html`: aggiungere barra demo Centralina
+
+Aggiungere banner top + sezione finale che la inquadra come demo del sistema,
+non come sito di impresa di pulizie:
+
+Banner top:
+> "Démo — Système Centralina construit pour une entreprise de nettoyage genevoise.
+>  Devis automatisé · Planning · Briefing équipe · Intégration Bexio.
+>  [→ Découvrir la Centralina](./centralina.html)"
+
+Sezione finale "Ce que cette démo illustre":
+- Devis automatisé < 2 min (vs 15-20 min manuel)
+- Planning sans conflits, zéro appels
+- Briefing quotidien équipe sur Telegram
+- Compta (Bexio) mise à jour à la signature
+- Structure réplicable: artisans, HORECA, PME de services
+- CTA → diagnostic gratuit
+
+### STEP 3 — Contrasto/luminosità sito
+
+Feedback: sito bello ma "poco luminoso".
+- Verificare ratio contrasto WCAG AA (4.5:1 minimo) su testi muted
+- Candidati: sezione hero testi secondari, label sezioni, footer
+- Test su schermo non calibrato
+
+### STEP 4 — Screenshot mancanti
+
+Screenshot reali da catturare e caricare:
+- Dashboard manager Centralina (PuliziaPro live)
+- Conversazione bot Telegram devis flow
+- Planning operatori con morning briefing
+- Caricare in `assets/screenshots/`, collegare a `centralina.html` e `index.html`
+
+---
+
+## BACKLOG
+
+- [x] `horeca.html` — case study Mensa DGE completo: before/after, narrativa, 5 screenshots, feature cards ✅
+- [x] `app-sur-mesure.html` — prezzi corretti (Sur devis, 1500-4000 CHF) ✅
+- [x] `cas-planeto.html` — mantenuto, contenuto completo ✅
+- [x] `concept-homepage.html` — eliminato locale + VPS ✅
+- [ ] Pagine (artisans, pme, geneve) — verificare coerenza prezzi Centralina
+- [ ] Bot configurabile per cliente: client.yaml + wizard web UI (RIMANDATO)
+
+---
+
+## BOT — note tecniche
+
+**Stack**:
+- Primary: `openai/gpt-4o-mini` via OpenRouter (timeout 12s, ~$0.002/conv)
+- Fallback 1: Gemini 2.5 Flash Lite (chiave diretta)
+- Fallback 2: Groq llama-3.3-70b (chiave diretta)
+- Fallback 3: `google/gemini-2.0-flash-001` via OpenRouter
+
+**Bug risolti sessione 28/04**:
+- Curly quotes Unicode nel JS bloccavano silenziosamente tutto → fix ASCII
+- OpenRouter free (llama/nemotron) esponeva chain-of-thought → gpt-4o-mini paid
+- Timeout 5s → 12s (gpt-4o-mini con KB ~5.2s)
+- proactive_email non triggava (dipendeva da memory vuota) → ora 4 messaggi utente
+- Pricing 09-chat-rules.md sbagliato (800 CHF) → 2500/4500-6000
+
+---
+
+## APPUNTO — Centralina tempi e garanzia
+
+- Install: 24 ore
+- Fix/adattamento: 2 settimane
+- Accompagnamento autonomia: 3 mesi
+- Garanzia: nessun risultato misurabile in 3 mesi → rimborso integrale
+- Filosofia: il sistema si adatta al flusso reale, non il contrario

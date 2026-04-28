@@ -34,7 +34,7 @@
   <style>
     :root {
       --bg:#0f0e0d;--surface:#1a1917;--surface2:#222019;--text:#f0ece4;
-      --muted:#7a7468;--subtle:#38362f;--accent:#c9a84c;
+      --muted:#8c8378;--subtle:#38362f;--accent:#c9a84c;
       --accent-dim:rgba(201,168,76,0.08);--line:rgba(240,236,228,0.07);
       --line-strong:rgba(240,236,228,0.14);--ease:cubic-bezier(0.25,0,0,1);
       --font-d:'Cormorant Garamond',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
@@ -89,6 +89,14 @@
     .site-footer a:hover{color:var(--accent)}
     .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease)}
     .fade-up.visible{opacity:1;transform:none}
+    .results-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:32px}
+    .r-cell{background:var(--surface);padding:24px 28px}
+    .r-cell .stat{display:block;font-family:var(--font-d);font-size:2rem;font-weight:700;color:var(--accent);line-height:1.1}
+    .r-cell .label{display:block;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 8px}
+    .r-cell p{font-size:0.82rem;line-height:1.5}
+    .demo-callout{background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:24px 28px;margin-top:28px}
+    .demo-callout p{font-size:0.9rem;line-height:1.65;margin-bottom:16px}
+    @media(max-width:600px){.results-bar{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
       .site-header{padding:0 20px}.page-hero{padding:64px 20px 56px}
       .section{padding:56px 20px}.cta-section{padding:72px 20px}
@@ -113,8 +121,8 @@
     .bot-header-name{font-size:12px;color:#f0ece4;font-weight:500;line-height:1.2;font-family:'DM Sans',system-ui,sans-serif}
     .bot-header-status{display:flex;align-items:center;gap:5px}
     .bot-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
-    .bot-status-label{font-size:10px;color:#7a7468;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#7a7468;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-status-label{font-size:10px;color:#8c8378;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#8c8378;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
     .bot-close:hover{border-color:#c9a84c;color:#c9a84c}
     .bot-popup-frame{flex:1;border:none;width:100%}
     .bot-popup-scrim{position:fixed;inset:0;z-index:799;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.25s}
@@ -177,6 +185,33 @@
     </div>
   </section>
 
+  <section class="section fade-up">
+    <div class="section-head">
+      <span class="eyebrow">Solution intégrée — La Centralina</span>
+      <h2>Devis, planning, équipe, compta — un seul système, zéro ressaisie.</h2>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.75;color:rgba(240,236,228,0.78);margin-bottom:32px;max-width:680px">Si votre activité repose sur des devis, un planning d'équipe et une facturation récurrente, la Centralina connecte tout : bot Telegram qui génère le devis en moins de 2 minutes, planning automatique sans conflits, briefing quotidien Telegram pour les opérateurs, intégration directe Bexio à la signature. Paiement unique, propriété totale — pas d'abonnement mensuel.</p>
+    <div class="results-bar">
+      <div class="r-cell"><span class="stat">&lt; 2 min</span><span class="label">Devis automatisé</span><p>Le client envoie un message — le bot qualifie, calcule et envoie le PDF signé.</p></div>
+      <div class="r-cell"><span class="stat">0</span><span class="label">Conflits planning</span><p>Assignation équipe automatique selon disponibilité et zone géographique.</p></div>
+      <div class="r-cell"><span class="stat">24/7</span><span class="label">Bot disponible</span><p>Répond aux prospects même le dimanche soir — sans vous déranger.</p></div>
+      <div class="r-cell"><span class="stat">dès 2 500 CHF</span><span class="label">Paiement unique</span><p>Installation 24h, accompagnement 3 mois, remboursement si zéro résultat.</p></div>
+    </div>
+    <div class="grid-cards">
+      <div class="g-card"><span class="num">→</span><h3>Bot devis Telegram</h3><p>Conversation guidée, PDF automatique, envoi email — sans intervention de votre part. Le prospect reçoit son devis en moins de 2 minutes.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Planning &amp; briefing équipe</h3><p>Chaque matin, chaque opérateur reçoit son programme sur Telegram. Pas d'appels, pas de conflits, pas de doublons.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Dashboard manager</h3><p>Leads, devis en attente, chantiers en cours, facturation — une seule vue. Depuis le téléphone, depuis le bureau.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Intégration Bexio</h3><p>À la signature du contrat, la facture s'ouvre automatiquement dans Bexio. Zéro ressaisie comptable.</p></div>
+    </div>
+    <div class="demo-callout">
+      <p><strong>Démo live — PuliziaPro Sàrl, Genève.</strong> Le système tourne en production pour une impresa di pulizie genevoise : 8 opérateurs, devis automatisé, planning Telegram, compta Bexio. Vous pouvez tester le bot directement et voir les écrans réels.</p>
+      <div class="cta-row">
+        <a class="btn-p" href="./centralina.html">Découvrir la Centralina →</a>
+        <a class="btn-s" href="./demos/puliziapro.html">Voir la démo PuliziaPro →</a>
+      </div>
+    </div>
+  </section>
+
   <div class="cta-section fade-up">
     <span class="eyebrow">Premier échange gratuit</span>
     <h2>30 minutes pour identifier ce qui vous coûte le plus de temps chaque semaine.</h2>
@@ -189,6 +224,7 @@
   </div>
 
   <div class="related">
+    <a class="related-link" href="./centralina.html">La Centralina →</a>
     <a class="related-link" href="./horeca.html">Pour le secteur HORECA →</a>
     <a class="related-link" href="./pme.html">Pour les PME →</a>
     <a class="related-link" href="./diagnostic.html">Diagnostic opérationnel →</a>
@@ -196,7 +232,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p>© 2026 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
     <p><a href="./index.html">serafino-resout.ch</a></p>
   </footer>
   <div class="bot-hint" id="botHint">Des questions sur l'admin de votre activité ? Le bot répond.</div>
@@ -224,7 +260,7 @@
       const fab=document.getElementById('botFab'),popup=document.getElementById('botPopup'),
         scrim=document.getElementById('botScrim'),frame=document.getElementById('botFrame'),
         close=document.getElementById('botClose'),hint=document.getElementById('botHint'),
-        URL='https://serafino-bot.vercel.app';
+        URL='https://bot.serafino-resout.ch';
       let open=false,loaded=false;
       function showHint(){if(open||!hint)return;hint.classList.add('is-visible');fab.classList.add('hint-active');setTimeout(()=>{hint.classList.remove('is-visible');fab.classList.remove('hint-active');},4000);}
       setTimeout(showHint,4000);
