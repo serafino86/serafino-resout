@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar PME Suisse — 17 mai 2026</title>
+  <meta name="description" content="L'essentiel de l'IA et du numérique pour les PME romandes — sélection du 17 mai 2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF7F2;
+      --text: #1c1a17;
+      --muted: rgba(28,26,23,0.55);
+      --accent: #B85C38;
+      --accent-light: rgba(184,92,56,0.1);
+      --border: rgba(28,26,23,0.12);
+      --card: #FFFFFF;
+      --font-d: 'Instrument Serif', Georgia, serif;
+      --font-b: 'DM Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.65; font-weight: 300; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      background: rgba(250,247,242,0.97);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      max-width: 760px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-brand { font-family: var(--font-d); font-size: 1.1rem; color: var(--text); font-weight: 400; }
+    .header-brand em { color: var(--accent); font-style: italic; }
+    .header-cta { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── Main ── */
+    main { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .issue-header { margin-bottom: 40px; }
+    .issue-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .issue-date { font-family: var(--font-d); font-size: 2.4rem; color: var(--text); line-height: 1.1; margin-bottom: 8px; }
+    .issue-subtitle { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── Signal fort ── */
+    .signal-fort {
+      background: var(--accent);
+      color: white;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .signal-fort .sf-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8; margin-bottom: 8px; }
+    .signal-fort p { font-size: 1.05rem; line-height: 1.6; font-weight: 400; }
+
+    /* ── Items grid ── */
+    .items-title { font-family: var(--font-d); font-size: 1.5rem; margin-bottom: 20px; color: var(--text); }
+    .items-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+
+    .item-card {
+      background: var(--card);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      border-left: 3px solid #93c5fd;
+      padding: 20px 24px;
+      transition: box-shadow 0.15s;
+    }
+    .item-card:hover { box-shadow: 0 4px 20px rgba(28,26,23,0.08); }
+    .item-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+    .item-cat { font-size: 0.75rem; font-weight: 500; color: var(--muted); }
+    .item-impact { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 20px; }
+    .item-title { font-size: 1.05rem; font-weight: 400; font-family: var(--font-d); margin-bottom: 8px; line-height: 1.3; }
+    .item-resume { font-size: 0.9rem; color: rgba(28,26,23,0.75); line-height: 1.6; margin-bottom: 12px; }
+    .item-link { font-size: 0.82rem; color: var(--accent); font-weight: 500; }
+
+    /* ── CTA subscribe ── */
+    .subscribe-box {
+      background: var(--accent-light);
+      border: 1px solid rgba(184,92,56,0.25);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .subscribe-box .sub-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .subscribe-box h3 { font-family: var(--font-d); font-size: 1.4rem; margin-bottom: 10px; }
+    .subscribe-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .btn-subscribe {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .btn-subscribe:hover { background: #a04e2f; text-decoration: none; }
+    .sub-note { font-size: 0.75rem; color: var(--muted); display: block; margin-top: 10px; }
+
+    /* ── Nav ── */
+    .issue-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
+
+    /* ── Footer ── */
+    .site-footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-size: 0.8rem; color: var(--muted); }
+
+    @media (max-width: 540px) {
+      .issue-date { font-size: 1.8rem; }
+      main { padding: 24px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="https://serafino-resout.ch" class="header-brand">SERAFINO <em>RÉSOUT</em></a>
+      <span class="header-cta"><a href="https://serafino-resout.ch/radar-pme">Toutes les éditions →</a></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="issue-header">
+      <div class="issue-label">Radar PME Suisse Romande · Édition quotidienne</div>
+      <div class="issue-date">17 mai 2026</div>
+      <div class="issue-subtitle">35 signaux analysés · Sélection pour patrons PME, artisans et indépendants à Genève</div>
+    </div>
+
+    <div class="signal-fort">
+      <div class="sf-label">Signal fort de la semaine</div>
+      <p>L'UE finalise l'AI Act après des mois de blocage : les PME suisses qui utilisent des outils IA devront vérifier leur conformité pour continuer à travailler avec des clients européens. Parallèlement, la Suisse mise sur l'IA souveraine avec l'alliance Sunrise-Phoeniqs pour héberger localement.</p>
+    </div>
+
+    <h2 class="items-title">Ce qui compte pour votre activité</h2>
+    <div class="items-grid">
+      
+        <article class="item-card" style="border-left-color:#fca5a5">
+          <div class="item-meta">
+            <span class="item-cat">⚖️ Réglementation</span>
+            <span class="item-impact" style="background:#4a1d9620;color:#4a1d96">Conformité</span>
+          </div>
+          <h3 class="item-title">L'UE débloque l'AI Act : impact sur les PME suisses</h3>
+          <p class="item-resume">Après des mois de négociations, l'UE adopte définitivement l'AI Act qui encadre l'usage de l'intelligence artificielle. Les PME suisses travaillant avec l'UE devront vérifier que leurs outils IA (chatbots, automatisation) respectent ces nouvelles règles.</p>
+          <a href="https://www.ictjournal.ch/news/2026-05-12/apres-un-blocage-initial-lue-trouve-finalement-un-compromis-sur-lai-act-update" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+        <article class="item-card" style="border-left-color:#93c5fd">
+          <div class="item-meta">
+            <span class="item-cat">🤖 Outil IA</span>
+            <span class="item-impact" style="background:#78350f20;color:#78350f">Opportunité</span>
+          </div>
+          <h3 class="item-title">Sunrise et Phoeniqs lancent des services IA hébergés en Suisse</h3>
+          <p class="item-resume">Alternative locale aux géants américains : des services IA (traitement de texte, analyse de données) hébergés en Suisse pour garantir la confidentialité. Intéressant pour les PME soucieuses de la protection des données clients.</p>
+          <a href="https://www.ictjournal.ch/news/2026-05-12/sunrise-et-phoeniqs-sallient-pour-proposer-des-services-ia-heberges-en-suisse" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+        <article class="item-card" style="border-left-color:#fca5a5">
+          <div class="item-meta">
+            <span class="item-cat">🔐 Alerte sécurité</span>
+            <span class="item-impact" style="background:#7f1d1d20;color:#7f1d1d">Vigilance</span>
+          </div>
+          <h3 class="item-title">Cyberattaque à l'Ifage : données RH dérobées</h3>
+          <p class="item-resume">L'institut de formation genevois victime d'une cyberattaque avec vol de données RH (salaires, contrats). Rappel : toute PME doit sauvegarder ses données sensibles et former son équipe aux bases de la cybersécurité.</p>
+          <a href="https://www.ictjournal.ch/news/2026-05-15/cyberattaque-contre-lifage-donnees-rh-derobees" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+        <article class="item-card" style="border-left-color:#fca5a5">
+          <div class="item-meta">
+            <span class="item-cat">🔐 Alerte sécurité</span>
+            <span class="item-impact" style="background:#7f1d1d20;color:#7f1d1d">Vigilance</span>
+          </div>
+          <h3 class="item-title">Google détecte la première cyberattaque assistée par IA</h3>
+          <p class="item-resume">Des hackers utilisent désormais l'IA pour créer des attaques plus sophistiquées. Les PME doivent renforcer leurs protections de base : mots de passe forts, mises à jour régulières, sauvegardes.</p>
+          <a href="https://www.ictjournal.ch/news/2026-05-13/google-identifie-un-premier-cas-dexploit-zero-day-appuye-par-lia" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+        <article class="item-card" style="border-left-color:#93c5fd">
+          <div class="item-meta">
+            <span class="item-cat">📈 Tendance marché</span>
+            <span class="item-impact" style="background:#1e3a5f20;color:#1e3a5f">Réduction coût</span>
+          </div>
+          <h3 class="item-title">Hausse des prix des composants mémoire en Suisse</h3>
+          <p class="item-resume">Les prix des composants informatiques (RAM, stockage) augmentent. Swico recommande d'anticiper les achats de matériel pour 2026. Impact sur le budget IT des PME qui prévoient de renouveler ordinateurs ou serveurs.</p>
+          <a href="https://www.ictjournal.ch/news/2026-05-12/comment-repondre-a-la-hausse-des-prix-des-composants-memoire-en-suisse" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+        <article class="item-card" style="border-left-color:#86efac">
+          <div class="item-meta">
+            <span class="item-cat">🤖 Outil IA</span>
+            <span class="item-impact" style="background:#16653420;color:#166534">Gain de temps</span>
+          </div>
+          <h3 class="item-title">Repaint : reconstruire son site web avec l'IA</h3>
+          <p class="item-resume">Outil qui permet de moderniser un site existant automatiquement via IA. Peut être une option rapide et économique pour les PME avec un site vieillissant, sans passer par une refonte complète.</p>
+          <a href="https://www.producthunt.com/products/repaint-ai-website-builder" class="item-link" target="_blank" rel="noopener">Lire la source →</a>
+        </article>
+    </div>
+
+    <div class="subscribe-box">
+      <div class="sub-label">Digest personnalisé</div>
+      <h3>Recevez ce radar chaque matin sur Telegram.</h3>
+      <p>Une sélection filtrée selon votre secteur — artisan, HORECA, PME services — directement dans votre poche. Sans abonnement, sans formation.</p>
+      <a href="mailto:contact@serafino-resout.ch?subject=Radar%20PME%20—%20Abonnement%20Telegram" class="btn-subscribe">Recevoir le digest Telegram →</a>
+      <span class="sub-note">Diagnostic gratuit 30 min · Personnalisé à votre secteur · contact@serafino-resout.ch</span>
+    </div>
+
+    <div class="issue-nav">
+      <a href="2026-05-16.html">← Édition précédente</a>
+      <a href="index.html">Toutes les éditions</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SERAFINO RÉSOUT · <a href="https://serafino-resout.ch">serafino-resout.ch</a> · Avenue de Sécheron 12, 1202 Genève</p>
+  </footer>
+
+</body>
+</html>
