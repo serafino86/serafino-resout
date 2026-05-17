@@ -30,36 +30,36 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:#0f0e0d;--surface:#1a1917;--surface2:#222019;--text:#f0ece4;
-      --muted:#7a7468;--subtle:#38362f;--accent:#c9a84c;
-      --accent-dim:rgba(201,168,76,0.08);--line:rgba(240,236,228,0.07);
-      --line-strong:rgba(240,236,228,0.14);--ease:cubic-bezier(0.25,0,0,1);
-      --font-d:'Cormorant Garamond',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
+      --bg:#FAF7F2;--surface:#EDEAE3;--surface2:#E5E1D8;--text:#1C1A17;
+      --muted:#5A564F;--subtle:#C8C4BB;--accent:#B85C38;
+      --accent-dim:rgba(184,92,56,0.08);--line:rgba(28,26,23,0.08);
+      --line-strong:rgba(28,26,23,0.14);--ease:cubic-bezier(0.25,0,0,1);
+      --font-d:'Instrument Serif',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-    p{color:rgba(240,236,228,0.82)}a{color:inherit}strong{color:var(--text)}
-    .site-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(15,14,13,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    p{color:#3A3630}a{color:inherit}strong{color:var(--text)}
+    .site-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
     .site-logo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;color:var(--text)}
     .site-logo span{color:var(--accent)}
     .nav-back{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
     .nav-back:hover{color:var(--accent)}
     .site-nav-sub{display:flex;gap:0}
-    .site-nav-sub a{font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(240,236,228,0.5);transition:color 0.2s;padding:6px 12px}
+    .site-nav-sub a{font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(28,26,23,0.5);transition:color 0.2s;padding:6px 12px}
     .site-nav-sub a:hover{color:var(--text)}
-    .site-nav-sub .nav-cta-sub{color:var(--accent)!important;border:1px solid rgba(201,168,76,0.35);border-radius:2px;padding:6px 14px}
-    .site-nav-sub .nav-cta-sub:hover{background:var(--accent);color:#0f0e0d!important}
+    .site-nav-sub .nav-cta-sub{color:var(--accent)!important;border:1px solid rgba(184,92,56,0.35);border-radius:2px;padding:6px 14px}
+    .site-nav-sub .nav-cta-sub:hover{background:var(--accent);color:#FAF7F2!important}
     @media(max-width:768px){.site-nav-sub{display:none}}
     .page-hero{padding:96px 48px 80px;max-width:960px;margin:0 auto;border-bottom:1px solid var(--line)}
     .eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:block}
     .page-hero h1{font-family:var(--font-d);font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:28px}
-    .lead{font-size:1.1rem;line-height:1.75;color:rgba(240,236,228,0.75);max-width:680px;margin-bottom:40px}
+    .lead{font-size:1.1rem;line-height:1.75;color:rgba(28,26,23,0.70);max-width:680px;margin-bottom:40px}
     .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-    .btn-p{display:inline-block;background:var(--accent);color:#0f0e0d;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:2px;transition:opacity 0.2s}
+    .btn-p{display:inline-block;background:var(--accent);color:#FAF7F2;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:2px;transition:opacity 0.2s}
     .btn-p:hover{opacity:0.88}
     .btn-s{display:inline-block;border:1px solid var(--line-strong);color:var(--muted);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:2px;transition:border-color 0.2s,color 0.2s}
     .btn-s:hover{border-color:var(--accent);color:var(--accent)}
@@ -74,7 +74,7 @@
     .time-lost h3{font-family:var(--font-d);font-size:1.4rem;color:var(--text);margin-bottom:16px}
     .time-lost p{font-size:0.92rem;max-width:600px}
     .time-lost .hours{font-family:var(--font-d);font-size:3rem;font-weight:700;color:var(--accent);margin:20px 0 8px}
-    .guarantee{background:var(--accent-dim);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:28px 36px;margin-top:32px}
+    .guarantee{background:var(--accent-dim);border:1px solid rgba(184,92,56,0.2);border-radius:4px;padding:28px 36px;margin-top:32px}
     .guarantee p{font-size:0.9rem}
     .cta-section{max-width:960px;margin:0 auto;padding:96px 48px;text-align:center}
     .cta-section h2{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.2;color:var(--text);margin-bottom:20px}
@@ -89,40 +89,53 @@
     .site-footer a:hover{color:var(--accent)}
     .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease)}
     .fade-up.visible{opacity:1;transform:none}
+    .results-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:32px}
+    .r-cell{background:var(--surface);padding:24px 28px}
+    .r-cell .stat{display:block;font-family:var(--font-d);font-size:2rem;font-weight:700;color:var(--accent);line-height:1.1}
+    .r-cell .label{display:block;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 8px}
+    .r-cell p{font-size:0.82rem;line-height:1.5}
+    .demo-callout{background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:24px 28px;margin-top:28px}
+    .demo-callout p{font-size:0.9rem;line-height:1.65;margin-bottom:16px}
+    @media(max-width:600px){.results-bar{grid-template-columns:1fr 1fr}}
     @media(max-width:768px){
       .site-header{padding:0 20px}.page-hero{padding:64px 20px 56px}
       .section{padding:56px 20px}.cta-section{padding:72px 20px}
       .related{padding:32px 20px}.site-footer{padding:24px 20px;flex-direction:column;gap:12px;text-align:center}
     }
-    @keyframes botPulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,0.35)}70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
-    .bot-hint{position:fixed;bottom:90px;right:24px;z-index:800;background:#222019;border:1px solid rgba(240,236,228,0.14);color:#f0ece4;font-size:13px;padding:10px 16px;border-radius:20px 20px 4px 20px;max-width:min(280px,calc(100vw - 96px));opacity:0;transform:translateY(8px) scale(0.95);transition:opacity 0.3s,transform 0.3s;pointer-events:none;line-height:1.45;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-hint::after{content:'';position:absolute;bottom:-7px;right:18px;width:12px;height:7px;background:#222019;clip-path:polygon(0 0,100% 0,50% 100%)}
+    @keyframes botPulse{0%{box-shadow:0 0 0 0 rgba(184,92,56,0.35)}70%{box-shadow:0 0 0 10px rgba(184,92,56,0)}100%{box-shadow:0 0 0 0 rgba(184,92,56,0)}}
+    .bot-hint{position:fixed;bottom:90px;right:24px;z-index:800;background:#FAF7F2;border:1px solid rgba(28,26,23,0.18);color:#1C1A17;font-size:13px;padding:10px 16px;border-radius:20px 20px 4px 20px;max-width:min(280px,calc(100vw - 96px));opacity:0;transform:translateY(8px) scale(0.95);transition:opacity 0.3s,transform 0.3s;pointer-events:none;line-height:1.45;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-hint::after{content:'';position:absolute;bottom:-7px;right:18px;width:12px;height:7px;background:#FAF7F2;clip-path:polygon(0 0,100% 0,50% 100%)}
     .bot-hint.is-visible{opacity:1;transform:none;pointer-events:auto}
-    .bot-fab{position:fixed;bottom:24px;right:24px;z-index:800;display:flex;align-items:center;gap:10px;background:#222019;border:1px solid rgba(240,236,228,0.14);padding:8px 16px 8px 8px;border-radius:40px;cursor:pointer;box-shadow:0 4px 24px rgba(0,0,0,0.4);transition:border-color 0.2s,box-shadow 0.2s}
-    .bot-fab:hover{border-color:#c9a84c;box-shadow:0 4px 32px rgba(201,168,76,0.15)}
+    .bot-fab{position:fixed;bottom:24px;right:24px;z-index:800;display:flex;align-items:center;gap:10px;background:#B85C38;border:none;padding:8px 16px 8px 8px;border-radius:40px;cursor:pointer;box-shadow:0 4px 24px rgba(0,0,0,0.4);transition:border-color 0.2s,box-shadow 0.2s}
+    .bot-fab:hover{border-color:#B85C38;box-shadow:0 4px 32px rgba(184,92,56,0.15)}
     .bot-fab.hint-active{animation:botPulse 1.8s ease-out 2}
-    .bot-fab-icon{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#1a1917;flex-shrink:0}
+    .bot-fab-icon{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#EDEAE3;flex-shrink:0}
     .bot-fab-icon img{width:100%;height:100%;object-fit:cover}
-    .bot-fab-label{font-size:13px;color:rgba(240,236,228,0.8);white-space:nowrap;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-popup{position:fixed;bottom:80px;right:24px;z-index:801;width:min(420px,calc(100vw - 48px));height:560px;background:#1a1917;border:1px solid rgba(240,236,228,0.14);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,0.5);opacity:0;transform:translateY(16px) scale(0.97);pointer-events:none;transition:opacity 0.25s,transform 0.25s}
+    .bot-fab-label{font-size:13px;color:#FAF7F2;white-space:nowrap;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-popup{position:fixed;bottom:80px;right:24px;z-index:801;width:min(420px,calc(100vw - 48px));height:560px;background:#EDEAE3;border:1px solid rgba(28,26,23,0.14);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(28,26,23,0.18);opacity:0;transform:translateY(16px) scale(0.97);pointer-events:none;transition:opacity 0.25s,transform 0.25s}
     .bot-popup.is-open{opacity:1;transform:none;pointer-events:auto}
-    .bot-popup-header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(240,236,228,0.07);background:#222019;flex-shrink:0}
+    .bot-popup-header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(28,26,23,0.10);background:#EDEAE3;flex-shrink:0}
     .bot-header-avatar{width:28px;height:28px;border-radius:50%;overflow:hidden;flex-shrink:0}
     .bot-header-avatar img{width:100%;height:100%;object-fit:cover}
     .bot-header-info{display:flex;flex-direction:column;flex:1}
-    .bot-header-name{font-size:12px;color:#f0ece4;font-weight:500;line-height:1.2;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-header-name{font-size:12px;color:#1C1A17;font-weight:500;line-height:1.2;font-family:'DM Sans',system-ui,sans-serif}
     .bot-header-status{display:flex;align-items:center;gap:5px}
     .bot-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0}
-    .bot-status-label{font-size:10px;color:#7a7468;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-close{background:transparent;border:1px solid rgba(240,236,228,0.07);color:#7a7468;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
-    .bot-close:hover{border-color:#c9a84c;color:#c9a84c}
+    .bot-status-label{font-size:10px;color:#5A564F;letter-spacing:0.06em;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-close{background:transparent;border:1px solid rgba(28,26,23,0.15);color:#5A564F;font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;margin-left:auto;font-family:'DM Sans',system-ui,sans-serif}
+    .bot-close:hover{border-color:#B85C38;color:#B85C38}
     .bot-popup-frame{flex:1;border:none;width:100%}
-    .bot-popup-scrim{position:fixed;inset:0;z-index:799;background:rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.25s}
+    .bot-popup-scrim{position:fixed;inset:0;z-index:799;background:rgba(28,26,23,0.25);opacity:0;pointer-events:none;transition:opacity 0.25s}
     .bot-popup-scrim.is-open{opacity:1;pointer-events:auto}
+
+    .back-home { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(28,26,23,0.5); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+    .back-home:hover { color: #B85C38; }
+    .back-home::before { content: "←"; font-size: 13px; }
   </style>
 </head>
 <body>
   <header class="site-header">
+    <a class="back-home" href="./index.html">Accueil</a>
     <a class="site-logo" href="./index.html">SERAFINO <span>RÉSOUT</span></a>
     <nav class="site-nav-sub">
       <a href="./index.html#offre">Services</a>
@@ -177,6 +190,33 @@
     </div>
   </section>
 
+  <section class="section fade-up">
+    <div class="section-head">
+      <span class="eyebrow">Solution intégrée — La Centralina</span>
+      <h2>Devis, planning, équipe, compta — un seul système, zéro ressaisie.</h2>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.75;color:rgba(28,26,23,0.75);margin-bottom:32px;max-width:680px">Si votre activité repose sur des devis, un planning d'équipe et une facturation récurrente, la Centralina connecte tout : bot Telegram qui génère le devis en moins de 2 minutes, planning automatique sans conflits, briefing quotidien Telegram pour les opérateurs, intégration directe Bexio à la signature. Paiement unique, propriété totale — zéro abonnement SaaS. Seuls coûts variables : appels IA ~15–25 CHF/mois, plafonnables.</p>
+    <div class="results-bar">
+      <div class="r-cell"><span class="stat">&lt; 2 min</span><span class="label">Devis automatisé</span><p>Le client envoie un message — le bot qualifie, calcule et envoie le PDF signé.</p></div>
+      <div class="r-cell"><span class="stat">0</span><span class="label">Conflits planning</span><p>Assignation équipe automatique selon disponibilité et zone géographique.</p></div>
+      <div class="r-cell"><span class="stat">24/7</span><span class="label">Bot disponible</span><p>Répond aux prospects même le dimanche soir — sans vous déranger.</p></div>
+      <div class="r-cell"><span class="stat">dès 3 500 CHF</span><span class="label">Paiement unique</span><p>Installation 24h, accompagnement 3 mois, remboursement si zéro résultat.</p></div>
+    </div>
+    <div class="grid-cards">
+      <div class="g-card"><span class="num">→</span><h3>Bot devis Telegram</h3><p>Conversation guidée, PDF automatique, envoi email — sans intervention de votre part. Le prospect reçoit son devis en moins de 2 minutes.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Planning &amp; briefing équipe</h3><p>Chaque matin, chaque opérateur reçoit son programme sur Telegram. Pas d'appels, pas de conflits, pas de doublons.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Dashboard manager</h3><p>Leads, devis en attente, chantiers en cours, facturation — une seule vue. Depuis le téléphone, depuis le bureau.</p></div>
+      <div class="g-card"><span class="num">→</span><h3>Intégration Bexio</h3><p>À la signature du contrat, la facture s'ouvre automatiquement dans Bexio. Zéro ressaisie comptable.</p></div>
+    </div>
+    <div class="demo-callout">
+      <p><strong>Démo live — PuliziaPro Sàrl, Genève.</strong> Démonstration live représentative d'une impresa di pulizie genevoise : 8 opérateurs, devis automatisé, planning Telegram, compta Bexio. Vous pouvez tester le bot directement et voir les écrans réels.</p>
+      <div class="cta-row">
+        <a class="btn-p" href="./centralina.html">Découvrir la Centralina →</a>
+        <a class="btn-s" href="./demos/puliziapro.html">Voir la démo PuliziaPro →</a>
+      </div>
+    </div>
+  </section>
+
   <div class="cta-section fade-up">
     <span class="eyebrow">Premier échange gratuit</span>
     <h2>30 minutes pour identifier ce qui vous coûte le plus de temps chaque semaine.</h2>
@@ -189,6 +229,7 @@
   </div>
 
   <div class="related">
+    <a class="related-link" href="./centralina.html">La Centralina →</a>
     <a class="related-link" href="./horeca.html">Pour le secteur HORECA →</a>
     <a class="related-link" href="./pme.html">Pour les PME →</a>
     <a class="related-link" href="./diagnostic.html">Diagnostic opérationnel →</a>
@@ -196,7 +237,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>© 2025 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
+    <p>© 2026 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a></p>
     <p><a href="./index.html">serafino-resout.ch</a></p>
   </footer>
   <div class="bot-hint" id="botHint">Des questions sur l'admin de votre activité ? Le bot répond.</div>
