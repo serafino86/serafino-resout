@@ -214,7 +214,7 @@
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
     .svc-card { background: var(--surface); padding: 28px 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px; transition: background 0.2s; }
     .svc-card:hover { background: var(--surface2); }
-    .svc-icon { font-size: 1.4rem; }
+    .svc-icon { display: block; width: 28px; height: 28px; color: var(--accent); }
     .svc-card h3 { font-family: var(--font-d); font-size: 1.15rem; font-weight: 600; color: var(--text); line-height: 1.2; }
     .svc-card p { font-size: 0.83rem; color: #5A564F; line-height: 1.6; flex: 1; }
     .svc-link { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
@@ -414,49 +414,49 @@
       </div>
       <div class="services-grid">
         <a class="svc-card" href="./centralina.html">
-          <span class="svc-icon">⚙️</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           <h3>La Centralina</h3>
           <p>Le système complet — devis, planning, briefing équipe, intégration Bexio. Paiement unique, propriété totale.</p>
           <span class="svc-link">Découvrir →</span>
         </a>
         <a class="svc-card" href="./horeca.html">
-          <span class="svc-icon">🍽️</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" x2="18" y1="17" y2="17"/></svg>
           <h3>HORECA</h3>
           <p>Restaurants, menses, traiteurs. Commandes vocales, menus, stocks, food cost — depuis Telegram.</p>
           <span class="svc-link">Voir l'offre →</span>
         </a>
         <a class="svc-card" href="./artisans.html">
-          <span class="svc-icon">🔧</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           <h3>Artisans</h3>
           <p>Électriciens, plombiers, peintres. Devis en 2 min, planning sans conflits, équipe briefée chaque matin.</p>
           <span class="svc-link">Voir l'offre →</span>
         </a>
         <a class="svc-card" href="./pme.html">
-          <span class="svc-icon">🏢</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           <h3>PME services</h3>
           <p>Nettoyage, logistique, services. Gestion équipe terrain, devis, suivi interventions via Telegram.</p>
           <span class="svc-link">Voir l'offre →</span>
         </a>
         <a class="svc-card" href="./app-sur-mesure.html">
-          <span class="svc-icon">💻</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           <h3>Sur mesure</h3>
           <p>Un besoin spécifique ? Système construit pour votre processus exact. Propriété totale, zéro abonnement SaaS.</p>
           <span class="svc-link">Voir l'offre →</span>
         </a>
         <a class="svc-card" href="./diagnostic.html">
-          <span class="svc-icon">🔍</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <h3>Diagnostic gratuit</h3>
           <p>30 minutes pour comprendre votre situation réelle et voir si une intervention vaut la peine.</p>
           <span class="svc-link">Réserver →</span>
         </a>
         <a class="svc-card" href="./radar-pme/">
-          <span class="svc-icon">📡</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></svg>
           <h3>Radar PME</h3>
           <p>L'essentiel de l'IA et du numérique pour les PME romandes — sélection quotidienne, sans jargon.</p>
           <span class="svc-link">Consulter →</span>
         </a>
         <a class="svc-card" href="./calculateur.html">
-          <span class="svc-icon">🧮</span>
+          <svg class="svc-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
           <h3>Calculateur admin</h3>
           <p>Combien votre administration vous coûte-t-elle vraiment chaque semaine ? Calculez en 30 secondes.</p>
           <span class="svc-link">Calculer →</span>
