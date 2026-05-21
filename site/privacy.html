@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales & Confidentialité | SERAFINO RÉSOUT</title>
+  <meta name="description" content="Politique de confidentialité (LPD), mentions légales et FAQ coûts API — SERAFINO RÉSOUT, Genève." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/privacy.html" />
+  <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
+  <link rel="apple-touch-icon" href="./assets/photos/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #FAF7F2;
+      --bg2:         #F0EDE6;
+      --surface:     #EDEAE3;
+      --surface2:    #E5E1D8;
+      --text:        #1C1A17;
+      --muted:       #5A564F;
+      --subtle:      #C8C4BB;
+      --accent:      #B85C38;
+      --accent-dim:  rgba(184,92,56,0.10);
+      --line:        rgba(28,26,23,0.10);
+      --line-strong: rgba(28,26,23,0.18);
+      --font-d: 'Instrument Serif', Georgia, serif;
+      --font-b: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.65; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+
+    /* HEADER */
+    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(250,247,242,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .brand { font-family: var(--font-d); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: var(--text); display: flex; gap: 6px; }
+    .brand span:last-child { color: var(--accent); }
+
+    /* WRAP */
+    .privacy-wrap { max-width: 760px; margin: 0 auto; padding: 72px 48px 120px; }
+    @media (max-width: 768px) { .privacy-wrap { padding: 48px 20px 80px; } .site-header { padding: 0 20px; } }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.88rem; letter-spacing: 0.04em; text-decoration: none; margin-bottom: 48px; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .back-link:hover { border-bottom-color: var(--accent); }
+
+    h1 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.15; margin-bottom: 10px; }
+    .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 64px; }
+
+    h2 { font-family: var(--font-d); font-size: 1.4rem; font-weight: 600; margin: 52px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+    h3 { font-size: 0.95rem; font-weight: 500; color: var(--text); margin: 28px 0 8px; letter-spacing: 0.01em; }
+
+    p { color: #3A3630; line-height: 1.75; font-size: 0.93rem; margin-bottom: 12px; }
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    li { color: #3A3630; font-size: 0.93rem; line-height: 1.7; margin-bottom: 4px; }
+
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.85rem; }
+    th { background: var(--surface); color: var(--text); font-weight: 500; text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--line-strong); }
+    td { padding: 9px 14px; border-bottom: 1px solid var(--line); color: #4A4640; vertical-align: top; }
+
+    .highlight { background: var(--accent-dim); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.88rem; color: var(--text); line-height: 1.65; }
+
+    .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 22px 24px; margin-bottom: 10px; }
+    .faq-q { font-weight: 500; color: var(--text); margin-bottom: 10px; font-size: 0.93rem; }
+    .faq-a { color: #4A4640; font-size: 0.88rem; line-height: 1.7; margin: 0; }
+
+    /* FOOTER */
+    .site-footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .site-footer p { font-size: 12px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 768px) { .site-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="./index.html"><span>SERAFINO</span><span>RÉSOUT</span></a>
+  </header>
+
+  <main>
+    <div class="privacy-wrap">
+
+      <a class="back-link" href="./index.html">← Retour au site</a>
+
+      <h1>Mentions légales &amp; Politique de confidentialité</h1>
+      <p class="subtitle">Dernière mise à jour : mai 2026 — Conforme à la LPD suisse (en vigueur depuis le 1<sup>er</sup> septembre 2023)</p>
+
+      <!-- 1. MENTIONS LÉGALES -->
+      <h2>1. Mentions légales</h2>
+      <p>
+        <strong>Entreprise :</strong> Serafino Résout<br>
+        <strong>Responsable :</strong> Enrico La Noce<br>
+        <strong>Adresse :</strong> Avenue de Sécheron 12, 1202 Genève, Suisse<br>
+        <strong>Email :</strong> <a href="mailto:contact@serafino-resout.ch" style="color:var(--accent)">contact@serafino-resout.ch</a><br>
+        <strong>Téléphone :</strong> <a href="tel:+41786583760" style="color:var(--accent)">078 658 37 60</a>
+      </p>
+      <p>Activité : conseil opérationnel et développement de systèmes automatisés pour PME de services.</p>
+
+      <!-- 2. POLITIQUE DE CONFIDENTIALITÉ -->
+      <h2>2. Politique de confidentialité</h2>
+
+      <h3>2.1 Responsable du traitement</h3>
+      <p>Enrico La Noce — Serafino Résout, Genève. Contact : <a href="mailto:contact@serafino-resout.ch" style="color:var(--accent)">contact@serafino-resout.ch</a></p>
+
+      <h3>2.2 Données collectées</h3>
+      <table>
+        <thead><tr><th>Type</th><th>Source</th><th>Finalité</th></tr></thead>
+        <tbody>
+          <tr><td>Nom, email, téléphone</td><td>Formulaire de contact, bot Telegram</td><td>Prise de contact, diagnostic, suivi mission</td></tr>
+          <tr><td>Données opérationnelles</td><td>Missions (plannings, commandes, flux)</td><td>Construction et maintenance du système Centralina</td></tr>
+          <tr><td>Données de navigation</td><td>Visites du site</td><td>Statistiques anonymes d'utilisation</td></tr>
+        </tbody>
+      </table>
+      <p>Aucune donnée sensible (santé, politique, religion) n'est collectée.</p>
+
+      <h3>2.3 Sous-traitants et transferts hors Suisse</h3>
+      <p>Le système Centralina utilise des modèles d'intelligence artificielle fournis par des tiers :</p>
+      <table>
+        <thead><tr><th>Fournisseur</th><th>Localisation</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td>Anthropic (Claude)</td><td>USA</td><td>Traitement de requêtes textuelles</td></tr>
+          <tr><td>Google (Gemini)</td><td>USA</td><td>Modèle de fallback</td></tr>
+          <tr><td>Groq</td><td>USA</td><td>Inférence rapide</td></tr>
+          <tr><td>Hetzner</td><td>Allemagne (UE)</td><td>Hébergement serveur VPS</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight">
+        Les transferts vers les USA sont effectués sur la base des clauses contractuelles types (CCT/SCC). Aucune donnée d'identification directe (nom, email) n'est transmise aux modèles d'IA — seules les données opérationnelles nécessaires au traitement de la requête sont envoyées.
+      </div>
+
+      <h3>2.4 Durée de conservation</h3>
+      <ul>
+        <li>Données de contact : 3 ans après la fin de la relation commerciale</li>
+        <li>Données opérationnelles : durée du contrat + 1 an</li>
+        <li>Logs système : 90 jours glissants</li>
+      </ul>
+
+      <h3>2.5 Vos droits (LPD, art. 25–27)</h3>
+      <ul>
+        <li><strong>Accès</strong> : obtenir une copie de vos données</li>
+        <li><strong>Rectification</strong> : corriger des données inexactes</li>
+        <li><strong>Suppression</strong> : demander l'effacement de vos données</li>
+        <li><strong>Portabilité</strong> : recevoir vos données dans un format structuré</li>
+        <li><strong>Opposition</strong> : vous opposer à certains traitements</li>
+      </ul>
+      <p>Pour exercer vos droits : <a href="mailto:contact@serafino-resout.ch" style="color:var(--accent)">contact@serafino-resout.ch</a> — réponse sous 30 jours.</p>
+
+      <h3>2.6 Sécurité</h3>
+      <ul>
+        <li>Connexions chiffrées (HTTPS/TLS)</li>
+        <li>Accès restreint aux données (Enrico La Noce uniquement, sauf accord client)</li>
+        <li>Serveur VPS localisé en Europe (Hetzner, Allemagne)</li>
+        <li>Aucun partage de données avec des tiers à des fins commerciales</li>
+      </ul>
+
+      <!-- 3. FAQ API -->
+      <h2>3. FAQ — Transparence sur les coûts des API</h2>
+      <p>Ce que nous voulons que vous sachiez <em>avant</em> de signer.</p>
+
+      <div class="faq-item">
+        <p class="faq-q">Vais-je payer des abonnements après la mission ?</p>
+        <p class="faq-a">Non. Serafino Résout ne facture pas d'abonnements. Le prix de la mission est le prix total.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">La Centralina utilise des API d'IA. Est-ce que ça me coûte quelque chose ?</p>
+        <p class="faq-a">Oui, mais très peu. Le système utilise des modèles d'IA pour traiter les demandes automatisées. Ces API sont facturées directement par le fournisseur sur votre carte — pas par Serafino Résout. Vous contrôlez le budget.</p>
+        <table style="margin-top:12px">
+          <thead><tr><th>Usage mensuel</th><th>Coût API estimé</th></tr></thead>
+          <tbody>
+            <tr><td>Faible (50–100 requêtes/mois)</td><td>~5–10 CHF</td></tr>
+            <tr><td>Moyen (200–500 requêtes/mois)</td><td>~15–25 CHF</td></tr>
+            <tr><td>Intensif (1 000+ requêtes/mois)</td><td>~40–80 CHF</td></tr>
+          </tbody>
+        </table>
+        <p class="faq-a" style="margin-top:10px">Pour référence : si le système vous rend 4 h/semaine à 80 CHF/h, vous économisez ~1 280 CHF/mois. Les 15 CHF d'API représentent moins de 1,2 % de cette économie.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Que se passe-t-il si un fournisseur d'IA change ses prix ?</p>
+        <p class="faq-a">Le système est conçu avec des modèles de fallback — si un fournisseur devient trop cher, le système bascule automatiquement sur un autre. Votre budget API reste prévisible.</p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">Je possède le code. Puis-je changer de fournisseur d'IA moi-même ?</p>
+        <p class="faq-a">Oui. Chaque mission inclut la propriété totale du code avec documentation. Vous pouvez modifier les fournisseurs ou faire intervenir n'importe quel développeur — sans dépendance vis-à-vis de Serafino Résout.</p>
+      </div>
+
+      <!-- 4. COOKIES -->
+      <h2>4. Cookies</h2>
+      <ul>
+        <li><strong>Cookies essentiels</strong> — fonctionnement du site, pas de consentement requis</li>
+        <li><strong>Cookies analytiques</strong> — consentement requis, refusables sans impact sur la navigation</li>
+      </ul>
+
+      <!-- 5. RESPONSABILITÉ -->
+      <h2>5. Clause de non-responsabilité</h2>
+      <p>Les systèmes Centralina sont des outils d'automatisation opérationnelle. Les décisions finales (commerciales, légales, médicales) restent sous la responsabilité exclusive du client.</p>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SERAFINO RÉSOUT · Avenue de Sécheron 12, 1202 Genève</p>
+    <div class="footer-links">
+      <a href="./index.html">Accueil</a>
+      <a href="./centralina.html">La Centralina</a>
+      <a href="./diagnostic.html">Diagnostic</a>
+      <a href="mailto:contact@serafino-resout.ch">Contact</a>
+      <a href="./privacy.html" style="color:var(--accent)">Mentions légales</a>
+    </div>
+  </footer>
+
+</body>
+</html>
