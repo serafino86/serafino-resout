@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ateliers IA Genève — Formation pratique pour PME | Serafino Résout</title>
+  <meta name="description" content="Ateliers IA pratiques à Genève pour PME : 3h, 4-8 personnes, résultats concrets le jour même. 180 CHF/personne. Zéro code, zéro jargon." />
+  <link rel="canonical" href="https://www.serafino-resout.ch/ateliers-ia.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root {
+      --bg: #F0EAE0;
+      --surface: #EDEAE3;
+      --surface2: #E5E1D8;
+      --text: #1C1A17;
+      --muted: #5A564F;
+      --subtle: #C8C4BB;
+      --accent: #C94F28;
+      --accent-dim: rgba(201,79,40,0.08);
+      --line: rgba(28,26,23,0.08);
+      --font-d: 'Cormorant Garamond', serif;
+      --font-b: 'Barlow', sans-serif;
+      --font-bc: 'Barlow Condensed', sans-serif;
+    }
+
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =============================================
+       SCROLL ANIMATION
+    ============================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =============================================
+       HEADER
+    ============================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+    }
+
+    .site-logo {
+      font-family: var(--font-d);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .site-logo span {
+      color: var(--accent);
+    }
+
+    .site-nav-sub {
+      display: flex;
+      gap: 0;
+    }
+
+    .site-nav-sub a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(28,26,23,0.5);
+      transition: color 0.2s;
+      padding: 6px 12px;
+    }
+
+    .site-nav-sub a:hover {
+      color: var(--text);
+    }
+
+    .site-nav-sub .nav-cta-sub {
+      color: var(--accent) !important;
+      border: 1px solid rgba(201,79,40,0.35);
+      border-radius: 2px;
+      padding: 6px 14px;
+    }
+
+    .site-nav-sub .nav-cta-sub:hover {
+      background: var(--accent);
+      color: #FAF7F2 !important;
+    }
+
+    @media (max-width: 768px) {
+      .site-nav-sub {
+        display: none;
+      }
+      .site-header {
+        padding: 14px 20px;
+      }
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      background: #1C1A17;
+      color: #FAF7F2;
+      padding: 100px 32px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(201,79,40,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FAF7F2;
+      max-width: 760px;
+      margin: 0 auto 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-b);
+      font-weight: 300;
+      font-size: 1.15rem;
+      color: rgba(250,247,242,0.72);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      background: rgba(250,247,242,0.07);
+      border: 1px solid rgba(250,247,242,0.15);
+      border-radius: 100px;
+      padding: 8px 22px;
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(250,247,242,0.85);
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #FAF7F2;
+      font-family: var(--font-bc);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 38px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-cta:hover {
+      background: #a04e30;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 70px 20px 60px;
+      }
+    }
+
+    /* =============================================
+       STATS BAND
+    ============================================= */
+    .stats-band {
+      background: var(--accent);
+      padding: 40px 32px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 8px 20px;
+      border-right: 1px solid rgba(250,247,242,0.2);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-family: var(--font-bc);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #FAF7F2;
+      line-height: 1;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .stat-label {
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(250,247,242,0.78);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .stats-band {
+        padding: 32px 20px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 0;
+      }
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(250,247,242,0.15);
+        padding: 12px 10px;
+      }
+      .stat-item:nth-child(2n) {
+        border-right: none;
+      }
+      .stat-item:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+    }
+
+    /* =============================================
+       SECTION GENERIC
+    ============================================= */
+    .section {
+      padding: 90px 32px;
+    }
+
+    .section-alt {
+      background: var(--surface);
+    }
+
+    .section-dark {
+      background: #1C1A17;
+      color: #FAF7F2;
+    }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-eyebrow-light {
+      color: rgba(201,79,40,0.9);
+    }
+
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-title-light {
+      color: #FAF7F2;
+    }
+
+    .section-intro {
+      font-family: var(--font-b);
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+
+    .section-intro-light {
+      color: rgba(250,247,242,0.65);
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 20px;
+      }
+    }
+
+    /* =============================================
+       PROGRAMME TIMELINE
+    ============================================= */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 90px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-time {
+      font-family: var(--font-bc);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      padding-top: 4px;
+      text-align: right;
+      padding-right: 32px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 83px;
+      top: 36px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+    }
+
+    .timeline-content {
+      padding-left: 16px;
+    }
+
+    .timeline-content h3 {
+      font-family: var(--font-d);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .timeline-content p {
+      font-family: var(--font-b);
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 0;
+      }
+      .timeline-item {
+        grid-template-columns: 1fr;
+        padding: 24px 0 24px 20px;
+      }
+      .timeline-time {
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 6px;
+      }
+      .timeline-dot {
+        left: -7px;
+        top: 28px;
+      }
+      .timeline-content {
+        padding-left: 0;
+      }
+    }
+
+    /* =============================================
+       SUJETS GRID
+    ============================================= */
+    .sujets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .sujet-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .sujet-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(201,79,40,0.08);
+    }
+
+    .sujet-card .sujet-icon {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .sujet-card h4 {
+      font-family: var(--font-d);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .sujet-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: var(--font-bc);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-radius: 2px;
+      padding: 3px 8px;
+    }
+
+    @media (max-width: 768px) {
+      .sujets-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sujets-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =============================================
+       POUR QUI / PAS POUR QUI
+    ============================================= */
+    .pour-qui-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 16px;
+    }
+
+    .pour-qui-card {
+      background: var(--surface2);
+      border-radius: 4px;
+      padding: 36px 32px;
+    }
+
+    .pour-qui-card.oui {
+      border-top: 3px solid var(--accent);
+    }
+
+    .pour-qui-card.non {
+      border-top: 3px solid rgba(28,26,23,0.18);
+    }
+
+    .pour-qui-card h3 {
+      font-family: var(--font-d);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .pour-qui-card h3 .badge {
+      display: inline-block;
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .badge-oui {
+      background: rgba(201,79,40,0.12);
+      color: var(--accent);
+    }
+
+    .badge-non {
+      background: rgba(28,26,23,0.07);
+      color: var(--muted);
+    }
+
+    .pour-qui-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pour-qui-list li {
+      font-family: var(--font-b);
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .pour-qui-list li .check {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .pour-qui-list li .cross {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--subtle);
+      font-size: 1rem;
+    }
+
+    .pour-qui-note {
+      margin-top: 20px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-radius: 2px;
+      padding: 8px 14px;
+      display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+      .pour-qui-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* =============================================
+       TARIFS
+    ============================================= */
+    .tarifs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+      max-width: 800px;
+    }
+
+    .tarif-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 40px 36px;
+      position: relative;
+    }
+
+    .tarif-card.featured {
+      border-color: var(--accent);
+      background: #1C1A17;
+      color: #FAF7F2;
+    }
+
+    .tarif-badge {
+      position: absolute;
+      top: -12px;
+      left: 28px;
+      background: var(--accent);
+      color: #FAF7F2;
+      font-family: var(--font-bc);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    .tarif-type {
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .tarif-price {
+      font-family: var(--font-d);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .tarif-card.featured .tarif-price {
+      color: #FAF7F2;
+    }
+
+    .tarif-unit {
+      font-family: var(--font-b);
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .tarif-card.featured .tarif-unit {
+      color: rgba(250,247,242,0.55);
+    }
+
+    .tarif-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .tarif-list li {
+      font-family: var(--font-b);
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+
+    .tarif-card.featured .tarif-list li {
+      color: rgba(250,247,242,0.72);
+    }
+
+    .tarif-list li::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .tarif-note {
+      margin-top: 24px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(250,247,242,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .tarifs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* =============================================
+       GARANTIE
+    ============================================= */
+    .garantie-card {
+      background: var(--accent);
+      border-radius: 4px;
+      padding: 48px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .garantie-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .garantie-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .garantie-label {
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.65);
+      margin-bottom: 16px;
+    }
+
+    .garantie-text {
+      font-family: var(--font-d);
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 600;
+      font-style: italic;
+      color: #FAF7F2;
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .garantie-card {
+        padding: 36px 24px;
+      }
+    }
+
+    /* =============================================
+       FAQ
+    ============================================= */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .faq-question-text {
+      font-family: var(--font-d);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--accent);
+      transition: transform 0.25s ease, background 0.2s;
+      font-family: var(--font-bc);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--accent);
+      color: #FAF7F2;
+      border-color: var(--accent);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 24px;
+    }
+
+    .faq-answer-inner p {
+      font-family: var(--font-b);
+      font-weight: 300;
+      font-size: 0.97rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       CTA FINAL
+    ============================================= */
+    .cta-final {
+      background: #1C1A17;
+      padding: 100px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 100%, rgba(201,79,40,0.14) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-final-eyebrow {
+      font-family: var(--font-bc);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .cta-final h2 {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: #FAF7F2;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .cta-final-sub {
+      font-family: var(--font-b);
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: rgba(250,247,242,0.6);
+      margin-bottom: 44px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    .cta-final-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #FAF7F2;
+      font-family: var(--font-bc);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 18px 48px;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .cta-final-btn:hover {
+      background: #a04e30;
+      transform: translateY(-2px);
+    }
+
+    .cta-final-note {
+      margin-top: 20px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      color: rgba(250,247,242,0.35);
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 768px) {
+      .cta-final {
+        padding: 70px 20px;
+      }
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-family: var(--font-b);
+      font-size: 12px;
+      color: var(--subtle);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 0;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      font-family: var(--font-b);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(28,26,23,0.38);
+      transition: color 0.2s;
+      padding: 4px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .footer-links a:last-child {
+      border-right: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .site-footer {
+        padding: 32px 20px;
+      }
+      .footer-links a {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+    }
+
+    /* =============================================
+       SECTION DIVIDER ORNAMENT
+    ============================================= */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .ornament-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       DELAY CLASSES FOR STAGGERED ANIMATION
+    ============================================= */
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+    .delay-4 { transition-delay: 0.32s; }
+    .delay-5 { transition-delay: 0.40s; }
+    .delay-6 { transition-delay: 0.48s; }
+
+
+    /* WhatsApp sticky button */
+    .wa-fab { position: fixed; bottom: 24px; left: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; background: #25D366; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 50px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s, box-shadow 0.2s; }
+    .wa-fab:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.5); color: #fff; }
+    .wa-fab svg { width: 20px; height: 20px; flex-shrink: 0; }
+    @media(max-width:768px) { .wa-fab span { display: none; } .wa-fab { padding: 14px; border-radius: 50%; } }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       HEADER
+  ============================================= -->
+  <header class="site-header">
+    <a href="./index.html" class="site-logo">SERAFINO <span>RÉSOUT</span></a>
+    <nav class="site-nav-sub">
+      <a href="./index.html#offre">Services</a>
+      <a href="./plan-de-veille.html">Plan de Veille</a>
+      <a href="./coaching-vibe-coder.html">Coaching</a>
+      <a href="./index.html#contact" class="nav-cta-sub">Diagnostic gratuit →</a>
+    </nav>
+  </header>
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section class="hero">
+    <p class="hero-eyebrow">ATELIERS IA GENÈVE</p>
+    <h1>Pas de code. Pas de jargon.<br><em>Des résultats le jour même.</em></h1>
+    <p class="hero-subtitle">Des ateliers pratiques pour PME genevoises qui veulent utiliser l'IA — sans embaucher un développeur.</p>
+    <div style="margin-bottom: 40px;">
+      <span class="hero-pill">3h · Présentiel Genève · 4–8 personnes · 180 CHF/pers</span>
+    </div>
+    <a href="mailto:contact@serafino-resout.ch?subject=Atelier IA Genève — inscription" class="hero-cta">Réserver ma place →</a>
+  </section>
+
+  <!-- =============================================
+       STATS BAND
+  ============================================= -->
+  <div class="stats-band">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">3h</span>
+        <span class="stat-label">durée de l'atelier</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">8 max</span>
+        <span class="stat-label">participants par session</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1 tâche</span>
+        <span class="stat-label">automatisée en séance</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">remboursé si rien ne marche</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PROGRAMME
+  ============================================= -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-up">PROGRAMME</p>
+      <h2 class="section-title fade-up">Ce qu'on fait pendant 3h</h2>
+      <p class="section-intro fade-up">Chaque minute est utile. Pas de théorie inutile — on passe directement à la pratique sur votre situation réelle.</p>
+
+      <div class="ornament fade-up">
+        <div class="ornament-line"></div>
+        <div class="ornament-dot"></div>
+        <div class="ornament-line"></div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item fade-up">
+          <div class="timeline-time">0h – 0h30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>L'IA pour votre métier</h3>
+            <p>Ce que l'IA peut faire concrètement dans votre secteur. Exemples réels, pas de slide. On part de vos activités quotidiennes pour identifier immédiatement où l'IA peut vous faire gagner du temps dès aujourd'hui.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-up delay-1">
+          <div class="timeline-time">0h30 – 1h30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Atelier #1 — Votre cas concret</h3>
+            <p>Automatiser une tâche du quotidien — email client, devis, réponse standard. Vous choisissez votre cas. On construit ensemble la solution, en direct, sur votre téléphone ou ordinateur.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-up delay-2">
+          <div class="timeline-time">1h30 – 2h30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Atelier #2 — Votre mini-assistant</h3>
+            <p>Construire un mini-assistant pour votre équipe. Bot FAQ, commandes, suivi fournisseurs. Un outil que vous rentrez chez vous avec la même journée — opérationnel, pas juste une démo.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-up delay-3">
+          <div class="timeline-time">2h30 – 3h</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Plan d'action personnalisé</h3>
+            <p>3 actions concrètes pour la semaine suivante. Liste personnalisée, pas générique. Vous repartez avec une feuille de route claire — pas des idées en l'air, des étapes précises adaptées à votre activité.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       EXEMPLES DE SUJETS
+  ============================================= -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-up">EXEMPLES DE SUJETS</p>
+      <h2 class="section-title fade-up">Thèmes abordés selon les sessions</h2>
+      <p class="section-intro fade-up">Les sujets varient selon les participants et leurs secteurs. Voici un aperçu des cas les plus fréquents — chaque session est adaptée à votre réalité.</p>
+
+      <div class="sujets-grid">
+
+        <div class="sujet-card fade-up delay-1">
+          <span class="sujet-icon" aria-hidden="true">✉</span>
+          <h4>Répondre aux emails clients en 30 secondes</h4>
+          <span class="sujet-tag">Communication</span>
+        </div>
+
+        <div class="sujet-card fade-up delay-2">
+          <span class="sujet-icon" aria-hidden="true">📄</span>
+          <h4>Générer des devis sans effort</h4>
+          <span class="sujet-tag">Administration</span>
+        </div>
+
+        <div class="sujet-card fade-up delay-3">
+          <span class="sujet-icon" aria-hidden="true">🤖</span>
+          <h4>Former votre équipe avec un bot FAQ interne</h4>
+          <span class="sujet-tag">Équipe</span>
+        </div>
+
+        <div class="sujet-card fade-up delay-1">
+          <span class="sujet-icon" aria-hidden="true">📦</span>
+          <h4>Gérer les commandes via messagerie</h4>
+          <span class="sujet-tag">Logistique</span>
+        </div>
+
+        <div class="sujet-card fade-up delay-2">
+          <span class="sujet-icon" aria-hidden="true">📝</span>
+          <h4>Résumer des documents longs automatiquement</h4>
+          <span class="sujet-tag">Productivité</span>
+        </div>
+
+        <div class="sujet-card fade-up delay-3">
+          <span class="sujet-icon" aria-hidden="true">✏</span>
+          <h4>Créer des fiches produit ou descriptions</h4>
+          <span class="sujet-tag">Contenu</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       POUR QUI / PAS POUR QUI
+  ============================================= -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-up">POUR QUI ?</p>
+      <h2 class="section-title fade-up">Cet atelier est fait pour vous — ou pas.</h2>
+      <p class="section-intro fade-up">Soyons directs. Mieux vaut le savoir avant de réserver.</p>
+
+      <div class="pour-qui-grid">
+
+        <div class="pour-qui-card oui fade-up delay-1">
+          <h3>
+            <span class="badge badge-oui">Pour vous</span>
+            si vous êtes...
+          </h3>
+          <ul class="pour-qui-list">
+            <li>
+              <span class="check">✓</span>
+              Gérant d'une PME genevoise avec 2 à 8 personnes
+            </li>
+            <li>
+              <span class="check">✓</span>
+              Artisan ou restaurateur qui veut aller plus vite au quotidien
+            </li>
+            <li>
+              <span class="check">✓</span>
+              Profession libérale surchargée de tâches répétitives
+            </li>
+            <li>
+              <span class="check">✓</span>
+              Zéro compétence technique — et c'est parfait ainsi
+            </li>
+            <li>
+              <span class="check">✓</span>
+              Curieux de l'IA mais jamais passé à l'action
+            </li>
+          </ul>
+          <span class="pour-qui-note">Smartphone suffisant. Ordinateur bienvenu.</span>
+        </div>
+
+        <div class="pour-qui-card non fade-up delay-2">
+          <h3>
+            <span class="badge badge-non">Pas pour vous</span>
+            si vous cherchez...
+          </h3>
+          <ul class="pour-qui-list">
+            <li>
+              <span class="cross">✕</span>
+              Apprendre la programmation ou le code Python
+            </li>
+            <li>
+              <span class="cross">✕</span>
+              Un SaaS clé en main déjà tout configuré
+            </li>
+            <li>
+              <span class="cross">✕</span>
+              Une formation théorique avec diaporamas et certifications
+            </li>
+            <li>
+              <span class="cross">✕</span>
+              Un accompagnement longue durée ou consulting mensuel
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       TARIFS
+  ============================================= -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-up">TARIFS</p>
+      <h2 class="section-title fade-up">Simple. Transparent. Sans surprise.</h2>
+      <p class="section-intro fade-up">Deux formules selon votre situation. Pas d'abonnement, pas d'upsell caché.</p>
+
+      <div class="tarifs-grid">
+
+        <div class="tarif-card fade-up delay-1">
+          <div class="tarif-type">Session publique</div>
+          <div class="tarif-price">180<span style="font-size:1.4rem; font-weight:400; color:var(--muted);"> CHF</span></div>
+          <div class="tarif-unit">par personne</div>
+          <ul class="tarif-list">
+            <li>4 à 8 participants par session</li>
+            <li>Espace partenaire à Genève</li>
+            <li>Personnalisation partielle selon le groupe</li>
+            <li>Plan d'action individuel inclus</li>
+          </ul>
+        </div>
+
+        <div class="tarif-card featured fade-up delay-2">
+          <div class="tarif-badge">Recommandé</div>
+          <div class="tarif-type">Groupe privé</div>
+          <div class="tarif-price">1 200<span style="font-size:1.4rem; font-weight:400; color:rgba(250,247,242,0.45);"> CHF</span></div>
+          <div class="tarif-unit">pour toute votre équipe</div>
+          <ul class="tarif-list">
+            <li>Votre équipe entière, sans limite de places</li>
+            <li>Dans vos locaux, à votre date</li>
+            <li>Contenu 100% adapté à votre activité</li>
+            <li>Exemples et cas pris dans votre secteur</li>
+          </ul>
+          <p class="tarif-note">Idéal si vous avez 4 personnes ou plus — le prix par tête devient inférieur à la formule publique.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       GARANTIE
+  ============================================= -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="garantie-card fade-up">
+        <span class="garantie-icon" aria-hidden="true">◈</span>
+        <div class="garantie-label">Garantie résultat</div>
+        <p class="garantie-text">
+          "Si à la fin des 3h vous n'avez pas automatisé au moins 1 tâche concrète dans votre activité — l'atelier est remboursé intégralement."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FAQ
+  ============================================= -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <p class="section-eyebrow fade-up">FAQ</p>
+      <h2 class="section-title fade-up">Questions fréquentes</h2>
+      <p class="section-intro fade-up">Tout ce que vous voulez savoir avant de vous inscrire.</p>
+
+      <div class="faq-list fade-up">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Faut-il un ordinateur ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Un smartphone suffit. Si vous avez un ordinateur, encore mieux — mais ce n'est pas obligatoire. L'atelier est conçu pour fonctionner avec les outils que vous avez déjà en poche.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">On utilise quels outils ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Claude (Anthropic), ChatGPT selon le cas, et des outils no-code comme Zapier ou Make pour connecter les choses. Tout est expliqué sur place — vous n'avez rien à préparer ni installer à l'avance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Les ateliers sont en quelle langue ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Français uniquement pour l'instant. Des sessions en anglais sont envisagées si la demande le justifie — contactez-nous si c'est votre cas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Combien de temps pour voir des résultats ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Pendant l'atelier — pas après. C'est le principe. Vous repartez avec au moins une tâche automatisée et opérationnelle. Pas une promesse pour "dans quelques semaines".</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-question-text">Je peux inscrire toute mon équipe ?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Oui — c'est même recommandé. La formule groupe privé est prévue exactement pour ça : une session chez vous, contenu adapté à votre activité, pour toute l'équipe en une seule fois. À partir de 4 personnes, c'est moins cher par tête qu'une session publique.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CTA FINAL
+  ============================================= -->
+  <section class="cta-final">
+    <p class="cta-final-eyebrow fade-up">PROCHAIN ATELIER</p>
+    <h2 class="fade-up">Prochain atelier sur liste d'attente.</h2>
+    <p class="cta-final-sub fade-up">Inscrivez-vous maintenant pour être notifié en priorité.</p>
+    <a href="mailto:contact@serafino-resout.ch?subject=Atelier IA Genève — inscription" class="cta-final-btn fade-up">S'inscrire →</a>
+    <p class="cta-final-note fade-up">Réponse sous 24h. Aucun engagement avant confirmation de date.</p>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="site-footer">
+    <p class="footer-copy">© 2026 SERAFINO RÉSOUT · Avenue de Sécheron 12, 1202 Genève</p>
+    <div class="footer-links">
+      <a href="./centralina.html">La Centralina</a>
+      <a href="./horeca.html">HORECA</a>
+      <a href="./artisans.html">Artisans</a>
+      <a href="./pme.html">PME</a>
+      <a href="./plan-de-veille.html">Plan de Veille</a>
+      <a href="./ateliers-ia.html">Ateliers IA</a>
+      <a href="./coaching-vibe-coder.html">Coaching</a>
+      <a href="./radar-pme/">Radar PME</a>
+      <a href="mailto:contact@serafino-resout.ch">Contact</a>
+      <a href="./privacy.html">Mentions légales</a>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // ---- Scroll animations ----
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // ---- FAQ accordion ----
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/41786583760?text=Bonjour%20Serafino%2C%20je%20voudrais%20en%20savoir%20plus%20sur%20vos%20services." class="wa-fab" target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.117 1.532 5.845L.057 23.882l6.194-1.624A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.802 9.802 0 0 1-5.006-1.374l-.359-.214-3.72.975.993-3.62-.234-.372A9.797 9.797 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+</body>
+</html>

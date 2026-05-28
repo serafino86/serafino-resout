@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SERAFINO RÉSOUT | Systèmes opérationnels pour PME à Genève</title>
-  <meta name="description" content="Devis en 2 min, planning sans conflits, briefing quotidien — tout via WhatsApp ou Telegram. Paiement unique, propriété totale, garantie 3 mois. PME, artisans, HORECA à Genève." />
+  <meta name="description" content="Devis en 2 min, planning sans conflits, briefing équipe via WhatsApp. Paiement unique, propriété totale, garantie 3 mois. PME, artisans, HORECA Genève." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.serafino-resout.ch/" />
   <meta property="og:type" content="website" />
@@ -483,6 +483,12 @@
       .bot-fab-label{display:none}
       .bot-fab{border-radius:50%;padding:12px}
     }
+
+    /* WhatsApp sticky button */
+    .wa-fab { position: fixed; bottom: 24px; left: 24px; z-index: 9999; display: flex; align-items: center; gap: 10px; background: #25D366; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 50px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 500; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s, box-shadow 0.2s; }
+    .wa-fab:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.5); color: #fff; }
+    .wa-fab svg { width: 20px; height: 20px; flex-shrink: 0; }
+    @media(max-width:768px) { .wa-fab span { display: none; } .wa-fab { padding: 14px; border-radius: 50%; } }
   </style>
 </head>
 <body>
@@ -882,5 +888,11 @@
     botClose.addEventListener('click', closeBot);
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && botOpen) closeBot(); });
   </script>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/41786583760?text=Bonjour%20Serafino%2C%20je%20voudrais%20en%20savoir%20plus%20sur%20vos%20services." class="wa-fab" target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.117 1.532 5.845L.057 23.882l6.194-1.624A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.802 9.802 0 0 1-5.006-1.374l-.359-.214-3.72.975.993-3.62-.234-.372A9.797 9.797 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span>WhatsApp</span>
+  </a>
 </body>
 </html>

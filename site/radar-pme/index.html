@@ -6,9 +6,10 @@
   <title>Radar PME Suisse — Toutes les éditions</title>
   <meta name="description" content="Sélection quotidienne de l'IA et du numérique pour les PME et artisans romands — par Serafino Résout">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --bg:#FAF7F2; --text:#1c1a17; --muted:rgba(28,26,23,0.55); --accent:#B85C38; --border:rgba(28,26,23,0.12); --font-d:'Instrument Serif',Georgia,serif; --font-b:'DM Sans',sans-serif; }
+    :root { --bg:#F0EAE0; --text:#1c1a17; --muted:rgba(28,26,23,0.55); --accent:#C94F28; --border:rgba(28,26,23,0.10); --line:rgba(28,26,23,0.10); --font-d:'Cormorant Garamond',Georgia,serif; --font-b:'Barlow',sans-serif; }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { background:var(--bg); color:var(--text); font-family:var(--font-b); font-size:16px; line-height:1.65; font-weight:300; max-width:680px; margin:0 auto; padding:40px 24px 80px; }
     a { color:var(--accent); text-decoration:none; }
@@ -18,11 +19,11 @@
     h1 { font-family:var(--font-d); font-size:2rem; margin-bottom:8px; line-height:1.2; }
     .intro { color:var(--muted); font-size:0.95rem; margin-bottom:40px; max-width:520px; line-height:1.7; }
     ul { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:48px; }
-    li { border:1px solid var(--border); border-radius:8px; background:white; overflow:hidden; }
+    li { border:1px solid var(--border); border-radius:8px; background:var(--bg); overflow:hidden; }
     li a { display:block; padding:16px 20px; font-size:1rem; color:var(--text); font-weight:400; }
-    li a:hover { background:rgba(184,92,56,0.04); text-decoration:none; }
+    li a:hover { background:rgba(201,79,40,0.04); text-decoration:none; }
     .subscribe {
-      background:rgba(184,92,56,0.08); border:1px solid rgba(184,92,56,0.25);
+      background:rgba(201,79,40,0.08); border:1px solid rgba(201,79,40,0.25);
       border-radius:12px; padding:28px; text-align:center;
     }
     .subscribe h3 { font-family:var(--font-d); font-size:1.3rem; margin-bottom:8px; }
@@ -32,7 +33,10 @@
   </style>
 </head>
 <body>
-  <a href="https://serafino-resout.ch" class="back">← serafino-resout.ch</a>
+  <header style="border-bottom:1px solid rgba(28,26,23,0.08);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;margin:0 -24px 40px;">
+    <a href="https://serafino-resout.ch" style="font-family:var(--font-d);font-size:1.1rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;color:#1C1A17">SERAFINO <span style="color:var(--accent)">RÉSOUT</span></a>
+    <a href="https://serafino-resout.ch" style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(28,26,23,0.5);text-decoration:none">← Retour au site</a>
+  </header>
   <div class="label">Serafino Résout · Ressource gratuite</div>
   <h1>Radar PME<br><em style="color:var(--accent);font-style:italic">Suisse Romande</em></h1>
   <p class="intro">L'essentiel de l'IA et du numérique filtré pour les patrons de PME, artisans et indépendants à Genève. Une édition par jour, sans jargon technique.</p>
@@ -40,9 +44,9 @@
       <li><a href="2026-05-17.html">17 mai 2026</a> <span style="background:var(--accent);color:white;font-size:0.65rem;padding:2px 8px;border-radius:10px;vertical-align:middle">Nouveau</span></li>
   </ul>
   <div class="subscribe">
-    <h3>Radar PME sur Telegram</h3>
-    <p>Recevez l'essentiel chaque matin directement sur Telegram. Une édition, l'information utile, sans bruit.</p>
-    <a href="https://t.me/serafinoRadar_bot" class="btn">Demander le digest →</a>
+    <h3>Radar PME sur WhatsApp</h3>
+    <p>Recevez l'essentiel chaque matin directement sur WhatsApp. Une édition, l'information utile, sans bruit.</p>
+    <a href="https://wa.me/41786583760?text=Bonjour%2C%20je%20voudrais%20recevoir%20le%20Radar%20PME" class="btn">S'inscrire sur WhatsApp →</a>
   </div>
 </body>
 </html>
