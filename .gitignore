@@ -1,3 +1,18 @@
 node_modules/
+
+# Secrets — MAI committare
 .env
 .env.local
+.env.production
+.env.*.local
+*.env.production
+bot/.env.production
+
+# Runtime state / artefatti
+bot/data/
+bot/test-results/
+**/*.last-run.json
+
+# Backup HTML
+*_backup_*.html
+site/index_backup_*.html

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "openai-news",
+    "label": "OpenAI News",
+    "kind": "rss",
+    "url": "https://openai.com/news/rss.xml",
+    "group": "labs",
+    "priority": 10
+  },
+  {
+    "id": "anthropic-news",
+    "label": "Anthropic News",
+    "kind": "rss",
+    "url": "https://www.anthropic.com/news/rss.xml",
+    "group": "labs",
+    "priority": 10
+  },
+  {
+    "id": "deepmind-blog",
+    "label": "Google DeepMind Blog",
+    "kind": "rss",
+    "url": "https://deepmind.google/blog/rss.xml",
+    "group": "labs",
+    "priority": 9
+  },
+  {
+    "id": "hf-blog",
+    "label": "Hugging Face Blog",
+    "kind": "rss",
+    "url": "https://huggingface.co/blog/feed.xml",
+    "group": "local_models",
+    "priority": 10
+  },
+  {
+    "id": "mistral-news",
+    "label": "Mistral News",
+    "kind": "rss",
+    "url": "https://mistral.ai/news/rss.xml",
+    "group": "labs",
+    "priority": 8
+  },
+  {
+    "id": "the-decoder",
+    "label": "The Decoder",
+    "kind": "rss",
+    "url": "https://the-decoder.com/feed/",
+    "group": "media",
+    "priority": 8
+  },
+  {
+    "id": "ai-weekly",
+    "label": "AI Weekly",
+    "kind": "rss",
+    "url": "https://aiweekly.co/issues.rss",
+    "group": "media",
+    "priority": 7
+  },
+  {
+    "id": "producthunt-ai",
+    "label": "Product Hunt AI",
+    "kind": "rss",
+    "url": "https://www.producthunt.com/feed?category=artificial-intelligence",
+    "group": "tools",
+    "priority": 6
+  },
+  {
+    "id": "github-trending-ai",
+    "label": "GitHub Trending AI",
+    "kind": "html",
+    "url": "https://github.com/trending?since=daily",
+    "group": "agents",
+    "priority": 6,
+    "disabled": true
+  }
+]
