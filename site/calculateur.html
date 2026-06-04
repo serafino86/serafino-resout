@@ -286,7 +286,7 @@
 
     <!-- Payback -->
     <div class="payback-box" id="payback-box">
-      <strong>Avec La Centralina (3 500 CHF, paiement unique) :</strong><br>
+      <strong>Avec La Centralina (dès 800 CHF, paiement unique) :</strong><br>
       Retour sur investissement estimé en <strong id="payback-weeks">—</strong> semaines.<br>
       <span style="color:var(--muted);font-size:0.85rem">Base : récupération de 70% du temps admin identifié. Zéro abonnement SaaS. Seuls coûts variables : appels IA ~15–25 CHF/mois.</span>
     </div>
@@ -335,9 +335,9 @@
       document.getElementById('b-conflits').textContent = fmt(coutConflits);
       document.getElementById('b-total').textContent    = fmt(total);
 
-      // Payback: 3800 CHF (3500 + 300 first year) / (70% of weekly cost)
+      // Payback: 1100 CHF (Express 800 + plan 300) / (70% of weekly cost)
       const weeklySaving = (total * 0.70) / 52;
-      const investissement = 3800;
+      const investissement = 1100;
       const paybackWeeks = weeklySaving > 0 ? Math.ceil(investissement / weeklySaving) : 0;
       document.getElementById('payback-weeks').textContent = paybackWeeks > 0 ? paybackWeeks : '—';
 
