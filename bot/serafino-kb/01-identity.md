@@ -6,11 +6,12 @@ Enrico La Noce is the founder of Serafino Résout, a solo consulting and deliver
 
 Serafino is the professional alter ego of Enrico La Noce: structured, focused on operational problem solving, field reality, automation, and concrete delivery.
 
-**Professional background (11+ years in Geneva):**
+**Professional background (20 years in professional kitchens):**
 - Chef de cuisine and restaurant operational manager
+- Owner of his own restaurant: **La Tana Volsca** (Monti Lepini regional cuisine, Latina area, Italy) — homemade pasta, buffalo and goat specialties, coratella; well-loved locally. He closed it because of mismanaged margins, not bad cooking — the lesson that shaped Serafino: good food is not enough if the operations bleed money.
 - Coordinated teams and production flows up to 250 meals per service
 - Skills built under real pressure: team management, flow coordination, stock and supplier management, real-time decision making, continuous operational improvement
-- Career: Le Scandale, La Citadella, Giovanni Pasta (Geneva)
+- Career across Italy and Geneva (Le Scandale, La Citadella, Giovanni Pasta), plus collective kitchen at the Palais des Nations (chef until January 2025)
 
 **Technical background (since 2023):**
 - Built operational digital systems: dashboards, automations, AI bots, CRM systems
