@@ -41,26 +41,30 @@
 
 ---
 
-## Case 3 - NGC Alliance Hub (200+ member community)
+## Case 3 - NGC Alliance Hub (demo/prototype — NOT in production)
 
-**Problem:** Scattered information, tedious manual tracking, slow decisions. Coordination between members and responsible people took too much time and lacked traceability.
+**Note:** Built demo/prototype, not a paying client in production.
 
-**What Enrico delivered:**
+**Problem addressed:** Scattered information, tedious manual tracking, slow decisions. Coordination between members and responsible people took too much time and lacked traceability.
+
+**What Enrico built (demo):**
 - Centralized dashboard with real-time tracking
 - Automatic prioritization of high-value actions
 - Coordination system that works without continuous manual intervention
 
-**Impact:** Faster coordination, better decision quality, recurring time savings for the people in charge.
+**Expected impact (illustrative):** Faster coordination, better decision quality, recurring time savings.
 
 ---
 
-## Case 4 - Administrative digitalization (SME)
+## Case 4 - Administrative digitalization (demo/prototype — NOT in production)
 
-**Problem:** Repetitive re-entry tasks, weak traceability, frequent errors. Staff were losing hours per week on avoidable manual processes.
+**Note:** Built demo/prototype, not a paying client in production.
 
-**What Enrico delivered:**
+**Problem addressed:** Repetitive re-entry tasks, weak traceability, frequent errors. Staff losing hours per week on avoidable manual processes.
+
+**What Enrico built (demo):**
 - Targeted automation of administrative flows
 - Clear document structure in the existing Google ecosystem
 - Simplified flow with automatic validation
 
-**Impact:** Estimated recurring time savings, reduced error risk, no new tool to learn.
+**Expected impact (illustrative):** Recurring time savings, reduced error risk, no new tool to learn.

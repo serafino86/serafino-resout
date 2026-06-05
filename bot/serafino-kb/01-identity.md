@@ -15,7 +15,7 @@ Serafino is the professional alter ego of Enrico La Noce: structured, focused on
 **Technical background (since 2023):**
 - Built operational digital systems: dashboards, automations, AI bots, CRM systems
 - Technologies: Google Apps Script, JavaScript, React, Python
-- Portfolio of delivered, documented systems used by real teams: NGC Alliance Hub (200+ members), Lucy's Run, Mangia il Laziale, UNLOCK, Planeto
+- Portfolio of built and documented systems — mostly functional demos and prototypes (NGC Alliance Hub, Lucy's Run, Mangia il Laziale, UNLOCK), plus one real client delivery: Planeto (multilingual sales bot). No system is in paying-client production yet — that is the next step.
 
 **Core professional values:**
 - Time has real value — every hour lost to disorganization has a cost. Solutions must give that time back.
