@@ -88,9 +88,9 @@ After 3 months, the client is autonomous. The system belongs to them. If they wa
 
 ---
 
-## Real production reference — T1 2026
+## Demo scenario — PuliziaPro (cleaning sector)
 
-A Geneva service company (cleaning sector) using Centralina Base since Q1 2026:
+PuliziaPro is a fully functional **demo** (NOT a client in production) showing Centralina for a Geneva cleaning company. Illustrative before/after:
 
 **Before:**
 - Quotes: 15–20 minutes each, done manually on WhatsApp
@@ -98,14 +98,14 @@ A Geneva service company (cleaning sector) using Centralina Base since Q1 2026:
 - Accounting: manual entry after every job
 - Manager visibility: none (called operators to know the situation)
 
-**After:**
+**After (in the demo):**
 - Quotes: under 2 minutes, automatic
 - Planning: automatic, zero conflicts
 - Accounting: automatic at client signature
 - Manager: real-time dashboard from phone, 24/7
 
-**Cost:** 1'500 CHF one-time + ~100 CHF/year hosting
-**ROI:** reached by month 3
+**Indicative cost if deployed:** 1'500 CHF one-time + ~100 CHF/year hosting
+**Expected ROI:** within ~3 months (illustrative — no paying client yet)
 
 ---
 

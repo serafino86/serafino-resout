@@ -30,7 +30,7 @@ A ready-to-use product for restaurants, sold as a subscription (not a one-off pr
 - The owner receives the request on their phone (Telegram now, WhatsApp coming): one tap to confirm or refuse. Nothing is booked without the human — no ghost reservations.
 - The client receives an automatic confirmation SMS.
 - The restaurant keeps its current number: unanswered calls are forwarded to the assistant.
-- Already deployed in a real collective-kitchen environment (DGE canteen, Palais des Nations, Geneva).
+- Demonstrated on a real collective-kitchen workflow (DGE canteen, Palais des Nations), built on Enrico's own experience as chef there (until Jan 2025). It is a working demo — no client system is in production yet.
 - Live demo number to try it: +41 22 539 49 59. Web page: https://serafino-resout.ch/reservations.html
 
 This is the concrete entry point ("the tip of the wedge"). The broader custom platform (La Centralina) sits behind it for clients who want to automate more of their operations.
