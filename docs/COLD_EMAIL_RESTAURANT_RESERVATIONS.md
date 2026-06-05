@@ -21,7 +21,7 @@
 >
 > Vous recevez chaque demande sur votre téléphone, vous confirmez d'un clic, le client reçoit un SMS. Vous gardez le contrôle.
 >
-> Si ça vous plaît, je vous monte la même chose sur **votre** numéro en moins d'une heure. Dès 50 CHF/mois, sans engagement.
+> Si ça vous plaît, je vous monte la même chose sur **votre** numéro en moins d'une heure. Dès 99 CHF/mois, essai 30 jours, sans engagement, installation offerte.
 >
 > Une démo de 60 secondes ? [lien vidéo]
 >

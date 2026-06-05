@@ -22,7 +22,7 @@ chiamare e sentono il prodotto. Funziona meglio via **WhatsApp/telefono** che em
 >
 > Lei riceve ogni richiesta sul telefono, conferma con un clic, il cliente riceve un SMS. Il controllo resta suo.
 >
-> Se le piace, le monto la stessa cosa sul **suo** numero in meno di un'ora. Da 50 CHF/mese, senza impegno.
+> Se le piace, le monto la stessa cosa sul **suo** numero in meno di un'ora. Da 99 CHF/mese, prova 30 giorni, senza impegno, installazione offerta.
 >
 > Una demo di 60 secondi? [link video]
 >
