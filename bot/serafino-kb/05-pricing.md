@@ -8,6 +8,19 @@
 | Simplification plan | 300 CHF | Actionable document: objectives, actions, indicators |
 | Implementation | From 800 CHF per standalone project, paid once | Tool or process deployment, tracking, transfer |
 
+## Ligne de Réservation (restaurant product, subscription)
+
+This is a separate, productized offer from the custom-project pricing above. It is a monthly subscription, not a one-off project.
+
+| Plan | Price | Includes |
+|------|-------|----------|
+| Réservations | 99 CHF/month | 24/7 voice line, reservation capture, owner confirmation, client SMS |
+| Réservations Pro | 149 CHF/month | Higher volume + priority support |
+
+- 30-day trial, no commitment, installation offered (free setup).
+- Market anchoring: AI phone-answering services in EU run 199-450/month; TheFork 29-149; Zenchef 100-250. A single saved table per month (~200 CHF) already pays for it.
+- The restaurant keeps its own number; Serafino provisions the technical line behind it.
+
 ## Comparison with market alternatives
 
 | Option | Typical cost | Limitation |

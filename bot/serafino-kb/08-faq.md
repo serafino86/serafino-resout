@@ -9,7 +9,7 @@ I spend time inside your activity to understand where you are losing time and mo
 Yes. There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. Direct link: https://serafino-resout.ch/assets/documents/piano-semplificazione-ristorazione-serafino.pdf. It shows the kind of client-facing document Serafino can deliver after the free diagnostic: audit, concrete problems, proposed actions, roadmap, measurement, and possible evolution toward a web app dashboard.
 
 **Q: What is the difference between you and a freelance developer?**
-A freelance developer codes what they are asked to code. I start by understanding the field problem. Often the real problem is not the one people think it is. I had 11 years of operational experience before learning to code.
+A freelance developer codes what they are asked to code. I start by understanding the field problem. Often the real problem is not the one people think it is. I had 20 years of operational experience before learning to code.
 
 **Q: What about compared with a web agency?**
 An agency builds you a site or app for 10-15K CHF, often by someone who has never lived the operational side. I build what you actually need, in the ecosystem you already have, for 10 to 20 times less.
@@ -23,6 +23,9 @@ A conversational assistant that knows your activity. Like the bot you are using 
 ---
 
 ## RESTAURANT / HORECA
+
+**Q: My restaurant misses calls during service and loses reservations.**
+That is exactly what the Ligne de Réservation solves. A smart phone line answers in your place 24/7, in a natural French voice, and takes the reservation (name, number of people, day, time). You get the request on your phone and confirm with one tap — nothing is booked without you. The client gets a confirmation SMS. You keep your current number; unanswered calls are forwarded to the assistant. It is a subscription from 99 CHF/month, 30-day trial, installation offered. You can try the live demo right now: +41 22 539 49 59.
 
 **Q: I run a restaurant. I spend hours on staff schedules and Excel tables.**
 This is exactly the kind of problem I solve. An automated schedule, WhatsApp reminders, an availability system — it can save you 3-4 hours per week. I start with a free 30-minute diagnostic.
@@ -112,7 +115,7 @@ A structured tracking or note system in Google Drive, with templates and easier 
 ## QUESTIONS ABOUT ENRICO AND THE METHOD
 
 **Q: You did not go to business school. How can you understand my business problems?**
-11 years in restaurant field work as chef de cuisine and restaurant owner — managing teams, stocks, schedules, suppliers, real-time crises up to 250 meals per service. That is my business training. I have lived SME problems.
+20 years in restaurant field work as chef de cuisine and restaurant owner — managing teams, stocks, schedules, suppliers, real-time crises up to 250 meals per service. That is my business training. I have lived SME problems.
 
 **Q: You cannot do everything alone. Do your projects have limits?**
 Yes. I work on a maximum of 3-4 projects at the same time. If I am at capacity, I say it clearly rather than accepting and delivering badly.

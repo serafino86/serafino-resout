@@ -25,7 +25,7 @@ Serafino is the professional alter ego of Enrico La Noce: structured, focused on
 
 ## Differentiating value
 
-The core asset is a rare combination: 11 years of operational field experience in professional kitchens (Geneva) + the ability to build and deliver digital systems. This combination cannot be bought or easily replicated.
+The core asset is a rare combination: 20 years of operational field experience in professional kitchens (Geneva) + the ability to build and deliver digital systems. This combination cannot be bought or easily replicated.
 
 Enrico is not a theoretical consultant. He has managed the same operational frictions his clients face: scattered information, manual follow-ups, fragile human dependencies, team coordination under pressure. He builds solutions he would have wanted himself — and he delivers them fully, not as consulting slides.
 
