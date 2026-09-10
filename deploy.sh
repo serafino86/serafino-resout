@@ -2,6 +2,9 @@
 # Deploy serafino-resout.ch → VPS
 # Usage: bash deploy.sh
 #
+# site/moca/ e' un repo git a se stante (privato). La sua .git NON deve
+# finire sul web server: da qui l'esclusione di .git/ piu' sotto.
+#
 # ATTENZIONE: questo deploy NON cancella in automatico i file remoti assenti
 # in locale, e non deve farlo. Sul server vivono file che NON sono in questo
 # repo (quasimodo/, edizioni radar-pme, app blasco/llm/crm/...): una pulizia
@@ -28,6 +31,8 @@ RETIRED=(
 echo "▶ Deploy serafino-resout.ch..."
 
 rsync -avz \
+  --exclude='.git/' \
+  --exclude='.gitignore' \
   --exclude='index_backup_*.html' \
   --exclude='design_analysis.html' \
   --exclude='google8c800af58b1ca82e.html' \

@@ -16,3 +16,9 @@ bot/test-results/
 # Backup HTML
 *_backup_*.html
 site/index_backup_*.html
+
+# Dossier client Moca Express — CONFIDENZIALE, repo pubblico
+# Contiene costi d'acquisto, marge, proposta d'onorario, dossier del cliente
+# e un file di prospezione con 2'232 aziende. Vive nel repo PRIVATO
+# serafino86/moca-dossier, che ha la sua .git dentro site/moca/.
+site/moca/
