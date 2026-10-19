@@ -289,9 +289,9 @@
 
     <!-- Payback -->
     <div class="payback-box" id="payback-box">
-      <strong>Avec La Centralina (dès 800 CHF, paiement unique) :</strong><br>
+      <strong>Avec La Centralina :</strong><br>
       Retour sur investissement estimé en <strong id="payback-weeks">—</strong> semaines.<br>
-      <span style="color:var(--muted);font-size:0.85rem">Base : récupération de 70% du temps admin identifié. Zéro abonnement SaaS. Seuls coûts variables : appels IA ~15–25 CHF/mois.</span>
+      <span style="color:var(--muted);font-size:0.85rem">Base : récupération de 70% du temps admin identifié. Tarif défini après diagnostic. Le système vous appartient.</span>
     </div>
 
     <!-- CTA -->
@@ -299,7 +299,7 @@
       <h2>Voir si c'est possible<br>pour votre activité.</h2>
       <p>30 minutes pour regarder comment le travail circule vraiment chez vous — et vous dire honnêtement si une intervention vaut la peine.</p>
       <a href="mailto:contact@serafino-resout.ch?subject=Diagnostic%20gratuit%20—%20Calculateur%20admin" class="btn-p">Réserver mon diagnostic gratuit →</a>
-      <span class="cta-note">Sans engagement · Réponse sous 24h · contact@serafino-resout.ch</span>
+      <span class="cta-note">Sans engagement · Réponse rapide · contact@serafino-resout.ch</span>
     </div>
   </main>
 
@@ -338,9 +338,9 @@
       document.getElementById('b-conflits').textContent = fmt(coutConflits);
       document.getElementById('b-total').textContent    = fmt(total);
 
-      // Payback: 1100 CHF (Express 800 + plan 300) / (70% of weekly cost)
+      // Payback estimate based on typical project investment
       const weeklySaving = (total * 0.70) / 52;
-      const investissement = 1100;
+      const investissement = 1500;
       const paybackWeeks = weeklySaving > 0 ? Math.ceil(investissement / weeklySaving) : 0;
       document.getElementById('payback-weeks').textContent = paybackWeeks > 0 ? paybackWeeks : '—';
 
