@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les 7 appels qui coûtent le plus cher à votre restaurant — Serafino Résout</title>
+  <meta name="description" content="Guide gratuit : découvrez les 7 appels manqués qui coûtent le plus cher à votre restaurant, et combien vous perdez chaque mois sans le savoir." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.serafino-resout.ch/guide/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.serafino-resout.ch/guide/" />
+  <meta property="og:title" content="Les 7 appels qui coûtent le plus cher à votre restaurant" />
+  <meta property="og:description" content="Guide gratuit par Enrico La Noce — 20 ans de cuisine professionnelle. Comptez ce que vous perdez chaque mois." />
+  <meta property="og:image" content="https://www.serafino-resout.ch/assets/photos/avatar.png" />
+  <meta property="og:locale" content="fr_CH" />
+  <link rel="icon" type="image/png" href="../assets/photos/avatar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F0EAE0;
+      --bg-dark: #191614;
+      --surface: #FFFDF8;
+      --text: #191614;
+      --text-inv: #F0EAE0;
+      --muted: #7A6E62;
+      --accent: #C94F28;
+      --accent-hover: #a83f1f;
+      --line: rgba(25,22,20,0.10);
+      --font-d: 'Cormorant Garamond', Georgia, serif;
+      --font-c: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      --font-b: 'Barlow', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; }
+
+    .top-bar {
+      background: var(--bg-dark);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .top-bar a {
+      font-family: var(--font-c);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      color: var(--text-inv);
+      text-decoration: none;
+    }
+    .top-bar a:hover { color: var(--accent); }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 16px 40px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(40,30,20,0.08);
+      max-width: 520px;
+      width: 100%;
+      padding: 48px 36px 40px;
+      text-align: center;
+    }
+
+    .card .icon {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .card h1 {
+      font-family: var(--font-d);
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .card .byline {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .card .pitch {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 32px;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .card .pitch strong {
+      font-weight: 600;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .form-group input[type="email"] {
+      flex: 1;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: var(--font-b);
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input[type="email"]:focus {
+      border-color: var(--accent);
+    }
+    .form-group input[type="email"]::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .form-group button {
+      padding: 14px 24px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--font-c);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .form-group button:hover {
+      background: var(--accent-hover);
+    }
+    .form-group button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .success-msg {
+      display: none;
+      padding: 20px;
+      background: #dce7e1;
+      border-radius: 10px;
+      color: #2d5a4d;
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .success-msg.visible {
+      display: block;
+    }
+
+    .error-msg {
+      display: none;
+      padding: 10px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .error-msg.visible {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 520px) {
+      .card { padding: 36px 20px 32px; }
+      .card h1 { font-size: 1.55rem; }
+      .form-group { flex-direction: column; }
+      .form-group button { width: 100%; padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="/">SERAFINO RÉSOUT</a>
+  </div>
+
+  <main class="hero">
+    <div class="card">
+      <div class="icon">📞</div>
+
+      <h1>Les 7 appels qui coûtent le plus cher à votre restaurant</h1>
+
+      <p class="byline">Par Enrico La Noce — 20 ans de cuisine professionnelle</p>
+
+      <p class="pitch">
+        Chaque semaine, votre restaurant perd des tables parce que personne ne décroche.
+        <strong>Combien ça vous coûte ?</strong> Ce guide vous aide à compter — en 4 pages.
+      </p>
+
+      <form id="lead-form" novalidate>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="votre@email.ch" required autocomplete="email" />
+          <button type="submit">Recevoir le guide</button>
+        </div>
+        <div class="error-msg" id="error-msg"></div>
+        <p class="hint">Gratuit · Pas de spam · Vous pouvez vous désinscrire à tout moment</p>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        Merci ! Vérifiez votre boîte mail dans quelques minutes. 📬
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a> · <a href="tel:+41786583760">078 658 37 60</a>
+    <br />
+    <a href="/">serafino-resout.ch</a> · Genève
+  </footer>
+
+  <script>
+    document.getElementById('lead-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var emailInput = document.getElementById('email');
+      var email = emailInput.value.trim();
+      var errorEl = document.getElementById('error-msg');
+      var successEl = document.getElementById('success-msg');
+
+      errorEl.classList.remove('visible');
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Veuillez entrer une adresse email valide.';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      var btn = this.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'Envoi...';
+
+      fetch('https://serafino-resout.ch/api/lead-capture', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'guide-7-appels', ts: new Date().toISOString() })
+      })
+      .then(function(r) {
+        if (r.ok) return r.json();
+        throw new Error('server');
+      })
+      .then(function() {
+        showSuccess(email);
+      })
+      .catch(function() {
+        try { localStorage.setItem('lead_' + Date.now(), JSON.stringify({ email: email, source: 'guide-7-appels', ts: new Date().toISOString() })); } catch(e) {}
+        showSuccess(email);
+      });
+
+      function showSuccess(em) {
+        document.getElementById('lead-form').style.display = 'none';
+        document.querySelector('.pitch').style.display = 'none';
+        successEl.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>
