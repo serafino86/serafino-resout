@@ -344,7 +344,7 @@
     <div class="bot-suggestions" id="botSuggestions"></div>
     <div class="bot-composer">
       <textarea id="botInput" class="bot-input" rows="1"
-        placeholder="Décris ton problème ou pose une question..."></textarea>
+        placeholder="Posez votre question..."></textarea>
       <button type="button" id="botSend" class="bot-send" disabled>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -390,23 +390,22 @@ const botState = {
 
 const BOT_COPY = {
   fr: {
-    welcome: "Bonjour. Je suis l'assistant virtuel de SERAFINO RÉSOUT. Je peux t'aider à comprendre si l'offre de Serafino correspond à ta situation — de façon claire et concrète. Commence par me parler de ton activité ou pose une question directe.",
-    placeholder: 'Décris ton problème ou pose une question...',
-    prepareMail: ‘Préparer un mail’,
-    preparingMail: ‘Je prépare le mail...’,
+    welcome: "Bonjour. Je suis l'assistant automatique de Serafino Résout. Je vous explique la ligne qui répond au téléphone quand vous ne pouvez pas. Vous êtes dans quel métier ?",
+    placeholder: 'Posez votre question...',
+    prepareMail: 'Préparer un mail',
+    preparingMail: 'Je prépare le mail...',
     mailIntro: "J’ai préparé un mail pour Serafino avec ce qui est déjà clair.",
-    missingIntro: '\u00c0 compléter si tu veux\u00a0:',
-    openMail: ‘Ouvrir le mail’,
-    mailError: "Je n’ai pas réussi à préparer le mail. Tu peux écrire directement à contact@serafino-resout.ch.",
-    mailAskMissing: "Pour finaliser le mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Réponds ici en quelques mots et je le préparerai aussitôt.",
-    proactiveEmail: "On a déjà bien cerné ta situation. Tu veux que je prépare un mail récapitulatif pour Serafino, prêt à envoyer en un clic ?",
+    missingIntro: '\u00c0 compléter si vous voulez\u00a0:',
+    openMail: 'Ouvrir le mail',
+    mailError: "Je n’ai pas réussi à préparer le mail. Vous pouvez écrire directement à contact@serafino-resout.ch.",
+    mailAskMissing: "Pour finaliser le mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Répondez ici en quelques mots et je le prépare aussitôt.",
+    proactiveEmail: "Votre situation est claire. Je prépare un mail récapitulatif pour Enrico, prêt à envoyer en un clic ?",
     suggestions: [
-      "C'est quoi Serafino Résout ?",
-      'Comment fonctionne le diagnostic gratuit ?',
-      'Je perds du temps sur des tâches répétitives',
-      'Je veux un CRM simple pour mon équipe',
+      "J'ai un restaurant",
+      'Je suis artisan',
+      'Je garde mon numéro ?',
       'Combien ça coûte ?',
-      "J'ai un restaurant, comment tu peux m'aider ?",
+      "Comment faire l'essai ?",
     ],
   },
   en: {
@@ -422,9 +421,8 @@ const BOT_COPY = {
     proactiveEmail: "We've got a good picture of your situation. Want me to prepare a summary email for Serafino, ready to send in one click?",
     suggestions: [
       'What is Serafino Résout?',
-      'How does the free diagnostic work?',
-      'I waste time on repetitive tasks',
-      'I need a simple CRM for my team',
+      'I am a craftsman',
+      'Do I keep my number?',
       'What does it cost?',
       'I run a restaurant — how can you help?',
     ],
@@ -442,9 +440,8 @@ const BOT_COPY = {
     proactiveEmail: "Ho già un quadro chiaro della tua situazione. Vuoi che prepari una mail riepilogativa per Serafino, pronta da inviare in un click?",
     suggestions: [
       "Cos'è Serafino Résout?",
-      'Come funziona la diagnosi gratuita?',
-      'Perdo tempo in attività ripetitive',
-      'Voglio un CRM semplice per il mio team',
+      'Sono un artigiano',
+      'Tengo il mio numero?',
       'Quanto costa?',
       'Ho un ristorante — come puoi aiutarmi?',
     ],
@@ -462,9 +459,8 @@ const BOT_COPY = {
     proactiveEmail: "Ich habe deine Situation schon gut verstanden. Soll ich eine Zusammenfassungs-E-Mail für Serafino vorbereiten, die du mit einem Klick senden kannst?",
     suggestions: [
       'Was ist Serafino Résout?',
-      'Wie funktioniert die kostenlose Diagnose?',
-      'Ich verliere Zeit mit wiederkehrenden Aufgaben',
-      'Ich brauche ein einfaches CRM für mein Team',
+      'Ich bin Handwerker',
+      'Behalte ich meine Nummer?',
       'Was kostet das?',
       'Ich habe ein Restaurant — wie kannst du mir helfen?',
     ],

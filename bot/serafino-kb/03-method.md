@@ -1,33 +1,13 @@
-# Serafino Résout - Method
+# Serafino Résout - How it works
 
-## The 4 intervention steps
+## Three steps, no quote
 
-### 1. Targeted diagnostic
-Enrico always starts by understanding the field reality before proposing a tool. He analyzes real workflows, identifies repetitive tasks, friction points, and lost time. He does not prescribe anything before understanding the problem.
+1. **On se voit.** The visitor writes or calls Enrico. Enrico comes by and lets them hear the line. Free.
+2. **Installation.** Enrico installs it himself, at the business. The owner keeps his number; unanswered calls are forwarded to the line. Installation is offered.
+3. **30 days of trial.** Every request arrives on the owner's mobile. After a month, the owner decides. No credit card for the trial.
 
-### 2. Simplification plan
-He formalizes a concrete action plan: what to do, in what order, and with which indicators. The plan is readable by the client, without technical jargon.
+## Principles
 
-There is a public downloadable example on the website: "Plan de simplification opérationnel" for a "Chef ONU" case. The example is in French and is written as if delivered after the free diagnostic: client, audit, observed losses, proposed system, roadmap, measurement, and possible evolution toward a web app dashboard.
-
-### 3. Pragmatic implementation
-Progressive deployment, adapted to the team's level. No large disruptive changes all at once. Validation at each step. Real-time adjustments.
-
-If the client starts with Excel or Google Sheets, Enrico can keep that file as the operational base and build a simple web app around it. The web app can provide a dashboard, mobile updates, task assignment, reminders, and a clearer interface for non-technical users.
-
-### 4. Measurement and stabilization
-Tracking of measurable results: time saved per week, errors reduced, costs avoided. Full transfer to the client with documentation. The tool belongs to the client.
-
-## What differentiates the method
-
-- **Field first**: Enrico spends time understanding the client's business before touching a keyboard
-- **Measurable results**: every mission starts with defined success indicators
-- **Client autonomy**: the goal is for the client to no longer need Enrico to run the tool
-- **Existing ecosystem**: Enrico mainly works with Google Workspace (Sheets, Forms, Apps Script, Gmail), which clients already have - no new software to learn, no migration
-
-## What Serafino Résout does NOT do
-
-- Does not sell subscriptions or permanent dependencies
-- Does not offer generic turnkey solutions without a diagnostic first
-- Does not work on more than 3-4 projects at the same time, to protect quality
-- Does not take projects where the client is not involved in defining the problem
+- The tool adapts to how the owner works, not the other way round.
+- Nothing is booked or promised to a customer without the owner's approval.
+- Honesty first: if the line is not useful for someone, say so.
