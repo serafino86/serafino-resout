@@ -44,6 +44,9 @@ rsync -avz \
   --exclude='serafino/' \
   --exclude='radar/' \
   --exclude='quasimodo/' \
+  --exclude='radar-pme/' \
+  --exclude='*.md' \
+  --exclude='antigravity-ide:/' \
   -e "ssh -i $SSH_KEY" \
   "$LOCAL_PATH" \
   "$REMOTE:$REMOTE_PATH"

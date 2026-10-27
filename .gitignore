@@ -22,3 +22,4 @@ site/index_backup_*.html
 # e un file di prospezione con 2'232 aziende. Vive nel repo PRIVATO
 # serafino86/moca-dossier, che ha la sua .git dentro site/moca/.
 site/moca/
+site/radar-pme/
