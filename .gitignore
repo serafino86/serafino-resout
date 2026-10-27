@@ -23,3 +23,4 @@ site/index_backup_*.html
 # serafino86/moca-dossier, che ha la sua .git dentro site/moca/.
 site/moca/
 site/radar-pme/
+site/demos/piano-alimentare-serafino.html
