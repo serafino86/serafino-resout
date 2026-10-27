@@ -1,0 +1,87 @@
+{
+  "agents": [
+    {
+      "id": "concierge",
+      "name": "OpenClaw Concierge",
+      "talks_to_enrico": true,
+      "uses_model_live": false,
+      "responsibilities": [
+        "telegram_chat",
+        "read_prepared_outputs",
+        "create_worker_tasks",
+        "show_status"
+      ],
+      "priority": 1000,
+      "preempts": [
+        "supervisor",
+        "worker",
+        "reviewer"
+      ],
+      "forbidden": [
+        "scraping",
+        "long_running_jobs",
+        "free_reasoning_on_business_data",
+        "shell_commands_in_replies"
+      ]
+    },
+    {
+      "id": "worker",
+      "name": "OpenClaw Worker",
+      "talks_to_enrico": false,
+      "uses_model_live": false,
+      "responsibilities": [
+        "lead_generation",
+        "lead_enrichment",
+        "news_collection",
+        "crm_sync",
+        "dedupe"
+      ],
+      "limits": {
+        "micro_batch": true,
+        "default_lead_limit": 1,
+        "qwen_local": "short_bounded_tasks_only"
+      },
+      "priority": 300,
+      "preempts": [
+        "reviewer"
+      ]
+    },
+    {
+      "id": "reviewer",
+      "name": "OpenClaw Reviewer",
+      "talks_to_enrico": false,
+      "uses_model_live": false,
+      "model_profile": "nemotron",
+      "responsibilities": [
+        "italian_summary",
+        "compression",
+        "prepared_outputs"
+      ],
+      "priority": 200,
+      "preempts": [],
+      "forbidden": [
+        "new_research",
+        "strategy_decisions",
+        "tool_execution",
+        "crm_mutation"
+      ]
+    },
+    {
+      "id": "supervisor",
+      "name": "OpenClaw Supervisor",
+      "talks_to_enrico": false,
+      "uses_model_live": false,
+      "responsibilities": [
+        "task_queue_health",
+        "dedupe",
+        "blocked_task_detection",
+        "worker_rotation"
+      ],
+      "priority": 500,
+      "preempts": [
+        "worker",
+        "reviewer"
+      ]
+    }
+  ]
+}

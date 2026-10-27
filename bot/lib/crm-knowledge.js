@@ -7,7 +7,6 @@ const { URL } = require("node:url");
 const DEFAULT_CRM_PATHS = [
   process.env.CRM_DATA_PATH,
   "/home/enrico/Scrivania/Google Drive/leads_for_sheets.csv",
-  "/home/enrico/progetti/crmroma/leads_for_sheets.csv",
   "/home/enrico/planeto/serafino-lead/leads_for_sheets.csv",
 ].filter(Boolean);
 

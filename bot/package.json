@@ -1,13 +1,25 @@
 {
-  "name": "serafino-bot",
+  "name": "serafino-frontbot",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev":   "node server.js"
+    "dev": "node server.js",
+    "simulate:router": "node scripts/simulate-progressive-router.js",
+    "simulate:worker": "node scripts/simulate-worker-preemption.js",
+    "simulate:load": "node scripts/simulate-worker-load.js",
+    "simulate:news": "node scripts/simulate-news-briefing.js",
+    "plan:leadgen": "node scripts/plan-leadgen.js",
+    "test:collector": "node scripts/test-news-collector.js",
+    "collect:news": "node scripts/collect-news.js",
+    "run:news-digest": "node scripts/run-news-digest.js",
+    "run:news-cycle": "node scripts/run-news-cycle.js",
+    "backup:state": "node scripts/backup-state.js",
+    "check:news-digest": "node scripts/check-news-digest-ready.js"
   },
   "dependencies": {
-    "dotenv":  "^16.4.5",
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ws": "^8.21.0"
   }
 }

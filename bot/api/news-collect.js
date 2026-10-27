@@ -3,6 +3,7 @@
 const { collectNews } = require("../lib/news-collector");
 const { ingestNewsItems, buildNewsBriefing } = require("../lib/news-store");
 const { formatTelegramBriefing } = require("../lib/news-filter");
+const { workWindowStatus } = require("../lib/work-window");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -10,6 +11,16 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    const window = workWindowStatus();
+    if (!window.open && req.query?.force !== "1") {
+      return res.status(200).json({
+        ok: true,
+        paused: true,
+        work_window: window,
+        message: window.message,
+      });
+    }
+
     const collection = await collectNews();
     const { state, added } = ingestNewsItems(collection.items);
     const { briefing } = buildNewsBriefing();

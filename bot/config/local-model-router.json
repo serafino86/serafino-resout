@@ -1,0 +1,34 @@
+{
+  "ollama": {
+    "base_url": "http://127.0.0.1:11435",
+    "models": {
+      "fast": "qwen3:4b",
+      "main": "qwen3.5:9b-nothink",
+      "code": "qwen3:8b-nothink",
+      "large": "qwen2.5:14b",
+      "alt": "gemma3:12b"
+    },
+    "routes": {
+      "coding": "code",
+      "automation": "main",
+      "short": "fast",
+      "default": "main"
+    },
+    "limits": {
+      "num_ctx": 4096,
+      "num_predict": 512,
+      "temperature": 0.2,
+      "keep_alive": "5m"
+    },
+    "rules": [
+      "OpenClaw resta sul VPS.",
+      "PC locale serve solo modelli locali quando disponibili.",
+      "Un modello alla volta.",
+      "Qwen fa automazioni.",
+      "DeepSeek fa coding.",
+      "Qwen 4B fa classificazioni e task corti.",
+      "Qwen 8B nothink fa coding se DeepSeek non e' installato.",
+      "Qwen 14B e Gemma 12B sono pesanti: usare solo a mano."
+    ]
+  }
+}

@@ -3,7 +3,7 @@
 const { analyzeRoute, buildDirectReply } = require("../lib/progressive-router");
 const { buildExecutionPlan } = require("../lib/openclaw-contract");
 
-const DEFAULT_LANGUAGE = "fr";
+const DEFAULT_LANGUAGE = "it";
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {

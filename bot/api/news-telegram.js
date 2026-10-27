@@ -9,7 +9,7 @@ module.exports = async function handler(req, res) {
   }
 
   const mode = String(req.query?.mode || "default").trim();
-  const crmUrl = String(process.env.CRM_DASHBOARD_URL || "").trim();
+  const crmUrl = String(process.env.CRM_DASHBOARD_URL || "https://crm.srv1587393.hstgr.cloud/news.html").trim();
   const { briefing, state } = buildNewsBriefing();
 
   return res.status(200).json({

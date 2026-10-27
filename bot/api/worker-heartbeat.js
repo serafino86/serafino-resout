@@ -13,6 +13,8 @@ module.exports = async function handler(req, res) {
 
   return res.status(200).json({
     ok: true,
+    paused: result?.event === "paused",
+    work_window: result?.window || null,
     created_count: created.length,
     created,
     active_task: activeTask,

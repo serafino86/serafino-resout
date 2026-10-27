@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "defaults": {
+    "country": "CH",
+    "limit": 20,
+    "sector": "smb",
+    "pipelinePath": "/docker/openclaw-yddr/data/openclaw-pipeline"
+  },
+  "countries": {
+    "CH": {
+      "discover": "npm run swiss",
+      "email": "npm run find:emails -- --country CH",
+      "phone": "npm run find:phones:ch",
+      "team": "npm run team",
+      "articles": "npm run articles:leads -- --country CH",
+      "events": "npm run events:ch",
+      "sync": "npm run sync:sheets"
+    },
+    "UK": {
+      "discover": "npm run uk",
+      "email": "npm run find:emails -- --country UK",
+      "phone": "npm run find:phones:uk",
+      "team": "npm run team",
+      "articles": "npm run articles:uk",
+      "events": null,
+      "sync": "npm run sync:sheets"
+    },
+    "IT": {
+      "discover": "npm run italy",
+      "email": "npm run find:emails -- --country IT",
+      "phone": "npm run find:phones",
+      "team": "npm run team",
+      "articles": "npm run articles:it",
+      "events": null,
+      "sync": "npm run sync:sheets"
+    }
+  },
+  "phases": [
+    {
+      "name": "discover",
+      "kind": "script",
+      "writes": true,
+      "requiresConfirmation": false,
+      "description": "Find candidate companies from configured sources."
+    },
+    {
+      "name": "dedupe",
+      "kind": "state",
+      "writes": false,
+      "requiresConfirmation": false,
+      "description": "Compare new leads against CRM and existing pipeline state."
+    },
+    {
+      "name": "contact_enrich",
+      "kind": "script",
+      "writes": true,
+      "requiresConfirmation": false,
+      "description": "Find emails, websites and phone numbers."
+    },
+    {
+      "name": "decision_maker",
+      "kind": "script",
+      "writes": true,
+      "requiresConfirmation": false,
+      "description": "Find likely owner, founder, manager or responsible person."
+    },
+    {
+      "name": "pain_points",
+      "kind": "model",
+      "writes": false,
+      "requiresConfirmation": false,
+      "description": "Summarize pains only from retrieved site, article or event evidence."
+    },
+    {
+      "name": "score",
+      "kind": "model",
+      "writes": true,
+      "requiresConfirmation": false,
+      "description": "Score lead priority from deterministic fields and bounded reasoning."
+    },
+    {
+      "name": "draft",
+      "kind": "model",
+      "writes": true,
+      "requiresConfirmation": false,
+      "description": "Prepare outreach draft. Never send."
+    },
+    {
+      "name": "sync",
+      "kind": "script",
+      "writes": true,
+      "requiresConfirmation": true,
+      "description": "Sync reviewed results to CRM or Google Sheets."
+    }
+  ]
+}

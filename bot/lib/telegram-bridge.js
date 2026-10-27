@@ -3,12 +3,13 @@
 const { buildNewsBriefing } = require("./news-store");
 const { formatTelegramBriefing } = require("./news-filter");
 const { resolveNewsAction } = require("./news-actions");
+const { dispatchMessage } = require("./dispatch-message");
 
 function getTelegramConfig() {
   return {
     token: String(process.env.TELEGRAM_BOT_TOKEN || "").trim(),
     defaultChatId: String(process.env.TELEGRAM_DEFAULT_CHAT_ID || "").trim(),
-    crmUrl: String(process.env.CRM_DASHBOARD_URL || "").trim(),
+    crmUrl: String(process.env.CRM_DASHBOARD_URL || "https://crm.srv1587393.hstgr.cloud/news.html").trim(),
   };
 }
 
@@ -52,6 +53,15 @@ function buildNewsKeyboard(crmUrl) {
       ],
       [
         { text: "E · Ignora oggi", callback_data: "news:E" },
+        { text: "F · Fine giornata", callback_data: "news:F" },
+      ],
+      [
+        { text: "G · Pensieri", callback_data: "news:G" },
+        { text: "H · Articoli", callback_data: "news:H" },
+      ],
+      [
+        { text: "I · Email clienti", callback_data: "news:I" },
+        { text: "J · Sistema", callback_data: "news:J" },
       ],
     ],
   };
@@ -105,6 +115,10 @@ function extractNewsAction(update) {
   return "";
 }
 
+function extractMessageText(update) {
+  return String(update?.message?.text || "").trim();
+}
+
 function extractChatId(update) {
   const callbackChatId = update?.callback_query?.message?.chat?.id;
   const messageChatId = update?.message?.chat?.id;
@@ -113,19 +127,47 @@ function extractChatId(update) {
 
 async function handleTelegramUpdate(update, fetchImpl = fetch) {
   const action = extractNewsAction(update);
-  if (!action) {
+  const messageText = extractMessageText(update);
+
+  if (action) {
+    const result = resolveNewsAction(action);
+    if (!result.ok) {
+      return {
+        ok: false,
+        error: result.error,
+      };
+    }
+
+    const chatId = extractChatId(update);
+    if (!chatId) {
+      return {
+        ok: false,
+        error: "Missing chat id",
+      };
+    }
+
+    if (update?.callback_query?.id) {
+      await answerCallbackQuery(update.callback_query.id, `Azione ${action} ricevuta.`, fetchImpl);
+    }
+
+    const options = result.mode === "open_crm"
+      ? { disable_web_page_preview: true }
+      : { reply_markup: buildNewsKeyboard(getTelegramConfig().crmUrl) };
+
+    const sent = await sendTelegramMessage(chatId, result.text, options, fetchImpl);
     return {
       ok: true,
-      ignored: true,
-      reason: "No news action detected",
+      action,
+      result,
+      sent,
     };
   }
 
-  const result = resolveNewsAction(action);
-  if (!result.ok) {
+  if (!messageText) {
     return {
-      ok: false,
-      error: result.error,
+      ok: true,
+      ignored: true,
+      reason: "No actionable text detected",
     };
   }
 
@@ -137,19 +179,21 @@ async function handleTelegramUpdate(update, fetchImpl = fetch) {
     };
   }
 
-  if (update?.callback_query?.id) {
-    await answerCallbackQuery(update.callback_query.id, `Azione ${action} ricevuta.`, fetchImpl);
-  }
+  const dispatch = await dispatchMessage({
+    message: messageText,
+    language: "it",
+    source: "telegram-human",
+    allowWorkerQueue: false,
+    forceExecution: true,
+    logSource: "telegram",
+  });
 
-  const options = result.mode === "open_crm"
-    ? { disable_web_page_preview: true }
-    : { reply_markup: buildNewsKeyboard(getTelegramConfig().crmUrl) };
-
-  const sent = await sendTelegramMessage(chatId, result.text, options, fetchImpl);
+  const reply = String(dispatch.reply || dispatch.direct_reply || "Ricevuto.").trim();
+  const sent = await sendTelegramMessage(chatId, reply, { disable_web_page_preview: true }, fetchImpl);
   return {
     ok: true,
-    action,
-    result,
+    action: null,
+    dispatch,
     sent,
   };
 }

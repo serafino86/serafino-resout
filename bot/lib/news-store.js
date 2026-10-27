@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
-const { classifyNewsItem, buildDailyBriefing } = require("./news-filter");
+const { classifyNewsItem, buildDailyBriefing, isBriefingCandidate } = require("./news-filter");
 
 const DATA_DIR = path.resolve(__dirname, "..", "data");
 const NEWS_FILE = path.join(DATA_DIR, "news-state.json");
@@ -13,10 +13,17 @@ const EMPTY_NEWS = {
   filtered_items: [],
   items: [],
   briefing: null,
+  prepared_briefing: null,
   last_collection_at: null,
   updated_at: null,
   last_briefing_at: null,
+  last_prepared_at: null,
 };
+
+const MAX_NEWS_ITEMS = 180;
+const MAX_RAW_ITEMS = 220;
+const MAX_FILTERED_ITEMS = 80;
+const MAX_NEWS_AGE_DAYS = 14;
 
 function ensureDir() {
   fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -33,6 +40,7 @@ function loadNewsState() {
       raw_items: Array.isArray(parsed.raw_items) ? parsed.raw_items : [],
       filtered_items: Array.isArray(parsed.filtered_items) ? parsed.filtered_items : [],
       items: Array.isArray(parsed.items) ? parsed.items : [],
+      prepared_briefing: parsed.prepared_briefing && typeof parsed.prepared_briefing === "object" ? parsed.prepared_briefing : null,
     };
   } catch (_) {
     return { ...EMPTY_NEWS };
@@ -48,6 +56,24 @@ function canonicalKey(raw) {
   const title = String(raw.title || "").trim().toLowerCase();
   const url = String(raw.url || "").trim().toLowerCase();
   return `${title}::${url}`;
+}
+
+function isWithinNewsWindow(item) {
+  const published = Date.parse(item?.published_at || "");
+  if (!Number.isFinite(published)) return true;
+  return Date.now() - published <= MAX_NEWS_AGE_DAYS * 24 * 60 * 60 * 1000;
+}
+
+function pruneNewsItems(items) {
+  return (Array.isArray(items) ? items : [])
+    .filter(isWithinNewsWindow)
+    .sort((a, b) => {
+      const bTime = Date.parse(b.published_at || "") || 0;
+      const aTime = Date.parse(a.published_at || "") || 0;
+      if (bTime !== aTime) return bTime - aTime;
+      return (b.score || 0) - (a.score || 0);
+    })
+    .slice(0, MAX_NEWS_ITEMS);
 }
 
 function ingestNewsItems(rawItems) {
@@ -69,8 +95,9 @@ function ingestNewsItems(rawItems) {
     added.push(item);
   }
 
-  state.raw_items = [...rawAdded, ...state.raw_items].slice(0, 400);
-  state.filtered_items = state.items.slice().sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 200);
+  state.items = pruneNewsItems(state.items);
+  state.raw_items = [...rawAdded, ...state.raw_items].filter(isWithinNewsWindow).slice(0, MAX_RAW_ITEMS);
+  state.filtered_items = state.items.filter(isBriefingCandidate).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, MAX_FILTERED_ITEMS);
   state.last_collection_at = new Date().toISOString();
   state.updated_at = new Date().toISOString();
   saveNewsState(state);
@@ -79,7 +106,11 @@ function ingestNewsItems(rawItems) {
 
 function buildNewsBriefing() {
   const state = loadNewsState();
+  state.items = state.items.map((item) => classifyNewsItem(item));
+  state.items = pruneNewsItems(state.items);
+  state.filtered_items = state.items.filter(isBriefingCandidate).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, MAX_FILTERED_ITEMS);
   const briefing = buildDailyBriefing(state.items);
+  briefing.prepared = state.prepared_briefing || null;
   state.briefing = briefing;
   state.last_briefing_at = new Date().toISOString();
   saveNewsState(state);
@@ -87,6 +118,21 @@ function buildNewsBriefing() {
     state,
     briefing,
   };
+}
+
+function savePreparedBriefing(prepared) {
+  const state = loadNewsState();
+  state.prepared_briefing = {
+    text: String(prepared?.text || "").trim(),
+    provider: prepared?.provider || null,
+    model: prepared?.model || null,
+    source_item_ids: Array.isArray(prepared?.source_item_ids) ? prepared.source_item_ids : [],
+    created_at: new Date().toISOString(),
+  };
+  state.last_prepared_at = state.prepared_briefing.created_at;
+  state.updated_at = new Date().toISOString();
+  saveNewsState(state);
+  return { state, prepared: state.prepared_briefing };
 }
 
 function updateNewsStatus(ids, status) {
@@ -103,7 +149,7 @@ function updateNewsStatus(ids, status) {
     };
   });
 
-  state.filtered_items = state.items.slice().sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 200);
+  state.filtered_items = state.items.filter(isBriefingCandidate).sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 200);
   state.updated_at = new Date().toISOString();
   saveNewsState(state);
   return { state, updated };
@@ -112,7 +158,7 @@ function updateNewsStatus(ids, status) {
 function markTopNews(status, limit = 3) {
   const state = loadNewsState();
   const topIds = state.items
-    .filter((item) => !item.noisy)
+    .filter(isBriefingCandidate)
     .sort((a, b) => (b.score || 0) - (a.score || 0))
     .slice(0, Math.max(1, limit))
     .map((item) => item.id);
@@ -126,6 +172,7 @@ module.exports = {
   saveNewsState,
   ingestNewsItems,
   buildNewsBriefing,
+  savePreparedBriefing,
   updateNewsStatus,
   markTopNews,
 };

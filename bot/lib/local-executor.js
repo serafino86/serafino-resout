@@ -1,10 +1,14 @@
 "use strict";
 
+const fs = require("node:fs");
+const path = require("node:path");
+
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-oss-120b:free";
 const OPENROUTER_MODEL_NEMOTRON = "nvidia/nemotron-3-super-120b-a12b:free";
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta";
+const ROUTER_PATH = path.resolve(__dirname, "..", "config", "local-model-router.json");
 
 function buildMessages(prompt) {
   return [
@@ -119,6 +123,66 @@ async function callGroq(prompt, maxTokens) {
   };
 }
 
+function loadLocalModelRouter() {
+  try {
+    return JSON.parse(fs.readFileSync(ROUTER_PATH, "utf8"));
+  } catch (_) {
+    return null;
+  }
+}
+
+function selectOllamaModel(modelProfile, prompt, router) {
+  const models = router?.ollama?.models || {};
+  const routes = router?.ollama?.routes || {};
+  const text = String(prompt || "").toLowerCase();
+  let route = routes.default || "main";
+
+  if (modelProfile === "local-fast" || text.length < 900) route = routes.short || "fast";
+  if (/codice|coding|debug|script|stack trace|errore|function|const |import |docker|systemd/.test(text)) {
+    route = routes.coding || "code";
+  }
+  if (/openclaw|automazione|crm|lead|pipeline|scraping|worker|supervisor/.test(text)) {
+    route = routes.automation || "main";
+  }
+
+  return models[route] || models.main || "qwen3:9b";
+}
+
+async function callOllama(prompt, maxTokens, modelProfile) {
+  if (String(process.env.OLLAMA_LOCAL_ENABLED || "off").trim().toLowerCase() !== "on") {
+    throw new Error("OLLAMA_LOCAL_ENABLED is off");
+  }
+
+  const router = loadLocalModelRouter();
+  const baseUrl = String(process.env.OLLAMA_BASE_URL || router?.ollama?.base_url || "http://127.0.0.1:11434").replace(/\/$/, "");
+  const model = selectOllamaModel(modelProfile, prompt, router);
+  const limits = router?.ollama?.limits || {};
+
+  const data = await postJson(
+    `${baseUrl}/api/generate`,
+    {
+      model,
+      prompt,
+      stream: false,
+      keep_alive: process.env.OLLAMA_KEEP_ALIVE || limits.keep_alive || "5m",
+      options: {
+        num_ctx: Number(process.env.OLLAMA_NUM_CTX || limits.num_ctx || 4096),
+        num_predict: Math.max(64, Math.min(Number(limits.num_predict || 512), Number(maxTokens || 512))),
+        temperature: Number(limits.temperature ?? 0.2),
+      },
+    },
+    {},
+    Number(process.env.OLLAMA_TIMEOUT_MS || 30000),
+  );
+
+  return {
+    provider: "ollama",
+    model,
+    reply: String(data?.response || "").trim(),
+    raw: data,
+  };
+}
+
 async function executeContract(params) {
   const prompt = String(params.prompt || "").trim();
   const modelProfile = String(params.model_profile || "local-fast").trim();
@@ -130,6 +194,12 @@ async function executeContract(params) {
 
   if (modelProfile === "nemotron") {
     return callOpenRouter(OPENROUTER_MODEL_NEMOTRON, prompt, Math.max(256, maxTokens));
+  }
+
+  try {
+    return await callOllama(prompt, maxTokens, modelProfile);
+  } catch (_) {
+    // Local model is optional. Fall through to configured cloud fallbacks.
   }
 
   try {

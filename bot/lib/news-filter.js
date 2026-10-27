@@ -45,6 +45,8 @@ const NOISE_RULES = [
   "theoretical analysis",
 ];
 
+const DEFAULT_MAX_AGE_DAYS = 21;
+
 function detectCategories(text) {
   const lower = normalize(text);
   return CATEGORY_RULES
@@ -74,14 +76,49 @@ function scoreItem(item) {
   };
 }
 
+function parseDate(value) {
+  const time = Date.parse(value || "");
+  return Number.isFinite(time) ? time : null;
+}
+
+function isRecentEnough(item, maxAgeDays = DEFAULT_MAX_AGE_DAYS) {
+  const published = parseDate(item.published_at);
+  if (!published) return true;
+  const ageMs = Date.now() - published;
+  return ageMs <= Math.max(1, maxAgeDays) * 24 * 60 * 60 * 1000;
+}
+
+function isFakeOrTestItem(item) {
+  const url = String(item.url || "").toLowerCase();
+  const source = normalize(item.source);
+  return url.includes("example.com/") || source.includes("example ai") || source.includes("automation weekly");
+}
+
+function isLowSignalProductItem(item) {
+  const source = normalize(item.source);
+  if (!source.includes("product hunt")) return false;
+  const titleWords = normalize(item.title).split(" ").filter(Boolean).length;
+  return titleWords <= 2;
+}
+
+function isBriefingCandidate(item) {
+  return Boolean(item)
+    && !item.noisy
+    && item.status !== "ignored"
+    && (item.score || 0) > 0
+    && !isFakeOrTestItem(item)
+    && !isLowSignalProductItem(item)
+    && isRecentEnough(item);
+}
+
 function computeUseCase(item) {
   const categories = item.categories || [];
-  if (categories.includes("local_models")) return "Check if it improves local inference on 3060 Ti / consumer GPU.";
-  if (categories.includes("agents")) return "See if it simplifies OpenClaw orchestration or tool calling.";
-  if (categories.includes("automation")) return "See if it reduces work in scraping, CRM, or email operations.";
-  if (categories.includes("business")) return "Evaluate whether it creates a sellable automation offer for Serafino.";
-  if (categories.includes("api_costs")) return "Check if it is a better fallback API for difficult tasks.";
-  return "Probably low-priority unless it clearly affects the current stack.";
+  if (categories.includes("local_models")) return "utile se migliora modelli locali, costi o velocita.";
+  if (categories.includes("agents")) return "utile se semplifica agenti, tool calling o automazioni.";
+  if (categories.includes("automation")) return "utile se riduce lavoro su scraping, CRM o email.";
+  if (categories.includes("business")) return "utile se diventa un'offerta vendibile o lead generation.";
+  if (categories.includes("api_costs")) return "utile se abbassa costi API o latenza.";
+  return "da leggere solo se tocca il sistema attuale.";
 }
 
 function classifyNewsItem(raw) {
@@ -108,12 +145,12 @@ function classifyNewsItem(raw) {
 
 function summarizeNews(items) {
   const list = Array.isArray(items) ? items : [];
-  const relevant = list.filter((item) => !item.noisy).sort((a, b) => (b.score || 0) - (a.score || 0));
+  const relevant = list.filter(isBriefingCandidate).sort((a, b) => (b.score || 0) - (a.score || 0));
   return {
     total: list.length,
     relevant: relevant.length,
     top: relevant.slice(0, 5),
-    ignored: list.filter((item) => item.noisy).length,
+    ignored: list.filter((item) => item.noisy || item.status === "ignored" || isFakeOrTestItem(item) || isLowSignalProductItem(item) || !isRecentEnough(item)).length,
     byCategory: relevant.reduce((acc, item) => {
       for (const category of item.categories || []) {
         acc[category] = (acc[category] || 0) + 1;
@@ -170,33 +207,40 @@ function filterBriefingByMode(briefing, mode = "default") {
 function formatTelegramBriefing(briefing, options = {}) {
   const mode = String(options.mode || "default").trim();
   const crmUrl = String(options.crmUrl || "").trim();
+  const preparedText = String(briefing?.prepared?.text || "").trim();
+  if (mode === "default" && preparedText) {
+    return [
+      preparedText,
+      "",
+      crmUrl ? `Apri rassegna completa: ${crmUrl}` : null,
+    ].filter(Boolean).join("\n");
+  }
   const lines = Array.isArray(briefing?.lines) ? briefing.lines : [];
   const summary = briefing?.summary || {};
   const filteredTop = filterBriefingByMode(briefing, mode).slice(0, 3);
   const topLines = filteredTop.length
-    ? filteredTop.map((item, index) => `${index + 1}. ${item.title}\n   ${item.use_case}`)
+    ? filteredTop.map((item, index) => {
+      const source = item.source ? ` (${item.source})` : "";
+      const snippet = String(item.snippet || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+      const detail = snippet ? `\n   ${snippet.slice(0, 160)}` : "";
+      return `${index + 1}. ${item.title}${source}${detail}\n   Perche' conta: ${item.use_case}`;
+    })
     : lines;
   const modeLabel = {
-    default: "AI Briefing Engine",
-    local_models: "AI Briefing Engine · Local Models",
-    business: "AI Briefing Engine · Business",
-    test_now: "AI Briefing Engine · To Test",
-  }[mode] || "AI Briefing Engine";
+    default: "Rassegna stampa IA",
+    local_models: "Rassegna IA - modelli locali",
+    business: "Rassegna IA - opportunita business",
+    test_now: "Rassegna IA - da testare",
+  }[mode] || "Rassegna stampa IA";
 
   return [
     modeLabel,
     "",
     ...topLines,
     "",
-    `Categorie: ${Object.keys(summary.byCategory || {}).length ? Object.entries(summary.byCategory).map(([k, v]) => `${k} ${v}`).join(" · ") : "nessuna"}`,
-    crmUrl ? `CRM: ${crmUrl}` : null,
+    crmUrl ? `Apri rassegna completa: ${crmUrl}` : null,
     "",
-    "Azioni:",
-    "A. Apri CRM news",
-    "B. Solo modelli locali",
-    "C. Solo opportunità business",
-    "D. Cosa testare subito",
-    "E. Ignora oggi",
+    "Comandi utili: apri rassegna, aggiorna rassegna, nascondi queste.",
   ].join("\n");
 }
 
@@ -207,4 +251,5 @@ module.exports = {
   filterBriefingByMode,
   formatTelegramBriefing,
   detectCategories,
+  isBriefingCandidate,
 };

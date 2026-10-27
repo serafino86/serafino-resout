@@ -2,8 +2,14 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { analyzeRoute, buildDirectReply } = require('../lib/progressive-router');
+const { buildExecutionContract } = require('../lib/prompt-cartridges');
+const { buildExecutionPlan } = require('../lib/openclaw-contract');
+const { appendShadowEvent } = require('../lib/shadow-log');
 
-const GROQ_MODEL        = 'llama-3.3-70b-versatile';
+const GROQ_MODEL        = process.env.GROQ_MODEL || 'openai/gpt-oss-120b'; // llama-3.3-70b ritirato da Groq (27.10.2026)
+// free tier Groq = 8000 token/min PER MODELLO, ~4k per richiesta: i fallback hanno limiti separati
+const GROQ_FALLBACK_MODELS = ['openai/gpt-oss-20b', 'qwen/qwen3.8-27b'];
 const GEMINI_MODEL      = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
 const OPENROUTER_MODEL          = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-120b:free';
 const OPENROUTER_MODEL_FALLBACK = 'nvidia/nemotron-3-super-120b-a12b:free';
@@ -17,14 +23,14 @@ const KB_CACHE_TTL_MS   = 5 * 60 * 1000;
 const MAX_HISTORY_MESSAGES = 6;
 const MAX_MEMORY_CHARS  = 1400;
 
-let knowledgeCache = { loadedAt: 0, body: '' };
+let knowledgeCache = { loadedAt: 0, sections: new Map() };
 const promptCache  = new Map();
 
 const LANGUAGE_CONFIG = {
   fr: {
     missingKey:    'Le bot est prêt, mais les clés API sont manquantes dans le fichier .env.',
-    rateLimit:     'Le bot est momentanément surchargé. Réessaie dans quelques secondes.',
-    genericError:  'Une erreur s\'est produite. Réessaie dans un moment.',
+    rateLimit:     'Le bot est momentanément surchargé. Réessayez dans quelques secondes.',
+    genericError:  'Une erreur s\'est produite. Réessayez dans un moment.',
     promptInstruction: 'Write in French.',
   },
   en: {
@@ -56,78 +62,63 @@ function normalizeMessage(message) {
     .trim();
 }
 
-function loadKnowledgeBase() {
+function loadKnowledgeBase(selectedFiles) {
   const now = Date.now();
-  if (knowledgeCache.body && (now - knowledgeCache.loadedAt) < KB_CACHE_TTL_MS) {
-    return knowledgeCache.body;
-  }
-
   const kbDir = path.resolve(__dirname, '..', 'serafino-kb');
   if (!fs.existsSync(kbDir)) {
-    knowledgeCache = { loadedAt: now, body: '' };
+    knowledgeCache = { loadedAt: now, sections: new Map() };
     return '';
   }
 
-  const body = fs
-    .readdirSync(kbDir)
-    .filter((file) => file.endsWith('.md'))
-    .sort()
-    .map((file) => {
+  if ((now - knowledgeCache.loadedAt) >= KB_CACHE_TTL_MS || !(knowledgeCache.sections instanceof Map)) {
+    const sections = new Map();
+    for (const file of fs.readdirSync(kbDir).filter((entry) => entry.endsWith('.md')).sort()) {
       const fullPath = path.join(kbDir, file);
       const content = fs.readFileSync(fullPath, 'utf8').trim();
-      return `## ${file.replace(/\.md$/i, '')}\n${content}`;
-    })
-    .join('\n\n');
+      sections.set(file, `## ${file.replace(/\.md$/i, '')}\n${content}`);
+    }
+    knowledgeCache = { loadedAt: now, sections };
+    promptCache.clear();
+  }
 
-  knowledgeCache = { loadedAt: now, body };
-  promptCache.clear();
-  return body;
+  const files = Array.isArray(selectedFiles) && selectedFiles.length
+    ? selectedFiles.filter((file) => knowledgeCache.sections.has(file))
+    : [...knowledgeCache.sections.keys()];
+
+  return files.map((file) => knowledgeCache.sections.get(file)).filter(Boolean).join('\n\n');
 }
 
-function buildSystemPrompt(language, memory) {
-  const cacheKey = `${language}::${memory || ''}`;
+function buildSystemPrompt(language, memory, route) {
+  const routeName = route?.name || 'default';
+  const kbKey = Array.isArray(route?.kbFiles) ? route.kbFiles.join(',') : '*';
+  const cacheKey = `${language}::${routeName}::${kbKey}::${memory || ''}`;
   if (promptCache.has(cacheKey)) return promptCache.get(cacheKey);
 
-  const kb = loadKnowledgeBase();
+  const kb = loadKnowledgeBase(route?.kbFiles);
   const config = LANGUAGE_CONFIG[language] || LANGUAGE_CONFIG[DEFAULT_LANGUAGE];
+  const executionContract = buildExecutionContract(route || { name: 'default', compressionMode: 'expanded' }, language);
 
   const prompt = [
-    '⚠ RÈGLE ABSOLUE — TUTOIEMENT: Utilise TOUJOURS "tu" pour t\'adresser au visiteur. Jamais "vous", jamais "votre", jamais "vos". Utilise: tu, te, toi, ton, ta, tes. Cette règle prime sur tout le reste.',
-    'ABSOLUTE RULE — TUTOIEMENT: Always address the visitor with "tu" in French. NEVER use vous/votre/vos for the visitor. Use: tu, te, toi, ton, ta, tes. This overrides everything.',
+    executionContract,
+    'ABSOLUTE RULE — address the visitor with "vous" in French (vous/votre/vos), like the website. Never "tu".',
     config.promptInstruction,
     `IMPORTANT: Always respond in the language specified above. Never switch to another language. REMINDER: ${config.promptInstruction}`,
     'The knowledge base below is canonical and written in English. Use it as the source of truth, and translate its facts naturally into the requested response language.',
-    'You are the assistant for Serafino Résout. Serafino is the professional alter ego of Enrico La Noce.',
-    'Your role is to help visitors understand what Serafino does, how he works, whether his offer fits their situation, and how to take the next step — ideally by preparing a contact email together.',
-    'You must sound human, warm, direct, and honest — like Serafino, Enrico\'s professional alter ego: terrain-first, concrete, never salesy.',
-    'PRIORITY GOAL: understand the visitor\'s situation (their activity, their problem, what they want to improve) and guide them naturally toward preparing a contact email for Serafino.',
-    'QUALIFY FIRST: if the visitor\'s profession or sector is not immediately clear, ask one short direct question before proposing anything. Never suggest solutions before knowing who you are talking to.',
-    'LANGUAGE ADAPTATION: mirror the visitor\'s professional vocabulary. If they use industry-specific terms, use them back. Speak their language, not generic consulting jargon.',
-    'HONEST FIT CHECK: if the visitor\'s activity has no real operational or digital overlap with the target sectors (SMEs, HORECA, liberal professions, service businesses, startups), say clearly and directly that you are probably not the right person — but leave a door open for operational problems they might have.',
-    'PIVOT RULE: if you previously flagged a visitor as out-of-target, and they then reveal concrete operational problems (team, suppliers, invoicing, scheduling, Excel chaos), do NOT immediately switch to "I can help perfectly." Acknowledge the shift explicitly: restate what they said, explain why it is different from your initial response, then confirm it is in scope. The transition must feel honest — not like you will say anything to sell.',
-    '⚠ NEVER mention prices, costs, or CHF amounts unless the visitor explicitly asks. Do not volunteer pricing information when describing services or the offer. If the conversation naturally reaches a point where pricing is relevant and the visitor has not asked, still do not mention it — wait for them to ask.',
-    'Stay strictly within confirmed Serafino Résout knowledge.',
-    'Do not invent facts, pricing, client names, or capabilities that are not in the knowledge base.',
+    'You are the assistant for Serafino Résout. Serafino is the working alter ego of Enrico La Noce, a chef for events and collective catering with 20 years in professional kitchens, based in Geneva.',
+    'Serafino Résout offers ONE product: "L\'heure du téléphone", a phone line that answers when a restaurant or a craftsman cannot. It is in a pilot phase in Geneva: Enrico is looking for the first ten restaurants and craftsmen.',
+    'Your role: understand whether the visitor is a restaurant, a craftsman or something else, explain the line simply, and guide them to contact Enrico (contact@serafino-resout.ch, 078 658 37 60) to try it.',
+    'QUALIFY FIRST: if the visitor\'s trade is not clear, ask one short question (restaurant, artisan, autre ?) before explaining.',
+    'HONEST FIT: if the visitor is neither a restaurant nor a craftsman, say the line is made for them, and invite the visitor to write to Enrico for any other need. Never force a fit.',
+    'Stay strictly within the knowledge base. Never invent prices, clients, results, figures, features or dates.',
+    'PRICES: only those of the knowledge base (Restaurant 249 CHF/month, Artisan 119 CHF/month, 30 days free for the first ten). Never mention a diagnostic, a 300 CHF plan, 800 CHF, Centralina packages, 99/149/199/299 CHF: these offers no longer exist.',
+    'Never give a demo phone number. Never say "mes clients" or "nos clients": the line has no paying client yet.',
+    'Points not decided (VAT/HT, commitment, what happens beyond included minutes): say Enrico will answer precisely, give his contact.',
     'When the user asks about a false or unconfirmed biography detail, reject it directly and give the confirmed version.',
-    'If the visitor explicitly asks about pricing or costs, give the confirmed pricing directly: free diagnostic, 300 CHF simplification plan, implementation from 800 CHF per standalone project, paid once; no hidden software/server/subscription costs. Implementation varies by project complexity.',
-    'If something is not confirmed, say so simply and honestly.',
-    'STRICT LENGTH RULE: maximum 3 sentences per answer. ONE paragraph only. If you need more, you are writing too much — cut ruthlessly.',
-    'Do not write article-style answers with headings or bullet lists unless the user explicitly asks for a detailed breakdown.',
-    'Always finish the answer cleanly. If a full explanation would be long, summarize instead of ending mid-sentence.',
+    'STRICT LENGTH RULE: maximum 3 sentences per answer. ONE paragraph only.',
+    'No headings or bullet lists unless the user explicitly asks for a breakdown. Always finish the answer cleanly.',
     'Answer first, then ask at most one short follow-up question.',
-    'Do not ask multiple stacked questions in the same answer.',
-    'When the visitor is skeptical, answer objections directly and say honestly when Serafino may not be the right fit.',
-    '⚠ ABSOLUTE FORBIDDEN PHRASES — never use these, ever: "Je comprends ton scepticisme", "Je comprends votre", "Bien sûr", "Excellente question", "protocole d\'usage convenu", "résultat mesurable selon les critères", "enjeu clé", "levier stratégique", "mise en œuvre", "utilisation conforme". These phrases sound like a brochure. Serafino does not talk like this.',
-    '⚠ TONE RULE: Serafino uses casual French. "c\'est", "t\'as", "ça", "truc", "franchement", "vraiment". Short sentences. Direct. Warm but not cheerful. Like a real person who knows the field, not a consultant writing a report.',
-    '⚠ SKEPTICISM RULE: When someone doubts or pushes back, do NOT start with "Je comprends ton scepticisme". Instead: validate briefly (1 short clause), then give one concrete real-world example with a real number. Then ask one question. Maximum 3 sentences total.',
-    'FEW-SHOT EXAMPLE — How to respond to skepticism:',
-    'VISITOR: "Tout le monde dit ça. Consultant terrain, outil sur mesure... C\'est le speech classique. Et j\'ai déjà payé 5000 CHF pour un PDF."',
-    'CORRECT RESPONSE: "Normal d\'être méfiant — 5000 CHF pour un PDF c\'est exactement ce que je veux éviter. Planeto: 1800 contacts transformés en 756 leads qualifiés, livré en 5 semaines, zéro abonnement, tout ça sur clé USB plug & play. Tu bosses dans quel secteur ?"',
-    'WRONG RESPONSE: "Je comprends ton scepticisme : la vraie différence se voit dans les résultats concrets..." — THIS IS FORBIDDEN.',
-    'FEW-SHOT EXAMPLE — How to explain the guarantee:',
-    'VISITOR: "La garantie c\'est bien sur le papier mais ça veut dire quoi concrètement ?"',
-    'CORRECT RESPONSE: "Si ça marche pas en 3 mois en faisant ce qu\'on a défini ensemble — je rembourse. C\'est écrit, pas juste dit. T\'as quel type de business ?"',
-    'WRONG RESPONSE: "La garantie signifie que si tu suis le protocole d\'usage convenu et qu\'aucun résultat mesurable n\'apparaît..." — THIS IS FORBIDDEN.',
+    '⚠ FORBIDDEN PHRASES: "Bien sûr", "Excellente question", "Je comprends votre situation", "enjeu clé", "levier stratégique", "nos clients", "nous proposons". Speak as "je", warm and direct, short sentences, like a real person from the kitchen, not a brochure.',
+    'FEW-SHOT EXAMPLE — VISITOR: "Vous avez déjà des clients ?" CORRECT RESPONSE: "On démarre : je cherche les dix premiers restaurants et artisans genevois, c\'est pour ça que l\'essai est gratuit 30 jours. Vous êtes dans quel métier ?"',
     memory ? `Conversation memory:\n${memory}` : '',
     'Knowledge base:',
     kb,
@@ -182,7 +173,7 @@ function sanitizeMemory(memory) {
   return String(memory || '').trim().slice(0, MAX_MEMORY_CHARS);
 }
 
-function normalizeHistory(history, message) {
+function normalizeHistory(history, message, historyLimit = MAX_HISTORY_MESSAGES) {
   const normalized = history
     .map((entry) => ({
       role: entry && entry.role === 'user' ? 'user' : 'assistant',
@@ -192,7 +183,7 @@ function normalizeHistory(history, message) {
 
   const trimmed = normalized
     .filter((entry, index) => !(index === 0 && entry.role === 'assistant'))
-    .slice(-MAX_HISTORY_MESSAGES);
+    .slice(-historyLimit);
 
   const last = trimmed[trimmed.length - 1];
   if (message && (!last || last.role !== 'user' || last.text !== message)) {
@@ -425,7 +416,7 @@ async function callGemini(systemPrompt, history, maxTokens) {
   return text;
 }
 
-async function callGroq(systemPrompt, history, maxTokens) {
+async function callGroq(systemPrompt, history, maxTokens, model = GROQ_MODEL) {
   const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -433,12 +424,13 @@ async function callGroq(systemPrompt, history, maxTokens) {
       Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
     },
     body: JSON.stringify({
-      model: GROQ_MODEL,
+      model,
       messages: [
         { role: 'system', content: systemPrompt },
         ...history.map((e) => ({ role: e.role, content: e.text })),
       ],
-      max_tokens: maxTokens,
+      max_tokens: maxTokens + 256, // gpt-oss spende token nel ragionamento prima della risposta
+      ...(model.startsWith('openai/gpt-oss') ? { reasoning_effort: 'low' } : {}),
       temperature: 0.3,
     }),
   });
@@ -520,6 +512,18 @@ async function callOpenRouterModel(model, systemPrompt, history, maxTokens, time
 }
 
 async function generateWithFallback(systemPrompt, history, maxTokens) {
+  // 0. Groq gpt-oss-120b: unico motore gratuito funzionante al 27.10.2026
+  //    (OpenRouter free ritirati + credito finito, Gemini prepagato esaurito)
+  if (process.env.GROQ_API_KEY) {
+    try {
+      return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
+    } catch (_) { /* fall through */ }
+    for (const model of GROQ_FALLBACK_MODELS) {
+      try {
+        return { provider: `groq-${model.split('/').pop()}`, text: await callGroq(systemPrompt, history, maxTokens, model) };
+      } catch (_) { /* fall through */ }
+    }
+  }
   // 1. OpenRouter primary (gpt-oss-120b, fast)
   if (process.env.OPENROUTER_API_KEY) {
     try {
@@ -530,12 +534,6 @@ async function generateWithFallback(systemPrompt, history, maxTokens) {
   if (process.env.GEMINI_API_KEY) {
     try {
       return { provider: 'gemini', text: await withRetries(() => callGemini(systemPrompt, history, maxTokens)) };
-    } catch (_) { /* fall through */ }
-  }
-  // 3. Groq (llama)
-  if (process.env.GROQ_API_KEY) {
-    try {
-      return { provider: 'groq', text: await withRetries(() => callGroq(systemPrompt, history, maxTokens)) };
     } catch (_) { /* fall through */ }
   }
   // 4. OpenRouter fallback (nemotron, slow but high quality — only reachable if others fail fast)
@@ -590,9 +588,21 @@ module.exports = async function handler(req, res) {
   const message  = String(body.message || '').trim();
   const history  = Array.isArray(body.messages) ? body.messages : [];
   const currentMemory = sanitizeMemory(body.memory);
+  const analysis = analyzeRoute(message, history);
+  const route = analysis.route;
+  const executionPlan = buildExecutionPlan({
+    route,
+    language,
+    message,
+    history,
+    memory: currentMemory,
+    intents: analysis.intents,
+    primaryIntent: analysis.primaryIntent,
+    secondaryIntents: analysis.secondaryIntents,
+  });
 
   if (body.action === 'prepare_email') {
-    const normalized = normalizeHistory(history, '');
+    const normalized = normalizeHistory(history, '', route.historyLimit || MAX_HISTORY_MESSAGES);
     const fallback = defaultEmailDraft(language, currentMemory, normalized);
     const hasKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENROUTER_API_KEY;
     if (!hasKey) {
@@ -642,25 +652,95 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  const directReply = buildDirectReply(route, language, message);
+  if (directReply) {
+    appendShadowEvent({
+      source: 'chat',
+      route: route.name,
+      language,
+      message,
+      dispatchMode: 'direct',
+      target: 'direct',
+      modelProfile: executionPlan.model_profile,
+      compressionMode: executionPlan.compression_mode,
+      hasReply: true,
+      error: null,
+    });
+    return res.status(200).json({
+      ok: true,
+      mode: `direct-${route.name}`,
+      route: route.name,
+      intents: analysis.intents,
+      secondary_intents: analysis.secondaryIntents,
+      compression_mode: route.compressionMode,
+      memory: currentMemory,
+      reply: directReply,
+    });
+  }
+
   const hasKey = process.env.GEMINI_API_KEY || process.env.GROQ_API_KEY || process.env.OPENROUTER_API_KEY;
   if (!hasKey) {
-    return res.status(200).json({ ok: true, mode: 'no_api_key', memory: currentMemory, reply: config.missingKey });
+    appendShadowEvent({
+      source: 'chat',
+      route: route.name,
+      language,
+      message,
+      dispatchMode: 'no_api_key',
+      target: executionPlan.executor,
+      modelProfile: executionPlan.model_profile,
+      compressionMode: executionPlan.compression_mode,
+      hasReply: true,
+      error: null,
+    });
+    return res.status(200).json({
+      ok: true,
+      mode: 'no_api_key',
+      route: route.name,
+      intents: analysis.intents,
+      secondary_intents: analysis.secondaryIntents,
+      compression_mode: route.compressionMode,
+      memory: currentMemory,
+      reply: config.missingKey,
+    });
   }
 
   if (!message) return res.status(400).json({ ok: false, error: 'Missing message' });
 
-  const normalizedHistory = normalizeHistory(history, message);
+  const normalizedHistory = normalizeHistory(history, message, route.historyLimit || MAX_HISTORY_MESSAGES);
+  const effectiveMemory = route.useMemory ? currentMemory : '';
 
   try {
-    const result = await generateWithFallback(buildSystemPrompt(language, currentMemory), normalizedHistory, MAX_TOKENS);
+    const result = await generateWithFallback(
+      buildSystemPrompt(language, effectiveMemory, route),
+      normalizedHistory,
+      route.maxTokens || MAX_TOKENS,
+    );
     const reply = sanitizeReply(truncateToSentences(result.text, 5));
-    const memoryUpdate = await updateConversationMemory(currentMemory, normalizedHistory, reply);
+    const memoryUpdate = route.useMemory
+      ? await updateConversationMemory(currentMemory, normalizedHistory, reply)
+      : { memory: currentMemory, provider: null };
     const userMessageCount = normalizedHistory.filter((m) => m.role === 'user').length;
     const proactiveEmail = userMessageCount === 3 && currentMemory.trim() && reply ? true : undefined;
+    appendShadowEvent({
+      source: 'chat',
+      route: route.name,
+      language,
+      message,
+      dispatchMode: `${result.provider}-live`,
+      target: executionPlan.executor,
+      modelProfile: executionPlan.model_profile,
+      compressionMode: executionPlan.compression_mode,
+      hasReply: true,
+      error: null,
+    });
     return res.status(200).json({
       ok: true,
       mode: `${result.provider}-live`,
       provider: result.provider,
+      route: route.name,
+      intents: analysis.intents,
+      secondary_intents: analysis.secondaryIntents,
+      compression_mode: route.compressionMode,
       memory: memoryUpdate.memory,
       memory_provider: memoryUpdate.provider,
       reply,
@@ -669,11 +749,26 @@ module.exports = async function handler(req, res) {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown chat error';
     const isRateLimited = isRateLimitError(errorMessage);
+    appendShadowEvent({
+      source: 'chat',
+      route: route.name,
+      language,
+      message,
+      dispatchMode: isRateLimited ? 'rate_limited' : 'sdk_error',
+      target: executionPlan.executor,
+      modelProfile: executionPlan.model_profile,
+      compressionMode: executionPlan.compression_mode,
+      hasReply: false,
+      error: errorMessage,
+    });
     return res.status(isRateLimited ? 429 : 500).json({
       ok: false,
       mode: isRateLimited ? 'all-providers-rate-limited' : 'sdk-error',
+      route: route.name,
+      intents: analysis.intents,
+      secondary_intents: analysis.secondaryIntents,
+      compression_mode: route.compressionMode,
       memory: currentMemory,
-      error: errorMessage,
       reply: isRateLimited ? config.rateLimit : config.genericError,
     });
   }

@@ -1,12 +1,6 @@
 "use strict";
 
-const { analyzeRoute, buildDirectReply } = require("../lib/progressive-router");
-const { buildExecutionPlan } = require("../lib/openclaw-contract");
-const { dispatchExecution } = require("../lib/execution-dispatch");
-const { appendShadowEvent } = require("../lib/shadow-log");
-const { runHeartbeatCycle } = require("../lib/worker-engine");
-
-const DEFAULT_LANGUAGE = "fr";
+const { DEFAULT_LANGUAGE, dispatchMessage } = require("../lib/dispatch-message");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -23,79 +17,23 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ ok: false, error: "Missing message" });
   }
 
-  const analysis = analyzeRoute(message, history);
-  const route = analysis.route;
-  const directReply = buildDirectReply(route, language, message);
-  const heartbeatTick = route.name === "heartbeat" && String(process.env.WORKER_LOOP_MODE || "").trim().toLowerCase() === "on"
-    ? runHeartbeatCycle({ language })
-    : null;
-  const executionPlan = buildExecutionPlan({
-    route,
-    language,
-    message,
-    history,
-    memory,
-    intents: analysis.intents,
-    primaryIntent: analysis.primaryIntent,
-    secondaryIntents: analysis.secondaryIntents,
-  });
-
   try {
-    const dispatch = await dispatchExecution(executionPlan, {
+    const hasAllowWorkerFlag = Object.prototype.hasOwnProperty.call(body, "allow_worker_queue");
+    const hasForceExecutionFlag = Object.prototype.hasOwnProperty.call(body, "force_execution");
+    const result = await dispatchMessage({
       message,
       language,
-      history,
       memory,
-      directReply,
+      messages: history,
+      source: body.source || "frontbot-http",
+      allowWorkerQueue: hasAllowWorkerFlag ? body.allow_worker_queue === true : false,
+      forceExecution: hasForceExecutionFlag ? body.force_execution === true : true,
     });
-
-    appendShadowEvent({
-      source: "dispatch",
-      route: route.name,
-      language,
-      message,
-      dispatchMode: dispatch.mode,
-      target: dispatch.target,
-      modelProfile: executionPlan.model_profile,
-      compressionMode: executionPlan.compression_mode,
-      hasReply: Boolean(dispatch.reply),
-      error: dispatch.error || null,
-    });
-
-    return res.status(200).json({
-      ok: true,
-      route: route.name,
-      intents: analysis.intents,
-      primaryIntent: analysis.primaryIntent,
-      secondaryIntents: analysis.secondaryIntents,
-      direct_reply: directReply,
-      execution_plan: executionPlan,
-      dispatch,
-      heartbeat_tick: heartbeatTick ? {
-        created_count: heartbeatTick.created.length,
-        active_task_id: heartbeatTick.state.currentTaskId,
-        event: heartbeatTick.result?.event || null,
-      } : null,
-      reply: dispatch.reply,
-    });
+    return res.status(200).json(result);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Dispatch failed";
-    appendShadowEvent({
-      source: "dispatch",
-      route: route.name,
-      language,
-      message,
-      dispatchMode: "error",
-      target: executionPlan.executor,
-      modelProfile: executionPlan.model_profile,
-      compressionMode: executionPlan.compression_mode,
-      hasReply: false,
-      error: errorMessage,
-    });
     return res.status(500).json({
       ok: false,
-      route: route.name,
-      execution_plan: executionPlan,
       error: errorMessage,
     });
   }
