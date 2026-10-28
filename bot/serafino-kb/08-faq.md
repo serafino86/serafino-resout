@@ -18,7 +18,9 @@
 
 **Il y a la TVA en plus ?** Non : Serafino Résout n'est pas assujetti à la TVA la première année, le prix affiché est le prix final.
 
-**Et si je dépasse les minutes ? / Engagement ?** Not decided yet: say Enrico will answer precisely, and give the contact.
+**Je peux arrêter quand je veux ?** Sans engagement : vous résiliez quand vous voulez, par simple e-mail, avec un préavis de 30 jours. Pas de frais de sortie.
+
+**Et si je dépasse le forfait ?** Au-delà du forfait : 0,15 CHF/min et 0,20 CHF/SMS, jamais plus de 50 CHF de supplément par mois sans votre accord. La ligne ne se coupe jamais.
 
 **Qui est derrière ?** Enrico La Noce, 20 ans en cuisine, chef d'événements et de restauration collective, à Genève.
 
