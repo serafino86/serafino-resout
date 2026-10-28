@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serafino Résout — La ligne qui répond quand vous ne pouvez pas | Genève</title>
-  <meta name="description" content="Le téléphone sonne en plein service ou sur le chantier : une ligne décroche à votre place, note la réservation ou le message, et vous l'envoie sur votre natel. Restaurants et artisans genevois, 30 jours gratuits." />
+  <meta name="description" content="Restaurants : une ligne recueille les demandes de réservation pendant le service. Pilote sur rendez-vous à Genève. Version artisans en préparation." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://serafino-resout.ch/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://serafino-resout.ch/" />
   <meta property="og:title" content="Serafino Résout — La ligne qui répond quand vous ne pouvez pas" />
-  <meta property="og:description" content="Le téléphone sonne en plein service ou sur le chantier : une ligne décroche à votre place, note la réservation ou le message, et vous l'envoie sur votre natel. Restaurants et artisans genevois, 30 jours gratuits." />
+  <meta property="og:description" content="Restaurants : une ligne recueille les demandes de réservation pendant le service. Pilote sur rendez-vous à Genève. Version artisans en préparation." />
   <meta property="og:image" content="https://serafino-resout.ch/assets/photos/avatar.png" />
   <meta property="og:locale" content="fr_CH" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500&amp;display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -142,6 +142,8 @@
     }
     .hero-lead strong { color: rgba(240,234,224,0.88); font-weight: 500; }
 
+    .hero-mobile-credential { display: none; }
+    .hero-contact-note { color: rgba(240,234,224,0.82); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; position: relative; }
     .hero-cta {
       display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1;
       opacity: 0; animation: slideIn 0.7s var(--ease) 0.62s forwards;
@@ -455,7 +457,8 @@
     /* ── RESPONSIVE ── */
     @media(max-width:1024px){
       .hero{grid-template-columns:1fr;min-height:auto}
-      .hero-left{padding:80px 40px 60px;min-height:100svh}
+      .hero-left{padding:60px 40px;min-height:auto}
+      .hero-mobile-credential{display:block;color:rgba(240,234,224,0.82);font-size:.82rem;line-height:1.5;margin-bottom:20px;position:relative}
       .hero-right{display:none}
       .services-row-4{grid-template-columns:repeat(2,1fr)}
     }
@@ -465,7 +468,11 @@
       .site-nav{display:none;flex-direction:column;position:fixed;top:54px;left:0;right:0;background:rgba(25,22,20,.98);padding:16px 20px;border-bottom:1px solid var(--line-inv);z-index:199;gap:0}
       .site-nav.is-open{display:flex}
       .site-nav a{padding:14px 0;border-bottom:1px solid rgba(240,234,224,.07)}
-      .hero-left{padding:60px 24px}
+      .hero-left{padding:32px 24px}
+      .hero-eyebrow{margin-bottom:24px}
+      .hero-h1-ghost{margin-bottom:24px}
+      .hero-lead{margin-bottom:20px}
+      .hero-cta a{max-width:100%;font-size:12px;padding:12px 18px}
       .hero-h1{font-size:clamp(2.5rem,11vw,3.5rem)}
       .hero-h1-ghost{font-size:clamp(2.5rem,11vw,3.5rem)}
       .stats-band{grid-template-columns:repeat(2,1fr)}
@@ -494,7 +501,7 @@
     <nav id="site-nav" class="site-nav">
       <a href="#offre">L'heure du téléphone</a>
       <a href="#qui">Qui je suis</a>
-      <a href="#contact" class="nav-cta">Je veux faire l'essai →</a>
+      <a href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20" class="nav-cta">Être rappelé pour une démo</a>
     </nav>
   </header>
 
@@ -513,8 +520,11 @@
           Cette heure-là, <strong>je la prends</strong> : une ligne décroche à votre place, note la réservation
           ou le message, et vous l'envoie sur votre <strong>natel</strong>. Vous rappelez quand vous pouvez.
         </p>
+        <p class="hero-mobile-credential">Enrico La Noce · 20 ans de cuisine, d'événementiel et de restauration collective · Genève</p>
+        <p class="hero-contact-note">Indiquez le nom du restaurant, votre téléphone et le créneau où Enrico peut vous rappeler.</p>
         <div class="hero-cta">
-          <a class="btn-primary" href="#contact">Je veux faire l'essai →</a>
+          <a class="btn-primary" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
+          <a class="btn-ghost" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
           <a class="btn-ghost" href="#offre">Comment ça marche →</a>
         </div>
       </div>
@@ -536,16 +546,23 @@
     <section id="offre" class="section fade-up">
       <div class="section-label">L'heure du téléphone</div>
       <h2 class="section-h2">Un appel manqué, c'est une table vide<br>ou un chantier <em>qui part ailleurs.</em></h2>
-      <p class="section-sub">Vous gardez votre numéro. Quand personne ne décroche, l'appel passe sur la ligne. Je cherche dix restaurants et artisans genevois pour démarrer.</p>
+      <p class="section-sub">Vous gardez votre numéro. Quand personne ne décroche, l'appel passe sur la ligne. Restaurants : pilote sur rendez-vous à Genève. Artisans : version en préparation.</p>
       <div class="proof-grid">
         <div class="proof-card">
-          <span class="proof-sector">Restaurant</span>
-          <h3 class="proof-h3">La ligne prend<br>la réservation.</h3>
+          <span class="proof-sector">Restaurants · pilote sur rendez-vous</span>
+          <h3 class="proof-h3">La ligne recueille<br>la demande de réservation.</h3>
           <ul class="proof-list">
             <li>Nom, nombre de personnes, jour, heure</li>
             <li>Vous recevez la demande sur votre natel</li>
             <li>Un clic : confirmé ou refusé. Rien n'est réservé sans vous</li>
-            <li>Le client reçoit un SMS de confirmation</li>
+            <li>Après votre validation, le client reçoit un SMS de confirmation</li>
+          </ul>
+          <ul class="proof-list price-points" style="margin-top:18px">
+            <li>249 CHF par mois</li>
+            <li>1 200 minutes d'appels et 400 SMS de confirmation inclus par mois</li>
+            <li>30 jours d'essai gratuits pour les dix premiers, sans carte de crédit</li>
+            <li>À la fin des 30 jours, vous décidez si vous continuez</li>
+            <li>Au-delà des minutes ou SMS inclus : à discuter, rien sans votre accord</li>
           </ul>
           <div class="proof-stats">
             <div class="pstat"><span class="pstat-v">249 CHF</span><span class="pstat-l">par mois</span></div>
@@ -553,22 +570,16 @@
           </div>
         </div>
         <div class="proof-card">
-          <span class="proof-sector">Artisan</span>
-          <h3 class="proof-h3">La ligne prend<br>le message.</h3>
-          <ul class="proof-list">
-            <li>Nom, motif, adresse, urgence</li>
-            <li>Vous recevez le résumé tout de suite sur votre natel</li>
-            <li>Vous rappelez en sortant du chantier</li>
-            <li>Le client sait que vous l'avez entendu</li>
-          </ul>
+          <span class="proof-sector">Artisans · en préparation</span>
+          <h3 class="proof-h3">La version artisans arrive.</h3>
+          <p class="proof-desc">Version artisans en préparation. Laissez vos coordonnées pour être prévenu des premiers essais.</p>
           <div class="proof-stats">
-            <div class="pstat"><span class="pstat-v">119 CHF</span><span class="pstat-l">par mois</span></div>
-            <div class="pstat"><span class="pstat-v">400 min</span><span class="pstat-l">d'appels · 100 SMS inclus</span></div>
+            <div class="pstat"><span class="pstat-v">119 CHF</span><span class="pstat-l">par mois · tarif prévu</span></div>
           </div>
         </div>
       </div>
       <div class="guarantee">
-        <p><strong>Pour les dix premiers : 30 jours gratuits, sans carte de crédit.</strong> Installation offerte — je viens chez vous. La ligne se présente comme un assistant automatique. L'audio n'est pas conservé : vous recevez un résumé écrit.</p>
+        <p><strong>Pour les dix premiers restaurants : 30 jours gratuits, sans carte de crédit.</strong> Installation offerte — je viens chez vous. La ligne se présente comme un assistant automatique. L'audio n'est pas conservé : vous recevez un résumé écrit.</p>
       </div>
     </section>
 
@@ -627,7 +638,11 @@
         </details>
         <details class="faq-item">
           <summary>C'est disponible quand ?</summary>
-          <p>On démarre avec dix restaurants et artisans genevois. Écrivez-moi ou appelez-moi : je vous rappelle et on fixe un rendez-vous.</p>
+          <p><strong>Restaurants :</strong> le pilote est proposé sur rendez-vous à Genève. <strong>Artisans :</strong> la version est en préparation ; laissez vos coordonnées pour être prévenu des premiers essais.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Que se passe-t-il si je ne confirme pas ?</summary>
+          <p>Tant que vous n'avez pas confirmé, la demande n'est pas une réservation. Enrico vous explique le fonctionnement en détail lors de la démo.</p>
         </details>
         <details class="faq-item">
           <summary>En quelle langue ?</summary>
@@ -640,11 +655,11 @@
     <section id="contact" class="cta-section fade-up">
       <div class="cta-bg-word">RÉSOUT</div>
       <div class="cta-label">Un seul point de départ</div>
-      <h2 class="cta-h2">Je veux<br>faire l'essai.</h2>
-      <p class="cta-sub">Écrivez-moi en deux lignes : votre métier, votre numéro. Je vous rappelle.</p>
+      <h2 class="cta-h2">Être rappelé<br>pour une démo.</h2>
+      <p class="cta-sub">Indiquez le nom du restaurant, votre téléphone et le créneau où Enrico peut vous rappeler.</p>
       <div class="cta-row">
-        <a class="btn-cta-inv" href="mailto:contact@serafino-resout.ch?subject=Essai%20%E2%80%94%20L%27heure%20du%20t%C3%A9l%C3%A9phone">Je veux faire l'essai →</a>
-        <a class="btn-tel" href="tel:+41786583760">078 658 37 60</a>
+        <a class="btn-cta-inv" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
+        <a class="btn-tel" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
       </div>
       <p class="cta-meta">contact@serafino-resout.ch · Genève · Réponse rapide</p>
     </section>
@@ -662,7 +677,7 @@
   </footer>
 
   <!-- BOT -->
-  <div class="bot-hint" id="botHint">Une question sur la ligne ? Je réponds en direct.</div>
+  <div class="bot-hint" id="botHint">Une question ? Posez-la à l'assistant automatique.</div>
   <button class="bot-fab" id="botFab" aria-label="Ouvrir l'assistant" aria-expanded="false">
     <span class="bot-fab-icon"><img src="./assets/photos/avatar.png" alt="" loading="lazy" onerror="this.src='./assets/photos/enrico_hero.jpg'"></span>
     <span class="bot-fab-label">Une question ?</span>
@@ -672,7 +687,7 @@
       <div class="bot-header-avatar"><img src="./assets/photos/avatar.png" alt="" onerror="this.src='./assets/photos/enrico_hero.jpg'"></div>
       <div class="bot-header-info">
         <span class="bot-header-name">Assistant Serafino</span>
-        <div class="bot-header-status"><span class="bot-status-dot"></span><span class="bot-status-label">En ligne</span></div>
+        <div class="bot-header-status"><span class="bot-status-dot"></span><span class="bot-status-label">Assistant automatique</span></div>
       </div>
       <button class="bot-close" id="botClose" type="button">Fermer ✕</button>
     </div>
