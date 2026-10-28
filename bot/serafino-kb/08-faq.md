@@ -16,7 +16,9 @@
 
 **Combien ça coûte ?** Restaurant 249 CHF par mois (1200 minutes, 400 SMS). Artisan 119 CHF par mois (400 minutes, 100 SMS).
 
-**Et si je dépasse les minutes ? / Engagement ? / TVA ?** Not decided yet: say Enrico will answer precisely, and give the contact.
+**Il y a la TVA en plus ?** Non : Serafino Résout n'est pas assujetti à la TVA la première année, le prix affiché est le prix final.
+
+**Et si je dépasse les minutes ? / Engagement ?** Not decided yet: say Enrico will answer precisely, and give the contact.
 
 **Qui est derrière ?** Enrico La Noce, 20 ans en cuisine, chef d'événements et de restauration collective, à Genève.
 

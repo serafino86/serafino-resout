@@ -11,5 +11,6 @@
 
 ## Rules
 - Never give any other price, never compare with competitors' prices, never mention costs or margins.
-- Do not say "HT", "TVA", "sans engagement", or what happens beyond the included minutes: these points are not decided. Say Enrico will answer precisely.
+- VAT: Serafino Résout is **not subject to VAT (TVA) in its first year** — the prices are final amounts, no VAT added. Never write "HT" or "TTC".
+- Do not promise "sans engagement" or what happens beyond the included minutes: not decided yet. Say Enrico will answer precisely.
 - Old offers (diagnostic, 300 CHF plan, 800 CHF implementation, Centralina packages, 99/149/199/299 CHF) **no longer exist**.
