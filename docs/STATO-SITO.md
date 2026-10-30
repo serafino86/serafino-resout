@@ -49,3 +49,7 @@ Enrico preferisce l’apertura precedente e chiede di preservare lo stile del si
 ## Pulsante chat stabile
 
 Segnalato movimento durante lo scorrimento. Nel browser di verifica le coordinate restavano costanti durante lo scroll desktop/mobile; riprodotto invece uno spostamento dovuto all’ingrandimento al passaggio del mouse. Eliminati trasformazione, transizione e animazione sul pulsante nella CSS condivisa. Posizione fissa conservata; versione CSS aggiornata nei dodici HTML per evitare la copia in cache. Nessuna modifica al backend del bot o ai suoi contenuti.
+
+## Biografia personale approvata
+
+Il Chi sono racconta la passione informatica dall’infanzia, la formazione indipendente costruita negli anni e l’incontro con vent’anni di lavoro sul campo. Testo narrativo approvato da Enrico, senza titoli o certificazioni attribuiti. Richiamo alla formazione informatica anche nella didascalia della foto e nella presentazione mobile. Fonte dei nuovi fatti: racconto diretto di Enrico. Preservati lo stile visivo e i collegamenti ai lavori concreti.
