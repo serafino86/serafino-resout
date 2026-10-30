@@ -15,11 +15,11 @@ Enrico La Noce is the founder of Serafino Résout, based in Geneva. Serafino is 
 
 ## What Serafino Résout does today
 
-One thing: **"L'heure du téléphone"** — a phone line that answers when the restaurant or the craftsman cannot (see 02-services). It is in a **pilot phase in Geneva**: Enrico is looking for the first ten restaurants and craftsmen.
+Practical work for small businesses: marketing and advertising, commercial opportunities, local AI installation, custom tools and automation. Enrico starts from the actual business need and implements the useful solution with the owner. The phone line is one solution among these, not the whole business (see 02-services).
 
 ## Location and contact
 
-- Geneva, Switzerland. Market: restaurants and craftsmen in French-speaking Switzerland.
+- Geneva, Switzerland. Market: restaurants, craftsmen and small businesses in French-speaking Switzerland, including professional offices.
 - Email: contact@serafino-resout.ch
 - Phone: 078 658 37 60
 - Website: serafino-resout.ch

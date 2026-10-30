@@ -1,6 +1,10 @@
 # Serafino Résout - How it works
 
-## Three steps, no quote
+## Custom work
+
+Start from the visitor's actual activity and goal. Agree scope and price before starting. Implement the relevant solution, test it on real tasks and help the owner use it. No general promise of a free trial, fixed price or three-month guarantee for custom work.
+
+## Phone-line pilot only: three steps
 
 1. **On se voit.** The visitor writes or calls Enrico. Enrico comes by and lets them hear the line. Free.
 2. **Installation.** Enrico installs it himself, at the business. The owner keeps his number; unanswered calls are forwarded to the line. Installation is offered.

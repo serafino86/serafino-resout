@@ -20,11 +20,8 @@ LOCAL_PATH="$(dirname "$0")/site/"
 
 # Pagine ritirate: rimosse dal server a ogni deploy (rifocalizzazione 2026-07)
 RETIRED=(
-  app-sur-mesure.html
   ateliers-ia.html
-  automatisation.html
   coaching-vibe-coder.html
-  formation-ia.html
   plan-de-veille.html
 )
 
