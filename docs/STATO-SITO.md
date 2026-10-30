@@ -45,3 +45,7 @@ Conservare `assets/audit-ui.css` e `assets/site-ui.js`, condivisi dalle dodici p
 ## Riesame dell’identità della home
 
 Enrico preferisce l’apertura precedente e chiede di preservare lo stile del sito. Dopo confronto indipendente UX/marketing, approva il recupero della voce personale: home con slogan originale, spiegazione del lavoro e dell’affiancamento, navigazione verso metodo e presentazione personale. Esempi anonimi raccontati a partire dal bisogno del cliente. Titolo SEO, pagine servizi, contatti, accessibilità e chat conservati. Nessun ripristino della vecchia offerta solo telefonica.
+
+## Pulsante chat stabile
+
+Segnalato movimento durante lo scorrimento. Nel browser di verifica le coordinate restavano costanti durante lo scroll desktop/mobile; riprodotto invece uno spostamento dovuto all’ingrandimento al passaggio del mouse. Eliminati trasformazione, transizione e animazione sul pulsante nella CSS condivisa. Posizione fissa conservata; versione CSS aggiornata nei dodici HTML per evitare la copia in cache. Nessuna modifica al backend del bot o ai suoi contenuti.

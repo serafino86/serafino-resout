@@ -124,6 +124,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 .service-list li { margin-bottom: 14px; }
 .breadcrumb { font-size: 15px; }
 .bot-fab { background: var(--accent); min-height: 52px; }
+.bot-fab, .bot-fab:hover, .bot-fab.hint-active {
+  transform: none;
+  animation: none;
+  transition: none;
+}
 .bot-fab-label { color: #F0EAE0; font-size: 14px; }
 .bot-close { color: #F0EAE0; min-height: 44px; min-width: 78px; font-size: 14px; }
 .bot-header-name { font-size: 16px; }
