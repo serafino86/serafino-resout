@@ -312,6 +312,23 @@
       }
       .bot-input { font-size: 16px; }
     }
+    /* Audit UX: readable text, labelled controls and touch targets. */
+    .bot-header { height: auto; min-height: 58px; padding: 8px 12px; flex-wrap: wrap; gap: 8px; }
+    .bot-header-status { display: block; font-size: 12px; }
+    .lang-pills { gap: 4px; }
+    .lang-pill { min-width: 44px; min-height: 44px; padding: 8px; opacity: 1; color: var(--muted); font-size: 14px; }
+    .lang-pill.active { color: var(--accent); font-weight: 700; }
+    .bot-bubble { font-size: 16px; }
+    .bot-suggestions { flex-wrap: wrap; gap: 6px; overflow: visible; }
+    .bot-suggestion-chip { min-height: 44px; padding: 8px 12px; font-size: 14px; white-space: normal; text-align: left; }
+    .bot-input { font-size: 16px; min-height: 44px; }
+    .bot-input::placeholder { opacity: 1; }
+    .bot-send { width: 44px; height: 44px; }
+    .bot-action-chip, .bot-mail-button { min-height: 44px; font-size: 14px; }
+    button:focus-visible, a:focus-visible, .bot-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
@@ -322,18 +339,18 @@
       <div class="bot-logo">S</div>
       <div>
         <div class="bot-header-name">Serafino Résout</div>
-        <div class="bot-header-status">● Assistant en ligne</div>
+        <div class="bot-header-status">Assistant automatique</div>
       </div>
     </div>
-    <div class="lang-pills" id="langPills">
-      <button class="lang-pill active" data-lang="fr"    title="Français">🇫🇷</button>
-      <button class="lang-pill"        data-lang="en"    title="English">🇬🇧</button>
-      <button class="lang-pill"        data-lang="it"    title="Italiano">🇮🇹</button>
-      <button class="lang-pill"        data-lang="de-CH" title="Deutsch (CH)">🇨🇭</button>
+    <div class="lang-pills" id="langPills" role="group" aria-label="Langue / Language">
+      <button class="lang-pill active" data-lang="fr" title="Français" aria-label="Français" aria-pressed="true">FR</button>
+      <button class="lang-pill" data-lang="en" title="English" aria-label="English" aria-pressed="false">EN</button>
+      <button class="lang-pill" data-lang="it" title="Italiano" aria-label="Italiano" aria-pressed="false">IT</button>
+      <button class="lang-pill" data-lang="de-CH" title="Deutsch (CH)" aria-label="Deutsch (Schweiz)" aria-pressed="false">DE</button>
     </div>
   </header>
 
-  <div class="bot-thread-wrap" id="botThread"></div>
+  <div class="bot-thread-wrap" id="botThread" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation avec l’assistant automatique"></div>
 
   <div class="bot-composer-wrap">
     <div class="bot-actions" id="botActions">
@@ -343,9 +360,9 @@
     </div>
     <div class="bot-suggestions" id="botSuggestions"></div>
     <div class="bot-composer">
-      <textarea id="botInput" class="bot-input" rows="1"
+      <textarea id="botInput" class="bot-input" rows="1" aria-label="Votre message"
         placeholder="Posez votre question..."></textarea>
-      <button type="button" id="botSend" class="bot-send" disabled>
+      <button type="button" id="botSend" class="bot-send" aria-label="Envoyer le message" disabled>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13"/>
@@ -390,7 +407,11 @@ const botState = {
 
 const BOT_COPY = {
   fr: {
-    welcome: "Bonjour. Je suis l'assistant automatique de Serafino Résout. Je vous explique la ligne qui répond au téléphone quand vous ne pouvez pas. Vous êtes dans quel métier ?",
+    welcome: "Bonjour, je suis l'assistant automatique de Serafino Résout. Marketing, publicité, IA locale, outils sur mesure : quel est votre besoin ?",
+    sendLabel: 'Envoyer le message',
+    inputLabel: 'Votre message',
+    threadLabel: 'Conversation avec l’assistant automatique',
+    typingLabel: 'Réponse en cours',
     placeholder: 'Posez votre question...',
     prepareMail: 'Préparer un mail',
     preparingMail: 'Je prépare le mail...',
@@ -401,15 +422,17 @@ const BOT_COPY = {
     mailAskMissing: "Pour finaliser le mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Répondez ici en quelques mots et je le prépare aussitôt.",
     proactiveEmail: "Votre situation est claire. Je prépare un mail récapitulatif pour Enrico, prêt à envoyer en un clic ?",
     suggestions: [
-      "J'ai un restaurant",
-      'Je suis artisan',
-      'Je garde mon numéro ?',
-      'Combien ça coûte ?',
-      "Comment faire l'essai ?",
+      "De l’aide pour ma publicité",
+      'Installer une IA en local',
+      'Un outil pour mon activité',
     ],
   },
   en: {
-    welcome: "Hello. I'm the Serafino Résout assistant. I can help you understand whether Serafino's offer fits your situation — clearly and concretely. Tell me about your activity or ask a direct question.",
+    welcome: "Hello, I'm the automated Serafino Résout assistant. Marketing, advertising, local AI and custom tools: what would you like help with?",
+    sendLabel: 'Send message',
+    inputLabel: 'Your message',
+    threadLabel: 'Conversation with the automated assistant',
+    typingLabel: 'Preparing a reply',
     placeholder: 'Describe your problem or ask a question...',
     prepareMail: 'Prepare an email',
     preparingMail: 'I am preparing the email...',
@@ -420,15 +443,17 @@ const BOT_COPY = {
     mailAskMissing: 'To finalize the email, I need a few details: {missing}. Reply here in a few words and I\'ll prepare it right away.',
     proactiveEmail: "We've got a good picture of your situation. Want me to prepare a summary email for Serafino, ready to send in one click?",
     suggestions: [
-      'What is Serafino Résout?',
-      'I am a craftsman',
-      'Do I keep my number?',
-      'What does it cost?',
-      'I run a restaurant — how can you help?',
+      'Help with my advertising',
+      'Install local AI',
+      'A custom tool for my business',
     ],
   },
   it: {
-    welcome: "Ciao. Sono l'assistente di Serafino Résout. Posso aiutarti a capire se l'offerta di Serafino fa al caso tuo — in modo chiaro e concreto. Raccontami della tua attività o fai una domanda diretta.",
+    welcome: "Ciao, sono l'assistente automatico di Serafino Résout. Marketing, pubblicità, IA locale e strumenti su misura: di cosa hai bisogno?",
+    sendLabel: 'Invia il messaggio',
+    inputLabel: 'Il tuo messaggio',
+    threadLabel: 'Conversazione con l’assistente automatico',
+    typingLabel: 'Risposta in preparazione',
     placeholder: 'Descrivi il tuo problema o fai una domanda...',
     prepareMail: 'Preparare una mail',
     preparingMail: 'Preparo la mail...',
@@ -439,15 +464,17 @@ const BOT_COPY = {
     mailAskMissing: 'Per finalizzare la mail, ho bisogno di: {missing}. Rispondimi qui in poche parole e la preparo subito.',
     proactiveEmail: "Ho già un quadro chiaro della tua situazione. Vuoi che prepari una mail riepilogativa per Serafino, pronta da inviare in un click?",
     suggestions: [
-      "Cos'è Serafino Résout?",
-      'Sono un artigiano',
-      'Tengo il mio numero?',
-      'Quanto costa?',
-      'Ho un ristorante — come puoi aiutarmi?',
+      'Aiuto per la mia pubblicità',
+      'Installare IA in locale',
+      'Uno strumento per la mia attività',
     ],
   },
   'de-CH': {
-    welcome: 'Hallo. Ich bin der Assistent von Serafino Résout. Ich kann dir helfen zu verstehen, ob Serafinos Angebot zu deiner Situation passt — klar und konkret. Erzähl mir von deiner Tätigkeit oder stelle eine direkte Frage.',
+    welcome: 'Hallo, ich bin der automatische Assistent von Serafino Résout. Marketing, Werbung, lokale KI und individuelle Werkzeuge: Wobei brauchen Sie Unterstützung?',
+    sendLabel: 'Nachricht senden',
+    inputLabel: 'Ihre Nachricht',
+    threadLabel: 'Gespräch mit dem automatischen Assistenten',
+    typingLabel: 'Antwort wird vorbereitet',
     placeholder: 'Beschreibe dein Problem oder stelle eine Frage...',
     prepareMail: 'E-Mail vorbereiten',
     preparingMail: 'Ich bereite die E-Mail vor...',
@@ -458,11 +485,9 @@ const BOT_COPY = {
     mailAskMissing: 'Um die E-Mail abzuschließen, brauche ich noch: {missing}. Antworte kurz hier und ich bereite sie sofort vor.',
     proactiveEmail: "Ich habe deine Situation schon gut verstanden. Soll ich eine Zusammenfassungs-E-Mail für Serafino vorbereiten, die du mit einem Klick senden kannst?",
     suggestions: [
-      'Was ist Serafino Résout?',
-      'Ich bin Handwerker',
-      'Behalte ich meine Nummer?',
-      'Was kostet das?',
-      'Ich habe ein Restaurant — wie kannst du mir helfen?',
+      'Hilfe bei meiner Werbung',
+      'Lokale KI installieren',
+      'Ein Werkzeug für meinen Betrieb',
     ],
   },
 };
@@ -486,6 +511,9 @@ function syncComposer() {
   if (!input || !send) return;
   const copy = BOT_COPY[botState.language];
   input.placeholder = copy ? copy.placeholder : '';
+  input.setAttribute('aria-label', copy.inputLabel);
+  send.setAttribute('aria-label', copy.sendLabel);
+  document.getElementById('botThread').setAttribute('aria-label', copy.threadLabel);
   input.disabled    = botState.loading;
   send.disabled     = botState.loading || !input.value.trim();
   if (action && copy) {
@@ -564,6 +592,8 @@ function showTyping() {
   const row = document.createElement('div');
   row.className = 'bot-bubble-row bot bot-typing';
   row.id = 'botTyping';
+  row.setAttribute('role', 'status');
+  row.setAttribute('aria-label', BOT_COPY[botState.language].typingLabel);
   row.innerHTML = '<div class="bot-bubble"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
   thread.appendChild(row);
   thread.scrollTop = thread.scrollHeight;
@@ -577,6 +607,7 @@ function hideTyping() {
 function setLanguage(lang) {
   if (!BOT_COPY[lang]) return;
   botState.language = lang;
+  document.documentElement.lang = lang;
   botState.messages = [{ role: 'bot', text: BOT_COPY[lang].welcome }];
   botState.suggestionsSent = false;
   const thread = document.getElementById('botThread');
@@ -707,8 +738,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Language pills
   document.querySelectorAll('[data-lang]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-lang]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-lang]').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       setLanguage(btn.getAttribute('data-lang'));
     });
   });
