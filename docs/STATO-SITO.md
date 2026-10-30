@@ -30,7 +30,7 @@ Backup e rapporto operativi riservati fuori dal repository pubblico. Le modifich
 
 Due agenti indipendenti hanno esaminato il sito online e le immagini desktop/mobile, poi riesaminato le correzioni locali. Il coordinatore ha pubblicato e verificato la versione finale online; l'agente marketing ha inoltre confermato la lettura finale di sei pagine pubbliche.
 
-- Titolo iniziale esplicito: marketing, IA locale e strumenti su misura. Slogan personale secondario.
+- Apertura personale «Le travail reste humain. Le désordre passe à la machine.», recuperata dopo il riesame con Enrico e i due esperti; spiegazione concreta dei servizi subito sotto. La precedente gerarchia con le categorie nel titolo è superata dalla decisione del 30 ottobre.
 - Tre percorsi principali in home, mantenendo tutte le 12 pagine. Realizzazioni anonime subito dopo i servizi, prima del metodo.
 - Contatti dichiarano l'azione Appeler/Écrire; navigazione comune anche sulla pagina della linea. Eliminate le affermazioni assolute sulle prenotazioni perse.
 - Testi delle schede a 16 px e peso 400, colori con contrasto misurato superiore a 4,5:1 sui testi controllati, bersagli principali di almeno 44 px.
@@ -41,3 +41,7 @@ Due agenti indipendenti hanno esaminato il sito online e le immagini desktop/mob
 Collaudo finale pubblico: 12 pagine × 2 viewport = 24 controlli riusciti; ulteriori 23 controlli di interazione/accessibilità, incluse larghezze 320–1440 px, contrasto, navigazione senza JavaScript e chat con iframe reale. Prova completa del suggerimento pubblicità: risposta HTTP 200 e contenuto pertinente, senza inviare email o chiamate. Nessun risultato di conversione o certificazione WCAG dedotto da questi controlli.
 
 Conservare `assets/audit-ui.css` e `assets/site-ui.js`, condivisi dalle dodici pagine, e il saluto aggiornato in `bot/bot.html`. Un futuro ripristino dei vecchi HTML non deve reintrodurre gli stessi problemi.
+
+## Riesame dell’identità della home
+
+Enrico preferisce l’apertura precedente e chiede di preservare lo stile del sito. Dopo confronto indipendente UX/marketing, approva il recupero della voce personale: home con slogan originale, spiegazione del lavoro e dell’affiancamento, navigazione verso metodo e presentazione personale. Esempi anonimi raccontati a partire dal bisogno del cliente. Titolo SEO, pagine servizi, contatti, accessibilità e chat conservati. Nessun ripristino della vecchia offerta solo telefonica.
