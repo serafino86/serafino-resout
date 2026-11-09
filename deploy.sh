@@ -31,6 +31,19 @@ RETIRED=(
   ateliers-ia.html
   coaching-vibe-coder.html
   plan-de-veille.html
+  # nuova linea 2026-11: rimuovere SOLO dopo che deploy/nginx-redirects.conf e' incluso (altrimenti 404 invece di 301)
+  pme.html
+  artisans.html
+  horeca.html
+  automatisation.html
+  app-sur-mesure.html
+  marketing-publicite-geneve.html
+  geneve.html
+  formation-ia.html
+  ia-locale-geneve.html
+  bot-personalise.html
+  cas-planeto.html
+  styles.css
 )
 
 echo "▶ Deploy serafino-resout.ch..."
