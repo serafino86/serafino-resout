@@ -13,6 +13,14 @@
 
 set -e
 
+# Deploy solo da commit: il live deve sempre essere uguale al repo.
+SITE_STATUS=$(git -C "$(dirname "$0")" status --porcelain -- site/) || { echo "✖ git status fallito: deploy annullato." >&2; exit 1; }
+if [ -n "$SITE_STATUS" ]; then
+  echo "✖ site/ ha modifiche non committate: committa prima di pubblicare." >&2
+  git -C "$(dirname "$0")" status --short -- site/ >&2
+  exit 1
+fi
+
 SSH_KEY="$HOME/.ssh/hostinger_serafino"
 REMOTE="root@srv1587393.hstgr.cloud"
 REMOTE_PATH="/var/www/serafino-resout/site/"
