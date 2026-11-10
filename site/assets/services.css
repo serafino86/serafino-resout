@@ -240,3 +240,4 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .related-link { padding: 12px 18px; border: 1px solid var(--line); color: var(--text); }
 .related-link:hover { border-color: var(--accent); color: var(--accent); }
 @media(max-width:600px){ .tg-grid, .ba-block { grid-template-columns: 1fr; } .credential { flex-direction: column; text-align: center; } }
+.frame-video { max-width: 420px; }
