@@ -1,27 +1,32 @@
 
     @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/barlow-latin-400-normal.woff2') format('woff2'); }
     @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/barlow-latin-500-normal.woff2') format('woff2'); }
-    @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/barlow-condensed-latin-600-normal.woff2') format('woff2'); }
-    @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/barlow-condensed-latin-700-normal.woff2') format('woff2'); }
 
     :root {
-      --bg:          #F4F5F2;
-      --surface:     #E9EBE6;
-      --text:        #1B1D1C;
-      --muted:       #55524C;
+      --bg:          #EEF0F4;
+      --surface:     #E1E4EA;
+      --white:       #FFFFFF;
+      --text:        #14161A;
+      --muted:       #4B515C;
       --accent:      #A33B1A;
-      --accent-deco: #C94F28;
-      --bg-dark:     #1B1D1C;
-      --text-inv:    #F4F5F2;
-      --accent-inv:  #F08A5D;
-      --muted-inv:   #B9BBB5;
-      --focus:       #1D5FA8;
+      --accent-deco: #E0572B;
+      --bg-dark:     #14161A;
+      --text-inv:    #EEF0F4;
+      --accent-inv:  #FF9A70;
+      --muted-inv:   #B4B9C4;
+      --focus:       #1D4ED8;
       --line:        rgba(27,29,28,0.10);
       --line-strong: rgba(27,29,28,0.18);
       --line-inv:    rgba(244,245,242,0.10);
       --shadow:      0 1px 3px rgba(0,0,0,.08);
-      --font-d: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-      --font-c: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      --r-frame:     clamp(14px, 2vw, 24px);
+      --r-sm:        10px;
+      --r-pill:      999px;
+      --margin:      clamp(16px, 5vw, 72px);
+      --gutter:      clamp(16px, 2vw, 24px);
+      --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px; --s6: 64px; --s7: 96px; --s8: 160px;
+      --font-d: 'Barlow', system-ui, sans-serif;
+      --font-c: 'Barlow', system-ui, sans-serif;
       --font-b: 'Barlow', system-ui, sans-serif;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
