@@ -28,202 +28,79 @@
     ]}
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #F0EAE0;--surface:#EDEAE3;--surface2:#E5E1D8;--text:#1C1A17;
-      --muted:#5A564F;--subtle:#C8C4BB;--accent: #C94F28;
-      --accent-dim: rgba(201,79,40,0.08);--line:rgba(28,26,23,0.08);
-      --line-strong:rgba(28,26,23,0.14);--ease:cubic-bezier(0.25,0,0,1);
-      --font-d:'Instrument Serif',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-    p{color:#3A3630}a{color:inherit}strong{color:var(--text)}
-    .site-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .site-logo{font-family:var(--font-d);font-size:1.1rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;color:var(--text)}
-    .site-logo span{color:var(--accent)}
-    .site-nav-sub{display:flex;gap:0}
-    .site-nav-sub a{font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:rgba(28,26,23,0.5);transition:color 0.2s;padding:6px 12px}
-    .site-nav-sub a:hover{color:var(--text)}
-    .site-nav-sub .nav-cta-sub{color:var(--accent)!important;border:1px solid rgba(201,79,40,0.35);border-radius:2px;padding:6px 14px}
-    .site-nav-sub .nav-cta-sub:hover{background:var(--accent);color:#FAF7F2!important}
-    @media(max-width:768px){.site-nav-sub{display:flex;overflow-x:auto;max-width:58%;gap:0;scrollbar-width:none}.site-nav-sub::-webkit-scrollbar{display:none}.site-nav-sub a{padding:6px 9px;font-size:11px;white-space:nowrap}}
-    .page-hero{padding:96px 48px 80px;max-width:960px;margin:0 auto;border-bottom:1px solid var(--line)}
-    .eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:block}
-    .page-hero h1{font-family:var(--font-d);font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.15;color:var(--text);margin-bottom:28px}
-    .lead{font-size:1.1rem;line-height:1.75;color:rgba(28,26,23,0.70);max-width:680px;margin-bottom:40px}
-    .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-    .btn-p{display:inline-block;background:var(--accent);color:#FAF7F2;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:2px;transition:opacity 0.2s}
-    .btn-p:hover{opacity:0.88}
-    .btn-s{display:inline-block;border:1px solid var(--line-strong);color:var(--muted);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:13px 24px;border-radius:2px;transition:border-color 0.2s,color 0.2s}
-    .btn-s:hover{border-color:var(--accent);color:var(--accent)}
-    .section{max-width:960px;margin:0 auto;padding:72px 48px;border-bottom:1px solid var(--line)}
-    .section-head{margin-bottom:40px}
-    .section-head h2{font-family:var(--font-d);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;line-height:1.25;color:var(--text);margin-top:12px}
-    .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-    .g-card{background:var(--surface);padding:32px;display:flex;flex-direction:column;gap:10px}
-    .g-card .num{font-family:var(--font-d);font-size:2rem;font-weight:700;color:var(--subtle);line-height:1}
-    .g-card h3{font-size:1rem}
-    .g-card p{font-size:0.85rem}
-    .results-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-    .r-cell{background:var(--surface2);padding:24px;display:flex;flex-direction:column;gap:6px}
-    .r-cell .stat{font-family:var(--font-d);font-size:2rem;font-weight:700;color:var(--accent);line-height:1}
-    .r-cell .label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
-    .r-cell p{font-size:0.8rem}
-    .credential{background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:32px 40px;margin-top:40px;border-left:3px solid var(--accent);display:flex;gap:32px;align-items:center}
-    .credential img{width:160px;height:200px;object-fit:cover;border-radius:4px;filter:grayscale(1);flex-shrink:0}
-    .credential p{font-size:0.92rem;line-height:1.7}
-    .credential .sig{display:block;margin-top:14px;font-family:var(--font-d);font-size:1rem;color:var(--text)}
-    @media(max-width:640px){.credential{flex-direction:column;text-align:center}.credential img{width:140px;height:170px}}
-    .trust-badge{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:10px 18px;background:var(--surface2);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:4px;font-size:0.82rem;color:var(--text)}
-    .trust-badge .dot{width:8px;height:8px;border-radius:50%;background:#3a9e5a;flex-shrink:0}
-    .trust-badge strong{font-weight:600}
-    .ba-block{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px}
-    .ba-col{background:var(--surface);padding:28px 32px}
-    .ba-col.apres{background:var(--surface2)}
-    .ba-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block}
-    .ba-col.apres .ba-label{color:var(--accent)}
-    .ba-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-    .ba-col ul li{font-size:0.88rem;color:#3A3630;padding-left:16px;position:relative;line-height:1.5}
-    .ba-col ul li::before{content:'—';position:absolute;left:0;color:var(--subtle);font-size:0.8rem}
-    .ba-col.apres ul li::before{content:'→';color:var(--accent)}
-    .tg-showcase{margin-top:40px}
-    .tg-showcase-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:block}
-    .tg-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .tg-phone{background:#e5ddd5;border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(28,26,23,0.13);font-family:'DM Sans',system-ui,sans-serif}
-    .tg-header{background:#075e54;padding:10px 14px;display:flex;align-items:center;gap:10px}
-    .tg-avatar{width:30px;height:30px;border-radius:50%;background:#128c7e;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-    .tg-hinfo{display:flex;flex-direction:column;gap:1px}
-    .tg-hname{font-size:12px;font-weight:600;color:white;line-height:1.2}
-    .tg-hstatus{font-size:10px;color:rgba(255,255,255,0.7)}
-    .tg-body{padding:10px 10px 14px;display:flex;flex-direction:column;gap:6px;background:#e5ddd5}
-    .tg-caption-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(28,26,23,0.45);text-align:center;padding:4px 0 6px;display:block}
-    .msg{max-width:88%;padding:7px 10px;border-radius:10px;font-size:11px;line-height:1.5;position:relative}
-    .msg.bot{background:white;border-radius:2px 10px 10px 10px;align-self:flex-start;color:#1c1a17}
-    .msg.user{background:#dcf8c6;border-radius:10px 2px 10px 10px;align-self:flex-end;color:#1c1a17}
-    .msg .t{font-size:9px;color:rgba(28,26,23,0.45);text-align:right;margin-top:3px}
-    .msg strong{font-weight:500;display:block;margin-bottom:2px;color:#075e54}
-    .msg ul{margin:4px 0 0 0;padding-left:14px;list-style:disc}
-    .msg ul li{font-size:10.5px;line-height:1.4;color:#3a3630}
-    .tg-btns{display:flex;gap:6px;margin-top:6px}
-    .tg-btn{flex:1;text-align:center;font-size:10px;font-weight:500;padding:5px 0;border-radius:5px;background:#f0f0f0;color:#1c7a5e}
-    .tg-btn.ok{background:#d6f3df}
-    .voice-msg{display:flex;align-items:center;gap:8px}
-    .voice-icon{font-size:14px}
-    .voice-wave{flex:1;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 18'%3E%3Cpath d='M0 9 Q5 2 10 9 Q15 16 20 9 Q25 2 30 9 Q35 16 40 9 Q45 2 50 9 Q55 16 60 9 Q65 2 70 9 Q75 16 80 9' stroke='%23128c7e' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") center/contain no-repeat;opacity:0.7}
-    .voice-dur{font-size:10px;color:rgba(28,26,23,0.5)}
-    .feature-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:24px}
-    .feat-card{background:var(--surface);padding:24px}
-    .feat-card h3{font-family:var(--font-d);font-size:1.1rem;font-weight:600;color:var(--accent);margin-bottom:6px}
-    .feat-card p{font-size:0.84rem;line-height:1.55}
-    .price-block{background:var(--surface2);border:1px solid var(--line);border-radius:4px;padding:40px;text-align:center;border-top:3px solid var(--accent)}
-    .price-amount{font-family:var(--font-d);font-size:clamp(2.6rem,6vw,3.6rem);font-weight:700;color:var(--accent);line-height:1}
-    .price-amount span{font-size:1.1rem;color:var(--muted)}
-    .price-tag{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:10px;display:block}
-    .price-points{list-style:none;display:flex;flex-direction:column;gap:9px;max-width:420px;margin:28px auto 0;text-align:left}
-    .price-points li{font-size:0.9rem;color:#3A3630;padding-left:22px;position:relative;line-height:1.5}
-    .price-points li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
-    @media(max-width:600px){.tg-grid{grid-template-columns:1fr}.ba-block{grid-template-columns:1fr}.feature-cards{grid-template-columns:1fr 1fr}}
-    .cta-section{max-width:960px;margin:0 auto;padding:96px 48px;text-align:center}
-    .cta-section h2{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.2;color:var(--text);margin-bottom:20px}
-    .cta-section>p{max-width:560px;margin:0 auto 36px}
-    .cta-meta{font-size:12px;color:var(--muted);margin-top:16px}
-    .demo-note{font-size:14px;color:var(--text);max-width:560px}
-    .related{max-width:960px;margin:0 auto;padding:40px 48px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap}
-    .related-link{border:1px solid var(--line);border-radius:2px;padding:12px 18px;text-decoration:none;color:var(--text);font-size:0.88rem;transition:border-color 0.2s,color 0.2s}
-    .related-link:hover{border-color:var(--accent);color:var(--accent)}
-    .site-footer{border-top:1px solid var(--line);padding:28px 48px;display:flex;justify-content:space-between;align-items:center}
-    .site-footer p{font-size:13px;color:var(--muted)}
-    .site-footer a{color:var(--muted);text-decoration:none;transition:color 0.2s}
-    .site-footer a:hover{color:var(--accent)}
-    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s var(--ease),transform 0.6s var(--ease)}
-    .fade-up.visible{opacity:1;transform:none}
-    .back-home{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(28,26,23,0.5);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color 0.2s}
-    .back-home:hover{color:#C94F28}
-    .back-home::before{content:"←";font-size:13px}
-    @media(max-width:768px){
-      .site-header{padding:12px 20px;height:auto;display:grid;grid-template-columns:auto 1fr;gap:10px}.site-logo{text-align:right;font-size:.95rem}.site-nav-sub{grid-column:1 / -1;max-width:100%;overflow:visible}.site-nav-sub a{white-space:normal}.page-hero{padding:64px 20px 56px}
-      .section{padding:56px 20px}.cta-section{padding:72px 20px}.price-block{padding:28px 20px}
-      .related{padding:32px 20px}.site-footer{padding:24px 20px;flex-direction:column;gap:12px;text-align:center}
-    }
-  </style>
-<link rel="stylesheet" href="./assets/audit-ui.css?v=20261030botstable1">
-<noscript><style>.menu-toggle,.bot-fab{display:none!important}.site-header{position:relative;height:auto;flex-wrap:wrap;padding:12px 20px}.site-nav{display:flex;position:static;width:100%;flex-wrap:wrap;flex-direction:row;max-height:none;padding:8px 0}.site-nav a{min-height:44px}.hero{padding-top:0}.service-hero,.page-hero{padding-top:40px}</style></noscript>
-<script defer src="./assets/site-ui.js?v=20261030audit1"></script>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/services.css?v=20261109" />
+  <link rel="stylesheet" href="./assets/audit-ui.css?v=20261109" />
+  <noscript><link rel="stylesheet" href="./assets/noscript.css?v=20261109" /></noscript>
+  <script defer src="./assets/site-ui.js?v=20261109"></script>
 </head>
 <body><a class="skip-link" href="#main-content">Aller au contenu</a>
-  <header class="site-header"><a class="brand" href="./">SERAFINO <span class="brand-accent">RÉSOUT</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">Menu</button><nav id="site-nav" class="site-nav" aria-label="Navigation principale"><a href="./#secteurs">Services</a><a href="./marketing-publicite-geneve.html">Marketing &amp; publicité</a><a href="./ia-locale-geneve.html">IA locale</a><a href="./app-sur-mesure.html">Outils sur mesure</a><a class="nav-cta" href="tel:+41786583760">Appeler Enrico</a></nav></header><main id="main-content" tabindex="-1">
+  <header class="site-header"><a class="brand" href="/">SERAFINO <span class="brand-accent">RÉSOUT</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">Menu</button><nav id="site-nav" class="site-nav" aria-label="Navigation principale"><a href="/essais.html">Mes essais</a><a href="/apprendre-ia.html">Apprendre l'IA</a><a href="/ia-chez-vous.html">IA chez vous</a><a href="/entreprises.html">Entreprises</a><a class="nav-cta" href="/reservations.html">Ligne</a></nav></header><main id="main-content" tabindex="-1">
 
-  <section class="page-hero">
-    <span class="eyebrow">Restaurants, cabinets, ateliers — Genève &amp; Suisse romande</span>
-    <h1>L'heure du téléphone, je la prends.</h1><p class="pilot-note"><strong>Pilote restaurants sur rendez-vous à Genève.</strong> La ligne recueille la demande ; vous confirmez la réservation.</p>
-    <p class="lead">Le soir, en plein service, le téléphone sonne — personne ne peut répondre. Un appel sans réponse peut être une réservation manquée. Cette heure-là, je la prends sur moi : une ligne répond à votre place, <strong>24h/24</strong>, voix naturelle, en français. Vous gardez votre numéro, et vous cuisinez.</p>
+  <section class="service-hero dark">
+    <span>Restaurants, cabinets, ateliers — Genève &amp; Suisse romande</span>
+    <h1 class="hero-h1">L'heure du téléphone, je la prends.</h1><p class="pilot-note"><strong>Pilote restaurants sur rendez-vous à Genève.</strong> La ligne recueille la demande ; vous confirmez la réservation.</p>
+    <p class="hero-lead">Le soir, en plein service, le téléphone sonne — personne ne peut répondre. Un appel sans réponse peut être une réservation manquée. Cette heure-là, je la prends sur moi : une ligne répond à votre place, <strong>24h/24</strong>, voix naturelle, en français. Vous gardez votre numéro, et vous cuisinez.</p>
     <p>Indiquez le nom du restaurant, votre téléphone et le créneau où Enrico peut vous rappeler.</p>
     <div class="cta-row">
-      <a class="btn-p" href="/app" rel="nofollow">Essayer la démo maintenant</a>
-      <a class="btn-s" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
-      <a class="btn-s" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
-      <a class="btn-s" href="#comment">Comment ça marche →</a>
+      <a class="btn" href="/app" rel="nofollow">Essayer la démo maintenant</a>
+      <a class="btn btn-outline" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
+      <a class="btn btn-outline" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
+      <a class="btn btn-outline" href="#comment">Comment ça marche →</a>
     </div>
-    <p class="cta-meta demo-note" style="color:#1c1a17;font-size:14px">Démo gratuite, sans inscription : vous ouvrez l'application, vous appelez le 022 510 55 86 et votre réservation y apparaît en direct. Dans la démo, aucun message n'est envoyé ; une fois la ligne activée, la confirmation au client peut partir par SMS ou WhatsApp. Tout est effacé dès que vous terminez, au plus tard après 30 minutes.</p>
+    <p class="cta-meta demo-note">Démo gratuite, sans inscription : vous ouvrez l'application, vous appelez le 022 510 55 86 et votre réservation y apparaît en direct. Dans la démo, aucun message n'est envoyé ; une fois la ligne activée, la confirmation au client peut partir par SMS ou WhatsApp. Tout est effacé dès que vous terminez, au plus tard après 30 minutes.</p>
     <div class="trust-badge"><span class="dot"></span><span>Conçu par un ancien chef du <strong>Palais des Nations</strong> · pilote sur rendez-vous à Genève</span></div>
   </section>
 
-  <section class="section fade-up">
+  <section class="section">
     <div class="section-head">
-      <span class="eyebrow">Pas seulement les restaurants</span>
+      <span>Pas seulement les restaurants</span>
       <h2>La démo montre un restaurant. La ligne s'adapte à votre métier.</h2>
     </div>
-    <p class="lead">Partout où le téléphone sonne quand vous avez les mains prises, la même ligne répond, note la demande et vous la transmet : un rendez-vous, un créneau, un rappel. Les questions posées au téléphone sont adaptées à votre activité.</p>
-    <div class="results-bar">
-      <div class="r-cell"><span class="stat">Soins</span><span class="label">Cabinets et thérapeutes</span><p>Physio, ostéo, dentiste, massage : la ligne prend la demande de rendez-vous pendant que vous êtes avec un patient.</p></div>
-      <div class="r-cell"><span class="stat">Beauté</span><span class="label">Coiffeurs et instituts</span><p>Les mains dans les cheveux, le téléphone sonne : la cliente laisse son créneau souhaité, vous confirmez ensuite.</p></div>
-      <div class="r-cell"><span class="stat">Atelier</span><span class="label">Garages et artisans</span><p>Sur un chantier ou sous une voiture : la ligne note le besoin, l'adresse et l'urgence, vous rappelez.</p></div>
-      <div class="r-cell"><span class="stat">Et vous ?</span><span class="label">Votre secteur</span><p>Location, cours, conciergerie, services à domicile… Décrivez-moi vos appels, je vous dis comment la ligne peut les prendre.</p></div>
+    <p class="service-copy">Partout où le téléphone sonne quand vous avez les mains prises, la même ligne répond, note la demande et vous la transmet : un rendez-vous, un créneau, un rappel. Les questions posées au téléphone sont adaptées à votre activité.</p>
+    <div class="cards">
+      <div class="door"><span class="stat">Soins</span><span class="label">Cabinets et thérapeutes</span><p>Physio, ostéo, dentiste, massage : la ligne prend la demande de rendez-vous pendant que vous êtes avec un patient.</p></div>
+      <div class="door"><span class="stat">Beauté</span><span class="label">Coiffeurs et instituts</span><p>Les mains dans les cheveux, le téléphone sonne : la cliente laisse son créneau souhaité, vous confirmez ensuite.</p></div>
+      <div class="door"><span class="stat">Atelier</span><span class="label">Garages et artisans</span><p>Sur un chantier ou sous une voiture : la ligne note le besoin, l'adresse et l'urgence, vous rappelez.</p></div>
+      <div class="door"><span class="stat">Et vous ?</span><span class="label">Votre secteur</span><p>Location, cours, conciergerie, services à domicile… Décrivez-moi vos appels, je vous dis comment la ligne peut les prendre.</p></div>
     </div>
   </section>
 
-  <section class="section fade-up">
+  <section class="section">
     <div class="section-head">
-      <span class="eyebrow">Ce qui est en jeu</span>
+      <span>Ce qui est en jeu</span>
       <h2>Un appel sans réponse peut être une réservation manquée.</h2>
     </div>
-    <div class="results-bar">
-      <div class="r-cell"><span class="stat">24h/24</span><span class="label">La ligne répond</span><p>Pendant le service, la nuit, le jour de fermeture — l'assistant recueille la demande de réservation.</p></div>
-      <div class="r-cell"><span class="stat">Exemple</span><span class="label">Calcul hypothétique</span><p>Avec 25 CHF de marge supplémentaire par couvert, il faudrait environ 10 couverts récupérés dans le mois pour couvrir 249 CHF. Exemple indicatif, pas un résultat garanti.</p></div>
-      <div class="r-cell"><span class="stat">Démo</span><span class="label">Avec Enrico</span><p>Demandez une démonstration : Enrico vous fait écouter la ligne et répond à vos questions.</p></div>
-      <div class="r-cell"><span class="stat">Votre n°</span><span class="label">Vous le gardez</span><p>Pas besoin de changer de numéro : les appels non décrochés basculent sur l'assistant.</p></div>
+    <div class="cards">
+      <div class="door"><span class="stat">24h/24</span><span class="label">La ligne répond</span><p>Pendant le service, la nuit, le jour de fermeture — l'assistant recueille la demande de réservation.</p></div>
+      <div class="door"><span class="stat">Exemple</span><span class="label">Calcul hypothétique</span><p>Avec 25 CHF de marge supplémentaire par couvert, il faudrait environ 10 couverts récupérés dans le mois pour couvrir 249 CHF. Exemple indicatif, pas un résultat garanti.</p></div>
+      <div class="door"><span class="stat">Démo</span><span class="label">Avec Enrico</span><p>Demandez une démonstration : Enrico vous fait écouter la ligne et répond à vos questions.</p></div>
+      <div class="door"><span class="stat">Votre n°</span><span class="label">Vous le gardez</span><p>Pas besoin de changer de numéro : les appels non décrochés basculent sur l'assistant.</p></div>
     </div>
   </section>
 
-  <section class="section fade-up">
+  <section class="section">
     <div class="section-head">
-      <span class="eyebrow">Le problème — vous le connaissez</span>
+      <span>Le problème — vous le connaissez</span>
       <h2>Le téléphone n'attend pas que le service se calme.</h2>
     </div>
-    <div class="grid-cards">
-      <div class="g-card"><span class="num">01</span><h3>Ça sonne au pire moment</h3><p>20h, salle pleine, cuisine sous pression. Le téléphone sonne et personne n'a une main de libre. La demande peut rester sans réponse.</p></div>
-      <div class="g-card"><span class="num">02</span><h3>Le client n'attend pas</h3><p>Un client qui ne vous joint pas peut chercher une autre table. Il est difficile de savoir quelles demandes n’ont pas abouti.</p></div>
-      <div class="g-card"><span class="num">03</span><h3>Les notes sur un carnet</h3><p>Réservations griffonnées, oubliées, illisibles. Un double, un no-show, une table vide payée — l'erreur coûte cher.</p></div>
-      <div class="g-card"><span class="num">04</span><h3>Hors service, plus personne</h3><p>L'après-midi, le lundi de fermeture, tard le soir : les clients appellent quand même. Et il n'y a personne pour répondre.</p></div>
+    <div class="cards">
+      <div class="door"><span class="num">01</span><h3>Ça sonne au pire moment</h3><p>20h, salle pleine, cuisine sous pression. Le téléphone sonne et personne n'a une main de libre. La demande peut rester sans réponse.</p></div>
+      <div class="door"><span class="num">02</span><h3>Le client n'attend pas</h3><p>Un client qui ne vous joint pas peut chercher une autre table. Il est difficile de savoir quelles demandes n’ont pas abouti.</p></div>
+      <div class="door"><span class="num">03</span><h3>Les notes sur un carnet</h3><p>Réservations griffonnées, oubliées, illisibles. Un double, un no-show, une table vide payée — l'erreur coûte cher.</p></div>
+      <div class="door"><span class="num">04</span><h3>Hors service, plus personne</h3><p>L'après-midi, le lundi de fermeture, tard le soir : les clients appellent quand même. Et il n'y a personne pour répondre.</p></div>
     </div>
   </section>
 
-  <section id="comment" class="section fade-up">
+  <section id="comment" class="section">
     <div class="section-head">
-      <span class="eyebrow">Comment ça marche</span>
+      <span>Comment ça marche</span>
       <h2>L'assistant répond, vous gardez le contrôle.</h2>
     </div>
-    <div class="grid-cards">
-      <div class="g-card"><span class="num">→</span><h3>La ligne répond</h3><p>Voix naturelle, en français. Elle demande le prénom, le nombre de personnes, le jour, l'heure. Le client peut même taper le nombre sur le clavier.</p></div>
-      <div class="g-card"><span class="num">→</span><h3>Vous recevez la demande</h3><p>Sur votre téléphone : « Nouvelle demande de réservation — Marco, 4 personnes, ce soir 20h ». Deux boutons : confirmer ou refuser.</p></div>
-      <div class="g-card"><span class="num">→</span><h3>Un clic, c'est validé</h3><p>Vous confirmez ou refusez. La demande ne devient une réservation qu'après votre confirmation.</p></div>
-      <div class="g-card"><span class="num">→</span><h3>Le client est confirmé</h3><p>Après votre confirmation, il reçoit un SMS de confirmation, automatiquement. Professionnel, sans que vous touchiez à rien.</p></div>
+    <div class="cards">
+      <div class="door"><span class="num">→</span><h3>La ligne répond</h3><p>Voix naturelle, en français. Elle demande le prénom, le nombre de personnes, le jour, l'heure. Le client peut même taper le nombre sur le clavier.</p></div>
+      <div class="door"><span class="num">→</span><h3>Vous recevez la demande</h3><p>Sur votre téléphone : « Nouvelle demande de réservation — Marco, 4 personnes, ce soir 20h ». Deux boutons : confirmer ou refuser.</p></div>
+      <div class="door"><span class="num">→</span><h3>Un clic, c'est validé</h3><p>Vous confirmez ou refusez. La demande ne devient une réservation qu'après votre confirmation.</p></div>
+      <div class="door"><span class="num">→</span><h3>Le client est confirmé</h3><p>Après votre confirmation, il reçoit un SMS de confirmation, automatiquement. Professionnel, sans que vous touchiez à rien.</p></div>
     </div>
 
     <div class="tg-showcase">
@@ -272,7 +149,7 @@
       </div>
     </div>
 
-    <div class="g-card" style="margin-top:24px">
+    <div class="door note">
       <h3>Que se passe-t-il si je ne confirme pas ?</h3>
       <p>Tant que vous n'avez pas confirmé, la demande n'est pas une réservation. Enrico vous explique le fonctionnement en détail lors de la démo.</p>
     </div>
@@ -283,9 +160,9 @@
     </div>
   </section>
 
-  <section class="section fade-up">
+  <section class="section">
     <div class="section-head">
-      <span class="eyebrow">Avant / Après</span>
+      <span>Avant / Après</span>
       <h2>Ce qui change, concrètement.</h2>
     </div>
     <div class="ba-block">
@@ -312,9 +189,9 @@
     </div>
   </section>
 
-  <section class="section fade-up">
+  <section class="section">
     <div class="section-head">
-      <span class="eyebrow">Simple et honnête</span>
+      <span>Simple et honnête</span>
       <h2>Un prix clair, sans devis.</h2>
     </div>
     <div class="price-block">
@@ -331,17 +208,17 @@
     </div>
   </section>
 
-  <div class="cta-section fade-up">
-    <span class="eyebrow">Entendez-le vous-même</span>
+  <div class="cta-section dark">
+    <span>Entendez-le vous-même</span>
     <h2>Je vous la fais entendre.</h2>
     <p>Je cherche les dix premiers restaurants genevois pour le pilote. On prend rendez-vous, je vous fais entendre la ligne, et si ça vous plaît, je l'installe moi-même sur votre numéro.</p>
     <p>Indiquez le nom du restaurant, votre téléphone et le créneau où Enrico peut vous rappeler.</p>
-    <div class="cta-row" style="justify-content:center">
-      <a class="btn-s" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
-      <a class="btn-s" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
-      <a class="btn-p" href="/app" rel="nofollow">Essayer la démo maintenant</a>
+    <div class="cta-row">
+      <a class="btn btn-outline" href="tel:+41786583760">Appeler Enrico : 078 658 37 60</a>
+      <a class="btn btn-outline" href="mailto:contact@serafino-resout.ch?subject=%C3%8Atre%20rappel%C3%A9%20pour%20une%20d%C3%A9mo&amp;body=Nom%20du%20restaurant%20%3A%20%0AT%C3%A9l%C3%A9phone%20%3A%20%0ACr%C3%A9neau%20souhait%C3%A9%20%3A%20">Être rappelé pour une démo</a>
+      <a class="btn" href="/app" rel="nofollow">Essayer la démo maintenant</a>
     </div>
-    <p class="cta-meta demo-note" style="color:#1c1a17;font-size:14px">Démo gratuite, sans inscription : vous ouvrez l'application, vous appelez le 022 510 55 86 et votre réservation y apparaît en direct. Dans la démo, aucun message n'est envoyé ; une fois la ligne activée, la confirmation au client peut partir par SMS ou WhatsApp. Tout est effacé dès que vous terminez, au plus tard après 30 minutes.</p>
+    <p class="cta-meta demo-note">Démo gratuite, sans inscription : vous ouvrez l'application, vous appelez le 022 510 55 86 et votre réservation y apparaît en direct. Dans la démo, aucun message n'est envoyé ; une fois la ligne activée, la confirmation au client peut partir par SMS ou WhatsApp. Tout est effacé dès que vous terminez, au plus tard après 30 minutes.</p>
     <p class="cta-meta">contact@serafino-resout.ch &nbsp;·&nbsp; +41 78 658 37 60 &nbsp;·&nbsp; Genève</p>
   </div>
 
@@ -350,10 +227,7 @@
     <a class="related-link" href="./index.html">Accueil →</a>
   </div>
 
-  </main><footer class="site-footer">
-    <p>© 2026 SERAFINO RÉSOUT &nbsp;·&nbsp; <a href="./index.html">Accueil</a> &nbsp;·&nbsp; <a href="./index.html#contact">Contact</a> &nbsp;·&nbsp; <a href="./privacy.html">Mentions légales</a></p>
-    <p><a href="./index.html">serafino-resout.ch</a></p>
-  </footer>
+  </main><footer class="site-footer"><p class="footer-copy">© 2026 Serafino Résout · Genève</p><div class="footer-links"><a href="tel:+41786583760">078 658 37 60</a><a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a><a href="/privacy.html">Mentions légales &amp; confidentialité</a></div><div class="footer-social"><a href="https://www.instagram.com/serafino.resout/" target="_blank" rel="noopener" aria-label="Instagram Serafino Résout"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/profile.php?id=61596200613648" target="_blank" rel="noopener" aria-label="Facebook Serafino Résout"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.8.4-1.2 1.2-1.2H17V2h-2.8C11.5 2 10.5 3.5 10.5 6v2H8v3.3h2.5V22H14V11.3h2.8L17.2 8z"/></svg></a></div></footer>
 
 </body>
 </html>

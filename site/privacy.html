@@ -9,76 +9,14 @@
   <link rel="canonical" href="https://serafino-resout.ch/privacy.html" />
   <link rel="icon" type="image/png" href="./assets/photos/avatar.png" />
   <link rel="apple-touch-icon" href="./assets/photos/avatar.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #F0EAE0;
-      --bg2:         #F0EDE6;
-      --surface:     #EDEAE3;
-      --surface2:    #E5E1D8;
-      --text:        #1C1A17;
-      --muted:       #5A564F;
-      --subtle:      #C8C4BB;
-      --accent: #C94F28;
-      --accent-dim:  rgba(201,79,40,0.10);
-      --line:        rgba(28,26,23,0.10);
-      --line-strong: rgba(28,26,23,0.18);
-      --font-d: 'Instrument Serif', Georgia, serif;
-      --font-b: 'DM Sans', system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-b); font-size: 16px; line-height: 1.65; font-weight: 300; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
-
-    /* HEADER */
-    .site-header { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 60px; background: rgba(250,247,242,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-    .brand { font-family: var(--font-d); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.08em; text-decoration: none; color: var(--text); display: flex; gap: 6px; }
-    .brand span:last-child { color: var(--accent); }
-
-    /* WRAP */
-    .privacy-wrap { max-width: 760px; margin: 0 auto; padding: 72px 48px 120px; }
-    @media (max-width: 768px) { .privacy-wrap { padding: 48px 20px 80px; } .site-header { padding: 0 20px; } }
-
-    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.88rem; letter-spacing: 0.04em; text-decoration: none; margin-bottom: 48px; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-    .back-link:hover { border-bottom-color: var(--accent); }
-
-    h1 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.15; margin-bottom: 10px; }
-    .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 64px; }
-
-    h2 { font-family: var(--font-d); font-size: 1.4rem; font-weight: 600; margin: 52px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-    h3 { font-size: 0.95rem; font-weight: 500; color: var(--text); margin: 28px 0 8px; letter-spacing: 0.01em; }
-
-    p { color: #3A3630; line-height: 1.75; font-size: 0.93rem; margin-bottom: 12px; }
-    ul { padding-left: 20px; margin-bottom: 12px; }
-    li { color: #3A3630; font-size: 0.93rem; line-height: 1.7; margin-bottom: 4px; }
-
-    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.85rem; }
-    th { background: var(--surface); color: var(--text); font-weight: 500; text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--line-strong); }
-    td { padding: 9px 14px; border-bottom: 1px solid var(--line); color: #4A4640; vertical-align: top; }
-
-    .highlight { background: var(--accent-dim); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 14px 18px; margin: 16px 0 24px; font-size: 0.88rem; color: var(--text); line-height: 1.65; }
-
-    .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 22px 24px; margin-bottom: 10px; }
-    .faq-q { font-weight: 500; color: var(--text); margin-bottom: 10px; font-size: 0.93rem; }
-    .faq-a { color: #4A4640; font-size: 0.88rem; line-height: 1.7; margin: 0; }
-
-    /* FOOTER */
-    .site-footer { border-top: 1px solid var(--line); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .site-footer p { font-size: 12px; color: var(--muted); }
-    .site-footer a { color: var(--muted); text-decoration: none; font-size: 12px; transition: color 0.2s; }
-    .site-footer a:hover { color: var(--accent); }
-    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    @media (max-width: 768px) { .site-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; } }
-  </style>
+  <link rel="stylesheet" href="./assets/services.css?v=20261109" />
+  <link rel="stylesheet" href="./assets/audit-ui.css?v=20261109" />
+  <noscript><link rel="stylesheet" href="./assets/noscript.css?v=20261109"></noscript>
 </head>
 <body>
 
-  <header class="site-header">
-    <a class="brand" href="./index.html"><span>SERAFINO</span><span>RÉSOUT</span></a>
-  </header>
+  <!-- HEADER -->
+  <header class="site-header"><a class="brand" href="/">SERAFINO <span class="brand-accent">RÉSOUT</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">Menu</button><nav id="site-nav" class="site-nav" aria-label="Navigation principale"><a href="/essais.html">Mes essais</a><a href="/apprendre-ia.html">Apprendre l'IA</a><a href="/ia-chez-vous.html">IA chez vous</a><a href="/entreprises.html">Entreprises</a><a class="nav-cta" href="/reservations.html">Ligne</a></nav></header>
 
   <main>
     <div class="privacy-wrap">
@@ -115,6 +53,9 @@
       <h3>2.4 Vos données</h3>
       <p>Pour toute question concernant vos données ou pour demander leur accès, leur rectification ou leur suppression, contactez <a href="mailto:contact@serafino-resout.ch" style="color:var(--accent)">contact@serafino-resout.ch</a>.</p>
 
+      <h3>2.5 Réseaux sociaux et polices</h3>
+      <p>Le site contient des liens vers Instagram (https://www.instagram.com/serafino.resout/) et Facebook ; aucun contenu de ces réseaux n'est intégré, ils ne reçoivent donc aucune donnée tant que vous ne cliquez pas. Les polices sont hébergées sur ce site.</p>
+
       <!-- 3. LIGNE -->
       <h2>3. La ligne téléphonique</h2>
       <ul>
@@ -132,15 +73,8 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 SERAFINO RÉSOUT · Genève</p>
-    <div class="footer-links">
-      <a href="./index.html">Accueil</a>
-      <a href="./reservations.html">Restaurants</a>
-      <a href="mailto:contact@serafino-resout.ch">Contact</a>
-      <a href="./privacy.html" style="color:var(--accent)">Mentions légales</a>
-    </div>
-  </footer>
+  <!-- FOOTER -->
+  <footer class="site-footer"><p class="footer-copy">© 2026 Serafino Résout · Genève</p><div class="footer-links"><a href="tel:+41786583760">078 658 37 60</a><a href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a><a href="/privacy.html">Mentions légales &amp; confidentialité</a></div><div class="footer-social"><a href="https://www.instagram.com/serafino.resout/" target="_blank" rel="noopener" aria-label="Instagram Serafino Résout"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/profile.php?id=61596200613648" target="_blank" rel="noopener" aria-label="Facebook Serafino Résout"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.8.4-1.2 1.2-1.2H17V2h-2.8C11.5 2 10.5 3.5 10.5 6v2H8v3.3h2.5V22H14V11.3h2.8L17.2 8z"/></svg></a></div></footer>
 
 </body>
 </html>
