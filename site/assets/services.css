@@ -103,7 +103,6 @@ figcaption { margin-top: var(--s2); }
   .hero:not(:has(> .frame)) > .lead { grid-column: 1 / 9; }
   .hero:not(:has(> .frame)) > .cta-row { grid-column: 1 / -1; }
 }
-}
 
 /* ── BOTTONI ── */
 .btn, .btn-outline {
