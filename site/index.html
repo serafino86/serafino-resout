@@ -33,15 +33,15 @@
   <main id="main-content">
 
     <!-- 1. HERO -->
-    <section class="section">
+    <section class="section hero">
       <h1>Je teste l'IA chez moi, à Genève, et je vous montre comment faire</h1>
-      <p>Je suis Enrico La Noce. J'ai fait vingt ans de cuisine, dans l'événementiel et la restauration collective, et les ordinateurs je les ai dans les mains depuis l'enfance. Ce que j'essaie, je le montre sur Instagram et Facebook, avec ce qui marche et ce qui coince.</p>
-      <div class="hero-video">
-        <!-- VIDEO (E3): da attivare quando arriva il file. Sostituire l'img con:
+      <div class="frame hero-video">
+        <!-- VIDEO (E3): da attivare quando arriva il file. Il poster resta l'immagine LCP (§6). Sostituire l'img con:
         <video controls playsinline preload="none" poster="./assets/video/hero.jpg"><source src="./assets/video/hero.mp4" type="video/mp4"><track kind="captions" srclang="fr" src="./assets/video/hero.vtt" label="Français"></video> -->
-        <img src="./assets/photos/enrico_hero.jpg" alt="Enrico La Noce" width="1158" height="1544" />
+        <img src="./assets/video/hero-poster.jpg" alt="Enrico La Noce" width="800" height="1000" fetchpriority="high" />
       </div>
-      <p>
+      <p class="lead">Je suis Enrico La Noce. J'ai fait vingt ans de cuisine, dans l'événementiel et la restauration collective, et les ordinateurs je les ai dans les mains depuis l'enfance. Ce que j'essaie, je le montre sur Instagram et Facebook, avec ce qui marche et ce qui coince.</p>
+      <p class="cta-row">
         <a class="btn" href="https://www.instagram.com/serafino.resout/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn-outline" href="https://www.facebook.com/profile.php?id=61596200613648" target="_blank" rel="noopener">Facebook</a>
       </p>
@@ -92,14 +92,14 @@
     </section>
 
     <!-- 5. CONTACT -->
-    <section id="contact" class="section dark">
+    <section id="contact" class="section">
       <h2>Écrivez-moi ou appelez-moi</h2>
       <p>Dites-moi en deux lignes ce que vous aimeriez faire ou apprendre, c'est moi qui réponds.</p>
-      <p>
-        <a class="btn" href="tel:+41786583760">078 658 37 60</a>
+      <p class="cta-row">
+        <a class="btn btn-accent" href="tel:+41786583760">078 658 37 60</a>
         <a class="btn-outline" href="mailto:contact@serafino-resout.ch">contact@serafino-resout.ch</a>
       </p>
-      <p>
+      <p class="cta-row">
         <a class="btn-outline" href="https://www.instagram.com/serafino.resout/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn-outline" href="https://www.facebook.com/profile.php?id=61596200613648" target="_blank" rel="noopener">Facebook</a>
       </p>
@@ -115,12 +115,12 @@
 
   <!-- BOT (markup identico alla home attuale) -->
   <button class="bot-fab" id="botFab" aria-label="Ouvrir l’assistant automatique" aria-controls="botPopup" aria-expanded="false">
-    <span class="bot-fab-icon"><img src="./assets/photos/avatar.png" alt="" loading="lazy" onerror="this.src='./assets/photos/enrico_hero.jpg'"></span>
+    <span class="bot-fab-icon"><img src="./assets/photos/avatar.png" alt="" width="34" height="34" loading="lazy" onerror="this.src='./assets/photos/enrico_hero.jpg'"></span>
     <span class="bot-fab-label">Une question ?</span>
   </button>
   <dialog class="bot-popup" id="botPopup" aria-labelledby="botTitle" aria-modal="true">
     <div class="bot-popup-header">
-      <div class="bot-header-avatar"><img src="./assets/photos/avatar.png" alt="" onerror="this.src='./assets/photos/enrico_hero.jpg'"></div>
+      <div class="bot-header-avatar"><img src="./assets/photos/avatar.png" alt="" width="34" height="34" onerror="this.src='./assets/photos/enrico_hero.jpg'"></div>
       <div class="bot-header-info">
         <span class="bot-header-name" id="botTitle">Assistant Serafino</span>
         <div class="bot-header-status"><span class="bot-status-dot"></span><span class="bot-status-label">Assistant automatique</span></div>
