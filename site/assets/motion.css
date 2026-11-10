@@ -1,0 +1,59 @@
+/* Movimento allo scroll, solo CSS. Caricato solo con prefers-reduced-motion: no-preference.
+   Le animazioni stanno in @supports: dove non ci sono, la pagina resta ferma e completa. */
+
+@supports (animation-timeline: view()) {
+  @keyframes cornice-entra {
+    from { transform: scale(.92); border-radius: calc(var(--r-frame) * 1.5); }
+  }
+  @keyframes cornice-hero {
+    to { transform: scale(1.04); }
+  }
+  @keyframes titolo-sale {
+    from { transform: translateY(24px); }
+  }
+  @keyframes next-apre {
+    from { clip-path: inset(8% 0 0 0); }
+  }
+
+  .frame:not(.hero-video) {
+    animation: cornice-entra linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+  .hero-video {
+    animation: cornice-hero linear forwards;
+    animation-timeline: scroll();
+    animation-range: 0 50vh;
+  }
+  h2 {
+    animation: titolo-sale linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+  .next-door {
+    animation: next-apre linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+}
+
+/* Porte e card: piccolo sollevamento al passaggio o al focus da tastiera. */
+.door, .essai-card {
+  transition: transform .2s ease-out;
+}
+.door:hover, .door:focus-visible,
+.essai-card:hover, .essai-card:focus-visible {
+  transform: translateY(-4px);
+}
+.essai-card:hover .frame {
+  transform: scale(1.02);
+}
+
+/* Passaggio fra pagine: dissolvenza breve. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: .2s;
+}
