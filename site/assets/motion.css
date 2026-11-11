@@ -45,6 +45,11 @@
 .essai-card:hover, .essai-card:focus-visible {
   transform: translateY(-4px);
 }
+/* Tilt 3D (classe messa da motion.js solo con mouse): angoli in --rx/--ry, ritorno morbido. */
+.tilt { transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.door.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.door.tilt:hover, .door.tilt:focus-visible { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px); }
+.frame.tilt { transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
 .essai-card:hover .frame {
   transform: scale(1.02);
 }

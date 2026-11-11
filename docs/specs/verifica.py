@@ -10,6 +10,7 @@ from html.parser import HTMLParser
 VERSIONE = "20261110"
 ESCLUSI = ()  # script fuori dal budget JS (widget chat): oggi la chat è un iframe, nessun file
 MAX_JS = 8192
+MAX_SCENA = 12288  # scene3d.js: caricato da motion.js via data-src dopo load, fuori dal percorso critico; budget a parte
 LIMITI = {"services.css": 40960, "motion.css": 6144}
 MEDIA_MOTION = "(prefers-reduced-motion: no-preference)"
 ANIMABILI = {"transform", "opacity", "border-radius", "clip-path"}
@@ -80,6 +81,11 @@ def controlla_html(h, testi, base=None):
                 f = os.path.join(base, f)
                 ok(os.path.isfile(f), f"script inesistente: {f}")
                 js += os.path.isfile(f) and os.path.getsize(f)
+        if a.get("data-src", "").split("?")[0].endswith(".js"):
+            u = a["data-src"]
+            ok(u.endswith(f"?v={VERSIONE}") and not u.startswith(("http", "//")), f"script differito non locale o versione diversa: {u}")
+            f = os.path.join(base or ".", u.split("?")[0])
+            ok(base is None or (os.path.isfile(f) and os.path.getsize(f) <= MAX_SCENA), f"script differito assente o > {MAX_SCENA} byte: {f}")
         if tag == "link" and "motion.css" in (a.get("href") or ""):
             ok(a.get("media") == MEDIA_MOTION, "motion.css senza media reduced-motion: no-preference")
     ok(js <= MAX_JS, f"JS locale {js} > {MAX_JS} byte")

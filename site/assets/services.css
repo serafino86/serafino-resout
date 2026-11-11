@@ -254,3 +254,19 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .section-cartone { padding-block: clamp(24px, 4vw, 48px); }
 .section.section-cartone:has(> .frame-video) { display: block; }
 .section.section-cartone > .frame-video { max-width: 360px; margin-inline: auto; }
+
+/* Scena 3D della home (scene3d.js). Il fondo qui sotto è il fermo statico senza JS/WebGL2/con risparmio dati:
+   cinque sfere disegnate a gradienti, così la fascia non resta mai vuota. */
+.scena3d {
+  grid-column: 1 / -1; position: relative; overflow: hidden; border-radius: var(--r-frame);
+  height: clamp(320px, 62vh, 640px);
+  background:
+    radial-gradient(circle closest-side, #E6876A 0, #A33B1A 55%, #6E2611 96%, transparent 100%) 64% 42% / clamp(110px, 14vw, 190px) clamp(110px, 14vw, 190px) no-repeat,
+    radial-gradient(circle closest-side, #fff 0, #E9ECF0 50%, #B5BCC6 96%, transparent 100%) 18% 70% / clamp(80px, 10vw, 140px) clamp(80px, 10vw, 140px) no-repeat,
+    radial-gradient(circle closest-side, #5A5F68 0, #14161A 96%, transparent 100%) 36% 22% / clamp(70px, 8vw, 120px) clamp(70px, 8vw, 120px) no-repeat,
+    radial-gradient(circle closest-side, #C9CED6 0, #8C95A2 70%, #6B7380 96%, transparent 100%) 86% 78% / clamp(70px, 9vw, 130px) clamp(70px, 9vw, 130px) no-repeat,
+    radial-gradient(circle closest-side, #fff 0, #DDE1E7 60%, #AEB5C0 96%, transparent 100%) 92% 16% / clamp(50px, 6vw, 90px) clamp(50px, 6vw, 90px) no-repeat,
+    linear-gradient(160deg, #E4E7EC, #CFD4DB);
+}
+.scena3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; opacity: 0; transition: opacity .8s; }
+.scena3d.on canvas { opacity: 1; }
