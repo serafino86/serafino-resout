@@ -1,3 +1,5 @@
+> SUPERATO l'11.11.2026: sul sito nuovo la parola IA è ammessa; messaggio home deciso da Enrico (H1 « Le travail reste humain… »).
+
 # Serafino Résout — Positionnement & message (2026-07)
 
 *Document-guide. La source de vérité du message. Tout — site, BP, LinkedIn, offres — parle avec cette voix.*

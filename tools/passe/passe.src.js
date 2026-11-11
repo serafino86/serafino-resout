@@ -51,7 +51,8 @@ function ticketTexture(i, title, desc, aniso) {
   const m = 56, dash = (y) => { g.fillStyle = 'rgba(30,25,20,.55)'; for (let x = m; x < cw - m; x += 18) g.fillRect(x, y, 10, 3); };
   g.fillStyle = '#25211c'; g.font = `500 30px ${mono}`;
   g.fillText('SERAFINO RÉSOUT', m, 96);
-  g.textAlign = 'right'; g.fillText('BON ' + String(i + 1).padStart(2, '0'), cw - m, 96); g.textAlign = 'left';
+  g.textAlign = 'right'; if (i === 0) g.fillStyle = '#A33B1A'; // il primo bon (Entreprise) risalta appena
+  g.fillText('BON ' + String(i + 1).padStart(2, '0'), cw - m, 96); g.textAlign = 'left';
   g.font = `400 26px ${mono}`; g.fillStyle = '#5a5249'; g.fillText('PASSE · GENÈVE', m, 140);
   dash(170);
   g.fillStyle = '#16130f';

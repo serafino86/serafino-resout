@@ -7,7 +7,7 @@ Esce 1 se un controllo fallisce."""
 import os, re, sys
 from html.parser import HTMLParser
 
-VERSIONE = "20261110"
+VERSIONE = "20261111b"
 ESCLUSI = ()  # script fuori dal budget JS (widget chat): oggi la chat è un iframe, nessun file
 MAX_JS = 8192
 MAX_SCENA = 573440  # passe.js (three.js r170 tree-shaken + scena, ~135 KB gzip): caricato da motion.js dopo load, solo ≥860px, fuori dal percorso critico

@@ -272,7 +272,9 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .passe-scene canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
 .passe-text { position: relative; z-index: 1; pointer-events: none; will-change: transform; }
 .passe-kicker { font-size: 15px; color: var(--muted-inv); }
-.passe h1 { margin-top: var(--s3); max-width: 19ch; font-size: clamp(2.6rem, 6.3vw, 7.5rem); line-height: .98; letter-spacing: -0.035em; }
+.passe h1 { margin-top: var(--s3); max-width: 30ch; font-size: clamp(2.4rem, 4.6vw, 5.6rem); line-height: .98; letter-spacing: -0.035em; text-wrap: balance; }
+.passe h1 span { display: block; }
+.passe-sub { margin-top: var(--s4); max-width: 46ch; font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.45; color: var(--muted-inv); }
 .passe-bons { position: relative; z-index: 1; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 40px); padding-top: 12px; }
 .passe-bons::before {
   content: ''; position: absolute; left: -3vw; right: -3vw; top: 0; height: 16px; border-radius: 3px;
@@ -291,13 +293,13 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .bon-n { padding-bottom: 10px; border-bottom: 1px dashed rgba(0, 0, 0, .4); }
 .bon strong { font-family: var(--font-d); font-size: clamp(1.25rem, 1.9vw, 1.9rem); line-height: 1.02; text-transform: uppercase; }
 .bon-desc { color: #4A4540; }
+.passe:not(.on) .passe-bons li:first-child .bon-n { color: #A33B1A; font-weight: 700; }
 .bon::after { content: '→ Ouvrir'; content: '→ Ouvrir' / ''; margin-top: auto; padding-top: 10px; border-top: 1px dashed rgba(0, 0, 0, .4); color: #A33B1A; }
 .passe :focus-visible { outline-color: var(--text-inv); outline-offset: 4px; }
 @media (max-width: 700px) {
   .passe-bons { grid-template-columns: 1fr 1fr; row-gap: 28px; }
   .passe-bons::before { display: none; }
   .bon { border-top: 10px solid #9A9DA1; padding-top: 18px; }
-  .bon-desc { display: none; }
 }
 .passe.on .passe-stage { height: 100vh; background: #0D0C0B; }
 .passe.dolly { height: 250vh; }
