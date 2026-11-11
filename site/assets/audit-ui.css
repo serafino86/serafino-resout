@@ -20,7 +20,8 @@ a, button, summary { touch-action: manipulation; }
   .site-nav a { min-height: 48px; font-size: 17px; }
   .site-nav a:hover, .site-nav a[aria-current="page"] { background: var(--surface); }
   .site-nav .nav-cta { justify-content: center; }
-  .bot-fab { right: 16px; bottom: 16px; }
+  .bot-fab { right: 16px; bottom: 16px; padding: 8px; }
+  .bot-fab-label { display: none; }
   .bot-popup { inset: auto 8px 80px auto; width: calc(100vw - 16px); height: min(620px, calc(100dvh - 100px)); }
 }
 @media (prefers-reduced-motion: reduce) {
