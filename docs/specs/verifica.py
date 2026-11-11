@@ -10,7 +10,7 @@ from html.parser import HTMLParser
 VERSIONE = "20261110"
 ESCLUSI = ()  # script fuori dal budget JS (widget chat): oggi la chat è un iframe, nessun file
 MAX_JS = 8192
-MAX_SCENA = 12288  # scene3d.js: caricato da motion.js via data-src dopo load, fuori dal percorso critico; budget a parte
+MAX_SCENA = 573440  # passe.js (three.js r170 tree-shaken + scena, ~135 KB gzip): caricato da motion.js dopo load, solo ≥860px, fuori dal percorso critico
 LIMITI = {"services.css": 40960, "motion.css": 6144}
 MEDIA_MOTION = "(prefers-reduced-motion: no-preference)"
 ANIMABILI = {"transform", "opacity", "border-radius", "clip-path"}

@@ -1,19 +1,14 @@
-// Scena 3D della home: scene3d.js si carica dopo `load` e solo quando .scena3d è vicina allo schermo.
-// Con movimento ridotto disegna un fermo; con risparmio dati non si carica (resta il fondo CSS).
+// Hero «Le passe»: passe.js (three.js, ~140 KB gzip) si carica dopo `load`, solo su schermi ≥ 860px e senza risparmio dati.
+// Su telefono, senza JS o senza WebGL resta la versione HTML/CSS dei bon.
 (function () {
-  var box = document.querySelector('.scena3d');
-  if (!box || (navigator.connection || {}).saveData || !('IntersectionObserver' in window)) return;
+  var box = document.querySelector('.passe-scene');
+  if (!box || (navigator.connection || {}).saveData || !matchMedia('(min-width: 860px)').matches) return;
   addEventListener('load', function () {
-    var io = new IntersectionObserver(function (e) {
-      if (!e[0].isIntersecting) return;
-      io.disconnect();
-      (window.requestIdleCallback || setTimeout)(function () {
-        var s = document.createElement('script');
-        s.src = box.getAttribute('data-src');
-        document.head.appendChild(s);
-      }, { timeout: 1500 });
-    }, { rootMargin: '300px' });
-    io.observe(box);
+    (window.requestIdleCallback || setTimeout)(function () {
+      var s = document.createElement('script');
+      s.src = box.getAttribute('data-src');
+      document.head.appendChild(s);
+    }, { timeout: 1200 });
   });
 })();
 

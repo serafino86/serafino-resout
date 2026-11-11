@@ -255,18 +255,55 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .section.section-cartone:has(> .frame-video) { display: block; }
 .section.section-cartone > .frame-video { max-width: 360px; margin-inline: auto; }
 
-/* Scena 3D della home (scene3d.js). Il fondo qui sotto è il fermo statico senza JS/WebGL2/con risparmio dati:
-   cinque sfere disegnate a gradienti, così la fascia non resta mai vuota. */
-.scena3d {
-  grid-column: 1 / -1; position: relative; overflow: hidden; border-radius: var(--r-frame);
-  height: clamp(320px, 62vh, 640px);
-  background:
-    radial-gradient(circle closest-side, #E6876A 0, #A33B1A 55%, #6E2611 96%, transparent 100%) 64% 42% / clamp(110px, 14vw, 190px) clamp(110px, 14vw, 190px) no-repeat,
-    radial-gradient(circle closest-side, #fff 0, #E9ECF0 50%, #B5BCC6 96%, transparent 100%) 18% 70% / clamp(80px, 10vw, 140px) clamp(80px, 10vw, 140px) no-repeat,
-    radial-gradient(circle closest-side, #5A5F68 0, #14161A 96%, transparent 100%) 36% 22% / clamp(70px, 8vw, 120px) clamp(70px, 8vw, 120px) no-repeat,
-    radial-gradient(circle closest-side, #C9CED6 0, #8C95A2 70%, #6B7380 96%, transparent 100%) 86% 78% / clamp(70px, 9vw, 130px) clamp(70px, 9vw, 130px) no-repeat,
-    radial-gradient(circle closest-side, #fff 0, #DDE1E7 60%, #AEB5C0 96%, transparent 100%) 92% 16% / clamp(50px, 6vw, 90px) clamp(50px, 6vw, 90px) no-repeat,
-    linear-gradient(160deg, #E4E7EC, #CFD4DB);
+/* ── HERO «LE PASSE» (home). Questa è la versione completa senza JS/WebGL e su telefono: sbarra inox in CSS e bon di carta.
+   Con la scena 3D (passe.js, solo schermi ≥ 860px) .passe prende la classe .on e i bon diventano zone cliccabili trasparenti sopra il canvas. */
+.home .site-header { background: #0D0C0B; color: var(--text-inv); }
+.home .site-nav { color: var(--text); }
+.home .brand-accent { color: var(--muted-inv); }
+.home .menu-toggle { background: var(--surface); color: var(--text); }
+.passe { position: relative; background: #0D0C0B; color: var(--text-inv); }
+.passe-stage {
+  position: relative; overflow: hidden; min-height: calc(100svh - 60px);
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--s6);
+  padding: clamp(24px, 5vw, 56px) var(--margin) clamp(40px, 6vw, 80px);
+  background: radial-gradient(70% 55% at 50% 0%, rgba(255, 140, 60, .20), transparent 72%), #0D0C0B;
 }
-.scena3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; opacity: 0; transition: opacity .8s; }
-.scena3d.on canvas { opacity: 1; }
+.passe-scene { position: absolute; inset: 0; }
+.passe-scene canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+.passe-text { position: relative; z-index: 1; pointer-events: none; will-change: transform; }
+.passe-kicker { font-size: 15px; color: var(--muted-inv); }
+.passe h1 { margin-top: var(--s3); max-width: 19ch; font-size: clamp(2.6rem, 6.3vw, 7.5rem); line-height: .98; letter-spacing: -0.035em; }
+.passe-bons { position: relative; z-index: 1; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 40px); padding-top: 12px; }
+.passe-bons::before {
+  content: ''; position: absolute; left: -3vw; right: -3vw; top: 0; height: 16px; border-radius: 3px;
+  background: linear-gradient(#F4F3F0, #A7AAAE 40%, #55585D 58%, #8E9196 80%, #C9CBCE);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .7);
+}
+.bon {
+  display: flex; flex-direction: column; gap: 12px; height: 100%; padding: 30px clamp(14px, 1.6vw, 24px) 24px;
+  color: #1D1B18; background: linear-gradient(#DCD4C4, #F1ECE2 10%, #EFE9DC);
+  font-family: ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace; font-size: 13px; line-height: 1.45;
+  box-shadow: 0 24px 34px -14px rgba(0, 0, 0, .8);
+  transform-origin: 50% 0; transform: rotate(-1.1deg); transition: transform .45s var(--ease);
+}
+.passe-bons li:nth-child(even) .bon { transform: rotate(.9deg); }
+.passe-bons li .bon:hover, .passe-bons li .bon:focus-visible { transform: rotate(0deg) translateY(6px); }
+.bon-n { padding-bottom: 10px; border-bottom: 1px dashed rgba(0, 0, 0, .4); }
+.bon strong { font-family: var(--font-d); font-size: clamp(1.25rem, 1.9vw, 1.9rem); line-height: 1.02; text-transform: uppercase; }
+.bon-desc { color: #4A4540; }
+.bon::after { content: '→ Ouvrir'; content: '→ Ouvrir' / ''; margin-top: auto; padding-top: 10px; border-top: 1px dashed rgba(0, 0, 0, .4); color: #A33B1A; }
+.passe :focus-visible { outline-color: var(--text-inv); outline-offset: 4px; }
+@media (max-width: 700px) {
+  .passe-bons { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+  .passe-bons::before { display: none; }
+  .bon { border-top: 10px solid #9A9DA1; padding-top: 18px; }
+  .bon-desc { display: none; }
+}
+.passe.on .passe-stage { height: 100vh; background: #0D0C0B; }
+.passe.dolly { height: 250vh; }
+.passe.dolly .passe-stage { position: sticky; top: 0; height: 100vh; }
+.passe.on .passe-bons { position: absolute; inset: 0; display: block; padding: 0; }
+.passe.on .passe-bons::before { content: none; }
+.passe.on .bon, .passe.on .passe-bons li .bon { position: absolute; left: 0; top: 0; padding: 0; color: transparent; background: none; box-shadow: none; transform: none; transition: none; }
+.passe.on .bon-n, .passe.on .bon::after { border-color: transparent; color: transparent; }
+.passe.on .bon-desc { color: transparent; }

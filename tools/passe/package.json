@@ -1,0 +1,6 @@
+{
+  "name": "hero-passe",
+  "private": true,
+  "description": "Build della scena 3D della home (site/assets/passe.js)",
+  "devDependencies": { "esbuild": "0.24.0", "three": "0.170.0" }
+}

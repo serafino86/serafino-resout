@@ -26,7 +26,7 @@
   <script defer src="./assets/site-ui.js?v=20261110"></script>
   <script defer src="./assets/motion.js?v=20261110"></script>
 </head>
-<body>
+<body class="home">
   <a class="skip-link" href="#main-content">Aller au contenu</a>
 
   <!-- HEADER -->
@@ -34,38 +34,33 @@
 
   <main id="main-content">
 
-    <!-- 1. HERO -->
+    <!-- 1. HERO «Le passe»: la sbarra dei bon. Senza JS/WebGL (e su telefono) resta questa versione HTML/CSS; passe.js aggiunge la scena 3D sotto e usa questi <a> come zone cliccabili. -->
+    <section class="passe" aria-labelledby="passe-titre">
+      <div class="passe-stage">
+        <div class="passe-scene" aria-hidden="true" data-src="./assets/passe.js?v=20261110"></div>
+        <div class="passe-text">
+          <p class="passe-kicker">Serafino Résout · Genève</p>
+          <h1 id="passe-titre">Je teste l'IA chez moi, à Genève, et je vous montre comment faire</h1>
+        </div>
+        <ul class="passe-bons" aria-label="Par où commencer">
+          <li><a class="bon" href="/apprendre-ia.html"><span class="bon-n">Bon 01</span><strong>Apprendre l'IA</strong><span class="bon-desc">Un webinaire, un atelier en petit groupe ou une leçon privée. On part d'une chose que vous avez à faire.</span></a></li>
+          <li><a class="bon" href="/ia-chez-vous.html"><span class="bon-n">Bon 02</span><strong>L'IA chez vous</strong><span class="bon-desc">Une IA privée, installée sur votre ordinateur.</span></a></li>
+          <li><a class="bon" href="/entreprises.html"><span class="bon-n">Bon 03</span><strong>Pour votre entreprise</strong><span class="bon-desc">Pour les restaurants, les artisans et les bureaux de Genève, je prépare la publicité et je construis l'outil qui manque.</span></a></li>
+          <li><a class="bon" href="/essais.html"><span class="bon-n">Bon 04</span><strong>Réalisations</strong><span class="bon-desc">13 outils et 3 essais, avec l'état de chacun : en service, démo ou prototype.</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. CHI SONO IN BREVE (ex hero: ritratto, presentazione, social) -->
     <section class="section hero">
-      <h1>Je teste l'IA chez moi, à Genève, et je vous montre comment faire</h1>
       <div class="frame hero-video">
-        <img src="./assets/video/hero-poster.jpg" alt="Enrico La Noce" width="800" height="1000" fetchpriority="high" />
+        <img src="./assets/video/hero-poster.jpg" alt="Enrico La Noce" width="800" height="1000" loading="lazy" />
       </div>
       <p class="lead">Je suis Enrico La Noce. J'ai fait vingt ans de cuisine, dans l'événementiel et la restauration collective, et les ordinateurs je les ai dans les mains depuis l'enfance. Ce que j'essaie, je le montre sur Instagram et Facebook, avec ce qui marche et ce qui coince.</p>
       <p class="cta-row">
         <a class="btn" href="https://www.instagram.com/serafino.resout/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn-outline" href="https://www.facebook.com/profile.php?id=61596200613648" target="_blank" rel="noopener">Facebook</a>
       </p>
-    </section>
-
-    <!-- 2. PORTE -->
-    <section class="section">
-      <div class="scena3d" aria-hidden="true" data-src="./assets/scene3d.js?v=20261110"></div>
-      <h2>Par où commencer</h2>
-      <div class="doors">
-        <a class="door" href="/essais.html">
-          <h3>Ce que j'ai construit</h3>
-          <p>13 outils et 3 essais, avec l'état de chacun : en service, démo ou prototype.</p>
-        </a>
-        <a class="door" href="/apprendre-ia.html">
-          <h3>Apprendre l'IA</h3>
-          <p>Un webinaire, un atelier en petit groupe ou une leçon privée. On part d'une chose que vous avez à faire.</p>
-        </a>
-        <a class="door" href="/entreprises.html">
-          <h3>Pour votre entreprise</h3>
-          <p>Pour les restaurants, les artisans et les bureaux de Genève, je prépare la publicité et je construis l'outil qui manque.</p>
-        </a>
-      </div>
-      <p><a href="/ia-chez-vous.html">Une IA privée, installée sur votre ordinateur</a></p>
     </section>
 
     <!-- 4. QUI JE SUIS (copiata identica dalla home attuale; href #cas -> /entreprises.html#cas) -->
