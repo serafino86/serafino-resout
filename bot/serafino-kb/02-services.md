@@ -1,35 +1,29 @@
-# Serafino Résout - Services
+# Serafino Résout - The three offers (the ONLY services)
 
-## Practical services for small businesses
+Motto of the site: "Le travail reste humain. Le désordre passe à la machine." Enrico does it for you, or shows you how to do it.
 
-Enrico helps businesses make their offer clear, find commercial opportunities and simplify everyday work. Services include competitor research, offer design, sales arguments, advertising images and videos, printed materials and QR/NFC supports; custom business applications, bots, databases and repetitive-task automation; installation and configuration of local AI on the customer's computer or server after checking hardware and intended uses, with practical help using it.
+## 1. Pour votre entreprise (restaurants, craftsmen, small businesses in Geneva)
+Enrico builds the tool that is missing, for quotes (devis), accounts or e-mails, and helps make the business known.
+- Making known what you sell: first he looks with you at what you sell, to whom, and what others around you offer. Then he prepares texts, images, videos and printed materials. On a table or a counter, a QR code can bring the customer to your reviews or to an order. Everything is checked together before it goes out.
+- Tools for recurring tasks: he starts from your files and your way of working, then builds what is missing: a spreadsheet that does the calculations by itself, a quote or e-mail template, or a small application. Start small, on a real case, then you decide.
+- Price: **on quote (sur devis)**. It starts with the free 30-minute exchange, then you receive a written quote with price and timing, and you decide. If it is not worth it, Enrico says so.
 
-These are custom projects: agree scope and price directly with Enrico. Never give a fixed price, delivery date, guaranteed sales outcome or universal hardware/privacy promise.
+## 2. L'IA chez vous (private AI installed on your computer)
+Enrico installs an AI on your computer, at home or in the shop, sets it up for your everyday tasks and spends one hour with you so you can use it alone. Your documents stay on your machine. No subscription.
+- **From 390 CHF, hardware not included** (installation + 1 hour of hands-on help).
+- Honest limits: it is slower than an online service and more limited on hard tasks; on a computer that is too weak it is useless. That is why Enrico checks your machine first and tells you before starting if it does not suffice. Sometimes the right answer is to keep your online subscription.
+- The answers must be re-read, like an apprentice's work. If a function needs internet, he says so beforehand.
+- It can also answer from your own documents (prices, opening hours...). This website chat works that way: it answers from Enrico's texts and stops there.
 
-Concrete work, described WITHOUT client names or private details: commercial support for a coffee business (offers, product sheets, print/QR/NFC materials and advertising spots); a developed and deployed construction meeting-report application (input/dictation, action tracking, PDF and Excel), whose move to the architecture office's own server is planned pending approval. Do not describe that migration as completed. Do not say the coffee business has a delivered customer app: that app was removed from the plan.
+## 3. Apprendre l'IA (learn to use AI, with your own documents)
+For everyone, even if the computer scares you a bit. You come with something to do this week, a letter or a document you cannot find, and you do it together. You learn to ask clearly and to check the answers, because AI makes mistakes too.
+- **Webinaire**: 45 minutes, online, **free**. Next date announced on Instagram.
+- **Atelier en petit groupe**: 2 sessions of 2 hours, max 6 people, in Geneva or online, **190 CHF per person**. Next date announced on Instagram.
+- **Leçon privée**: 1 h 30 on what you want to learn, at your place or by video, **120 CHF**. Date agreed together.
+- To sign up: write to Enrico or call 078 658 37 60.
 
-## L'heure du téléphone (one solution among the services)
+## First contact (for all three offers)
+**An exchange of 30 minutes, free: at your place if you are in Geneva, otherwise by video call (visio).** You say what you would like to do or learn, Enrico says whether he can help and how much it costs.
 
-The phone rings during service or on the job site, nobody can pick up. The line picks up instead.
-
-- The business **keeps its own number**. Calls that are not answered are forwarded to the line.
-- The line introduces itself as an **automatic assistant** from the start of the call.
-- It speaks **French**.
-- The audio is **not kept**: the voice is transcribed on Serafino's own server in Germany (no third-party service) and the audio is deleted right after. The business receives a **written summary**.
-
-**Restaurant path:** the line takes the booking (name, number of people, day, time). The owner receives the request on his mobile and confirms or refuses with one click — nothing is booked without him. The guest receives a confirmation SMS.
-
-**Craftsman path:** the line takes the message (name, reason, address, urgency). The craftsman gets the summary on his mobile right away and calls back when he leaves the job site.
-
-**Status:** restaurants pilot by appointment in Geneva. The craftsmen version is in preparation, not ready to try. No public demo number.
-
-## Custom projects
-
-Other problems in the office or the kitchen: contact Enrico. Price on discussion, never give a figure. **an anonymous B2B business** is an existing public example (see 04-cases); it is not the only work Enrico does. Other ongoing client work stays anonymous.
-
-## Not offered right now
-
-- La Centralina (complete management system): **not offered at the moment.**
-- Diagnostic, simplification plan, consulting missions: **not offered.**
-
-Client identities must remain private. Use anonymous descriptions only, including this B2B project.
+## Not offered
+Anything else (telephone answering lines, booking lines, management systems, diagnostics, consulting packages) is **not offered**. Never mention them.

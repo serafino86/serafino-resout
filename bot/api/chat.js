@@ -100,26 +100,23 @@ function buildSystemPrompt(language, memory, route) {
 
   const prompt = [
     executionContract,
-    'ABSOLUTE RULE — address the visitor with "vous" in French (vous/votre/vos), like the website. Never "tu".',
+    language === 'fr' ? 'ABSOLUTE RULE — address the visitor with "vous" (vous/votre/vos), like the website. Never "tu".' : '',
     config.promptInstruction,
     `IMPORTANT: Always respond in the language specified above. Never switch to another language. REMINDER: ${config.promptInstruction}`,
     'The knowledge base below is canonical and written in English. Use it as the source of truth, and translate its facts naturally into the requested response language.',
-    'You are the assistant for Serafino Résout. Serafino is the working alter ego of Enrico La Noce, a chef for events and collective catering with 20 years in professional kitchens, based in Geneva.',
-    'Serafino Résout helps small businesses with marketing, advertising, commercial opportunities, local AI installation, custom tools and automation. The phone line is ONE solution among these: restaurant pilot by appointment; craftsmen version in preparation.',
-    'Your role: understand the actual need, explain the relevant practical services using the knowledge base, and guide the visitor to contact Enrico (contact@serafino-resout.ch, 078 658 37 60). Do not steer marketing or local AI requests to the phone line.',
-    'QUALIFY: give a direct useful answer first when the need is clear. Otherwise ask one short question about what the visitor wants to develop or simplify.',
-    'HONEST FIT: restaurants, craftsmen, small businesses and professional offices may need these services. Use only documented examples. Keep ongoing client work anonymous; never claim a planned installation is completed. Custom prices and scope are discussed with Enrico.',
-    'Stay strictly within the knowledge base. Never invent prices, clients, results, figures, features or dates.',
-    'PRICES: only those of the knowledge base (Restaurant 249 CHF/month, Artisan 119 CHF/month, 30 days free for the first ten). Never mention a diagnostic, a 300 CHF plan, 800 CHF, Centralina packages, 99/149/199/299 CHF: these offers no longer exist.',
-    'Never give a demo phone number. Never say "mes clients" or "nos clients": the line has no paying client yet.',
-    'VAT: Serafino Résout is not subject to VAT in its first year: prices are final, no VAT added; never write HT or TTC.',
-    'Points not decided (commitment, what happens beyond included minutes): say Enrico will answer precisely, give his contact.',
+    'You are the assistant for Serafino Résout. Serafino is the working alter ego of Enrico La Noce, a chef for events and collective catering with 20 years in professional kitchens, based in Geneva, who tests AI at home.',
+    'Serafino Résout has exactly THREE offers: (1) Pour votre entreprise: tools for quotes, accounts, e-mails and making the business known, price on written quote; (2) L\'IA chez vous: private AI installed on the visitor\'s computer + 1 hour of help, from 390 CHF, hardware not included; (3) Apprendre l\'IA: free 45-minute webinar, small-group workshop 190 CHF per person, private lesson 120 CHF.',
+    'FIRST CONTACT: an exchange of 30 minutes, free, at the visitor\'s place if in Geneva, otherwise by video call. Contact: contact@serafino-resout.ch, 078 658 37 60.',
+    'Your role: understand the actual need, point to the matching offer with its price, and guide the visitor to write to Enrico.',
+    'Stay strictly within the knowledge base. Never invent prices, clients, results, figures, features or dates. Never say a demo or prototype is in production.',
+    'FORBIDDEN TOPICS: any telephone answering line, booking line, message-taking service, monthly subscription, management system, diagnostic: they do not exist. Never mention PDF. Never write HT or TTC.',
+    'Never say "mes clients" or "nos clients"; describe work done on request without names.',
     'When the user asks about a false or unconfirmed biography detail, reject it directly and give the confirmed version.',
     'STRICT LENGTH RULE: maximum 3 sentences per answer. ONE paragraph only.',
     'No headings or bullet lists unless the user explicitly asks for a breakdown. Always finish the answer cleanly.',
     'Answer first, then ask at most one short follow-up question.',
     '⚠ FORBIDDEN PHRASES: "Bien sûr", "Excellente question", "Je comprends votre situation", "enjeu clé", "levier stratégique", "nos clients", "nous proposons". Speak as "je", warm and direct, short sentences, like a real person from the kitchen, not a brochure.',
-    'FEW-SHOT EXAMPLE — VISITOR: "Vous avez déjà des clients ?" CORRECT RESPONSE: "On démarre : je cherche les dix premiers restaurants et artisans genevois, c\'est pour ça que l\'essai est gratuit 30 jours. Vous êtes dans quel métier ?"',
+    'FEW-SHOT EXAMPLE — VISITOR: "Ça coûte combien ?" CORRECT RESPONSE: "Ça dépend de ce que vous voulez : l\'IA installée chez vous, c\'est dès 390 CHF hors matériel, et pour apprendre il y a un webinaire gratuit, l\'atelier à 190 CHF ou une leçon privée à 120 CHF. Pour un outil d\'entreprise, c\'est sur devis après un échange de 30 minutes gratuit. Qu\'est-ce qui vous intéresse ?"',
     memory ? `Conversation memory:\n${memory}` : '',
     'Knowledge base:',
     kb,
@@ -192,6 +189,19 @@ function normalizeHistory(history, message, historyLimit = MAX_HISTORY_MESSAGES)
   }
 
   return trimmed;
+}
+
+// Counts on the FULL client history: normalizedHistory is cut to route.historyLimit
+// (short_chat = 3 entries), so it could never reach 3 user messages.
+function countUserMessages(history, message) {
+  return normalizeHistory(Array.isArray(history) ? history : [], message, Infinity)
+    .filter((entry) => entry.role === 'user').length;
+}
+
+// The client shows the email offer once; the server keeps sending the flag from
+// the 3rd user message so a failed 3rd turn is caught at the 4th.
+function shouldOfferEmail(history, message) {
+  return countUserMessages(history, message) >= 3;
 }
 
 function toTranscript(history) {
@@ -653,6 +663,7 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  const offerEmail = shouldOfferEmail(history, message);
   const directReply = buildDirectReply(route, language, message);
   if (directReply) {
     appendShadowEvent({
@@ -676,6 +687,7 @@ module.exports = async function handler(req, res) {
       compression_mode: route.compressionMode,
       memory: currentMemory,
       reply: directReply,
+      ...(offerEmail ? { proactive_email: true } : {}),
     });
   }
 
@@ -720,8 +732,6 @@ module.exports = async function handler(req, res) {
     const memoryUpdate = route.useMemory
       ? await updateConversationMemory(currentMemory, normalizedHistory, reply)
       : { memory: currentMemory, provider: null };
-    const userMessageCount = normalizedHistory.filter((m) => m.role === 'user').length;
-    const proactiveEmail = userMessageCount === 3 && currentMemory.trim() && reply ? true : undefined;
     appendShadowEvent({
       source: 'chat',
       route: route.name,
@@ -745,7 +755,7 @@ module.exports = async function handler(req, res) {
       memory: memoryUpdate.memory,
       memory_provider: memoryUpdate.provider,
       reply,
-      ...(proactiveEmail ? { proactive_email: true } : {}),
+      ...(offerEmail && reply ? { proactive_email: true } : {}),
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown chat error';
@@ -774,3 +784,6 @@ module.exports = async function handler(req, res) {
     });
   }
 };
+
+module.exports.shouldOfferEmail = shouldOfferEmail;
+module.exports.buildSystemPrompt = buildSystemPrompt;

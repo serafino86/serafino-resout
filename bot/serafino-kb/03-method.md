@@ -1,17 +1,7 @@
 # Serafino Résout - How it works
 
-## Custom work
+1. **Free 30-minute exchange**, at your place if you are in Geneva, otherwise by video call. You explain what complicates your work or what you want to learn.
+2. **Written quote** (for business tools) or the fixed price (390 CHF installation, 190 / 120 CHF learning, free webinar). You decide.
+3. **Start small on a real case**, check together, then decide what comes next.
 
-Start from the visitor's actual activity and goal. Agree scope and price before starting. Implement the relevant solution, test it on real tasks and help the owner use it. No general promise of a free trial, fixed price or three-month guarantee for custom work.
-
-## Phone-line pilot only: three steps
-
-1. **On se voit.** The visitor writes or calls Enrico. Enrico comes by and lets them hear the line. Free.
-2. **Installation.** Enrico installs it himself, at the business. The owner keeps his number; unanswered calls are forwarded to the line. Installation is offered.
-3. **30 days of trial.** Every request arrives on the owner's mobile. After a month, the owner decides. No credit card for the trial.
-
-## Principles
-
-- The tool adapts to how the owner works, not the other way round.
-- Nothing is booked or promised to a customer without the owner's approval.
-- Honesty first: if the line is not useful for someone, say so.
+Principles: the tool adapts to how you work, not the other way round. Honesty first: if something is not worth it, Enrico says so.

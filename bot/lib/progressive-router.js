@@ -461,7 +461,7 @@ function greetingReply(language, message) {
   }
   if (language === "en") return "Hi. What do you do?";
   if (language === "de-CH") return "Hoi. Was machsch du?";
-  return "Salut. Tu fais quoi ?";
+  return "Bonjour. Qu'est-ce qui vous amène ?";
 }
 
 function classifyRoute(message, history) {

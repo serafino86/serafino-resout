@@ -403,11 +403,12 @@ const botState = {
   suggestionsSent: false,
   pendingDraft: null,
   emailAttempt: 0,
+  emailOffered: false,
 };
 
 const BOT_COPY = {
   fr: {
-    welcome: "Bonjour, je suis l'assistant automatique de Serafino Résout. Marketing, publicité, IA locale, outils sur mesure : quel est votre besoin ?",
+    welcome: "Bonjour, je suis l'assistant automatique de Serafino Résout. Un outil pour votre entreprise, l'IA installée chez vous, ou apprendre à vous en servir : qu'est-ce qui vous amène ?",
     sendLabel: 'Envoyer le message',
     inputLabel: 'Votre message',
     threadLabel: 'Conversation avec l’assistant automatique',
@@ -420,15 +421,15 @@ const BOT_COPY = {
     openMail: 'Ouvrir le mail',
     mailError: "Je n’ai pas réussi à préparer le mail. Vous pouvez écrire directement à contact@serafino-resout.ch.",
     mailAskMissing: "Pour finaliser le mail, j’aurais besoin de quelques précisions\u00a0: {missing}. Répondez ici en quelques mots et je le prépare aussitôt.",
-    proactiveEmail: "Votre situation est claire. Je prépare un mail récapitulatif pour Enrico, prêt à envoyer en un clic ?",
+    proactiveEmail: "Le mieux maintenant, c'est d'en parler avec Enrico. Je vous prépare un mail à contact@serafino-resout.ch avec ce qu'on s'est dit : cliquez sur « Préparer un mail », vous le relisez et vous l'envoyez.",
     suggestions: [
-      "De l’aide pour ma publicité",
-      'Installer une IA en local',
-      'Un outil pour mon activité',
+      'Un outil pour mon entreprise',
+      'Installer l’IA chez moi',
+      'Apprendre à utiliser l’IA',
     ],
   },
   en: {
-    welcome: "Hello, I'm the automated Serafino Résout assistant. Marketing, advertising, local AI and custom tools: what would you like help with?",
+    welcome: "Hello, I'm the automated Serafino Résout assistant. A tool for your business, AI installed on your computer, or learning to use it: what brings you here?",
     sendLabel: 'Send message',
     inputLabel: 'Your message',
     threadLabel: 'Conversation with the automated assistant',
@@ -443,13 +444,13 @@ const BOT_COPY = {
     mailAskMissing: 'To finalize the email, I need a few details: {missing}. Reply here in a few words and I\'ll prepare it right away.',
     proactiveEmail: "We've got a good picture of your situation. Want me to prepare a summary email for Serafino, ready to send in one click?",
     suggestions: [
-      'Help with my advertising',
-      'Install local AI',
-      'A custom tool for my business',
+      'A tool for my business',
+      'Install AI on my computer',
+      'Learn to use AI',
     ],
   },
   it: {
-    welcome: "Ciao, sono l'assistente automatico di Serafino Résout. Marketing, pubblicità, IA locale e strumenti su misura: di cosa hai bisogno?",
+    welcome: "Ciao, sono l'assistente automatico di Serafino Résout. Uno strumento per la tua attività, l'IA installata sul tuo computer o imparare a usarla: cosa ti serve?",
     sendLabel: 'Invia il messaggio',
     inputLabel: 'Il tuo messaggio',
     threadLabel: 'Conversazione con l’assistente automatico',
@@ -462,15 +463,15 @@ const BOT_COPY = {
     openMail: 'Aprire la mail',
     mailError: 'Non sono riuscito a preparare la mail. Puoi scrivere direttamente a contact@serafino-resout.ch.',
     mailAskMissing: 'Per finalizzare la mail, ho bisogno di: {missing}. Rispondimi qui in poche parole e la preparo subito.',
-    proactiveEmail: "Ho già un quadro chiaro della tua situazione. Vuoi che prepari una mail riepilogativa per Serafino, pronta da inviare in un click?",
+    proactiveEmail: "A questo punto la cosa migliore è parlarne con Enrico. Ti preparo una mail a contact@serafino-resout.ch con quello che ci siamo detti: clicca «Preparare una mail», la rileggi e la invii.",
     suggestions: [
-      'Aiuto per la mia pubblicità',
-      'Installare IA in locale',
       'Uno strumento per la mia attività',
+      'Installare l’IA sul mio computer',
+      'Imparare a usare l’IA',
     ],
   },
   'de-CH': {
-    welcome: 'Hallo, ich bin der automatische Assistent von Serafino Résout. Marketing, Werbung, lokale KI und individuelle Werkzeuge: Wobei brauchen Sie Unterstützung?',
+    welcome: 'Hallo, ich bin der automatische Assistent von Serafino Résout. Ein Werkzeug für Ihren Betrieb, KI auf Ihrem eigenen Computer oder lernen, sie zu nutzen: Was suchen Sie?',
     sendLabel: 'Nachricht senden',
     inputLabel: 'Ihre Nachricht',
     threadLabel: 'Gespräch mit dem automatischen Assistenten',
@@ -485,9 +486,9 @@ const BOT_COPY = {
     mailAskMissing: 'Um die E-Mail abzuschließen, brauche ich noch: {missing}. Antworte kurz hier und ich bereite sie sofort vor.',
     proactiveEmail: "Ich habe deine Situation schon gut verstanden. Soll ich eine Zusammenfassungs-E-Mail für Serafino vorbereiten, die du mit einem Klick senden kannst?",
     suggestions: [
-      'Hilfe bei meiner Werbung',
-      'Lokale KI installieren',
       'Ein Werkzeug für meinen Betrieb',
+      'KI auf meinem Computer installieren',
+      'Lernen, KI zu nutzen',
     ],
   },
 };
@@ -610,6 +611,7 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
   botState.messages = [{ role: 'bot', text: BOT_COPY[lang].welcome }];
   botState.suggestionsSent = false;
+  botState.emailOffered = false;
   const thread = document.getElementById('botThread');
   if (thread) {
     thread.innerHTML = '';
@@ -658,7 +660,8 @@ async function send(rawMsg) {
     botState.messages.push({ role: 'bot', text: reply });
     hideTyping();
     addBubble('bot', reply);
-    if (data.proactive_email === true && !botState.pendingDraft) {
+    if (data.proactive_email === true && !botState.emailOffered && !botState.pendingDraft) {
+      botState.emailOffered = true;
       const copy = BOT_COPY[botState.language] || BOT_COPY.fr;
       const proactiveText = copy.proactiveEmail || '';
       if (proactiveText) {

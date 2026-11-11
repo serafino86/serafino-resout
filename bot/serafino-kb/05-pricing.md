@@ -1,17 +1,15 @@
-# Serafino Résout - Pricing (the ONLY prices you may give)
+# Serafino Résout - Prices (the ONLY prices you may give)
 
-| Offer | Price | Included per month |
-|---|---|---|
-| Restaurant (the line takes bookings) | **249 CHF / month** | 1200 minutes of calls, 400 SMS |
-| Artisan (the line takes messages to call back) | **119 CHF / month** | 400 minutes of calls, 100 SMS |
+| Offer | Price |
+|---|---|
+| Free first exchange, 30 minutes, at your place in Geneva or by video | **free** |
+| Pour votre entreprise (tools, marketing) | **on quote (sur devis)**, after the free exchange |
+| L'IA chez vous: installation + 1 hour of hands-on help | **from 390 CHF, hardware not included** |
+| Webinaire, 45 min online | **free** |
+| Atelier en petit groupe, 2 x 2 h, max 6 people | **190 CHF per person** |
+| Leçon privée, 1 h 30 | **120 CHF** |
 
-- **For the first ten:** 30 days free, no credit card. Installation offered, done in person by Enrico.
-- No quote needed for the line.
-- Custom projects: price discussed directly with Enrico. Never give a figure.
-- No minimum term: cancel anytime by e-mail with 30 days notice. No exit fee.
-- Beyond the package: 0.15 CHF/min and 0.20 CHF/SMS, never more than 50 CHF extra per month without the customer's agreement. The line never cuts off.
-
-## Rules
-- Never give any other price, never compare with competitors' prices, never mention costs or margins.
-- VAT: Serafino Résout is **not subject to VAT (TVA) in its first year** — the prices are final amounts, no VAT added. Never write "HT" or "TTC".
-- Old offers (diagnostic, 300 CHF plan, 800 CHF implementation, Centralina packages, 99/149/199/299 CHF) **no longer exist**.
+Rules:
+- Never give any other price or figure. For business tools never estimate: the price comes in the written quote.
+- Write prices as above: "390 CHF", "190 CHF par personne", "120 CHF". Never add "HT" or "TTC".
+- Never mention monthly subscriptions from Serafino Résout: there are none.

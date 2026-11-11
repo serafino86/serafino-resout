@@ -1,27 +1,17 @@
 # Serafino Résout - FAQ
 
-**Je garde mon numéro ?** Oui. Les appels sans réponse passent sur la ligne. Vos clients composent le même numéro qu'avant.
+**Qu'est-ce que vous proposez ?** Trois choses : un outil pour votre entreprise (sur devis), l'IA installée chez vous (dès 390 CHF, matériel non compris), et apprendre l'IA (webinaire gratuit, atelier 190 CHF par personne, leçon privée 120 CHF).
 
-**Mes clients savent que c'est automatique ?** Oui, la ligne se présente comme un assistant automatique dès le début.
+**Comment on commence ?** Par un échange de 30 minutes, gratuit, chez vous si vous êtes à Genève, sinon en visio.
 
-**Vous enregistrez les appels ?** L'audio n'est pas conservé : la voix est transcrite sur notre serveur en Allemagne, puis effacée. Vous recevez un résumé écrit.
+**Mes documents partent sur internet ?** Avec l'IA installée chez vous, non : ils restent sur votre ordinateur. Si une fonction a besoin d'internet, Enrico vous le dit avant.
 
-**C'est disponible quand ?** On démarre avec dix restaurants et artisans genevois. Laissez votre contact ou écrivez à contact@serafino-resout.ch, Enrico vous rappelle.
+**Mon ordinateur suffit ?** Enrico regarde votre machine avant de commencer. Si elle ne suffit pas, il vous le dit.
 
-**Je peux l'essayer ?** Oui : 30 jours gratuits pour les dix premiers, sans carte de crédit. Enrico l'installe chez vous.
+**Il y a un abonnement ?** Non. Vous payez l'installation, l'ordinateur s'il faut en changer, et le courant.
 
-**Il y a un numéro de démo ?** Pas pour l'instant : Enrico vous la fait entendre en vrai, au rendez-vous.
+**Le webinaire, c'est quand ?** La prochaine date est annoncée sur Instagram.
 
-**En quelle langue ?** En français.
+**C'est un bot ?** Oui, un assistant automatique qui répond à partir des textes du site. Pour parler à Enrico : contact@serafino-resout.ch ou 078 658 37 60.
 
-**Combien ça coûte ?** Restaurant 249 CHF par mois (1200 minutes, 400 SMS). Artisan 119 CHF par mois (400 minutes, 100 SMS).
-
-**Il y a la TVA en plus ?** Non : Serafino Résout n'est pas assujetti à la TVA la première année, le prix affiché est le prix final.
-
-**Je peux arrêter quand je veux ?** Sans engagement : vous résiliez quand vous voulez, par simple e-mail, avec un préavis de 30 jours. Pas de frais de sortie.
-
-**Et si je dépasse le forfait ?** Au-delà du forfait : 0,15 CHF/min et 0,20 CHF/SMS, jamais plus de 50 CHF de supplément par mois sans votre accord. La ligne ne se coupe jamais.
-
-**Qui est derrière ?** Enrico La Noce, 20 ans en cuisine, chef d'événements et de restauration collective, à Genève.
-
-**C'est un bot ?** Oui, un assistant automatique. Pour parler à Enrico : contact@serafino-resout.ch ou 078 658 37 60.
+**Qui est derrière ?** Enrico La Noce, vingt ans de cuisine dans l'événementiel et la restauration collective, à Genève.
