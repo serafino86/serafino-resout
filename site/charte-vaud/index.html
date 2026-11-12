@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#1f3a33">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>La Charte en Cuisine — Assistant de brigade (Canton de Vaud · OCDC)</title>
+  <style>
+    :root {
+      --verde-scuro: #1f3a33;
+      --verde-medio: #2d5a4d;
+      --verde-chiaro: #e5f0ec;
+      --crema: #f6f2ea;
+      --crema-card: #ffffff;
+      --crema-bordo: #dcd4c6;
+      --terracotta: #9b5c39;
+      --terracotta-chiaro: #f9efe9;
+      --testo: #1f1a16;
+      --testo-sec: #575049;
+      --ok-bg: #e7f4ed;
+      --ok-txt: #1b5e3a;
+      --warn-bg: #fef4e6;
+      --warn-txt: #8a4b08;
+      --stop-bg: #fbeaea;
+      --stop-txt: #8f1d1d;
+      --ombra: 0 4px 16px rgba(31, 58, 51, 0.08);
+      --raggio: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--crema);
+      color: var(--testo);
+      font-size: 16px;
+      line-height: 1.48;
+      padding-bottom: 84px;
+    }
+
+    /* Modalità cornice mobile opzionale su schermi grandi */
+    body.phone-preview {
+      background-color: #162621;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 18px 0 40px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      background-color: var(--crema);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body.phone-preview .app-shell {
+      max-width: 430px;
+      min-height: 840px;
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+      border: 6px solid #2b443d;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .app-header {
+      background: linear-gradient(145deg, var(--verde-scuro) 0%, var(--verde-medio) 100%);
+      color: #fff;
+      padding: 16px 18px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .badge-pilote {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #f6f2ea;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6ee7b7;
+      display: inline-block;
+    }
+
+    .view-toggle-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .view-toggle-btn {
+        display: none;
+      }
+    }
+
+    .app-title {
+      font-size: 1.42rem;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .app-subtitle {
+      font-size: 0.86rem;
+      color: #dcebe5;
+      margin: 4px 0 0;
+      font-weight: 400;
+    }
+
+    /* Navigazione a 3 Tab */
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: #172c26;
+      padding: 8px 12px;
+      position: sticky;
+      top: 90px;
+      z-index: 29;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: #cfe0da;
+      padding: 10px 6px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      transition: all 0.15s ease;
+      min-height: 52px;
+    }
+
+    .tab-btn span.tab-icon {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .tab-btn.active {
+      background: var(--crema);
+      color: var(--verde-scuro);
+      border-color: var(--crema);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Contenuto principale */
+    .main-content {
+      padding: 14px 14px 28px;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Card generica */
+    .card {
+      background: var(--crema-card);
+      border: 1px solid var(--crema-bordo);
+      border-radius: var(--raggio);
+      padding: 14px 15px;
+      margin-bottom: 14px;
+      box-shadow: var(--ombra);
+    }
+
+    .section-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Input barra di ricerca + microfono */
+    .search-box {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+      margin-bottom: 10px;
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      font-size: 1rem;
+      padding: 13px 38px 13px 14px;
+      border: 2px solid var(--verde-medio);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--testo);
+      font-weight: 500;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(155, 92, 57, 0.18);
+    }
+
+    .clear-input-btn {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: var(--testo-sec);
+      cursor: pointer;
+      padding: 4px 6px;
+      display: none;
+    }
+
+    .mic-btn {
+      min-width: 52px;
+      border-radius: 12px;
+      border: 2px solid var(--terracotta);
+      background: var(--terracotta-chiaro);
+      color: var(--terracotta);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+
+    .mic-btn.listening {
+      background: #c93b2b;
+      border-color: #c93b2b;
+      color: #fff;
+      animation: pulseMic 1.1s infinite;
+    }
+
+    @keyframes pulseMic {
+      0% { box-shadow: 0 0 0 0 rgba(201, 59, 43, 0.55); }
+      70% { box-shadow: 0 0 0 10px rgba(201, 59, 43, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(201, 59, 43, 0); }
+    }
+
+    .ask-btn {
+      border-radius: 12px;
+      border: none;
+      background: var(--verde-scuro);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0 16px;
+      cursor: pointer;
+      min-height: 48px;
+    }
+
+    .ask-btn:active {
+      background: var(--verde-medio);
+    }
+
+    .voice-status {
+      font-size: 0.84rem;
+      padding: 8px 11px;
+      border-radius: 9px;
+      margin-bottom: 10px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .voice-status.active {
+      display: block;
+      background: var(--warn-bg);
+      color: var(--warn-txt);
+      border: 1px solid #f3d19e;
+    }
+
+    /* 6 Chips Domande Rapide */
+    .chips-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-top: 6px;
+    }
+
+    @media (min-width: 540px) {
+      .chips-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .chip-btn {
+      text-align: left;
+      background: #f9f6f0;
+      border: 1.5px solid #d8cfc0;
+      border-radius: 11px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--testo);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.32;
+      transition: all 0.14s ease;
+    }
+
+    .chip-btn:hover, .chip-btn:active, .chip-btn.selected {
+      background: var(--verde-chiaro);
+      border-color: var(--verde-medio);
+      color: var(--verde-scuro);
+    }
+
+    .chip-emoji {
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Tag rapidi ingredienti */
+    .quick-tags {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-top: 10px;
+      scrollbar-width: thin;
+    }
+
+    .tag-pill {
+      white-space: nowrap;
+      background: #EFE9DD;
+      border: 1px solid #d5cbb8;
+      color: var(--testo);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.79rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tag-pill:hover, .tag-pill:active {
+      background: var(--verde-medio);
+      color: #fff;
+      border-color: var(--verde-medio);
+    }
+
+    /* Risposta a 3 blocchi */
+    .answer-container {
+      border: 2px solid var(--verde-medio);
+      border-radius: var(--raggio);
+      background: #fff;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(31, 58, 51, 0.11);
+    }
+
+    .answer-header {
+      background: var(--verde-scuro);
+      color: #fff;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .answer-query-title {
+      font-weight: 800;
+      font-size: 1.03rem;
+      margin: 0;
+    }
+
+    .status-pill {
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 4px 9px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-pill.ok { background: #d1fae5; color: #065f46; }
+    .status-pill.warn { background: #fef3c7; color: #92400e; }
+    .status-pill.stop { background: #fee2e2; color: #991b1b; }
+
+    .answer-blocks {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ans-block {
+      border-radius: 11px;
+      padding: 11px 13px;
+      border-left: 5px solid var(--verde-medio);
+      background: #f9f8f5;
+    }
+
+    .ans-block.regle {
+      border-left-color: var(--verde-medio);
+      background: #f2f7f5;
+    }
+
+    .ans-block.chef {
+      border-left-color: var(--terracotta);
+      background: #fdf6f2;
+    }
+
+    .ans-block.pesee {
+      border-left-color: #2b5b84;
+      background: #f2f6fa;
+    }
+
+    .ans-block-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ans-block.regle .ans-block-title { color: var(--verde-scuro); }
+    .ans-block.chef .ans-block-title { color: var(--terracotta); }
+    .ans-block.pesee .ans-block-title { color: #1e4668; }
+
+    .ans-block-text {
+      font-size: 0.94rem;
+      color: var(--testo);
+      margin: 0;
+    }
+
+    /* Tab 2: Saison & Achats */
+    .months-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 500px) {
+      .months-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    .month-btn {
+      padding: 9px 4px;
+      border-radius: 9px;
+      border: 1.5px solid var(--crema-bordo);
+      background: #f9f6f0;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--testo);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .month-btn.active {
+      background: var(--verde-scuro);
+      color: #fff;
+      border-color: var(--verde-scuro);
+    }
+
+    .season-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 560px) {
+      .season-columns {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .season-box {
+      border-radius: 12px;
+      padding: 12px 13px;
+      border: 1.5px solid transparent;
+    }
+
+    .season-box.ok {
+      background: var(--ok-bg);
+      border-color: #b7e1c9;
+    }
+
+    .season-box.avoid {
+      background: var(--stop-bg);
+      border-color: #f1b9b9;
+    }
+
+    .season-box h4 {
+      margin: 0 0 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .season-box.ok h4 { color: var(--ok-txt); }
+    .season-box.avoid h4 { color: var(--stop-txt); }
+
+    .item-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .item-pill {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 5px 9px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .item-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    .chef-month-tip {
+      margin-top: 12px;
+      background: var(--terracotta-chiaro);
+      border-left: 4px solid var(--terracotta);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.89rem;
+    }
+
+    /* Checklist Criteri Charte */
+    .criteria-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      background: #f3ece1;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .criteria-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .criteria-item {
+      border: 1.5px solid var(--crema-bordo);
+      border-radius: 11px;
+      padding: 11px 12px;
+      background: #fff;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .criteria-item.checked {
+      background: #f1f8f4;
+      border-color: var(--verde-medio);
+    }
+
+    .criteria-checkbox {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--verde-scuro);
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .criteria-body {
+      flex: 1;
+    }
+
+    .criteria-title {
+      font-weight: 800;
+      font-size: 0.93rem;
+      color: var(--verde-scuro);
+      margin-bottom: 3px;
+    }
+
+    .criteria-suivi {
+      font-size: 0.82rem;
+      color: var(--testo-sec);
+      margin-bottom: 4px;
+    }
+
+    .criteria-chef {
+      font-size: 0.82rem;
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    /* Tab 3: Pesée 4 semaines */
+    .bacs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .bac-card {
+      border-radius: 12px;
+      border: 1.5px solid var(--crema-bordo);
+      padding: 12px 14px;
+      background: #fff;
+      border-left-width: 6px;
+    }
+
+    .bac-card.bac1 { border-left-color: #2d5a4d; }
+    .bac-card.bac2 { border-left-color: #d97706; }
+    .bac-card.bac3 { border-left-color: #9b5c39; }
+
+    .bac-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .bac-title {
+      font-weight: 800;
+      font-size: 0.96rem;
+      color: var(--testo);
+    }
+
+    .bac-badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 99px;
+      background: #f3ece1;
+      color: var(--testo-sec);
+    }
+
+    .bac-desc {
+      font-size: 0.85rem;
+      color: var(--testo-sec);
+      margin: 0 0 6px;
+    }
+
+    .bac-action {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--verde-scuro);
+      background: #f3f7f5;
+      padding: 7px 10px;
+      border-radius: 8px;
+    }
+
+    /* Calcolatore Pesée */
+    .calc-presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .preset-btn {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--crema-bordo);
+      background: #f9f6f0;
+      cursor: pointer;
+      color: var(--testo);
+    }
+
+    .preset-btn:hover, .preset-btn.active {
+      background: var(--verde-medio);
+      color: #fff;
+      border-color: var(--verde-medio);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .calc-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--testo-sec);
+      margin-bottom: 4px;
+    }
+
+    .calc-input {
+      width: 100%;
+      padding: 10px 11px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: 1.5px solid var(--crema-bordo);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--testo);
+    }
+
+    .calc-results {
+      background: var(--verde-scuro);
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .kpi-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 9px 6px;
+      border-radius: 10px;
+    }
+
+    .kpi-val {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+    }
+
+    .kpi-lbl {
+      font-size: 0.72rem;
+      color: #cfe0da;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .priority-box {
+      background: #fff;
+      color: var(--testo);
+      border-radius: 10px;
+      padding: 11px 13px;
+      border-left: 5px solid var(--terracotta);
+    }
+
+    .priority-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 4px;
+    }
+
+    .priority-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--testo-sec);
+      padding: 12px 16px 24px;
+      border-top: 1px solid var(--crema-bordo);
+      margin-top: 18px;
+    }
+
+    /* Stella: SVG originale di voce.html (Omen), integrato nella demo Charte. */
+    .stella-card { display:flex; align-items:center; gap:12px; padding:12px 14px; margin-bottom:12px;
+      border:1px solid #d8ddd2; border-radius:18px; background:linear-gradient(135deg,#fffdf8,#e7f0e9); }
+    .stella-scene { flex:0 0 150px; width:150px; height:160px; position:relative; display:grid; place-items:center;
+      border:0; background:transparent; cursor:pointer; padding:0; touch-action:manipulation; }
+    .stella-scene:focus-visible, .stella-voice:focus-visible { outline:3px solid #1b5e3a; outline-offset:3px; }
+    .stella-glow { position:absolute; width:130px; height:130px; border-radius:50%;
+      background:radial-gradient(circle,rgba(255,180,89,.54),rgba(255,180,89,0) 70%);
+      animation:stella-glow 3s ease-in-out infinite; }
+    .stella-scene svg { position:relative; max-width:100%; height:auto; animation:stella-float 3.5s ease-in-out infinite; }
+    .stella-scene .eyelid { fill:#dce5f4; transform-box:fill-box; transform-origin:center top;
+      transform:scaleY(0); }
+    .stella-scene.blink .eyelid { animation:stella-blink .24s ease-in-out; }
+    .stella-copy { min-width:0; flex:1; }
+    .stella-name { display:block; color:var(--verde-scuro); font-size:1.08rem; font-weight:800; }
+    .stella-hint { display:block; color:var(--testo-sec); font-size:.82rem; line-height:1.35; margin:4px 0 8px; }
+    .stella-voice { border:1px solid var(--verde-medio); background:#fff; color:var(--verde-scuro);
+      border-radius:999px; padding:8px 12px; font:inherit; font-size:.82rem; font-weight:700; cursor:pointer; }
+    .stella-status { display:block; min-height:1.2em; margin-top:5px; font-size:.76rem; color:var(--testo-sec); }
+    @keyframes stella-float { 50% { transform:translateY(-5px); } }
+    @keyframes stella-glow { 50% { transform:scale(1.12); opacity:.7; } }
+    @keyframes stella-blink { 50% { transform:scaleY(1); } }
+    @media(max-width:390px) { .stella-scene { flex-basis:116px; width:116px; height:134px; }
+      .stella-scene svg { width:140px; } .stella-card { gap:4px; padding:8px; } }
+    @media(prefers-reduced-motion:reduce) { .stella-glow,.stella-scene svg { animation:none; } }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- INTESTAZIONE -->
+    <header class="app-header">
+      <div class="header-top-row">
+        <span class="badge-pilote">
+          <span class="badge-dot"></span>
+          DÉMO PILOTE · CANTON DE VAUD (OCDC)
+        </span>
+        <button type="button" class="view-toggle-btn" id="togglePhoneBtn" onclick="togglePhonePreview()">
+          📱 Vue Mobile / Plein écran
+        </button>
+      </div>
+      <h1 class="app-title">La Charte en Cuisine</h1>
+      <p class="app-subtitle">L'assistant de la brigade pour appliquer la Charte vaudoise au quotidien — de chef à chef</p>
+    </header>
+
+    <!-- 3 SCHEDE (TAB) FACILI DA TOCCARE COL POLLICE -->
+    <nav class="tab-bar" role="tablist" aria-label="Navigation principale">
+      <button type="button" class="tab-btn active" id="tabBtn-demander" role="tab" aria-selected="true" onclick="switchTab('demander')">
+        <span class="tab-icon">💬</span>
+        <span>Demander</span>
+      </button>
+      <button type="button" class="tab-btn" id="tabBtn-saison" role="tab" aria-selected="false" onclick="switchTab('saison')">
+        <span class="tab-icon">📅</span>
+        <span>Saison &amp; Achats</span>
+      </button>
+      <button type="button" class="tab-btn" id="tabBtn-pesee" role="tab" aria-selected="false" onclick="switchTab('pesee')">
+        <span class="tab-icon">⚖️</span>
+        <span>Pesée 4 sem.</span>
+      </button>
+    </nav>
+
+    <main class="main-content">
+      <!-- =========================================================
+           TAB 1 : 💬 DEMANDER (CHAT & VOIX)
+           ========================================================= -->
+      <section id="panel-demander" class="tab-panel active" role="tabpanel">
+        <div class="stella-card" aria-label="Stella, assistante de cuisine">
+          <button type="button" class="stella-scene" id="stellaScene" aria-label="Écouter la réponse avec Stella">
+            <span class="stella-glow" aria-hidden="true"></span>
+  <svg id="stella-svg" aria-hidden="true" focusable="false" class="omen-creature" viewBox="0 0 240 250" width="184" height="192" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Sfumatura calda e profonda del corpo -->
+            <radialGradient id="bodyGrad" cx="45%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="55%" stop-color="#e2e8f5"/>
+              <stop offset="100%" stop-color="#b6c5e6"/>
+            </radialGradient>
+            <!-- Sfumatura azzurro tenue della pancia/luce interiore -->
+            <radialGradient id="bellyGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f0f5ff" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#c8d7f5" stop-opacity="0.4"/>
+            </radialGradient>
+            <!-- Occhi profondi con sfumatura indaco -->
+            <radialGradient id="eyeGrad" cx="40%" cy="35%" r="60%">
+              <stop offset="0%" stop-color="#242b47"/>
+              <stop offset="100%" stop-color="#111526"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Ombra a terra morbida -->
+          <ellipse cx="120" cy="235" rx="65" ry="11" fill="rgba(8, 10, 20, 0.45)"/>
+
+          <!-- Antennina e Gemma sulla testa -->
+          <path d="M 120 75 Q 120 40 128 32" stroke="#8fa3cf" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <circle id="stella-gem" cx="128" cy="28" r="8" fill="#6c8dfa" stroke="#ffffff" stroke-width="2"/>
+
+          <!-- Orecchie/Alette morbide laterali -->
+          <path d="M 52 110 C 35 100, 30 130, 52 140 Z" fill="#c4d3ee"/>
+          <path d="M 188 110 C 205 100, 210 130, 188 140 Z" fill="#c4d3ee"/>
+
+          <!-- Corpo principale sagomato e morbido -->
+          <path d="M 65 140
+                   C 50 190, 75 228, 120 228
+                   C 165 228, 190 190, 175 140
+                   C 175 88, 160 70, 120 70
+                   C 80 70, 65 88, 65 140 Z"
+                fill="url(#bodyGrad)"/>
+
+          <!-- Pancetta soffice -->
+          <ellipse cx="120" cy="165" rx="42" ry="46" fill="url(#bellyGrad)"/>
+
+          <!-- Braccine anteriori carine -->
+          <ellipse id="arm-left" cx="72" cy="162" rx="11" ry="16" fill="#a8bde0" transform="rotate(15 72 162)"/>
+          <ellipse id="arm-right" cx="168" cy="162" rx="11" ry="16" fill="#a8bde0" transform="rotate(-15 168 162)"/>
+
+          <!-- Guanciotte rosa blush -->
+          <ellipse cx="80" cy="136" rx="9" ry="5.5" fill="#ff7690" opacity="0.45"/>
+          <ellipse cx="160" cy="136" rx="9" ry="5.5" fill="#ff7690" opacity="0.45"/>
+
+          <!-- OCCHI NORMALI CON PUPILLE E PALPEBRE -->
+          <g id="normal-eyes-group" class="normal-eyes">
+            <!-- Occhio sinistro -->
+            <g transform="translate(88, 114)">
+              <ellipse cx="0" cy="0" rx="12" ry="15" fill="url(#eyeGrad)"/>
+              <circle class="pupil-highlight" cx="-3" cy="-4" r="4.2" fill="#ffffff"/>
+              <circle class="pupil-highlight-small" cx="3.5" cy="3.5" r="1.8" fill="#ffffff" opacity="0.8"/>
+              <!-- Palpebra per sbattimento -->
+              <rect class="eyelid" x="-13" y="-16" width="26" height="32" rx="8" />
+            </g>
+
+            <!-- Occhio destro -->
+            <g transform="translate(152, 114)">
+              <ellipse cx="0" cy="0" rx="12" ry="15" fill="url(#eyeGrad)"/>
+              <circle class="pupil-highlight" cx="-3" cy="-4" r="4.2" fill="#ffffff"/>
+              <circle class="pupil-highlight-small" cx="3.5" cy="3.5" r="1.8" fill="#ffffff" opacity="0.8"/>
+              <!-- Palpebra per sbattimento -->
+              <rect class="eyelid" x="-13" y="-16" width="26" height="32" rx="8" />
+            </g>
+          </g>
+
+          <!-- OCCHI FELICI (archi a mezza luna per stato happy) -->
+          <g id="happy-eyes-group" class="happy-eyes">
+            <path d="M 76 116 Q 88 102 100 116" stroke="#1d2338" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <path d="M 140 116 Q 152 102 164 116" stroke="#1d2338" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- Boccuccia amichevole (cambia espressione) -->
+          <path id="stella-mouth" d="M 113 135 Q 120 142 127 135" stroke="#252c46" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Cappello e foulard del cuoco, aggiunti al disegno originale di Stella -->
+          <path d="M 85 153 Q 120 166 155 153 L 147 176 Q 120 187 93 176 Z" fill="#bd694c"/>
+          <path d="M 109 164 L 119 184 L 131 165" fill="#e3a76b"/>
+          <path d="M 78 71 Q 75 58 83 53 Q 80 38 94 36 Q 101 25 116 34 Q 129 23 140 37 Q 156 32 160 47 Q 169 55 162 69 Z" fill="#fffdf5" stroke="#d7d9d1" stroke-width="2"/>
+          <path d="M 76 69 Q 120 63 164 69 L 161 82 Q 120 78 79 82 Z" fill="#fffdf5" stroke="#d7d9d1" stroke-width="2"/>
+        </svg>
+          </button>
+          <div class="stella-copy">
+            <span class="stella-name">Stella 👩‍🍳</span>
+            <span class="stella-hint">Posez une question. Touchez Stella pour entendre la réponse en français.</span>
+            <button type="button" class="stella-voice" id="stellaVoice" aria-pressed="false">🔊 Activer la voix</button>
+            <span class="stella-status" id="stellaStatus" role="status" aria-live="polite">Voix désactivée</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">
+            <span>Poser une question en cuisine (FR / IT)</span>
+            <span style="color:var(--verde-medio)">Réponses locales</span>
+          </div>
+
+          <div class="search-box">
+            <div class="search-input-wrap">
+              <input
+                type="text"
+                id="queryInput"
+                class="search-input"
+                placeholder="Ex: tomates en mars, poisson, huile de palme, brocoli..."
+                aria-label="Question ou ingrédient"
+                onkeydown="if(event.key==='Enter'){runSearch();}"
+                oninput="toggleClearBtn()"
+              />
+              <button type="button" id="clearInputBtn" class="clear-input-btn" onclick="clearSearch()" title="Effacer">✕</button>
+            </div>
+            <button type="button" id="micBtn" class="mic-btn" onclick="toggleVoiceRecognition()" title="Parler en français (fr-CH)">
+              🎤
+            </button>
+            <button type="button" id="askBtn" class="ask-btn" onclick="runSearch()">
+              Vérifier
+            </button>
+          </div>
+
+          <div id="voiceStatus" class="voice-status" role="status"></div>
+
+          <div class="section-label" style="margin-top: 12px;">
+            <span>Questions rapides de brigade (6h30 du matin)</span>
+          </div>
+
+          <!-- 6 PULSANTI RAPIDI ("CHIPS") RICHIESTI -->
+          <div class="chips-grid" id="chipsContainer">
+            <button type="button" class="chip-btn selected" id="chip-1" onclick="selectPresetQuestion('tomates_mars', this)">
+              <span class="chip-emoji">🍅</span>
+              <span>« On est en mars : puis-je commander des tomates fraîches ? »</span>
+            </button>
+            <button type="button" class="chip-btn" id="chip-2" onclick="selectPresetQuestion('poisson_mois', this)">
+              <span class="chip-emoji">🐟</span>
+              <span>« Combien de fois peut-on servir du poisson ce mois-ci ? »</span>
+            </button>
+            <button type="button" class="chip-btn" id="chip-3" onclick="selectPresetQuestion('brocoli_pain', this)">
+              <span class="chip-emoji">🥦</span>
+              <span>« Il me reste 4 kg de tiges de brocoli et du pain : quel bac ou quelle recette ? »</span>
+            </button>
+            <button type="button" class="chip-btn" id="chip-4" onclick="selectPresetQuestion('plat_vegetarien', this)">
+              <span class="chip-emoji">🥘</span>
+              <span>« Le plat végétarien revient à moitié dans les assiettes, que faire ? »</span>
+            </button>
+            <button type="button" class="chip-btn" id="chip-5" onclick="selectPresetQuestion('bulletins_60_suisse', this)">
+              <span class="chip-emoji">📦</span>
+              <span>« Comment vérifier les 60 % de produits suisses sur nos bulletins ? »</span>
+            </button>
+            <button type="button" class="chip-btn" id="chip-6" onclick="selectPresetQuestion('pesee_4_semaines', this)">
+              <span class="chip-emoji">⚖️</span>
+              <span>« Pesée des 4 semaines : comment organiser la brigade sans perdre de temps ? »</span>
+            </button>
+          </div>
+
+          <!-- TAG RAPIDI PER TESTARE SUBITO ALTRI INGREDIENTI DAVANTI A BAYS -->
+          <div class="section-label" style="margin-top: 12px; margin-bottom: 4px;">
+            <span>Recherche directe par produit (+45 cas Charte Vaud)</span>
+          </div>
+          <div class="quick-tags">
+            <button type="button" class="tag-pill" onclick="quickSearch('poulet')">🍗 Poulet / Volaille</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('oeufs')">🥚 Œufs</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('boeuf')">🥩 Viande SST/SRPA</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('huile de palme')">🚫 Huile de palme</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('lait')">🥛 Lait équitable</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('bio')">🌱 15% Bio</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('serre')">🔥 Serre chauffée</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('avion')">✈️ Transport avion</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('chocolat')">🍫 Exotiques (50%)</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('fraises')">🍓 Fraises</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('courge')">🎃 Courge vaudoise</button>
+            <button type="button" class="tag-pill" onclick="quickSearch('fourchette verte')">🍴 Fourchette verte / SSN</button>
+          </div>
+        </div>
+
+        <!-- RISPOSTA DEL BOT IN 3 BLOCCHI VISIVI -->
+        <div id="answerCard" class="answer-container" aria-live="polite">
+          <div class="answer-header">
+            <h2 class="answer-query-title" id="ansTitle">🍅 Tomates fraîches en mars</h2>
+            <span class="status-pill stop" id="ansBadge">À éviter · Serre / Import</span>
+          </div>
+          <div class="answer-blocks">
+            <div class="ans-block regle">
+              <div class="ans-block-title">📌 Règle de la Charte Vaud (OCDC)</div>
+              <p class="ans-block-text" id="ansRegle"></p>
+            </div>
+            <div class="ans-block chef">
+              <div class="ans-block-title">👨‍🍳 Conseil de chef (Enrico)</div>
+              <p class="ans-block-text" id="ansChef"></p>
+            </div>
+            <div class="ans-block pesee">
+              <div class="ans-block-title">⚖️ Impact Pesée &amp; Commandes</div>
+              <p class="ans-block-text" id="ansPesee"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           TAB 2 : 📅 SAISON & ACHATS (CRITÈRES CHARTE)
+           ========================================================= -->
+      <section id="panel-saison" class="tab-panel" role="tabpanel">
+        <div class="card">
+          <div class="section-label">
+            <span>Calendrier des commandes sans serre chauffée</span>
+            <span id="selectedMonthLabel" style="color:var(--verde-scuro)">Novembre</span>
+          </div>
+
+          <div class="months-grid" id="monthsGrid">
+            <!-- Generato da JS per i 12 mesi (Novembre attivo di default) -->
+          </div>
+
+          <div class="season-columns">
+            <div class="season-box ok">
+              <h4>✅ Légumes &amp; fruits vaudois/suisses de pleine saison (sans serre chauffée)</h4>
+              <div class="item-pills" id="seasonOkList"></div>
+            </div>
+            <div class="season-box avoid">
+              <h4>⛔ À éviter à la commande ce mois-ci (serre chauffée / avion)</h4>
+              <div class="item-pills" id="seasonAvoidList"></div>
+            </div>
+          </div>
+
+          <div class="chef-month-tip" id="seasonChefTip"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">
+            <span>Checklist officielle — Critères de la Charte (OCDC mai 2026, p. 2)</span>
+          </div>
+
+          <div class="criteria-progress">
+            <span>Auto-diagnostic rapide de la cuisine :</span>
+            <span id="criteriaScoreText">7 / 7 critères cochés</span>
+          </div>
+
+          <div class="criteria-list" id="criteriaList">
+            <!-- 7 blocchi criteri ufficiali Charte Vaud -->
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">1. 60 % de produits suisses d'ici 3 ans</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> 2 mois de bulletins de livraison (1 mois en été + 1 mois en hiver).</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : pointer d'abord viande, produits laitiers, œufs, pommes de terre et légumes de garde suisses pour sécuriser le socle &gt;60 %.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">2. 100 % viande suisse · 80 % SST/SRPA · 100 % bien-être animal CH</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> Analyse de 2 mois de bulletins de livraison (labels SST/SRPA/IP-Suisse/Bio).</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : réduire le grammage viande crue (110 g → 85-90 g) et valoriser les morceaux mijotés SST/SRPA pour tenir le coût matière.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">3. 0 volaille ou œuf d'importation élevés en batterie</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> Vérification des bulletins de livraison (y compris ovoproduits, coulis d'œufs et mayonnaise).</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : contrôler systématiquement les bidons d'œufs liquides pasteurisés et produits préparés sur le bulletin du grossiste.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">4. 80 % fruits &amp; légumes frais sans serre chauffée · 0 transport par avion</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> Bulletins de livraison (1 mois été + 1 mois hiver). Tolérance max 20 % hors saison.</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : bannir asperges vertes import, haricots avion, fruits rouges d'hiver et tomates fraîches de décembre à avril.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">5. Poisson max 4 fois/mois (labellisé MSC/ASC ou guide WWF)</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> 2 mois de bulletins de livraison + 2 semaines de plans de menus par saison.</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : fixer 1 rendez-vous poisson par semaine maximum (ex. vendredi) avec mention MSC/ASC sur le bon de commande.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">6. 100 % lait équitable · 50 % exotiques labellisés · 0 % huile de palme · 15 % bio (5 ans)</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> Analyse des bulletins d'achat (Fairtrade/Max Havelaar sur café, cacao, bananes, riz ; contrôle fonds de sauce/pâtes feuilletées sans palme).</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : passer les légumineuses sèches, flocons d'avoine, pâtes et carottes en Bio pour atteindre 15 % à coût maîtrisé.</div>
+              </div>
+            </label>
+
+            <label class="criteria-item checked">
+              <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
+              <div class="criteria-body">
+                <div class="criteria-title">7. 1 menu végétarien quotidien (50 % de l'offre hebdo d'ici 3 ans) &amp; principes SSN</div>
+                <div class="criteria-suivi"><b>Suivi OCDC :</b> 2 semaines de plan de menu par saison + relecture nutritionniste ou affiliation Fourchette verte.</div>
+                <div class="criteria-chef">👨‍🍳 Astuce brigade : donner un vrai nom gourmand au plat végétarien (gratin, lasagne, curry crémeux) et soigner la sauce pour éviter les retours d'assiettes.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           TAB 3 : ⚖️ PESÉE 4 SEMAINES (GUIDE BRIGADE)
+           ========================================================= -->
+      <section id="panel-pesee" class="tab-panel" role="tabpanel">
+        <div class="card">
+          <div class="section-label">
+            <span>Protocole de pesée — 4 semaines consécutives (Exigence Charte)</span>
+            <span>3 minutes / service</span>
+          </div>
+
+          <div class="bacs-grid">
+            <div class="bac-card bac1">
+              <div class="bac-header">
+                <span class="bac-title">🟢 Bac 1 — Pertes de préparation (Cuisine)</span>
+                <span class="bac-badge">Poste froid &amp; chaud</span>
+              </div>
+              <p class="bac-desc">Épluchures évitables, tiges de brocoli/chou-fleur, pieds de champignons, parures de légumes et de viande.</p>
+              <div class="bac-action">
+                <b>Levier Nose-to-Tail :</b> Crème de tiges de brocoli, bouillon maison de parures, pesto de fanes, chapelure et croûtons dorés au four.
+              </div>
+            </div>
+
+            <div class="bac-card bac2">
+              <div class="bac-header">
+                <span class="bac-title">🟠 Bac 2 — Surplus non servi (Cuisine &amp; Ligne)</span>
+                <span class="bac-badge">Bacs gastro / Buffet</span>
+              </div>
+              <p class="bac-desc">Production cuisinée en trop, bacs GN non entamés ou entamés sur la ligne chaude non refroidis à temps.</p>
+              <div class="bac-action">
+                <b>Levier Commandes &amp; Grammages :</b> Ajuster le bon de commande de la semaine suivante (-8 à -12 %) et cuire par paliers sur les 30 dernières minutes.
+              </div>
+            </div>
+
+            <div class="bac-card bac3">
+              <div class="bac-header">
+                <span class="bac-title">🔴 Bac 3 — Retours d'assiettes (Plonge)</span>
+                <span class="bac-badge">Convives / Salle</span>
+              </div>
+              <p class="bac-desc">Reste dans les assiettes au débarrassage (féculents trop copieux, plat végétarien sec, pain pris en trop).</p>
+              <div class="bac-action">
+                <b>Levier Portions &amp; Recettes :</b> Louche calibrée (2 tailles d'assiette : petite faim / normale), pain tranché fin en bout de ligne, sauces liées et goûteuses.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MINI-CALCOLATORE RAPIDO PESATA -->
+        <div class="card">
+          <div class="section-label">
+            <span>Simulateur quotidien de pesée (Kilos &amp; Francs)</span>
+            <span>Calcul instantané</span>
+          </div>
+
+          <div class="calc-presets">
+            <button type="button" class="preset-btn active" onclick="loadPeseePreset(120, 3.2, 6.8, 5.0, this)">🏥 EMS / Institution (120 couverts)</button>
+            <button type="button" class="preset-btn" onclick="loadPeseePreset(180, 4.5, 5.2, 9.5, this)">🏫 École / Accueil (180 couverts)</button>
+            <button type="button" class="preset-btn" onclick="loadPeseePreset(250, 6.0, 14.0, 8.5, this)">🏛️ Grande cuisine (250 couverts)</button>
+          </div>
+
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="inputCouverts">Nombre de couverts / jour</label>
+              <input type="number" id="inputCouverts" class="calc-input" value="120" min="10" max="5000" oninput="calculatePesee()" />
+            </div>
+            <div class="calc-field">
+              <label for="inputBac1">🟢 Bac 1 : Préparation (kg/j)</label>
+              <input type="number" id="inputBac1" class="calc-input" value="3.2" min="0" step="0.1" oninput="calculatePesee()" />
+            </div>
+            <div class="calc-field">
+              <label for="inputBac2">🟠 Bac 2 : Surplus cuisine (kg/j)</label>
+              <input type="number" id="inputBac2" class="calc-input" value="6.8" min="0" step="0.1" oninput="calculatePesee()" />
+            </div>
+            <div class="calc-field">
+              <label for="inputBac3">🔴 Bac 3 : Retours assiettes (kg/j)</label>
+              <input type="number" id="inputBac3" class="calc-input" value="5.0" min="0" step="0.1" oninput="calculatePesee()" />
+            </div>
+          </div>
+
+          <div class="calc-results" id="calcResultsBox">
+            <div class="kpi-row">
+              <div class="kpi-box">
+                <span class="kpi-val" id="outGrammesCouvert">125 g</span>
+                <span class="kpi-lbl">par couvert / jour</span>
+              </div>
+              <div class="kpi-box">
+                <span class="kpi-val" id="outKgAn">4'500 kg</span>
+                <span class="kpi-lbl">pertes estimées / an</span>
+              </div>
+              <div class="kpi-box">
+                <span class="kpi-val" id="outChfAn">38'250 CHF</span>
+                <span class="kpi-lbl">coût complet / an*</span>
+              </div>
+            </div>
+
+            <div class="priority-box">
+              <div class="priority-title" id="outPriorityTitle">🎯 Levier prioritaire détecté : Bac 2 — Surplus non servi (45 % des pertes)</div>
+              <p class="priority-text" id="outPriorityAction">
+                Action chef : le gaspillage naît ici à la commande et au lancement en cuisson. Réduire de 10 % les quantités commandées sur l'accompagnement féculent/légume et garder le dernier bac GN en cellule pour le service du lendemain.
+              </p>
+            </div>
+            <div style="font-size: 0.72rem; color: #cfe0da; margin-top: 8px;">
+              * Base de calcul restauration collective suisse : 300 jours de service/an · coût complet moyen (achat matière + préparation + élimination) estimé à 8.50 CHF/kg.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <b>Mémento vivant de la Charte — Assistant de brigade</b> · Démo pilote hors-ligne<br/>
+      Enrico La Noce · Accompagnement de chef à chef · Basé sur la Charte de la restauration collective vaudoise (OCDC)
+    </footer>
+  </div>
+
+  <!-- =========================================================
+       KNOWLEDGE BASE STRUTTURATA & MOTORE OFFLINE (45+ CASI)
+       ========================================================= -->
+  <script>
+    // 1. Risposte ai 6 pulsanti rapidi ("chips") + oltre 45 ingredienti e casi reali della Charte Vaud
+    const KNOWLEDGE_BASE = [
+      {
+        id: "tomates_mars",
+        title: "🍅 Tomates fraîches (Hiver / Mars)",
+        badge: "À éviter · Serre chauffée",
+        badgeType: "stop",
+        keywords: ["tomate", "tomates", "pomodoro", "pomodori", "mars", "hiver", "frais", "fraiche", "fraiches", "commander des tomates"],
+        regle: "Critère Charte Vaud (OCDC) : 80 % des fruits et légumes frais utilisés doivent être cultivés sans serre chauffée artificiellement, et 0 transport par avion. En Suisse, la pleine saison de la tomate fraîche sans chauffage va de juin à octobre. En mars, la tomate fraîche provient de serres chauffées ou d'importation lointaine (surveillé sur le mois d'hiver des bulletins de livraison).",
+        chef: "En mars, ne commandez pas de tomates fraîches pour la salade ou la garniture : utilisez de la tomate concassée suisse/italienne en boîte (élaborée en plein été) pour vos sauces, ou remplacez en entrée par une salade de carottes râpées au cumin, céleri-rave rémoulade, betterave rouge vaudoise ou chou blanc mariné.",
+        pesee: "Commandes & Bac 3 (Retours d'assiettes) : les tomates fraîches d'hiver sont farineuses, chères et reviennent à 40 % dans les assiettes à la plonge. Les supprimer du bon de commande d'hiver sécurise immédiatement votre quota des 80 % sans serre chauffée."
+      },
+      {
+        id: "poisson_mois",
+        title: "🐟 Fréquence & labels du poisson",
+        badge: "Max 4 fois / mois · WWF/MSC",
+        badgeType: "warn",
+        keywords: ["poisson", "poissons", "pesce", "combien de fois", "cabillaud", "saumon", "thon", "colin", "filet de poisson", "msc", "asc", "wwf", "mer", "lac", "fera", "perche", "truite"],
+        regle: "Critère Charte Vaud (OCDC) : Le poisson est servi au maximum 4 fois par mois (soit 1 fois par semaine au plus) et doit être labellisé (MSC / ASC / Bio) et/ou respecter les recommandations du guide WWF (« Bon choix »). Suivi sur 2 semaines de plans de menus par saison + 2 mois de bulletins de livraison.",
+        chef: "Fixez un jour repère unique (ex. le vendredi midi) pour ne jamais dépasser les 4 services mensuels. Privilégiez les espèces recommandées WWF ou locales (truite suisse, féra) et vérifiez que la mention MSC/ASC figure bien sur la ligne d'article du grossiste avant de valider le panier.",
+        pesee: "Bac 2 (Surplus) & Coût matière : le poisson est un poste coûteux. En passant de 6-8 services/mois à 4 services maîtrisés et en remplaçant les autres par des œufs suisses plein air ou des légumineuses gourmandes, vous financez facilement la qualité labellisée."
+      },
+      {
+        id: "brocoli_pain",
+        title: "🥦 Tiges de brocoli (4 kg) & pain restant",
+        badge: "Valorisation Nose-to-Tail",
+        badgeType: "ok",
+        keywords: ["brocoli", "brocolis", "tige", "tiges", "pain", "pane", "rassi", "crouton", "chapelure", "nose-to-tail", "nose to tail", "reste", "4 kg", "parure", "epluchure", "chou-fleur"],
+        regle: "Critère Charte Vaud (OCDC) : Réduire le gaspillage alimentaire, peser les déchets 4 semaines consécutives sur l'année et appliquer les pratiques « nose-to-tail » (formations cantonales subventionnées : A. Cuisine végétarienne, B. Cuisine nose-to-tail, C. Cuisine locale et durable).",
+        chef: "Ne jetez rien au Bac 1 ! Pour 100 couverts : épluchez légèrement la fibre externe des 4 kg de tiges de brocoli, taillez-les en dés, cuisez-les 15 min avec 2 kg de pommes de terre vaudoises et mixez avec du lait équitable suisse pour un velouté vert onctueux. Taillez le pain restant en dés, passez-les au four à 170°C avec huile de colza suisse et ail pour les croûtons du potage du soir.",
+        pesee: "Bac 1 (Pertes de préparation) & Bac 3 : vous économisez immédiatement 5 à 6 kg de déchets évitables (~45 CHF de matière sauvée sur un seul service) et vous supprimez l'achat d'un potage industriel."
+      },
+      {
+        id: "plat_vegetarien",
+        title: "🥘 Plat végétarien qui revient dans les assiettes",
+        badge: "Objectif 1 menu/j · 50% à 3 ans",
+        badgeType: "warn",
+        keywords: ["vegetarien", "végétarien", "vege", "végé", "assiette", "assiettes", "revient", "moitie", "moitié", "retour", "tofu", "lentilles", "pois chiches", "legumineuses", "menu vegetarien"],
+        regle: "Critère Charte Vaud (OCDC) : Un menu végétarien quotidien doit être proposé dès maintenant, et d'ici 3 ans, 50 % de l'offre hebdomadaire doit être végétarienne, dans le respect des principes de la Société Suisse de Nutrition (SSN). Moyen de suivi : 2 semaines de plans de menus par saison.",
+        chef: "Quand le plat végétarien revient à moitié, le problème vient presque toujours de 3 détails : 1) un intitulé punitif (« tofu vapeur aux légumes » → renommez « Curry crémeux de pois chiches et légumes rôtis » ou « Lasagne gratinée aux lentilles et gruyère »), 2) un manque de liant/umami (travaillez une vraie sauce réduite à l'oignon caramélisé, moutarde, herbes), 3) une louche trop grosse au service.",
+        pesee: "Bac 3 (Retours d'assiettes) : pesez le retour du plat végétarien séparément pendant 3 services, réduisez la portion de féculent de 20 % au profit d'une sauce généreuse : les retours chutent dès la semaine suivante."
+      },
+      {
+        id: "bulletins_60_suisse",
+        title: "📦 Vérifier les 60 % de produits suisses sur les bulletins",
+        badge: "Suivi : 1 mois été + 1 mois hiver",
+        badgeType: "ok",
+        keywords: ["bulletin", "bulletins", "livraison", "60%", "60 %", "suisse", "suisses", "origine", "fournisseur", "facture", "controle", "verifier", "vérifier", "mandataire"],
+        regle: "Critère Charte Vaud (OCDC) : Atteindre 60 % de produits suisses d'ici 3 ans (et 100 % de viande suisse, 100 % lait équitable). Moyen de suivi officiel : le prestataire fournit 2 mois de bulletins de livraison (1 mois complet en été + 1 mois complet en hiver) pour analyse.",
+        chef: "Pas besoin de tout ressaisir à la main chaque jour : prenez vos bulletins de juillet (été) et de janvier/novembre (hiver). Sécurisez d'abord les 5 familles lourdes 100 % CH : lait/crème/fromage, viandes, œufs coquille et liquides, pommes de terre/farine, et légumes de saison vaudois. À elles seules, ces 5 familles dépassent déjà les 60 % en poids et en valeur.",
+        pesee: "Impact Commandes : lors du diagnostic initial, nous pointons ensemble sur vos 2 mois de bulletins les 10 références importées faciles à basculer en origine Suisse sans exploser votre budget."
+      },
+      {
+        id: "pesee_4_semaines",
+        title: "⚖️ Organiser la pesée des 4 semaines sans perdre de temps",
+        badge: "Obligatoire · 4 sem. consécutives",
+        badgeType: "ok",
+        keywords: ["pesee", "pesée", "4 semaines", "quatre semaines", "organiser", "brigade", "temps", "dechet", "déchets", "poubelle", "bacs", "gaspillage", "protocole"],
+        regle: "Critère Charte Vaud (OCDC) : S'engager à réduire le gaspillage alimentaire et peser les déchets alimentaires pendant au minimum 4 semaines consécutives sur l'année (condition requise pour le suivi de la Charte et la subvention OCDC sur la réduction des pertes).",
+        chef: "Règle d'or de chef : si la pesée prend plus de 3 minutes par service, la brigade l'abandonne au bout de 4 jours. On pose 3 bacs identifiés par couleur (🟢 Bac 1 Préparation, 🟠 Bac 2 Surplus cuisine/ligne, 🔴 Bac 3 Retours plonge) avec la tare inscrite au feutre sur chaque bac et une feuille plastifiée juste au-dessus de la balance. Un seul chiffre noté en fin de midi et en fin de soir.",
+        pesee: "Les 4 semaines donnent la photographie exacte en kilos et en francs par poste, ce qui permet de corriger les grammages et les commandes dès la semaine 5."
+      },
+      {
+        id: "viande_suisse_sst",
+        title: "🥩 Viande bovine, porcine & agneau (Origine & SST/SRPA)",
+        badge: "100% CH · 80% SST/SRPA",
+        badgeType: "ok",
+        keywords: ["viande", "boeuf", "bœuf", "porc", "veau", "agneau", "sst", "srpa", "ip-suisse", "bien-etre", "bien-être", "animal", "carne", "manzo", "maiale"],
+        regle: "Critère Charte Vaud (OCDC) : 100 % de viande suisse, 100 % des produits animaux selon le standard suisse de bien-être animal, et 80 % de la viande issue des programmes SST (Systèmes de stabulation particulièrement respectueux des animaux) ou SRPA (Sorties régulières en plein air).",
+        chef: "Sur votre catalogue grossiste, filtrez par défaut les articles viande avec mention SST/SRPA (ex. IP-Suisse, Bio, Terrasuisse). Pour compenser l'écart de prix au kilo, passez des pièces à griller coûteuses à des braisés mijotés à basse température (épaule, ragout, jarret) : moins de perte à la cuisson, viande plus tendre en EMS et coût portion identique.",
+        pesee: "Bac 2 & Commandes : calibrer la portion crue de 120 g à 90-100 g avec une garniture de légumes de saison généreuse réduit de 15 % le budget viande."
+      },
+      {
+        id: "volaille_oeufs",
+        title: "🍗 Volaille & 🥚 Œufs (Coquille et ovoproduits)",
+        badge: "100% Viande CH · 0 Batterie",
+        badgeType: "warn",
+        keywords: ["poulet", "volaille", "dinde", "oeuf", "oeufs", "œuf", "œufs", "batterie", "ovoproduit", "mayonnaise", "omelette", "pollo", "uova"],
+        regle: "Critère Charte Vaud (OCDC) : 100 % de viande suisse (donc volaille 100 % CH) et aucune volaille d'importation en batterie ni aucun œuf d'importation de volaille élevée en batterie ne sont servis (attention aux œufs liquides pasteurisés et produits transformés).",
+        chef: "Le piège classique lors de l'analyse des bulletins de livraison, ce ne sont pas les œufs coquille (presque toujours suisses), mais les Tetra Brik de blanc/jaune d'œuf liquide pour la pâtisserie ou les quiches. Remplacez-les par de l'œuf liquide suisse élevage au sol/plein air.",
+        pesee: "Commandes : les œufs suisses plein air restent la protéine animale la plus économique (~0.45 CHF/œuf) pour remplacer un service de viande ou de poisson."
+      },
+      {
+        id: "huile_de_palme",
+        title: "🚫 Huile de palme (Fonds, pâtes, biscuiterie)",
+        badge: "Objectif 0 % huile de palme",
+        badgeType: "stop",
+        keywords: ["palme", "huile de palme", "huile", "graisse", "margarine", "pate feuilletee", "pâte feuilletée", "fond de sauce", "bouillon", "biscuit", "friture", "colza", "tournesol"],
+        regle: "Critère Charte Vaud (OCDC) : 0 % d'huile de palme dans les achats alimentaires. Moyen de suivi : contrôle des bulletins de livraison et fiches techniques des produits transformés.",
+        chef: "L'huile de palme se cache rarement dans les bidons d'huile, mais dans 4 produits précis : les abaisses de pâte feuilletée/brisée industrielles, les fonds de sauce déshydratés en seau, les soupes en poudre et les biscuits/pâtes à tartiner. Passez aux abaisses pur beurre suisse ou huile de colza CH, et réalisez vos fonds avec vos parures.",
+        pesee: "Commandes : remplacer 3 références industrielles contenant de l'huile de palme sur votre mercuriale règle définitivement ce critère pour toute l'année."
+      },
+      {
+        id: "lait_equitable",
+        title: "🥛 Lait, crème, beurre & fromages (100 % Lait équitable)",
+        badge: "100 % Lait équitable CH",
+        badgeType: "ok",
+        keywords: ["lait", "équitable", "equitable", "creme", "crème", "beurre", "fromage", "gruyere", "gruyère", "vacherin", "yogourt", "yaourt", "serein", "latte", "formaggio"],
+        regle: "Critère Charte Vaud (OCDC) : 100 % de lait équitable (prix rémunérateur garantissant un revenu équitable aux producteurs laitiers, ex. label Faironika / Lait équitable / filières régionales vaudoises respectant le prix indicatif).",
+        chef: "Vérifiez avec votre laitier ou grossiste la ligne de lait UHT/pasteurisé en seau ou bib de 10 L : la bascule vers le lait équitable suisse ne représente que quelques centimes par litre et valide immédiatement un critère à 100 % de la Charte.",
+        pesee: "Bac 2 (Surplus) : utilisez les fins de bacs de lait pour les béchamels, gratins dauphinois, flans maison ou semoules au lait du soir."
+      },
+      {
+        id: "produits_exotiques",
+        title: "🍫 Produits exotiques (Café, chocolat, bananes, riz, thé)",
+        badge: "50 % labellisés Fairtrade",
+        badgeType: "warn",
+        keywords: ["exotique", "exotiques", "cafe", "café", "chocolat", "cacao", "banane", "bananes", "ananas", "mangue", "avocat", "the", "thé", "sucre", "riz", "max havelaar", "fairtrade"],
+        regle: "Critère Charte Vaud (OCDC) : Au moins 50 % des produits exotiques achetés sont labellisés (commerce équitable : Max Havelaar / Fairtrade / Bio équitable) et 0 transport par avion.",
+        chef: "Ne vous compliquez pas la vie sur 30 petits articles : basculez en Fairtrade/Max Havelaar vos 3 plus gros volumes exotiques (le café de l'institution, les bananes et le chocolat de couverture/poudre cacao, voire le riz basmati). Vous franchissez tout de suite le cap des 50 %. Attention : jamais d'ananas ou mangue par avion !",
+        pesee: "Bac 3 : les bananes trop mûres du vendredi passent en cake marbré, mousse banane-chocolat ou compote lisse pour les résidents d'EMS."
+      },
+      {
+        id: "bio_15_pourcent",
+        title: "🌱 Objectif 15 % de produits Bio d'ici 5 ans",
+        badge: "15 % Bio · Leviers malins",
+        badgeType: "ok",
+        keywords: ["bio", "biologique", "bourgeon", "15%", "15 %", "cinq ans", "5 ans", "agriculture biologique"],
+        regle: "Critère Charte Vaud (OCDC) : Atteindre 15 % de produits biologiques d'ici 5 ans. Suivi via l'analyse de 2 mois de bulletins de livraison (1 mois été + 1 mois hiver).",
+        chef: "N'achetez pas la viande noble en Bio si votre budget est serré : atteignez vos 15 % Bio sur les produits bruts à faible écart de prix : carottes, pommes de terre, courges, flocons d'avoine, lentilles, pois chiches, pâtes sèches, farine et lait/yogourt.",
+        pesee: "Impact Budget : l'économie réalisée en réduisant de 20 % le gaspillage des Bacs 1, 2 et 3 couvre intégralement le léger surcoût des 15 % d'achats Bio."
+      },
+      {
+        id: "serre_chauffee_avion",
+        title: "🔥 Serres chauffées & ✈️ Transport par avion",
+        badge: "80% sans serre · 0 avion",
+        badgeType: "stop",
+        keywords: ["serre", "serres", "chauffee", "chauffée", "avion", "importation", "80%", "80 %", "fraise", "fraises", "asperge", "asperges", "haricot", "haricots", "courgette", "aubergine", "poivron", "concombre"],
+        regle: "Critère Charte Vaud (OCDC) : Éviter au maximum les achats alimentaires transportés par avion, et garantir qu'au moins 80 % des fruits et légumes frais sont cultivés sans serre chauffée artificiellement.",
+        chef: "Les grands interdits en hiver/début de printemps : tomates cerises, concombres, poivrons, courgettes, aubergines fraîches, fraises de janvier à avril, asperges du Pérou, haricots verts extra-fins par avion. En hiver, jouez sur les légumes racines vaudois rôtis au four (panais, céleri, carotte jaune, betterave, courge) et sur les légumes suisses surgelés en pleine saison d'été.",
+        pesee: "Commandes : les légumes suisses surgelés récoltés en été (petits pois, haricots, épinards) ne viennent pas de serres chauffées et génèrent 0 % de perte d'épluchage au Bac 1."
+      },
+      {
+        id: "fourchette_verte_ssn",
+        title: "🍴 Principes SSN & Label Fourchette verte",
+        badge: "Équilibre menus & Subvention",
+        badgeType: "ok",
+        keywords: ["ssn", "societe suisse de nutrition", "fourchette verte", "nutrition", "nutritionniste", "label", "equilibre", "équilibre", "menu", "menus", "formation", "subvention", "500"],
+        regle: "Critère Charte Vaud (OCDC) : Respect des principes de la Société Suisse de Nutrition (SSN) — preuve de relecture des menus par une nutritionniste ou affiliation au label Fourchette verte. Le Canton subventionne aussi les formations des cuisiniers (50 % jusqu'à 500 CHF/personne).",
+        chef: "En pratique dans l'assiette : 1 portion de légumes/salade colorée à chaque repas, 1 féculent (en alternant complet/semi-complet), 1 source de protéines bien dosée, et de l'huile de colza suisse pour l'assaisonnement et la cuisson douce.",
+        pesee: "Bac 3 (Retours d'assiettes) : respecter les grammages SSN évite de surcharger les assiettes en féculents, première cause de retour à la plonge."
+      },
+      {
+        id: "courge_racines_vaud",
+        title: "🎃 Courges, racines & choux vaudois (Automne / Hiver)",
+        badge: "100 % Pleine saison Vaud",
+        badgeType: "ok",
+        keywords: ["courge", "potimarron", "butternut", "carotte", "poireau", "celeri", "céleri", "panais", "betterave", "chou", "choux", "pomme de terre", "patate", "pomme", "poire", "vaud", "vaudois"],
+        regle: "Critère Charte Vaud (OCDC) : Piliers du 80 % de fruits et légumes sans serre chauffée et du 60 % de produits suisses sur le bulletin de livraison d'hiver.",
+        chef: "D'octobre à mars, ce sont vos meilleurs alliés coût/goût : courge butternut rôtie au thym (sans même l'éplucher si elle est bio : peau comestible = 0 déchet au Bac 1 !), mousseline de céleri-rave et pommes vaudoises, poireaux braisés, gratin de cardons ou côtes de bettes.",
+        pesee: "Bac 1 : rôtir les courges bio et les pommes de terre grenailles avec la peau bien brossée réduit de moitié le temps de légumerie et les pertes d'épluchage."
+      }
+    ];
+
+    // 2. Calendario stagionale completo dei 12 mesi (Svizzera / Canton Vaud, senza serra riscaldata)
+    const MONTHS_DATA = [
+      {
+        name: "Janvier", short: "Jan",
+        ok: ["Carotte", "Poireau", "Céleri-rave", "Courge (garde)", "Betterave", "Chou blanc / rouge", "Chou frisé / Kale", "Panais", "Pomme de terre CH", "Endive / Chicorée", "Doucette (mâche)", "Pomme & Poire CH"],
+        avoid: ["Tomate fraîche", "Concombre", "Courgette", "Poivron", "Aubergine", "Fraise", "Asperge (avion)", "Haricot vert frais (avion)"],
+        tip: "Mois de contrôle d'hiver par excellence ! Misez à 100 % sur les légumes de garde vaudois rôtis, les choux braisés et les légumineuses suisses."
+      },
+      {
+        name: "Février", short: "Fév",
+        ok: ["Poireau", "Carotte", "Céleri-rave", "Betterave", "Chou blanc / rouge", "Panais", "Topinambour", "Endive", "Doucette", "Pomme de terre CH", "Pomme & Poire de garde"],
+        avoid: ["Tomate fraîche", "Courgette", "Poivron", "Aubergine", "Fraise import", "Framboise", "Melon", "Asperge import"],
+        tip: "En février, évitez les achats « printemps précoce » sous serre chauffée. Utilisez les conserves de tomates d'été ou légumes suisses surgelés en saison."
+      },
+      {
+        name: "Mars", short: "Mars",
+        ok: ["Poireau", "Carotte de garde", "Céleri-rave", "Betterave", "Chou-rave (tunnel froid fin mars)", "Épinard d'hiver", "Doucette", "Cresson", "Pomme de terre CH", "Pomme CH"],
+        avoid: ["Tomate fraîche (serre chauffée)", "Concombre (serre chauffée)", "Poivron", "Courgette", "Aubergine", "Fraise d'Espagne/serre"],
+        tip: "Attention au piège de mars : les premières tomates et concombres viennent de serres chauffées. Attendez mai-juin pour les crudités d'été."
+      },
+      {
+        name: "Avril", short: "Avr",
+        ok: ["Épinard frais CH", "Radis (tunnel froid)", "Salade pommée / Batavias CH", "Rhubarbe", "Côte de bette", "Poireau", "Asperge suisse (fin avril, pleine terre)", "Jeunes carottes"],
+        avoid: ["Tomate fraîche", "Poivron", "Aubergine", "Courgette", "Fraise sous serre chauffée", "Melon / Pastèque"],
+        tip: "Le vert revient en cuisine avec les épinards, côtes de bettes, radis et salades suisses sous abri non chauffé, ainsi que la rhubarbe pour les desserts."
+      },
+      {
+        name: "Mai", short: "Mai",
+        ok: ["Asperge suisse", "Épinard", "Bette", "Radis", "Chou-rave", "Salades variées CH", "Petits pois frais", "Fraise suisse pleine terre (dès mi-mai)", "Rhubarbe"],
+        avoid: ["Aubergine (serre chauffée)", "Poivron (serre chauffée)", "Tomate (préférer dès juin)", "Raisin import", "Mangue avion"],
+        tip: "Pleine saison de l'asperge, de la rhubarbe et des premières fraises suisses de pleine terre. Gardez encore les ratatouilles pour l'été !"
+      },
+      {
+        name: "Juin", short: "Juin",
+        ok: ["Courgette CH", "Concombre CH", "Brocoli CH", "Chou-fleur CH", "Carotte nouvelle", "Fenouil", "Haricot vert CH", "Petits pois", "Tomate CH (dès mi-juin)", "Fraise & Cerise CH", "Abricot CH (fin juin)"],
+        avoid: ["Agrumes d'outre-mer", "Légumes exotiques par avion", "Courges d'importation"],
+        tip: "Explosion de l'offre locale vaudoise : courgettes, brocolis, fenouils, concombres et cerises suisses permettent de dépasser 90 % de produits suisses."
+      },
+      {
+        name: "Juillet", short: "Juil",
+        ok: ["Tomate pleine saison CH", "Courgette", "Aubergine CH", "Poivron CH", "Concombre", "Haricot vert", "Brocoli", "Fenouil", "Abricot du Valais", "Pêche / Pruneau", "Framboise & Myrtille CH"],
+        avoid: ["Produits hors saison d'hémisphère sud", "Fruits exotiques par avion", "Endives chauffées"],
+        tip: "Mois de référence pour le bulletin de livraison d'été OCDC : 100 % des légumes frais peuvent être suisses et de pleine terre."
+      },
+      {
+        name: "Août", short: "Août",
+        ok: ["Tomate vaudoise", "Aubergine", "Poivron", "Courgette", "Maïs doux CH", "Haricot", "Fenouil", "Bette", "Pruneau CH", "Mirabelle", "Pomme & Poire d'été", "Melon charentais CH"],
+        avoid: ["Agrumes lointains", "Fruits exotiques avion", "Asperges importées"],
+        tip: "Profitez des pleins volumes de tomates, courgettes, aubergines et pruneaux suisses à prix très bas pour vos menus d'été."
+      },
+      {
+        name: "Septembre", short: " Sept",
+        ok: ["Tomate (fin de pleine saison)", "Courge & Potimarron CH", "Brocoli & Chou-fleur", "Poireau", "Fenouil", "Carotte", "Épinard", "Raisin CH", "Pruneau", "Pomme & Poire vaudoises"],
+        avoid: ["Fraise hors saison", "Asperge", "Fruits rouges importés"],
+        tip: "Le meilleur mois de transition : les derniers légumes d'été croisent les premières courges, raisins, pommes et poires du Canton de Vaud."
+      },
+      {
+        name: "Octobre", short: "Oct",
+        ok: ["Courges (Butternut, Muscade, Potimarron)", "Brocoli", "Chou-fleur", "Chou rouge / blanc", "Céleri", "Poireau", "Betterave", "Épinard", "Cardon", "Pomme, Poire & Coing CH", "Châtaigne"],
+        avoid: ["Tomate fraîche (fin de saison dès mi-octobre)", "Concombre", "Fraises / Framboises", "Haricot vert import"],
+        tip: "Dès la mi-octobre, retirez les tomates et concombres des plans de menus et lancez la carte d'automne (courges rôties, choux, champignons, pommes)."
+      },
+      {
+        name: "Novembre", short: "Nov",
+        ok: ["Courges vaudoises", "Poireau", "Carotte", "Céleri-rave", "Panais", "Betterave", "Chou blanc / rouge / frisé", "Chou de Bruxelles", "Côte de bette", "Doucette", "Pomme & Poire CH", "Kiwi suisse (Vaud / La Côte)"],
+        avoid: ["Tomate fraîche (serre chauffée)", "Concombre", "Poivron", "Courgette", "Aubergine", "Fraise / Fruits rouges frais", "Haricot vert frais (avion)"],
+        tip: "En novembre dans le Canton de Vaud, nous avons même des kiwis vaudois de La Côte ! Remplacez toutes les crudités d'été par des salades de racines, courges rôties et choux."
+      },
+      {
+        name: "Décembre", short: "Déc",
+        ok: ["Cardon genevois/vaudois", "Courges de garde", "Poireau", "Céleri-rave", "Carotte", "Betterave", "Panais", "Choux (Bruxelles, frisé, rouge)", "Doucette", "Endive CH", "Pomme, Poire & Noix CH"],
+        avoid: ["Tomate cerise ou grappe", "Courgette", "Poivron", "Aubergine", "Fraise / Framboise à Noël", "Asperge verte du Pérou", "Litchi par avion"],
+        tip: "Pour les menus de fêtes de décembre, valorisez le cardon en gratin, la courge rôtie aux châtaignes et les poires pochées au vin épicé plutôt que des fruits rouges par avion."
+      }
+    ];
+
+    // Normalizzazione testo (senza accenti, minuscolo)
+    function normalizeText(str) {
+      return (str || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9%\s-]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    // Cambio scheda (Tab)
+    function switchTab(tabId) {
+      const tabs = ["demander", "saison", "pesee"];
+      tabs.forEach(t => {
+        const btn = document.getElementById("tabBtn-" + t);
+        const panel = document.getElementById("panel-" + t);
+        if (t === tabId) {
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          panel.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+          btn.setAttribute("aria-selected", "false");
+          panel.classList.remove("active");
+        }
+      });
+    }
+
+    // Visualizzazione di una risposta nel blocco a 3 sezioni
+    function renderAnswer(item, customQueryLabel) {
+      document.getElementById("ansTitle").textContent = customQueryLabel || item.title;
+      const badgeEl = document.getElementById("ansBadge");
+      badgeEl.textContent = item.badge;
+      badgeEl.className = "status-pill " + (item.badgeType || "ok");
+
+      document.getElementById("ansRegle").textContent = item.regle;
+      document.getElementById("ansChef").textContent = item.chef;
+      document.getElementById("ansPesee").textContent = item.pesee;
+      stellaOnAnswer(item);
+    }
+
+    // Selezione di uno dei 6 pulsanti rapidi ("chips")
+    function selectPresetQuestion(id, btnEl) {
+      document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("selected"));
+      if (btnEl) btnEl.classList.add("selected");
+
+      const found = KNOWLEDGE_BASE.find(k => k.id === id) || KNOWLEDGE_BASE[0];
+      const inputEl = document.getElementById("queryInput");
+      if (btnEl) {
+        inputEl.value = btnEl.innerText.replace(/[🍅🐟🥦🥘📦⚖️«»"]/g, "").trim();
+        toggleClearBtn();
+      }
+      renderAnswer(found);
+    }
+
+    // Ricerca rapida da tag o da calendario
+    function quickSearch(term) {
+      switchTab("demander");
+      const inputEl = document.getElementById("queryInput");
+      inputEl.value = term;
+      toggleClearBtn();
+      runSearch();
+    }
+
+    // Motore di matching semantico / parole chiave + rilevamento mese + fallback intelligente
+    function runSearch() {
+      const rawQuery = document.getElementById("queryInput").value.trim();
+      if (!rawQuery) {
+        renderAnswer(KNOWLEDGE_BASE[0]);
+        return;
+      }
+
+      document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("selected"));
+      const norm = normalizeText(rawQuery);
+
+      // 1. Calcolo punteggio su ogni voce della Knowledge Base
+      let bestItem = null;
+      let bestScore = 0;
+
+      for (const item of KNOWLEDGE_BASE) {
+        let score = 0;
+        for (const kw of item.keywords) {
+          const nkw = normalizeText(kw);
+          if (norm === nkw) {
+            score += 25;
+          } else if (norm.includes(nkw)) {
+            score += 10 + nkw.length;
+          } else {
+            const words = nkw.split(" ");
+            for (const w of words) {
+              if (w.length >= 3 && norm.includes(w)) {
+                score += 4;
+              }
+            }
+          }
+        }
+        if (score > bestScore) {
+          bestScore = score;
+          bestItem = item;
+        }
+      }
+
+      if (bestItem && bestScore >= 4) {
+        renderAnswer(bestItem);
+        return;
+      }
+
+      // 2. Ricerca nel calendario stagionale dei 12 mesi (es. "radis", "kiwi", "cardon", "abricot")
+      for (const m of MONTHS_DATA) {
+        for (const okProd of m.ok) {
+          if (norm.includes(normalizeText(okProd).split(" ")[0])) {
+            renderAnswer({
+              title: "✅ " + okProd + " — Produit de saison (Charte Vaud)",
+              badge: "Autorisé · Pleine saison",
+              badgeType: "ok",
+              regle: "Critère Charte Vaud (OCDC) : 80 % des fruits et légumes frais utilisés sont cultivés sans serre chauffée artificiellement et 60 % des produits sont suisses d'ici 3 ans.",
+              chef: "Ce produit fait partie des achats recommandés en pleine saison (notamment en " + m.name + "). Privilégiez l'origine Vaud / Suisse sur le bulletin de commande et travaillez-le entier pour limiter les pertes d'épluchage.",
+              pesee: "Bac 1 (Préparation) & Commandes : produit de saison au meilleur rapport qualité/prix, idéal pour sécuriser vos 2 mois de bulletins de livraison (été/hiver)."
+            });
+            return;
+          }
+        }
+      }
+
+      // 3. Risposta di sintesi se la domanda è libera/generica
+      renderAnswer({
+        title: "🔎 Analyse Charte Vaud : « " + rawQuery + " »",
+        badge: "Vérification 3 réflexes",
+        badgeType: "warn",
+        regle: "Critères clés Charte Vaud (OCDC mai 2026) : 60 % de produits suisses d'ici 3 ans • 100 % viande suisse (80 % SST/SRPA) • 80 % fruits & légumes frais sans serre chauffée • 0 avion • 0 huile de palme • 100 % lait équitable • Poisson max 4x/mois (WWF/MSC) • 1 menu végétarien/jour.",
+        chef: "Avant de valider cet article sur le bon de commande : 1) Vérifiez l'origine Suisse (ou label Fairtrade si exotique), 2) Si c'est un fruit/légume frais, vérifiez qu'il est de pleine saison sans serre chauffée, 3) Ajustez la quantité commandée au nombre réel de couverts.",
+        pesee: "Tout achat contrôlé en amont sur le bulletin de livraison évite un surplus au Bac 2 (cuisine) et sécurise le bilan des 4 semaines de pesée."
+      });
+    }
+
+    function toggleClearBtn() {
+      const val = document.getElementById("queryInput").value;
+      document.getElementById("clearInputBtn").style.display = val.length > 0 ? "block" : "none";
+    }
+
+    function clearSearch() {
+      const inputEl = document.getElementById("queryInput");
+      inputEl.value = "";
+      toggleClearBtn();
+      inputEl.focus();
+    }
+
+    // 3. Riconoscimento vocale in francese svizzero (fr-CH) con fallback elegante
+    let recognition = null;
+    let isListening = false;
+
+    function toggleVoiceRecognition() {
+      const statusEl = document.getElementById("voiceStatus");
+      const micBtn = document.getElementById("micBtn");
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRec) {
+        statusEl.className = "voice-status active";
+        statusEl.textContent = "ℹ️ Dictée vocale indisponible ici. Utilisez le clavier ou les questions rapides.";
+        return;
+      }
+
+      if (isListening && recognition) {
+        recognition.stop();
+        return;
+      }
+
+      try {
+        recognition = new SpeechRec();
+        recognition.lang = "fr-CH";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function() {
+          isListening = true;
+          micBtn.classList.add("listening");
+          statusEl.className = "voice-status active";
+          statusEl.textContent = "🎙️ Écoute en cours (fr-CH)... Parlez maintenant (ex: « Combien de fois du poisson ce mois-ci ? »)";
+        };
+
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          document.getElementById("queryInput").value = transcript;
+          toggleClearBtn();
+          statusEl.textContent = "✅ Question reconnue : « " + transcript + " »";
+          runSearch();
+        };
+
+        recognition.onerror = function() {
+          statusEl.className = "voice-status active";
+          statusEl.textContent = "ℹ️ Micro non autorisé ou hors-ligne : utilisez les 6 boutons rapides ci-dessous ou le clavier.";
+        };
+
+        recognition.onend = function() {
+          isListening = false;
+          micBtn.classList.remove("listening");
+        };
+
+        recognition.start();
+      } catch (e) {
+        statusEl.className = "voice-status active";
+        statusEl.textContent = "ℹ️ Dictée vocale indisponible sur cet appareil : utilisez les boutons rapides ci-dessous.";
+      }
+    }
+
+    // 4. Inizializzazione Tab 2 : Calendario dei 12 mesi (Novembre = indice 10 di default)
+    let currentMonthIndex = 10; // Novembre
+
+    function renderMonthsCalendar(selectedIdx) {
+      currentMonthIndex = selectedIdx;
+      const grid = document.getElementById("monthsGrid");
+      grid.innerHTML = "";
+
+      MONTHS_DATA.forEach((m, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "month-btn" + (idx === selectedIdx ? " active" : "");
+        btn.textContent = m.short;
+        btn.setAttribute("data-month", m.name);
+        btn.onclick = function() { renderMonthsCalendar(idx); };
+        grid.appendChild(btn);
+      });
+
+      const mData = MONTHS_DATA[selectedIdx];
+      document.getElementById("selectedMonthLabel").textContent = mData.name + " (Canton de Vaud)";
+
+      const okList = document.getElementById("seasonOkList");
+      okList.innerHTML = "";
+      mData.ok.forEach(prod => {
+        const span = document.createElement("button");
+        span.type = "button";
+        span.className = "item-pill";
+        span.textContent = prod;
+        span.onclick = function() { quickSearch(prod); };
+        okList.appendChild(span);
+      });
+
+      const avoidList = document.getElementById("seasonAvoidList");
+      avoidList.innerHTML = "";
+      mData.avoid.forEach(prod => {
+        const span = document.createElement("button");
+        span.type = "button";
+        span.className = "item-pill";
+        span.textContent = prod;
+        span.onclick = function() { quickSearch(prod); };
+        avoidList.appendChild(span);
+      });
+
+      document.getElementById("seasonChefTip").innerHTML =
+        "<b>👨‍🍳 Conseil de chef pour " + mData.name.toLowerCase() + " :</b> " + mData.tip;
+    }
+
+    // Contatore checklist criteri Charte Vaud
+    function updateCriteriaCount() {
+      const boxes = document.querySelectorAll(".criteria-checkbox");
+      let checked = 0;
+      boxes.forEach(b => {
+        const parent = b.closest(".criteria-item");
+        if (b.checked) {
+          checked++;
+          if (parent) parent.classList.add("checked");
+        } else {
+          if (parent) parent.classList.remove("checked");
+        }
+      });
+      document.getElementById("criteriaScoreText").textContent =
+        checked + " / " + boxes.length + " critères cochés";
+    }
+
+    // 5. Calcolatore Pesée 4 semaines (Tab 3)
+    function loadPeseePreset(couverts, b1, b2, b3, btnEl) {
+      document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+      if (btnEl) btnEl.classList.add("active");
+
+      document.getElementById("inputCouverts").value = couverts;
+      document.getElementById("inputBac1").value = b1;
+      document.getElementById("inputBac2").value = b2;
+      document.getElementById("inputBac3").value = b3;
+      calculatePesee();
+    }
+
+    function calculatePesee() {
+      const couverts = Math.max(1, parseFloat(document.getElementById("inputCouverts").value) || 1);
+      const b1 = Math.max(0, parseFloat(document.getElementById("inputBac1").value) || 0);
+      const b2 = Math.max(0, parseFloat(document.getElementById("inputBac2").value) || 0);
+      const b3 = Math.max(0, parseFloat(document.getElementById("inputBac3").value) || 0);
+
+      const totalKgJour = b1 + b2 + b3;
+      const grammesParCouvert = Math.round((totalKgJour * 1000) / couverts);
+      const joursServiceAn = 300;
+      const totalKgAn = Math.round(totalKgJour * joursServiceAn);
+      const coutCompletChfKg = 8.5; // CHF/kg coût complet restauration collective suisse
+      const totalChfAn = Math.round(totalKgAn * coutCompletChfKg);
+
+      document.getElementById("outGrammesCouvert").textContent = grammesParCouvert + " g";
+      document.getElementById("outKgAn").textContent = totalKgAn.toLocaleString("fr-CH") + " kg";
+      document.getElementById("outChfAn").textContent = totalChfAn.toLocaleString("fr-CH") + " CHF";
+
+      const pTitle = document.getElementById("outPriorityTitle");
+      const pAction = document.getElementById("outPriorityAction");
+
+      if (totalKgJour <= 0.01) {
+        pTitle.textContent = "🎯 Saisissez les kilos pesés aujourd'hui";
+        pAction.textContent = "Entrez le poids des 3 bacs pour identifier automatiquement le levier prioritaire en cuisine.";
+        return;
+      }
+
+      if (b2 >= b1 && b2 >= b3) {
+        const pct = Math.round((b2 / totalKgJour) * 100);
+        pTitle.textContent = "🎯 Levier prioritaire : Bac 2 — Surplus non servi (" + pct + " % des pertes)";
+        pAction.textContent = "Action chef : le gaspillage naît ici à la commande et au lancement en cuisson. Réduire de 10 % les quantités commandées sur l'accompagnement et refroidir en cellule le dernier bac GN non entamé pour le retravailler le lendemain.";
+      } else if (b3 >= b1 && b3 >= b2) {
+        const pct = Math.round((b3 / totalKgJour) * 100);
+        pTitle.textContent = "🎯 Levier prioritaire : Bac 3 — Retours d'assiettes (" + pct + " % des pertes)";
+        pAction.textContent = "Action chef : les assiettes reviennent trop pleines. Proposer 2 tailles de louche au service (petite faim / normale), trancher le pain plus fin et retravailler la sauce et l'intitulé du plat végétarien.";
+      } else {
+        const pct = Math.round((b1 / totalKgJour) * 100);
+        pTitle.textContent = "🎯 Levier prioritaire : Bac 1 — Pertes de préparation (" + pct + " % des pertes)";
+        pAction.textContent = "Action chef : valoriser en Nose-to-Tail (velouté de tiges de brocoli/chou-fleur, rôtir les courges bio et pommes de terre grenailles avec la peau bien brossée, fonds bruns maison avec les parures).";
+      }
+    }
+
+    function togglePhonePreview() {
+      document.body.classList.toggle("phone-preview");
+    }
+
+
+    // Sur iPhone, speechSynthesis doit démarrer après un geste de l'utilisateur.
+    let stellaVoiceEnabled = false;
+    let stellaCurrentAnswer = null;
+    let stellaUtterance = null;
+    let stellaMouthTimer = null;
+    const stellaScene = document.getElementById("stellaScene");
+    const stellaVoice = document.getElementById("stellaVoice");
+    const stellaStatus = document.getElementById("stellaStatus");
+    const stellaMouth = document.getElementById("stella-mouth");
+    const stellaSpeech = window.speechSynthesis;
+
+    function stellaSetSpeaking(active) {
+      stellaScene.classList.toggle("speaking", active);
+      window.clearInterval(stellaMouthTimer);
+      stellaMouthTimer = null;
+      stellaMouth.setAttribute("d", "M 113 135 Q 120 142 127 135");
+      if (active && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let open = false;
+        stellaMouthTimer = window.setInterval(() => {
+          open = !open;
+          stellaMouth.setAttribute("d", open ? "M 113 135 Q 120 152 127 135" : "M 113 135 Q 120 142 127 135");
+        }, 180);
+      }
+      stellaStatus.textContent = active ? "Stella parle…" : (stellaVoiceEnabled ? "Voix activée" : "Voix désactivée");
+    }
+    function stellaStop() {
+      if (stellaSpeech) stellaSpeech.cancel();
+      stellaUtterance = null;
+      stellaSetSpeaking(false);
+    }
+    function stellaSpeak(item) {
+      if (!stellaSpeech || !window.SpeechSynthesisUtterance) {
+        stellaStatus.textContent = "Voix indisponible sur ce navigateur. La réponse reste affichée.";
+        return;
+      }
+      stellaStop();
+      const utterance = new SpeechSynthesisUtterance(item.chef);
+      utterance.lang = "fr-CH";
+      utterance.rate = 0.94;
+      const voices = stellaSpeech.getVoices();
+      const voice = voices.find(v => v.lang.toLowerCase() === "fr-ch") || voices.find(v => v.lang.toLowerCase().startsWith("fr"));
+      if (voice) utterance.voice = voice;
+      utterance.onstart = () => stellaSetSpeaking(true);
+      utterance.onend = () => { stellaUtterance = null; stellaSetSpeaking(false); };
+      utterance.onerror = () => { stellaUtterance = null; stellaSetSpeaking(false);
+        stellaStatus.textContent = "Audio indisponible. La réponse reste affichée."; };
+      stellaUtterance = utterance; // Conserver la référence pendant la lecture sur Safari.
+      stellaSpeech.speak(utterance);
+    }
+    function stellaOnAnswer(item) {
+      stellaCurrentAnswer = item;
+      if (stellaVoiceEnabled) stellaSpeak(item);
+    }
+    function stellaToggleVoice() {
+      if (!stellaSpeech || !window.SpeechSynthesisUtterance) {
+        stellaStatus.textContent = "Voix indisponible sur ce navigateur. La réponse reste affichée.";
+        return;
+      }
+      stellaVoiceEnabled = !stellaVoiceEnabled;
+      stellaVoice.setAttribute("aria-pressed", String(stellaVoiceEnabled));
+      stellaVoice.textContent = stellaVoiceEnabled ? "🔇 Désactiver la voix" : "🔊 Activer la voix";
+      if (stellaVoiceEnabled && stellaCurrentAnswer) stellaSpeak(stellaCurrentAnswer);
+      else stellaStop();
+    }
+    stellaVoice.addEventListener("click", stellaToggleVoice);
+    stellaScene.addEventListener("click", () => {
+      if (!stellaVoiceEnabled) stellaToggleVoice();
+      else if (stellaSpeech && stellaSpeech.speaking) stellaStop();
+      else if (stellaCurrentAnswer) stellaSpeak(stellaCurrentAnswer);
+    });
+    function stellaBlink() {
+      stellaScene.classList.remove("blink");
+      void stellaScene.offsetWidth;
+      stellaScene.classList.add("blink");
+      window.setTimeout(() => stellaScene.classList.remove("blink"), 260);
+    }
+    window.setInterval(stellaBlink, 4200);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) stellaStop(); });
+
+    // Avvio iniziale
+    window.addEventListener("DOMContentLoaded", function() {
+      renderAnswer(KNOWLEDGE_BASE[0]);
+      renderMonthsCalendar(10); // Novembre di default
+      calculatePesee();
+      updateCriteriaCount();
+    });
+  </script>
+</body>
+</html>
