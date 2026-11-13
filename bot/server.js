@@ -6,6 +6,7 @@ const express = require('express');
 const path    = require('node:path');
 const WebSocket = require('ws');
 const { handleRelayMessage } = require('./api/relay-reservation');
+const charteVaudChat = require('./api/charte-vaud-chat');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -15,6 +16,8 @@ app.use(express.json({ limit: '2mb' }));
 
 // ── API routes ───────────────────────────────────────────────────────────────
 app.post('/api/chat',        require('./api/chat'));
+app.options('/api/charte-vaud-chat', charteVaudChat.headers);
+app.post('/api/charte-vaud-chat', charteVaudChat.headers, charteVaudChat.chat);
 app.get( '/api/chat-health', require('./api/chat-health'));
 app.post('/api/route',       require('./api/route'));
 app.post('/api/dispatch',    require('./api/dispatch'));

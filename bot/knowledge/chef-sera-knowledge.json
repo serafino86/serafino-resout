@@ -1,0 +1,109 @@
+[
+  {
+    "id": "chef_sera_aujourdhui",
+    "status": "application_verifiee",
+    "title": "👨‍🍳 Chef Sera aujourd'hui",
+    "badge": "App existante · Fonctions vérifiées",
+    "badgeType": "ok",
+    "keywords": [
+      "chef sera",
+      "application",
+      "app",
+      "aujourd hui",
+      "fonctionne",
+      "fait",
+      "notes",
+      "fournisseurs",
+      "arrivees",
+      "commandes"
+    ],
+    "regle": "Statut vérifié dans le code : l'écran Aujourd'hui présente les produits manquants, les notes et les arrivées. L'application comprend aussi les fournisseurs et tarifs, les commandes et la chambre froide. Son accès et son API de santé étaient opérationnels le 13.11.2026.",
+    "chef": "Le chef peut saisir ce qui manque et des notes, préparer une commande puis la soumettre à validation. L'application est distincte de cette démo Charte Vaud.",
+    "pesee": "Le tableau de bord affiche des estimations de commandes, pas des factures payées ni des économies ou pertes mesurées. La livraison réelle des courriels n'a pas été vérifiée dans la démonstration.",
+    "sources": [
+      {
+        "label": "Code Chef Sera, src/centralina/chef_app/static/index.html, sections Aujourd'hui/Fournisseurs (local)"
+      },
+      {
+        "label": "Code Chef Sera, src/centralina/chef_app/app.py, routes /oggi et /oggi/prepara (local)"
+      },
+      {
+        "label": "Démo Bays du 13.11.2026, section « Stato verificato » (local)"
+      }
+    ],
+    "conseilSource": "État technique vérifié localement ; aucun résultat client mesuré"
+  },
+  {
+    "id": "chef_sera_simulation",
+    "status": "simulation_verifiee",
+    "title": "📋 Parcours de commande Chef Sera",
+    "badge": "Workflow vérifié en simulation",
+    "badgeType": "warn",
+    "keywords": [
+      "manque",
+      "mancano",
+      "vai",
+      "brouillon",
+      "brouillons",
+      "fournisseur",
+      "envoyer",
+      "envoi",
+      "mail",
+      "email",
+      "rapport",
+      "manager",
+      "responsable",
+      "réception",
+      "livraison"
+    ],
+    "regle": "Statut vérifié en simulation le 13.11.2026 : des produits manquants ont été saisis en français, une demande ambiguë sur le poulet a été clarifiée, « vai » a préparé un brouillon par fournisseur et une note a été enregistrée. L'approbation, les envois et la réception ont été testés avec un expéditeur simulé et des données temporaires. Aucune livraison réelle de courriel n'a été prouvée.",
+    "chef": "Pour une démonstration honnête, montrer la liste, les notes et les brouillons. L'approbation peut afficher une confirmation trompeuse lorsque l'envoi échoue : ne pas la présenter comme preuve d'envoi.",
+    "pesee": "Le code prévoit un rapport économique au responsable après approbation, mais son envoi réel n'a pas été vérifié dans ce test. Les montants simulés sont des estimations sur catalogue de test.",
+    "sources": [
+      {
+        "label": "Démo Bays du 13.11.2026, sections « Stato verificato » et « Limite trovato » (local)"
+      },
+      {
+        "label": "Code Chef Sera, src/centralina/chef/draft.py et manager_notify.py (local)"
+      }
+    ],
+    "conseilSource": "Parcours observé en simulation, non livraison réelle"
+  },
+  {
+    "id": "chef_sera_pilote",
+    "status": "proposition_pilote",
+    "title": "🔭 Chef Sera × Charte Vaud : vision pilote",
+    "badge": "Proposition · Non intégrée",
+    "badgeType": "warn",
+    "keywords": [
+      "pilote",
+      "futur",
+      "vision",
+      "camera",
+      "caméra",
+      "balance",
+      "dechet",
+      "déchet",
+      "pesée",
+      "charte dans",
+      "intégration",
+      "prevision",
+      "prévision",
+      "catalogue",
+      "potentiel",
+      "potentialités"
+    ],
+    "regle": "Cette fonction est proposée, non encore intégrée : réunir les commandes Chef Sera et l'aide Charte Vaud dans une même application. Un pilote pourrait suivre les déchets par trois flux pendant quatre semaines avec le nombre de repas et des justificatifs.",
+    "chef": "Le module envisagé utiliserait une caméra pour proposer la catégorie du déchet et une balance pour mesurer le poids ; le chef corrigerait la proposition. Photo, mesure, correction et date pourraient former un rapport vérifiable. Le poids viendrait de la balance, jamais d'une estimation du modèle.",
+    "pesee": "Contrôle Charte avant validation de la commande, prévisions de quantités et comparaison des prix saisonniers sont aussi des pistes futures. Leur précision, leur utilité et tout gain doivent être mesurés dans une cuisine pilote.",
+    "sources": [
+      {
+        "label": "Vision Chef Sera × Charte Vaud, mémoire de décision d'Enrico du 13.11.2026 (local)"
+      },
+      {
+        "label": "Démo Bays du 13.11.2026, sections « Proposition de pilote » et « Vision » (local)"
+      }
+    ],
+    "conseilSource": "Proposition d'Enrico, non fonctionnalité actuelle"
+  }
+]

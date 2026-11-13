@@ -331,6 +331,12 @@
       border: 1px solid #f3d19e;
     }
 
+    .stella-chat { display:grid; gap:8px; max-height:260px; overflow-y:auto; margin:8px 0 12px; }
+    .stella-message { max-width:92%; padding:9px 12px; border-radius:12px; font-size:.88rem; line-height:1.45; white-space:pre-wrap; }
+    .stella-message.user { justify-self:end; background:#e6f0e9; }
+    .stella-message.assistant { justify-self:start; background:#f5f0e7; }
+    .stella-message small { display:block; margin-top:5px; color:var(--testo-sec); }
+
     /* 6 Chips Domande Rapide */
     .chips-grid {
       display: grid;
@@ -1000,8 +1006,8 @@
 
         <div class="card">
           <div class="section-label">
-            <span>Poser une question en cuisine (FR / IT)</span>
-            <span style="color:var(--verde-medio)">Réponses locales</span>
+            <span>Poser une question en cuisine (FR)</span>
+            <span style="color:var(--verde-medio)">Fiches de démonstration</span>
           </div>
 
           <div class="search-box">
@@ -1021,11 +1027,13 @@
               🎤
             </button>
             <button type="button" id="askBtn" class="ask-btn" onclick="runSearch()">
-              Vérifier
+              Demander à Stella
             </button>
           </div>
 
           <div id="voiceStatus" class="voice-status" role="status"></div>
+          <div id="stellaChat" class="stella-chat" role="log" aria-label="Conversation avec Stella" aria-live="polite"></div>
+          <p style="font-size:.76rem;color:var(--testo-sec);margin:0 0 10px;">Stella répond à partir des fiches de cette démo. Pour une décision de conformité, vérifiez <a href="https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf" target="_blank" rel="noopener noreferrer">la Charte officielle</a> et vos justificatifs.</p>
 
           <div class="section-label" style="margin-top: 12px;">
             <span>Questions rapides de brigade (6h30 du matin)</span>
@@ -1058,10 +1066,16 @@
               <span>« Pesée des 4 semaines : comment organiser la brigade sans perdre de temps ? »</span>
             </button>
           </div>
+          <div class="section-label" style="margin-top:12px;"><span>Questions rapides sur Chef Sera</span></div>
+          <div class="chips-grid">
+            <button type="button" class="chip-btn" onclick="askStella('Que fait Chef Sera aujourd’hui dans l’application ?')">👨‍🍳 Que fait Chef Sera aujourd’hui ?</button>
+            <button type="button" class="chip-btn" onclick="askStella('Le parcours manque, vai, envoi et rapport au responsable a-t-il été testé en réel ?')">📋 Commandes et rapport : qu’est-ce qui est vérifié ?</button>
+            <button type="button" class="chip-btn" onclick="askStella('La caméra, la balance et la Charte dans Chef Sera sont-elles déjà intégrées ?')">🔭 Caméra, balance et Charte : déjà intégrées ?</button>
+          </div>
 
           <!-- TAG RAPIDI PER TESTARE SUBITO ALTRI INGREDIENTI DAVANTI A BAYS -->
           <div class="section-label" style="margin-top: 12px; margin-bottom: 4px;">
-            <span>Recherche directe par produit (+45 cas Charte Vaud)</span>
+            <span>Recherche directe par produit (15 fiches de démonstration)</span>
           </div>
           <div class="quick-tags">
             <button type="button" class="tag-pill" onclick="quickSearch('poulet')">🍗 Poulet / Volaille</button>
@@ -1087,7 +1101,7 @@
           </div>
           <div class="answer-blocks">
             <div class="ans-block regle">
-              <div class="ans-block-title">📌 Règle de la Charte Vaud (OCDC)</div>
+              <div class="ans-block-title" id="ansRuleTitle">📌 Règle de la Charte Vaud (OCDC)</div>
               <p class="ans-block-text" id="ansRegle"></p>
             </div>
             <div class="ans-block chef">
@@ -1095,10 +1109,11 @@
               <p class="ans-block-text" id="ansChef"></p>
             </div>
             <div class="ans-block pesee">
-              <div class="ans-block-title">⚖️ Impact Pesée &amp; Commandes</div>
+              <div class="ans-block-title" id="ansPeseeTitle">⚖️ Impact Pesée &amp; Commandes</div>
               <p class="ans-block-text" id="ansPesee"></p>
             </div>
           </div>
+          <div id="ansSources" style="font-size:.76rem;line-height:1.5;margin-top:10px;color:var(--testo-sec);"></div>
         </div>
       </section>
 
@@ -1172,7 +1187,7 @@
             <label class="criteria-item checked">
               <input type="checkbox" class="criteria-checkbox" checked onchange="updateCriteriaCount()" />
               <div class="criteria-body">
-                <div class="criteria-title">4. 80 % fruits &amp; légumes frais sans serre chauffée · 0 transport par avion</div>
+                <div class="criteria-title">4. 80 % fruits &amp; légumes frais sans serre chauffée · éviter au maximum le transport par avion</div>
                 <div class="criteria-suivi"><b>Suivi OCDC :</b> Bulletins de livraison (1 mois été + 1 mois hiver). Tolérance max 20 % hors saison.</div>
                 <div class="criteria-chef">👨‍🍳 Astuce brigade : bannir asperges vertes import, haricots avion, fruits rouges d'hiver et tomates fraîches de décembre à avril.</div>
               </div>
@@ -1317,7 +1332,7 @@
     </main>
 
     <footer class="app-footer">
-      <b>Mémento vivant de la Charte — Assistant de brigade</b> · Démo pilote hors-ligne<br/>
+      <b>Mémento vivant de la Charte — Assistant de brigade</b> · Démo pilote avec fiches hors ligne en secours<br/>
       Enrico La Noce · Accompagnement de chef à chef · Basé sur la Charte de la restauration collective vaudoise (OCDC)
     </footer>
   </div>
@@ -1330,155 +1345,231 @@
     const KNOWLEDGE_BASE = [
       {
         id: "tomates_mars",
+        sources: [{"label":"Charte officielle, p. 2, § 2.5 et 3.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🍅 Tomates fraîches (Hiver / Mars)",
         badge: "À éviter · Serre chauffée",
         badgeType: "stop",
         keywords: ["tomate", "tomates", "pomodoro", "pomodori", "mars", "hiver", "frais", "fraiche", "fraiches", "commander des tomates"],
-        regle: "Critère Charte Vaud (OCDC) : 80 % des fruits et légumes frais utilisés doivent être cultivés sans serre chauffée artificiellement, et 0 transport par avion. En Suisse, la pleine saison de la tomate fraîche sans chauffage va de juin à octobre. En mars, la tomate fraîche provient de serres chauffées ou d'importation lointaine (surveillé sur le mois d'hiver des bulletins de livraison).",
-        chef: "En mars, ne commandez pas de tomates fraîches pour la salade ou la garniture : utilisez de la tomate concassée suisse/italienne en boîte (élaborée en plein été) pour vos sauces, ou remplacez en entrée par une salade de carottes râpées au cumin, céleri-rave rémoulade, betterave rouge vaudoise ou chou blanc mariné.",
-        pesee: "Commandes & Bac 3 (Retours d'assiettes) : les tomates fraîches d'hiver sont farineuses, chères et reviennent à 40 % dans les assiettes à la plonge. Les supprimer du bon de commande d'hiver sécurise immédiatement votre quota des 80 % sans serre chauffée."
+        regle: "Critère Charte Vaud (OCDC) : au minimum 80 % des fruits et légumes frais utilisés sont cultivés sans serre chauffée artificiellement. Les achats alimentaires transportés par avion sont à éviter au maximum. En mars, vérifiez le mode de culture et l'origine des tomates auprès du fournisseur.",
+        chef: "En mars, vérifiez l'origine et le mode de culture avant de commander des tomates fraîches. Si elles proviennent d'une serre chauffée, envisagez une tomate en conserve pour les sauces ou une entrée à base de carottes, céleri-rave ou betteraves de saison.",
+        pesee: "Commandes & Bac 3 (Retours d'assiettes) : comparez le prix et les retours d'assiettes avant de modifier le bon de commande. Vérifiez auprès du fournisseur le mode de culture et l'origine."
       },
       {
         id: "poisson_mois",
+        sources: [{"label":"Charte officielle, p. 2, § 5.1–2","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{"label":"Charte officielle, p. 3, § 8.2","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{"label":"OCDC, Subventions alimentation VD 2026, p. 2 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🐟 Fréquence & labels du poisson",
         badge: "Max 4 fois / mois · WWF/MSC",
         badgeType: "warn",
         keywords: ["poisson", "poissons", "pesce", "combien de fois", "cabillaud", "saumon", "thon", "colin", "filet de poisson", "msc", "asc", "wwf", "mer", "lac", "fera", "perche", "truite"],
-        regle: "Critère Charte Vaud (OCDC) : Le poisson est servi au maximum 4 fois par mois (soit 1 fois par semaine au plus) et doit être labellisé (MSC / ASC / Bio) et/ou respecter les recommandations du guide WWF (« Bon choix »). Suivi sur 2 semaines de plans de menus par saison + 2 mois de bulletins de livraison.",
-        chef: "Fixez un jour repère unique (ex. le vendredi midi) pour ne jamais dépasser les 4 services mensuels. Privilégiez les espèces recommandées WWF ou locales (truite suisse, féra) et vérifiez que la mention MSC/ASC figure bien sur la ligne d'article du grossiste avant de valider le panier.",
-        pesee: "Bac 2 (Surplus) & Coût matière : le poisson est un poste coûteux. En passant de 6-8 services/mois à 4 services maîtrisés et en remplaçant les autres par des œufs suisses plein air ou des légumineuses gourmandes, vous financez facilement la qualité labellisée."
+        regle: "Critère Charte Vaud (OCDC) : les mets contenant du poisson, des mollusques ou des crustacés sont proposés au maximum 4 fois par mois. Les produits de la mer doivent relever des catégories WWF « À privilégier » ou « Second choix » et/ou porter un label reconnu (par exemple MSC, Bio Bourgeon, ASC). Aucun produit de la catégorie « À éviter » n'est servi. Suivi sur 2 semaines de plans de menus par saison et 2 mois de bulletins de livraison.",
+        chef: "Comptez tous les services avec poisson, mollusques ou crustacés dans le mois avant de valider le menu. Vérifiez la catégorie WWF ou le label reconnu sur la fiche du fournisseur.",
+        pesee: "Bac 2 (Surplus) & Coût matière : comparez les quantités servies, les restes et le prix des alternatives avant de modifier les menus."
       },
       {
         id: "brocoli_pain",
+        sources: [{"label":"Charte officielle, p. 3, § 9.1 et 9.4","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{"label":"OCDC, Subventions alimentation VD 2026, p. 3 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🥦 Tiges de brocoli (4 kg) & pain restant",
         badge: "Valorisation Nose-to-Tail",
         badgeType: "ok",
         keywords: ["brocoli", "brocolis", "tige", "tiges", "pain", "pane", "rassi", "crouton", "chapelure", "nose-to-tail", "nose to tail", "reste", "4 kg", "parure", "epluchure", "chou-fleur"],
-        regle: "Critère Charte Vaud (OCDC) : Réduire le gaspillage alimentaire, peser les déchets 4 semaines consécutives sur l'année et appliquer les pratiques « nose-to-tail » (formations cantonales subventionnées : A. Cuisine végétarienne, B. Cuisine nose-to-tail, C. Cuisine locale et durable).",
+        regle: "Critère Charte Vaud (OCDC) : réduire le gaspillage alimentaire et peser les pertes 4 semaines consécutives sur l'année. La cuisine « nose-to-tail » est une piste de formation proposée par le Canton, pas une obligation distincte de la Charte.",
         chef: "Ne jetez rien au Bac 1 ! Pour 100 couverts : épluchez légèrement la fibre externe des 4 kg de tiges de brocoli, taillez-les en dés, cuisez-les 15 min avec 2 kg de pommes de terre vaudoises et mixez avec du lait équitable suisse pour un velouté vert onctueux. Taillez le pain restant en dés, passez-les au four à 170°C avec huile de colza suisse et ail pour les croûtons du potage du soir.",
-        pesee: "Bac 1 (Pertes de préparation) & Bac 3 : vous économisez immédiatement 5 à 6 kg de déchets évitables (~45 CHF de matière sauvée sur un seul service) et vous supprimez l'achat d'un potage industriel."
+        pesee: "Bac 1 (Pertes de préparation) & Bac 3 : pesez les tiges et le pain réutilisés pour mesurer la réduction réelle des déchets et le coût matière évité."
       },
       {
         id: "plat_vegetarien",
+        sources: [{"label":"Charte officielle, p. 3, § 7.1 et 8.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{"label":"OCDC, Subventions alimentation VD 2026, p. 2 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🥘 Plat végétarien qui revient dans les assiettes",
         badge: "Objectif 1 menu/j · 50% à 3 ans",
         badgeType: "warn",
         keywords: ["vegetarien", "végétarien", "vege", "végé", "assiette", "assiettes", "revient", "moitie", "moitié", "retour", "tofu", "lentilles", "pois chiches", "legumineuses", "menu vegetarien"],
         regle: "Critère Charte Vaud (OCDC) : Un menu végétarien quotidien doit être proposé dès maintenant, et d'ici 3 ans, 50 % de l'offre hebdomadaire doit être végétarienne, dans le respect des principes de la Société Suisse de Nutrition (SSN). Moyen de suivi : 2 semaines de plans de menus par saison.",
-        chef: "Quand le plat végétarien revient à moitié, le problème vient presque toujours de 3 détails : 1) un intitulé punitif (« tofu vapeur aux légumes » → renommez « Curry crémeux de pois chiches et légumes rôtis » ou « Lasagne gratinée aux lentilles et gruyère »), 2) un manque de liant/umami (travaillez une vraie sauce réduite à l'oignon caramélisé, moutarde, herbes), 3) une louche trop grosse au service.",
-        pesee: "Bac 3 (Retours d'assiettes) : pesez le retour du plat végétarien séparément pendant 3 services, réduisez la portion de féculent de 20 % au profit d'une sauce généreuse : les retours chutent dès la semaine suivante."
+        chef: "Si le plat végétarien revient souvent, testez le nom du plat, la sauce, la texture et la taille des portions. Par exemple : curry crémeux de pois chiches ou lasagne gratinée aux lentilles et gruyère.",
+        pesee: "Bac 3 (Retours d'assiettes) : pesez séparément les retours du plat végétarien sur plusieurs services, ajustez une variable à la fois et comparez les résultats."
       },
       {
         id: "bulletins_60_suisse",
+        sources: [{"label":"Charte officielle, p. 2, § 2.1–3","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{"label":"OCDC, Subventions alimentation VD 2026, p. 2 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "📦 Vérifier les 60 % de produits suisses sur les bulletins",
         badge: "Suivi : 1 mois été + 1 mois hiver",
         badgeType: "ok",
         keywords: ["bulletin", "bulletins", "livraison", "60%", "60 %", "suisse", "suisses", "origine", "fournisseur", "facture", "controle", "verifier", "vérifier", "mandataire"],
         regle: "Critère Charte Vaud (OCDC) : Atteindre 60 % de produits suisses d'ici 3 ans (et 100 % de viande suisse, 100 % lait équitable). Moyen de suivi officiel : le prestataire fournit 2 mois de bulletins de livraison (1 mois complet en été + 1 mois complet en hiver) pour analyse.",
-        chef: "Pas besoin de tout ressaisir à la main chaque jour : prenez vos bulletins de juillet (été) et de janvier/novembre (hiver). Sécurisez d'abord les 5 familles lourdes 100 % CH : lait/crème/fromage, viandes, œufs coquille et liquides, pommes de terre/farine, et légumes de saison vaudois. À elles seules, ces 5 familles dépassent déjà les 60 % en poids et en valeur.",
-        pesee: "Impact Commandes : lors du diagnostic initial, nous pointons ensemble sur vos 2 mois de bulletins les 10 références importées faciles à basculer en origine Suisse sans exploser votre budget."
+        chef: "Prenez des bulletins de livraison d'été et d'hiver. Vérifiez d'abord l'origine du lait, des viandes, des œufs, des pommes de terre, de la farine et des légumes. Calculez ensuite la part suisse réelle selon la méthode applicable.",
+        pesee: "Impact Commandes : relevez les références importées et comparez leur prix et leur disponibilité avec des alternatives suisses."
       },
       {
         id: "pesee_4_semaines",
+        sources: [{"label":"Charte officielle, p. 3, § 9.1 et 9.4","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{"label":"OCDC, Subventions alimentation VD 2026, p. 2 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "⚖️ Organiser la pesée des 4 semaines sans perdre de temps",
         badge: "Obligatoire · 4 sem. consécutives",
         badgeType: "ok",
         keywords: ["pesee", "pesée", "4 semaines", "quatre semaines", "organiser", "brigade", "temps", "dechet", "déchets", "poubelle", "bacs", "gaspillage", "protocole"],
         regle: "Critère Charte Vaud (OCDC) : S'engager à réduire le gaspillage alimentaire et peser les déchets alimentaires pendant au minimum 4 semaines consécutives sur l'année (condition requise pour le suivi de la Charte et la subvention OCDC sur la réduction des pertes).",
-        chef: "Règle d'or de chef : si la pesée prend plus de 3 minutes par service, la brigade l'abandonne au bout de 4 jours. On pose 3 bacs identifiés par couleur (🟢 Bac 1 Préparation, 🟠 Bac 2 Surplus cuisine/ligne, 🔴 Bac 3 Retours plonge) avec la tare inscrite au feutre sur chaque bac et une feuille plastifiée juste au-dessus de la balance. Un seul chiffre noté en fin de midi et en fin de soir.",
-        pesee: "Les 4 semaines donnent la photographie exacte en kilos et en francs par poste, ce qui permet de corriger les grammages et les commandes dès la semaine 5."
+        chef: "Pour faciliter la pesée, placez 3 bacs identifiés (préparation, surplus, retours) avec leur tare et une feuille de relevé près de la balance. Notez les poids à chaque service.",
+        pesee: "Les 4 semaines donnent des kilos par poste. Pour estimer un coût, ajoutez vos prix matière et vérifiez les données avant d'ajuster portions et commandes."
       },
       {
         id: "viande_suisse_sst",
+        sources: [{"label":"Charte officielle, p. 2, § 2.2 et 4.3–4","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🥩 Viande bovine, porcine & agneau (Origine & SST/SRPA)",
         badge: "100% CH · 80% SST/SRPA",
         badgeType: "ok",
         keywords: ["viande", "boeuf", "bœuf", "porc", "veau", "agneau", "sst", "srpa", "ip-suisse", "bien-etre", "bien-être", "animal", "carne", "manzo", "maiale"],
-        regle: "Critère Charte Vaud (OCDC) : 100 % de viande suisse, 100 % des produits animaux selon le standard suisse de bien-être animal, et 80 % de la viande issue des programmes SST (Systèmes de stabulation particulièrement respectueux des animaux) ou SRPA (Sorties régulières en plein air).",
-        chef: "Sur votre catalogue grossiste, filtrez par défaut les articles viande avec mention SST/SRPA (ex. IP-Suisse, Bio, Terrasuisse). Pour compenser l'écart de prix au kilo, passez des pièces à griller coûteuses à des braisés mijotés à basse température (épaule, ragout, jarret) : moins de perte à la cuisson, viande plus tendre en EMS et coût portion identique.",
-        pesee: "Bac 2 & Commandes : calibrer la portion crue de 120 g à 90-100 g avec une garniture de légumes de saison généreuse réduit de 15 % le budget viande."
+        regle: "Critère Charte Vaud (OCDC) : 100 % de viande suisse ; 100 % de la viande, des œufs, du lait et des produits laitiers selon le standard suisse de bien-être animal ; au moins 80 % de la viande issue des programmes SST ou SRPA.",
+        chef: "Sur votre catalogue grossiste, vérifiez les mentions SST/SRPA. Comparez les coûts par portion des pièces à griller et des morceaux à braiser, puis adaptez la cuisson aux convives.",
+        pesee: "Bac 2 & Commandes : testez plusieurs portions avec une garniture de saison et mesurez les restes et le coût réel par service."
       },
       {
         id: "volaille_oeufs",
+        sources: [{"label":"Charte officielle, p. 2, § 2.2 et 4.2","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🍗 Volaille & 🥚 Œufs (Coquille et ovoproduits)",
         badge: "100% Viande CH · 0 Batterie",
         badgeType: "warn",
         keywords: ["poulet", "volaille", "dinde", "oeuf", "oeufs", "œuf", "œufs", "batterie", "ovoproduit", "mayonnaise", "omelette", "pollo", "uova"],
         regle: "Critère Charte Vaud (OCDC) : 100 % de viande suisse (donc volaille 100 % CH) et aucune volaille d'importation en batterie ni aucun œuf d'importation de volaille élevée en batterie ne sont servis (attention aux œufs liquides pasteurisés et produits transformés).",
-        chef: "Le piège classique lors de l'analyse des bulletins de livraison, ce ne sont pas les œufs coquille (presque toujours suisses), mais les Tetra Brik de blanc/jaune d'œuf liquide pour la pâtisserie ou les quiches. Remplacez-les par de l'œuf liquide suisse élevage au sol/plein air.",
-        pesee: "Commandes : les œufs suisses plein air restent la protéine animale la plus économique (~0.45 CHF/œuf) pour remplacer un service de viande ou de poisson."
+        chef: "Vérifiez l'origine des œufs coquille et des œufs liquides sur chaque bulletin. Si nécessaire, comparez une référence d'œuf liquide suisse adaptée à vos recettes.",
+        pesee: "Commandes : comparez le prix par portion des œufs avec celui des autres protéines dans votre catalogue."
       },
       {
         id: "huile_de_palme",
+        sources: [{"label":"Charte officielle, p. 3, § 8.3","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🚫 Huile de palme (Fonds, pâtes, biscuiterie)",
         badge: "Objectif 0 % huile de palme",
         badgeType: "stop",
         keywords: ["palme", "huile de palme", "huile", "graisse", "margarine", "pate feuilletee", "pâte feuilletée", "fond de sauce", "bouillon", "biscuit", "friture", "colza", "tournesol"],
         regle: "Critère Charte Vaud (OCDC) : 0 % d'huile de palme dans les achats alimentaires. Moyen de suivi : contrôle des bulletins de livraison et fiches techniques des produits transformés.",
         chef: "L'huile de palme se cache rarement dans les bidons d'huile, mais dans 4 produits précis : les abaisses de pâte feuilletée/brisée industrielles, les fonds de sauce déshydratés en seau, les soupes en poudre et les biscuits/pâtes à tartiner. Passez aux abaisses pur beurre suisse ou huile de colza CH, et réalisez vos fonds avec vos parures.",
-        pesee: "Commandes : remplacer 3 références industrielles contenant de l'huile de palme sur votre mercuriale règle définitivement ce critère pour toute l'année."
+        pesee: "Commandes : vérifiez la liste d'ingrédients de chaque référence et remplacez celles qui contiennent de l'huile de palme. Recontrôlez les nouvelles fiches produit."
       },
       {
         id: "lait_equitable",
+        sources: [{"label":"Charte officielle, p. 2, § 6.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🥛 Lait, crème, beurre & fromages (100 % Lait équitable)",
         badge: "100 % Lait équitable CH",
         badgeType: "ok",
         keywords: ["lait", "équitable", "equitable", "creme", "crème", "beurre", "fromage", "gruyere", "gruyère", "vacherin", "yogourt", "yaourt", "serein", "latte", "formaggio"],
-        regle: "Critère Charte Vaud (OCDC) : 100 % de lait équitable (prix rémunérateur garantissant un revenu équitable aux producteurs laitiers, ex. label Faironika / Lait équitable / filières régionales vaudoises respectant le prix indicatif).",
-        chef: "Vérifiez avec votre laitier ou grossiste la ligne de lait UHT/pasteurisé en seau ou bib de 10 L : la bascule vers le lait équitable suisse ne représente que quelques centimes par litre et valide immédiatement un critère à 100 % de la Charte.",
+        regle: "Critère Charte Vaud (OCDC) : acheter exclusivement du lait assurant une rémunération correcte du producteur (« lait équitable » ou équivalent).",
+        chef: "Vérifiez avec votre laitier ou grossiste les références de lait équitable disponibles et comparez leur prix réel avant de modifier la commande.",
         pesee: "Bac 2 (Surplus) : utilisez les fins de bacs de lait pour les béchamels, gratins dauphinois, flans maison ou semoules au lait du soir."
       },
       {
         id: "produits_exotiques",
+        sources: [{"label":"Charte officielle, p. 2, § 2.5 et 6.2","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🍫 Produits exotiques (Café, chocolat, bananes, riz, thé)",
         badge: "50 % labellisés Fairtrade",
         badgeType: "warn",
         keywords: ["exotique", "exotiques", "cafe", "café", "chocolat", "cacao", "banane", "bananes", "ananas", "mangue", "avocat", "the", "thé", "sucre", "riz", "max havelaar", "fairtrade"],
-        regle: "Critère Charte Vaud (OCDC) : Au moins 50 % des produits exotiques achetés sont labellisés (commerce équitable : Max Havelaar / Fairtrade / Bio équitable) et 0 transport par avion.",
-        chef: "Ne vous compliquez pas la vie sur 30 petits articles : basculez en Fairtrade/Max Havelaar vos 3 plus gros volumes exotiques (le café de l'institution, les bananes et le chocolat de couverture/poudre cacao, voire le riz basmati). Vous franchissez tout de suite le cap des 50 %. Attention : jamais d'ananas ou mangue par avion !",
+        regle: "Critère Charte Vaud (OCDC) : au minimum 50 % du poids total des produits exotiques servis porte un label de commerce équitable (par exemple Fairtrade ou Max Havelaar). Les achats alimentaires transportés par avion sont à éviter au maximum.",
+        chef: "Examinez d'abord les volumes exotiques les plus importants, par exemple café, bananes et cacao. Comparez les références labellisées et recalculez la part réelle après changement.",
         pesee: "Bac 3 : les bananes trop mûres du vendredi passent en cake marbré, mousse banane-chocolat ou compote lisse pour les résidents d'EMS."
       },
       {
         id: "bio_15_pourcent",
+        sources: [{"label":"Charte officielle, p. 3, § 8.4","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🌱 Objectif 15 % de produits Bio d'ici 5 ans",
         badge: "15 % Bio · Leviers malins",
         badgeType: "ok",
         keywords: ["bio", "biologique", "bourgeon", "15%", "15 %", "cinq ans", "5 ans", "agriculture biologique"],
-        regle: "Critère Charte Vaud (OCDC) : Atteindre 15 % de produits biologiques d'ici 5 ans. Suivi via l'analyse de 2 mois de bulletins de livraison (1 mois été + 1 mois hiver).",
+        regle: "Critère Charte Vaud (OCDC) : dans les 5 ans suivant l'adhésion, au minimum 15 % du poids annuel total des produits alimentaires est issu de l'agriculture biologique ou régénérative. Suivi notamment par l'analyse de bulletins de livraison d'été et d'hiver.",
         chef: "N'achetez pas la viande noble en Bio si votre budget est serré : atteignez vos 15 % Bio sur les produits bruts à faible écart de prix : carottes, pommes de terre, courges, flocons d'avoine, lentilles, pois chiches, pâtes sèches, farine et lait/yogourt.",
-        pesee: "Impact Budget : l'économie réalisée en réduisant de 20 % le gaspillage des Bacs 1, 2 et 3 couvre intégralement le léger surcoût des 15 % d'achats Bio."
+        pesee: "Impact Budget : mesurez séparément le gaspillage et le coût des produits bio. Une économie éventuelle dépend des volumes et des prix de votre cuisine."
       },
       {
         id: "serre_chauffee_avion",
+        sources: [{"label":"Charte officielle, p. 2, § 2.5 et 3.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🔥 Serres chauffées & ✈️ Transport par avion",
-        badge: "80% sans serre · 0 avion",
+        badge: "80% sans serre · avion à éviter",
         badgeType: "stop",
         keywords: ["serre", "serres", "chauffee", "chauffée", "avion", "importation", "80%", "80 %", "fraise", "fraises", "asperge", "asperges", "haricot", "haricots", "courgette", "aubergine", "poivron", "concombre"],
         regle: "Critère Charte Vaud (OCDC) : Éviter au maximum les achats alimentaires transportés par avion, et garantir qu'au moins 80 % des fruits et légumes frais sont cultivés sans serre chauffée artificiellement.",
         chef: "Les grands interdits en hiver/début de printemps : tomates cerises, concombres, poivrons, courgettes, aubergines fraîches, fraises de janvier à avril, asperges du Pérou, haricots verts extra-fins par avion. En hiver, jouez sur les légumes racines vaudois rôtis au four (panais, céleri, carotte jaune, betterave, courge) et sur les légumes suisses surgelés en pleine saison d'été.",
-        pesee: "Commandes : les légumes suisses surgelés récoltés en été (petits pois, haricots, épinards) ne viennent pas de serres chauffées et génèrent 0 % de perte d'épluchage au Bac 1."
+        pesee: "Commandes : vérifiez l'origine et la période de récolte des légumes surgelés. Comparez les pertes de préparation avec vos produits frais."
       },
       {
         id: "fourchette_verte_ssn",
+        sources: [{"label":"Charte officielle, p. 3, § 7.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{"label":"OCDC, Subventions alimentation VD 2026, p. 3 (document local)"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🍴 Principes SSN & Label Fourchette verte",
         badge: "Équilibre menus & Subvention",
         badgeType: "ok",
         keywords: ["ssn", "societe suisse de nutrition", "fourchette verte", "nutrition", "nutritionniste", "label", "equilibre", "équilibre", "menu", "menus", "formation", "subvention", "500"],
         regle: "Critère Charte Vaud (OCDC) : Respect des principes de la Société Suisse de Nutrition (SSN) — preuve de relecture des menus par une nutritionniste ou affiliation au label Fourchette verte. Le Canton subventionne aussi les formations des cuisiniers (50 % jusqu'à 500 CHF/personne).",
         chef: "En pratique dans l'assiette : 1 portion de légumes/salade colorée à chaque repas, 1 féculent (en alternant complet/semi-complet), 1 source de protéines bien dosée, et de l'huile de colza suisse pour l'assaisonnement et la cuisson douce.",
-        pesee: "Bac 3 (Retours d'assiettes) : respecter les grammages SSN évite de surcharger les assiettes en féculents, première cause de retour à la plonge."
+        pesee: "Bac 3 (Retours d'assiettes) : comparez les grammages servis et les retours pour ajuster les portions si nécessaire."
       },
       {
         id: "courge_racines_vaud",
+        sources: [{"label":"Charte officielle, p. 2, § 2.1 et 3.1","url":"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}],
+        conseilSource: "Conseil opérationnel Serafino (démo, non prescrit par la Charte)",
         title: "🎃 Courges, racines & choux vaudois (Automne / Hiver)",
-        badge: "100 % Pleine saison Vaud",
+        badge: "Suggestions automne / hiver",
         badgeType: "ok",
         keywords: ["courge", "potimarron", "butternut", "carotte", "poireau", "celeri", "céleri", "panais", "betterave", "chou", "choux", "pomme de terre", "patate", "pomme", "poire", "vaud", "vaudois"],
         regle: "Critère Charte Vaud (OCDC) : Piliers du 80 % de fruits et légumes sans serre chauffée et du 60 % de produits suisses sur le bulletin de livraison d'hiver.",
-        chef: "D'octobre à mars, ce sont vos meilleurs alliés coût/goût : courge butternut rôtie au thym (sans même l'éplucher si elle est bio : peau comestible = 0 déchet au Bac 1 !), mousseline de céleri-rave et pommes vaudoises, poireaux braisés, gratin de cardons ou côtes de bettes.",
-        pesee: "Bac 1 : rôtir les courges bio et les pommes de terre grenailles avec la peau bien brossée réduit de moitié le temps de légumerie et les pertes d'épluchage."
+        chef: "D'octobre à mars, essayez la courge rôtie au thym, la mousseline de céleri-rave, les poireaux braisés ou le gratin de cardons. Vérifiez l'origine et le prix auprès du fournisseur.",
+        pesee: "Bac 1 : comparez le temps de préparation et les pertes lorsque la recette permet de garder la peau bien brossée."
       }
     ];
+
+    // Stato Chef Sera separato dai criteri della Charte.
+    const CHEF_SERA_KB = [
+      {
+        id: "chef_sera_aujourdhui", status: "application_verifiee", title: "👨‍🍳 Chef Sera aujourd'hui", badge: "App existante · Fonctions vérifiées", badgeType: "ok",
+        keywords: ["chef sera", "application", "app", "aujourd hui", "fonctionne", "fait", "notes", "fournisseurs", "arrivees", "commandes"],
+        regle: "Statut vérifié dans le code : l'écran Aujourd'hui présente les produits manquants, les notes et les arrivées. L'application comprend aussi les fournisseurs et tarifs, les commandes et la chambre froide. Son accès et son API de santé étaient opérationnels le 13.11.2026.",
+        chef: "Le chef peut saisir ce qui manque et des notes, préparer une commande puis la soumettre à validation. L'application est distincte de cette démo Charte Vaud.",
+        pesee: "Le tableau de bord affiche des estimations de commandes, pas des factures payées ni des économies ou pertes mesurées. La livraison réelle des courriels n'a pas été vérifiée dans la démonstration.",
+        sources: [{label:"Code Chef Sera, src/centralina/chef_app/static/index.html, sections Aujourd'hui/Fournisseurs (local)"},{label:"Code Chef Sera, src/centralina/chef_app/app.py, routes /oggi et /oggi/prepara (local)"},{label:"Démo Bays du 13.11.2026, section « Stato verificato » (local)"}],
+        conseilSource: "État technique vérifié localement ; aucun résultat client mesuré"
+      },
+      {
+        id: "chef_sera_simulation", status: "simulation_verifiee", title: "📋 Parcours de commande Chef Sera", badge: "Workflow vérifié en simulation", badgeType: "warn",
+        keywords: ["manque", "mancano", "vai", "brouillon", "brouillons", "fournisseur", "envoyer", "envoi", "mail", "email", "rapport", "manager", "responsable", "réception", "livraison"],
+        regle: "Statut vérifié en simulation le 13.11.2026 : des produits manquants ont été saisis en français, une demande ambiguë sur le poulet a été clarifiée, « vai » a préparé un brouillon par fournisseur et une note a été enregistrée. L'approbation, les envois et la réception ont été testés avec un expéditeur simulé et des données temporaires. Aucune livraison réelle de courriel n'a été prouvée.",
+        chef: "Pour une démonstration honnête, montrer la liste, les notes et les brouillons. L'approbation peut afficher une confirmation trompeuse lorsque l'envoi échoue : ne pas la présenter comme preuve d'envoi.",
+        pesee: "Le code prévoit un rapport économique au responsable après approbation, mais son envoi réel n'a pas été vérifié dans ce test. Les montants simulés sont des estimations sur catalogue de test.",
+        sources: [{label:"Démo Bays du 13.11.2026, sections « Stato verificato » et « Limite trovato » (local)"},{label:"Code Chef Sera, src/centralina/chef/draft.py et manager_notify.py (local)"}],
+        conseilSource: "Parcours observé en simulation, non livraison réelle"
+      },
+      {
+        id: "chef_sera_pilote", status: "proposition_pilote", title: "🔭 Chef Sera × Charte Vaud : vision pilote", badge: "Proposition · Non intégrée", badgeType: "warn",
+        keywords: ["pilote", "futur", "vision", "camera", "caméra", "balance", "dechet", "déchet", "pesée", "charte dans", "intégration", "prevision", "prévision", "catalogue", "potentiel", "potentialités"],
+        regle: "Cette fonction est proposée, non encore intégrée : réunir les commandes Chef Sera et l'aide Charte Vaud dans une même application. Un pilote pourrait suivre les déchets par trois flux pendant quatre semaines avec le nombre de repas et des justificatifs.",
+        chef: "Le module envisagé utiliserait une caméra pour proposer la catégorie du déchet et une balance pour mesurer le poids ; le chef corrigerait la proposition. Photo, mesure, correction et date pourraient former un rapport vérifiable. Le poids viendrait de la balance, jamais d'une estimation du modèle.",
+        pesee: "Contrôle Charte avant validation de la commande, prévisions de quantités et comparaison des prix saisonniers sont aussi des pistes futures. Leur précision, leur utilité et tout gain doivent être mesurés dans une cuisine pilote.",
+        sources: [{label:"Vision Chef Sera × Charte Vaud, mémoire de décision d'Enrico du 13.11.2026 (local)"},{label:"Démo Bays du 13.11.2026, sections « Proposition de pilote » et « Vision » (local)"}],
+        conseilSource: "Proposition d'Enrico, non fonctionnalité actuelle"
+      }
+    ];
+    // Indice sistematico del cahier des charges ufficiale: gli esempi sopra restano consigli pratici.
+    const REGLES_CHARTE_KB = [
+      {id:"charte_vue_ensemble", kind:"reference", title:"Vue d'ensemble de la Charte vaudoise", badge:"Charte officielle · Cahier des charges", badgeType:"ok", keywords:["charte", "critères", "criteres", "cahier des charges", "toutes les règles", "tous les points"], regle:"La Charte couvre les formations, les produits régionaux, la saisonnalité, le bien-être animal, les produits de la mer, le lait équitable et le commerce équitable, la santé et les allergies, la composition des menus, le gaspillage, les bonnes pratiques en cuisine et le suivi des établissements. Les seuils et délais précis figurent dans chaque section de la Charte officielle.", chef:"Choisissez un thème précis pour obtenir le critère et sa référence exacte.", pesee:"L'OCDC 2026 propose des moyens de suivi et des subventions distincts des obligations de la Charte.", sources:[{label:"Charte officielle, p. 1–3, § 1–11",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"}], conseilSource:"Résumé de navigation Serafino, non nouveau critère"},
+      {id:"charte_formations", kind:"reference", title:"Formations des équipes de cuisine", badge:"Charte officielle · § 1", badgeType:"ok", keywords:["formation", "formations", "cours", "cuisinier", "équipe"], regle:"Chaque établissement signataire permet à son équipe de suivre les cours de la démarche « Cuisinons notre région » et favorise la formation continue. En principe, au moins une personne par an et par établissement participe aux formations proposées.", chef:"Identifiez la personne à former et conservez l'attestation de participation.", pesee:"Le document OCDC 2026 décrit une subvention de 50 % des frais de formation, au maximum 500 CHF par cuisinier, pour les cours du catalogue cantonal.", sources:[{label:"Charte officielle, p. 1, § 1.1–3",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"},{label:"OCDC, Subventions alimentation VD 2026, p. 3, § 2 (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_regionalite", kind:"reference", title:"Produits régionaux et provenance", badge:"Charte officielle · § 2", badgeType:"ok", keywords:["régional", "regionaux", "provenance", "origine", "suisse", "60%", "60 %", "vaud certifié"], regle:"Au minimum 60 % de produits suisses dans les trois ans suivant l'adhésion ; privilégier si possible les produits locaux ou d'un rayon de 100 km. Toute viande servie est de provenance vaudoise ou suisse. Demander la provenance aux fournisseurs, informer les convives et éviter au maximum les achats transportés par avion.", chef:"Vérifiez les provenances sur les fiches et bulletins de livraison.", pesee:"L'OCDC propose l'analyse de deux mois de bulletins, un en été et un en hiver.", sources:[{label:"Charte officielle, p. 2, § 2.1–5",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_saisonnalite", kind:"reference", title:"Saisonnalité et serres", badge:"Charte officielle · § 3", badgeType:"ok", keywords:["saisonnalité", "saison", "serre chauffée", "serres", "fruits", "légumes", "80%", "80 %"], regle:"Les établissements sont encouragés à utiliser des produits de saison. Au minimum 80 % des fruits et légumes frais utilisés sont cultivés sans serre chauffée artificiellement.", chef:"Demandez le mode de culture des produits frais au fournisseur ; le calendrier de la démo est une aide, pas une preuve d'origine.", pesee:"Conservez les bulletins de livraison d'été et d'hiver pour le suivi.", sources:[{label:"Charte officielle, p. 2, § 3.1",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_animaux", kind:"reference", title:"Bien-être animal", badge:"Charte officielle · § 4", badgeType:"ok", keywords:["bien-être animal", "bien etre animal", "sst", "srpa", "volaille", "œufs", "oeufs", "élevage", "batterie"], regle:"Aucune volaille d'importation en batterie ni aucun œuf d'importation de volaille élevée en batterie. Au moins 80 % de la viande provient d'élevages SST ou SRPA. La viande, les œufs, le lait et les produits laitiers respectent le standard suisse de bien-être animal.", chef:"Demandez les justificatifs de provenance et d'élevage au fournisseur.", pesee:"Le suivi proposé par l'OCDC repose notamment sur deux mois de bulletins de livraison.", sources:[{label:"Charte officielle, p. 2, § 4.1–4",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_mer", kind:"reference", title:"Poissons et crustacés", badge:"Charte officielle · § 5 et 8", badgeType:"ok", keywords:["poissons", "crustacés", "mollusques", "fruits de mer", "wwf", "msc", "asc", "second choix", "4 fois"], regle:"Poissons et fruits de mer : catégorie WWF « À privilégier » ou « Second choix » et/ou label reconnu ; aucun produit « À éviter ». Les mets contenant poisson, mollusques ou crustacés sont proposés au maximum quatre fois par mois.", chef:"Comptez les services contenant des produits de la mer et vérifiez la catégorie ou le label sur la fiche fournisseur.", pesee:"L'OCDC propose le contrôle des plans de menus et des bulletins de livraison.", sources:[{label:"Charte officielle, p. 2, § 5.1–2",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"Charte officielle, p. 3, § 8.2",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_social", kind:"reference", title:"Lait équitable et produits exotiques", badge:"Charte officielle · § 6", badgeType:"ok", keywords:["équitable", "exotiques", "commerce équitable", "fairtrade", "max havelaar", "lait", "50%", "50 %"], regle:"Le lait acheté assure une rémunération correcte du producteur. Au minimum 50 % du poids total des produits exotiques servis bénéficie d'un label de commerce équitable, par exemple Fairtrade ou Max Havelaar.", chef:"Vérifiez le label du lait et pesez ou calculez les volumes exotiques selon la méthode officielle.", pesee:"Conservez les fiches produit et les bulletins de livraison.", sources:[{label:"Charte officielle, p. 2, § 6.1–2",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_sante", kind:"reference", title:"Santé, nutrition et allergies", badge:"Charte officielle · § 7", badgeType:"ok", keywords:["santé", "nutrition", "ssn", "osav", "allergie", "allergies", "fourchette verte"], regle:"Les menus respectent les recommandations de la Société Suisse de Nutrition et de l'OSAV. Les établissements adhèrent, dans la mesure du possible, à un label d'alimentation durable. Ils informent les convives des risques d'allergies et forment le personnel à répondre.", chef:"Faites relire les menus par une nutritionniste ou conservez la preuve d'affiliation à un label, comme moyen de suivi proposé par l'OCDC.", pesee:"La preuve de relecture ou d'affiliation est le justificatif indiqué dans le document OCDC 2026.", sources:[{label:"Charte officielle, p. 3, § 7.1–3",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_menus_bio", kind:"reference", title:"Menus, bio et empreinte des repas", badge:"Charte officielle · § 8", badgeType:"ok", keywords:["végétarien", "végétarienne", "offre hebdomadaire", "bio", "biologique", "régénérative", "huile de palme", "menus", "15%", "15 %"], regle:"Un menu végétarien quotidien est proposé ; dans les trois ans, au moins 50 % de l'offre hebdomadaire de mets salés est végétarienne. Aucun aliment servi ne contient d'huile de palme. Dans les cinq ans, au moins 15 % du poids annuel total des aliments est issu de l'agriculture biologique ou régénérative. Les mets de la mer sont limités à quatre fois par mois.", chef:"Vérifiez les plans de menus, les fiches ingrédients et la part annuelle en poids.", pesee:"L'OCDC propose deux semaines de plans de menus par saison et deux mois de bulletins pour le suivi.", sources:[{label:"Charte officielle, p. 3, § 8.1–4",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_dechets", kind:"reference", title:"Gaspillage et déchets", badge:"Charte officielle · § 9", badgeType:"ok", keywords:["déchets", "gaspillage", "pesee", "pesée", "restes", "recyclage", "emballages", "vrac", "4 semaines"], regle:"Réduire le gaspillage par achats planifiés, stockage adapté, portions raisonnables et valorisation des restes. Trier les déchets et favoriser vrac et emballages repris ou recyclés. Peser les déchets alimentaires au minimum quatre semaines consécutives chaque année.", chef:"Séparez les flux, notez les poids et le nombre de repas pour comparer une cuisine à elle-même.", pesee:"Les quatre semaines sont un minimum de mesure, pas une preuve de réduction à elles seules.", sources:[{label:"Charte officielle, p. 3, § 9.1–4",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_pratiques_suivi", kind:"reference", title:"Bonnes pratiques et suivi", badge:"Charte officielle · § 10–11", badgeType:"ok", keywords:["énergie", "cuisson", "entretien", "visite", "suivi", "contrôle", "documentation"], regle:"Privilégier les cuissons économes en énergie et les produits d'entretien à faible impact. Les établissements acceptent des visites périodiques et transmettent les informations nécessaires pour suivre les progrès vers les objectifs de la Charte.", chef:"Conservez les documents et relevés qui étayent les progrès déclarés.", pesee:"Les données utiles doivent être vérifiables ; aucun gain chiffré n'est présumé.", sources:[{label:"Charte officielle, p. 3, § 10.1–3 et 11.1",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"}
+    ];
+    const ALL_KNOWLEDGE = [...KNOWLEDGE_BASE, ...REGLES_CHARTE_KB, ...CHEF_SERA_KB];
 
     // 2. Calendario stagionale completo dei 12 mesi (Svizzera / Canton Vaud, senza serra riscaldata)
     const MONTHS_DATA = [
@@ -1586,7 +1677,7 @@
     }
 
     // Visualizzazione di una risposta nel blocco a 3 sezioni
-    function renderAnswer(item, customQueryLabel) {
+    function renderAnswer(item, customQueryLabel, speak = true) {
       document.getElementById("ansTitle").textContent = customQueryLabel || item.title;
       const badgeEl = document.getElementById("ansBadge");
       badgeEl.textContent = item.badge;
@@ -1595,7 +1686,16 @@
       document.getElementById("ansRegle").textContent = item.regle;
       document.getElementById("ansChef").textContent = item.chef;
       document.getElementById("ansPesee").textContent = item.pesee;
-      stellaOnAnswer(item);
+      document.getElementById("ansRuleTitle").textContent = item.status ? "📌 Statut vérifié de Chef Sera" : "📌 Règle de la Charte Vaud (OCDC)";
+      document.getElementById("ansPeseeTitle").textContent = item.kind === "reference" ? "📎 Suivi et preuve" : (item.status ? "📎 Limites et données" : "⚖️ Impact Pesée & Commandes");
+      const sourceBox = document.getElementById("ansSources");
+      sourceBox.replaceChildren();
+      if (item.sources) {
+        sourceBox.append("Sources du critère : ");
+        appendSourceLinks(sourceBox, item.sources);
+        sourceBox.append(" · " + (item.conseilSource || "Conseil opérationnel Serafino (démo)"));
+      }
+      if (speak) stellaOnAnswer(item);
     }
 
     // Selezione di uno dei 6 pulsanti rapidi ("chips")
@@ -1603,13 +1703,14 @@
       document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("selected"));
       if (btnEl) btnEl.classList.add("selected");
 
-      const found = KNOWLEDGE_BASE.find(k => k.id === id) || KNOWLEDGE_BASE[0];
+      const found = ALL_KNOWLEDGE.find(k => k.id === id) || KNOWLEDGE_BASE[0];
       const inputEl = document.getElementById("queryInput");
       if (btnEl) {
         inputEl.value = btnEl.innerText.replace(/[🍅🐟🥦🥘📦⚖️«»"]/g, "").trim();
         toggleClearBtn();
       }
       renderAnswer(found);
+      if (btnEl) runSearch();
     }
 
     // Ricerca rapida da tag o da calendario
@@ -1621,8 +1722,80 @@
       runSearch();
     }
 
-    // Motore di matching semantico / parole chiave + rilevamento mese + fallback intelligente
-    function runSearch() {
+    function askStella(question) {
+      switchTab("demander");
+      document.getElementById("queryInput").value = question;
+      toggleClearBtn();
+      runSearch();
+    }
+
+    const stellaHistory = [];
+    let stellaPending = false;
+    function appendSourceLinks(container, documents) {
+      documents.forEach((doc, index) => {
+        if (index) container.append(" · ");
+        if (doc.url && doc.url.startsWith("https://www.vd.ch/")) {
+          const link = document.createElement("a");
+          link.href = doc.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = doc.label;
+          container.appendChild(link);
+        } else container.append(doc.label);
+      });
+    }
+    function appendStellaMessage(role, message, sources) {
+      const log = document.getElementById("stellaChat");
+      const bubble = document.createElement("div");
+      bubble.className = "stella-message " + role;
+      bubble.textContent = message;
+      if (sources && sources.length) {
+        const ref = document.createElement("small");
+        ref.append("Fiches de cette démo : " + sources.map(s => s.title).join(" · ") + ". Sources : ");
+        appendSourceLinks(ref, sources.flatMap(s => s.documents || []));
+        ref.append(" · Conseils opérationnels Serafino distincts des critères de la Charte.");
+        bubble.appendChild(ref);
+      }
+      log.appendChild(bubble);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    async function runSearch() {
+      const question = document.getElementById("queryInput").value.trim();
+      if (!question || stellaPending) return;
+      if (question.length > 700) {
+        appendStellaMessage("assistant", "Veuillez raccourcir votre question à 700 caractères.");
+        return;
+      }
+      stellaPending = true;
+      document.getElementById("askBtn").disabled = true;
+      appendStellaMessage("user", question);
+      try {
+        const messages = [...stellaHistory, { role: "user", content: question }].slice(-8);
+        const response = await fetch("https://bot.serafino-resout.ch/api/charte-vaud-chat", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages }),
+        });
+        if (!response.ok) throw new Error("Chat unavailable");
+        const data = await response.json();
+        if (typeof data.answer !== "string" || !data.answer) throw new Error("Empty answer");
+        appendStellaMessage("assistant", data.answer, data.sources);
+        const firstSource = data.sources && data.sources[0] && ALL_KNOWLEDGE.find(item => item.id === data.sources[0].id);
+        if (firstSource) renderAnswer(firstSource, undefined, false);
+        stellaHistory.push({ role: "user", content: question }, { role: "assistant", content: data.answer });
+        while (stellaHistory.length > 6) stellaHistory.shift();
+        stellaOnAnswer({ chef: data.answer });
+      } catch (_) {
+        runOfflineSearch();
+        appendStellaMessage("assistant", "Connexion indisponible. Réponse de la fiche hors ligne affichée ci-dessous ; elle ne tient pas compte des échanges précédents.");
+      } finally {
+        stellaPending = false;
+        document.getElementById("askBtn").disabled = false;
+      }
+    }
+
+    // Motore offline delle schede: usato quando il servizio conversazionale è indisponibile.
+    function runOfflineSearch() {
       const rawQuery = document.getElementById("queryInput").value.trim();
       if (!rawQuery) {
         renderAnswer(KNOWLEDGE_BASE[0]);
@@ -1636,7 +1809,7 @@
       let bestItem = null;
       let bestScore = 0;
 
-      for (const item of KNOWLEDGE_BASE) {
+      for (const item of ALL_KNOWLEDGE) {
         let score = 0;
         for (const kw of item.keywords) {
           const nkw = normalizeText(kw);
@@ -1686,7 +1859,7 @@
         title: "🔎 Analyse Charte Vaud : « " + rawQuery + " »",
         badge: "Vérification 3 réflexes",
         badgeType: "warn",
-        regle: "Critères clés Charte Vaud (OCDC mai 2026) : 60 % de produits suisses d'ici 3 ans • 100 % viande suisse (80 % SST/SRPA) • 80 % fruits & légumes frais sans serre chauffée • 0 avion • 0 huile de palme • 100 % lait équitable • Poisson max 4x/mois (WWF/MSC) • 1 menu végétarien/jour.",
+        regle: "Critères clés Charte Vaud (OCDC) : 60 % de produits suisses d'ici 3 ans • 100 % viande suisse (80 % SST/SRPA) • 80 % fruits & légumes frais sans serre chauffée • éviter au maximum le transport par avion • 0 huile de palme • 100 % lait équitable • mets de la mer au maximum 4x/mois • 1 menu végétarien/jour.",
         chef: "Avant de valider cet article sur le bon de commande : 1) Vérifiez l'origine Suisse (ou label Fairtrade si exotique), 2) Si c'est un fruit/légume frais, vérifiez qu'il est de pleine saison sans serre chauffée, 3) Ajustez la quantité commandée au nombre réel de couverts.",
         pesee: "Tout achat contrôlé en amont sur le bulletin de livraison évite un surplus au Bac 2 (cuisine) et sécurise le bilan des 4 semaines de pesée."
       });

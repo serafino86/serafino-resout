@@ -1,0 +1,316 @@
+[
+  {
+    "id": "charte_vue_ensemble",
+    "kind": "reference",
+    "title": "Vue d'ensemble de la Charte vaudoise",
+    "badge": "Charte officielle · Cahier des charges",
+    "badgeType": "ok",
+    "keywords": [
+      "charte",
+      "critères",
+      "criteres",
+      "cahier des charges",
+      "toutes les règles",
+      "tous les points"
+    ],
+    "regle": "La Charte couvre les formations, les produits régionaux, la saisonnalité, le bien-être animal, les produits de la mer, le lait équitable et le commerce équitable, la santé et les allergies, la composition des menus, le gaspillage, les bonnes pratiques en cuisine et le suivi des établissements. Les seuils et délais précis figurent dans chaque section de la Charte officielle.",
+    "chef": "Choisissez un thème précis pour obtenir le critère et sa référence exacte.",
+    "pesee": "L'OCDC 2026 propose des moyens de suivi et des subventions distincts des obligations de la Charte.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 1–3, § 1–11",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"
+      }
+    ],
+    "conseilSource": "Résumé de navigation Serafino, non nouveau critère"
+  },
+  {
+    "id": "charte_formations",
+    "kind": "reference",
+    "title": "Formations des équipes de cuisine",
+    "badge": "Charte officielle · § 1",
+    "badgeType": "ok",
+    "keywords": [
+      "formation",
+      "formations",
+      "cours",
+      "cuisinier",
+      "équipe"
+    ],
+    "regle": "Chaque établissement signataire permet à son équipe de suivre les cours de la démarche « Cuisinons notre région » et favorise la formation continue. En principe, au moins une personne par an et par établissement participe aux formations proposées.",
+    "chef": "Identifiez la personne à former et conservez l'attestation de participation.",
+    "pesee": "Le document OCDC 2026 décrit une subvention de 50 % des frais de formation, au maximum 500 CHF par cuisinier, pour les cours du catalogue cantonal.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 1, § 1.1–3",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"
+      },
+      {
+        "label": "OCDC, Subventions alimentation VD 2026, p. 3, § 2 (document local)"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_regionalite",
+    "kind": "reference",
+    "title": "Produits régionaux et provenance",
+    "badge": "Charte officielle · § 2",
+    "badgeType": "ok",
+    "keywords": [
+      "régional",
+      "regionaux",
+      "provenance",
+      "origine",
+      "suisse",
+      "60%",
+      "60 %",
+      "vaud certifié"
+    ],
+    "regle": "Au minimum 60 % de produits suisses dans les trois ans suivant l'adhésion ; privilégier si possible les produits locaux ou d'un rayon de 100 km. Toute viande servie est de provenance vaudoise ou suisse. Demander la provenance aux fournisseurs, informer les convives et éviter au maximum les achats transportés par avion.",
+    "chef": "Vérifiez les provenances sur les fiches et bulletins de livraison.",
+    "pesee": "L'OCDC propose l'analyse de deux mois de bulletins, un en été et un en hiver.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 2, § 2.1–5",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"
+      },
+      {
+        "label": "OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_saisonnalite",
+    "kind": "reference",
+    "title": "Saisonnalité et serres",
+    "badge": "Charte officielle · § 3",
+    "badgeType": "ok",
+    "keywords": [
+      "saisonnalité",
+      "saison",
+      "serre chauffée",
+      "serres",
+      "fruits",
+      "légumes",
+      "80%",
+      "80 %"
+    ],
+    "regle": "Les établissements sont encouragés à utiliser des produits de saison. Au minimum 80 % des fruits et légumes frais utilisés sont cultivés sans serre chauffée artificiellement.",
+    "chef": "Demandez le mode de culture des produits frais au fournisseur ; le calendrier de la démo est une aide, pas une preuve d'origine.",
+    "pesee": "Conservez les bulletins de livraison d'été et d'hiver pour le suivi.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 2, § 3.1",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"
+      },
+      {
+        "label": "OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_animaux",
+    "kind": "reference",
+    "title": "Bien-être animal",
+    "badge": "Charte officielle · § 4",
+    "badgeType": "ok",
+    "keywords": [
+      "bien-être animal",
+      "bien etre animal",
+      "sst",
+      "srpa",
+      "volaille",
+      "œufs",
+      "oeufs",
+      "élevage",
+      "batterie"
+    ],
+    "regle": "Aucune volaille d'importation en batterie ni aucun œuf d'importation de volaille élevée en batterie. Au moins 80 % de la viande provient d'élevages SST ou SRPA. La viande, les œufs, le lait et les produits laitiers respectent le standard suisse de bien-être animal.",
+    "chef": "Demandez les justificatifs de provenance et d'élevage au fournisseur.",
+    "pesee": "Le suivi proposé par l'OCDC repose notamment sur deux mois de bulletins de livraison.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 2, § 4.1–4",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_mer",
+    "kind": "reference",
+    "title": "Poissons et crustacés",
+    "badge": "Charte officielle · § 5 et 8",
+    "badgeType": "ok",
+    "keywords": [
+      "poissons",
+      "crustacés",
+      "mollusques",
+      "fruits de mer",
+      "wwf",
+      "msc",
+      "asc",
+      "second choix",
+      "4 fois"
+    ],
+    "regle": "Poissons et fruits de mer : catégorie WWF « À privilégier » ou « Second choix » et/ou label reconnu ; aucun produit « À éviter ». Les mets contenant poisson, mollusques ou crustacés sont proposés au maximum quatre fois par mois.",
+    "chef": "Comptez les services contenant des produits de la mer et vérifiez la catégorie ou le label sur la fiche fournisseur.",
+    "pesee": "L'OCDC propose le contrôle des plans de menus et des bulletins de livraison.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 2, § 5.1–2",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"
+      },
+      {
+        "label": "Charte officielle, p. 3, § 8.2",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_social",
+    "kind": "reference",
+    "title": "Lait équitable et produits exotiques",
+    "badge": "Charte officielle · § 6",
+    "badgeType": "ok",
+    "keywords": [
+      "équitable",
+      "exotiques",
+      "commerce équitable",
+      "fairtrade",
+      "max havelaar",
+      "lait",
+      "50%",
+      "50 %"
+    ],
+    "regle": "Le lait acheté assure une rémunération correcte du producteur. Au minimum 50 % du poids total des produits exotiques servis bénéficie d'un label de commerce équitable, par exemple Fairtrade ou Max Havelaar.",
+    "chef": "Vérifiez le label du lait et pesez ou calculez les volumes exotiques selon la méthode officielle.",
+    "pesee": "Conservez les fiches produit et les bulletins de livraison.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 2, § 6.1–2",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_sante",
+    "kind": "reference",
+    "title": "Santé, nutrition et allergies",
+    "badge": "Charte officielle · § 7",
+    "badgeType": "ok",
+    "keywords": [
+      "santé",
+      "nutrition",
+      "ssn",
+      "osav",
+      "allergie",
+      "allergies",
+      "fourchette verte"
+    ],
+    "regle": "Les menus respectent les recommandations de la Société Suisse de Nutrition et de l'OSAV. Les établissements adhèrent, dans la mesure du possible, à un label d'alimentation durable. Ils informent les convives des risques d'allergies et forment le personnel à répondre.",
+    "chef": "Faites relire les menus par une nutritionniste ou conservez la preuve d'affiliation à un label, comme moyen de suivi proposé par l'OCDC.",
+    "pesee": "La preuve de relecture ou d'affiliation est le justificatif indiqué dans le document OCDC 2026.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 3, § 7.1–3",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"
+      },
+      {
+        "label": "OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_menus_bio",
+    "kind": "reference",
+    "title": "Menus, bio et empreinte des repas",
+    "badge": "Charte officielle · § 8",
+    "badgeType": "ok",
+    "keywords": [
+      "végétarien",
+      "végétarienne",
+      "offre hebdomadaire",
+      "bio",
+      "biologique",
+      "régénérative",
+      "huile de palme",
+      "menus",
+      "15%",
+      "15 %"
+    ],
+    "regle": "Un menu végétarien quotidien est proposé ; dans les trois ans, au moins 50 % de l'offre hebdomadaire de mets salés est végétarienne. Aucun aliment servi ne contient d'huile de palme. Dans les cinq ans, au moins 15 % du poids annuel total des aliments est issu de l'agriculture biologique ou régénérative. Les mets de la mer sont limités à quatre fois par mois.",
+    "chef": "Vérifiez les plans de menus, les fiches ingrédients et la part annuelle en poids.",
+    "pesee": "L'OCDC propose deux semaines de plans de menus par saison et deux mois de bulletins pour le suivi.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 3, § 8.1–4",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"
+      },
+      {
+        "label": "OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_dechets",
+    "kind": "reference",
+    "title": "Gaspillage et déchets",
+    "badge": "Charte officielle · § 9",
+    "badgeType": "ok",
+    "keywords": [
+      "déchets",
+      "gaspillage",
+      "pesee",
+      "pesée",
+      "restes",
+      "recyclage",
+      "emballages",
+      "vrac",
+      "4 semaines"
+    ],
+    "regle": "Réduire le gaspillage par achats planifiés, stockage adapté, portions raisonnables et valorisation des restes. Trier les déchets et favoriser vrac et emballages repris ou recyclés. Peser les déchets alimentaires au minimum quatre semaines consécutives chaque année.",
+    "chef": "Séparez les flux, notez les poids et le nombre de repas pour comparer une cuisine à elle-même.",
+    "pesee": "Les quatre semaines sont un minimum de mesure, pas une preuve de réduction à elles seules.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 3, § 9.1–4",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  },
+  {
+    "id": "charte_pratiques_suivi",
+    "kind": "reference",
+    "title": "Bonnes pratiques et suivi",
+    "badge": "Charte officielle · § 10–11",
+    "badgeType": "ok",
+    "keywords": [
+      "énergie",
+      "cuisson",
+      "entretien",
+      "visite",
+      "suivi",
+      "contrôle",
+      "documentation"
+    ],
+    "regle": "Privilégier les cuissons économes en énergie et les produits d'entretien à faible impact. Les établissements acceptent des visites périodiques et transmettent les informations nécessaires pour suivre les progrès vers les objectifs de la Charte.",
+    "chef": "Conservez les documents et relevés qui étayent les progrès déclarés.",
+    "pesee": "Les données utiles doivent être vérifiables ; aucun gain chiffré n'est présumé.",
+    "sources": [
+      {
+        "label": "Charte officielle, p. 3, § 10.1–3 et 11.1",
+        "url": "https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"
+      }
+    ],
+    "conseilSource": "Conseil opérationnel Serafino, distinct de l'obligation"
+  }
+]
