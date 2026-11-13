@@ -1,0 +1,31 @@
+# Traefik, /docker/traefik/conf/bot-public-boundary.yml on the VPS.
+# Keep the operator routes behind blasco-auth; expose only explicit demo paths.
+http:
+  routers:
+    bot-chat-pubblica:
+      rule: "Host(`bot.serafino-resout.ch`) && (Path(`/`) || Path(`/bot.html`) || Path(`/favicon.ico`) || Path(`/api/chat`) || Path(`/api/chat-health`) || Path(`/api/charte-vaud-chat`))"
+      priority: 600
+      entryPoints: [websecure]
+      middlewares: [bot-chat-limite, hsts@file]
+      service: bot-confine
+      tls:
+        certResolver: letsencrypt
+    bot-operatore-privato:
+      rule: "Host(`bot.serafino-resout.ch`)"
+      priority: 500
+      entryPoints: [websecure]
+      middlewares: [blasco-auth, hsts@file]
+      service: bot-confine
+      tls:
+        certResolver: letsencrypt
+  middlewares:
+    bot-chat-limite:
+      rateLimit:
+        average: 30
+        period: 1m
+        burst: 10
+  services:
+    bot-confine:
+      loadBalancer:
+        servers:
+          - url: "http://127.0.0.1:3001"
