@@ -3,8 +3,9 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const vm = require('node:vm');
-const { relevantFacts, chat, headers } = require('../api/charte-vaud-chat');
+const { relevantFacts, chat, voice, headers } = require('../api/charte-vaud-chat');
 const knowledge = require('../knowledge/charte-vaud-knowledge.json');
 const chefKnowledge = require('../knowledge/chef-sera-knowledge.json');
 const rules = require('../knowledge/charte-vaud-rules.json');
@@ -12,11 +13,16 @@ const rules = require('../knowledge/charte-vaud-rules.json');
 function response() {
   return { statusCode: 200, fields: {}, status(code) { this.statusCode = code; return this; },
     set(key, value) { this.fields[key] = value; return this; },
-    json(value) { this.body = value; return this; }, sendStatus(code) { this.statusCode = code; return this; } };
+    type(value) { this.contentType = value; return this; },
+    json(value) { this.body = value; return this; }, send(value) { this.body = value; return this; },
+    sendStatus(code) { this.statusCode = code; return this; } };
 }
 
 async function run() {
   const html = fs.readFileSync(path.join(__dirname, '../../site/charte-vaud/index.html'), 'utf8');
+  const pageScript = html.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(pageScript);
+  new vm.Script(pageScript[1]);
   const match = html.match(/    const KNOWLEDGE_BASE = (\[[\s\S]*?\n    \]);/);
   assert.ok(match, 'knowledge base exists in the page');
   assert.deepEqual(JSON.parse(JSON.stringify(vm.runInNewContext(`(${match[1]})`))), knowledge);
@@ -45,6 +51,8 @@ async function run() {
   assert.deepEqual(relevantFacts([{ content: 'La caméra pilote ?' }, { content: 'Que fait Chef Sera actuellement ?' }]).map(f => f.id), ['chef_sera_aujourdhui']);
   assert.equal(relevantFacts([{ content: 'Le rapport au manager est-il envoyé en réel ?' }])[0].id, 'chef_sera_simulation');
   assert.equal(relevantFacts([{ content: 'Quels sont les critères de la Charte vaudoise ?' }])[0].id, 'charte_vue_ensemble');
+  assert.equal(relevantFacts([{ content: 'Quels sont les objectifs de la Charte vaudoise pour les produits locaux ?' }])[0].id, 'charte_regionalite');
+  assert.deepEqual(relevantFacts([{ content: 'Que fait Chef Sera aujourd hui et qu est-ce qui est encore une proposition ?' }]).map(f => f.id), ['chef_sera_aujourdhui', 'chef_sera_pilote']);
   const coverage = [
     ['Combien de cuisiniers doivent suivre les formations chaque année ?', 'charte_formations'],
     ['Quelle provenance régionale faut-il demander au fournisseur ?', 'charte_regionalite'],
@@ -71,6 +79,24 @@ async function run() {
   assert.equal(injection.statusCode, 200);
   assert.equal(injection.body.sources.length, 0);
 
+  const expiryDir = fs.mkdtempSync(path.join(os.tmpdir(), 'stella-expiry-'));
+  const originalExpiryFile = process.env.STELLA_EXPIRY_FILE;
+  try {
+    process.env.STELLA_EXPIRY_FILE = path.join(expiryDir, 'deadline.txt');
+    fs.writeFileSync(process.env.STELLA_EXPIRY_FILE, '2000-01-01T00:00:00.000Z\n');
+    const expired = response();
+    await chat({ ip: 'test-expired', body: { messages: [{ role: 'user', content: 'Bonjour' }] } }, expired);
+    assert.equal(expired.statusCode, 410);
+    assert.match(expired.body.error, /terminée/);
+    const expiredVoice = response();
+    await voice({ body: { sourceId: 'charte_regionalite' } }, expiredVoice);
+    assert.equal(expiredVoice.statusCode, 410);
+  } finally {
+    if (originalExpiryFile === undefined) delete process.env.STELLA_EXPIRY_FILE;
+    else process.env.STELLA_EXPIRY_FILE = originalExpiryFile;
+    fs.rmSync(expiryDir, { recursive: true });
+  }
+
   const originalFetch = global.fetch;
   const originalKey = process.env.GEMINI_API_KEY;
   process.env.GEMINI_API_KEY = 'test-key';
@@ -90,6 +116,7 @@ async function run() {
     assert.equal(res.body.sources[0].id, 'tomates_mars');
     assert.ok(res.body.sources[0].documents[0].url.startsWith('https://www.vd.ch/'));
     assert.ok(!res.body.answer.includes('[tomates_mars]'));
+    assert.match(res.body.voiceToken, /^[0-9a-f-]{36}$/);
     const invalid = response();
     await chat({ ip: 'test-invalid', body: { messages: [{ role: 'user', content: 'x'.repeat(701) }] } }, invalid);
     assert.equal(invalid.statusCode, 400);
@@ -109,6 +136,22 @@ async function run() {
     assert.equal(uncited.statusCode, 200);
     assert.ok(uncited.body.sources.length);
     assert.doesNotMatch(uncited.body.answer, /Réponse sans référence/);
+    const wav = Buffer.concat([Buffer.from('RIFF'), Buffer.alloc(50)]);
+    global.fetch = async (_url, options) => {
+      assert.ok(_url.endsWith('/v1beta/interactions'));
+      const body = JSON.parse(options.body);
+      assert.equal(body.model, 'gemini-3.8-flash-tts');
+      assert.ok(body.input[0].content[0].text.includes('provenances'));
+      return { ok: true, json: async () => ({ steps: [{ content: [{ type: 'audio', data: wav.toString('base64') }] }] }) };
+    };
+    const spoken = response();
+    await voice({ body: { sourceId: 'charte_regionalite' } }, spoken);
+    assert.equal(spoken.statusCode, 200);
+    assert.equal(spoken.contentType, 'audio/wav');
+    assert.deepEqual(spoken.body, wav);
+    const unknown = response();
+    await voice({ body: { sourceId: 'not-a-fiche' } }, unknown);
+    assert.equal(unknown.statusCode, 400);
   } finally {
     global.fetch = originalFetch;
     if (originalKey === undefined) delete process.env.GEMINI_API_KEY;

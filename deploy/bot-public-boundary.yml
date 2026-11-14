@@ -3,7 +3,7 @@
 http:
   routers:
     bot-chat-pubblica:
-      rule: "Host(`bot.serafino-resout.ch`) && (Path(`/`) || Path(`/bot.html`) || Path(`/favicon.ico`) || Path(`/api/chat`) || Path(`/api/chat-health`) || Path(`/api/charte-vaud-chat`))"
+      rule: "Host(`bot.serafino-resout.ch`) && (Path(`/`) || Path(`/bot.html`) || Path(`/favicon.ico`) || Path(`/api/chat`) || Path(`/api/chat-health`) || Path(`/api/charte-vaud-chat`) || Path(`/api/charte-vaud-voice`))"
       priority: 600
       entryPoints: [websecure]
       middlewares: [bot-chat-limite, hsts@file]

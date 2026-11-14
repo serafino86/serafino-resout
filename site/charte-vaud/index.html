@@ -1547,7 +1547,7 @@
       },
       {
         id: "chef_sera_pilote", status: "proposition_pilote", title: "🔭 Chef Sera × Charte Vaud : vision pilote", badge: "Proposition · Non intégrée", badgeType: "warn",
-        keywords: ["pilote", "futur", "vision", "camera", "caméra", "balance", "dechet", "déchet", "pesée", "charte dans", "intégration", "prevision", "prévision", "catalogue", "potentiel", "potentialités"],
+        keywords: ["pilote", "futur", "proposition", "proposé", "reste à tester", "vision", "camera", "caméra", "balance", "dechet", "déchet", "pesée", "charte dans", "intégration", "prevision", "prévision", "catalogue", "potentiel", "potentialités"],
         regle: "Cette fonction est proposée, non encore intégrée : réunir les commandes Chef Sera et l'aide Charte Vaud dans une même application. Un pilote pourrait suivre les déchets par trois flux pendant quatre semaines avec le nombre de repas et des justificatifs.",
         chef: "Le module envisagé utiliserait une caméra pour proposer la catégorie du déchet et une balance pour mesurer le poids ; le chef corrigerait la proposition. Photo, mesure, correction et date pourraient former un rapport vérifiable. Le poids viendrait de la balance, jamais d'une estimation du modèle.",
         pesee: "Contrôle Charte avant validation de la commande, prévisions de quantités et comparaison des prix saisonniers sont aussi des pistes futures. Leur précision, leur utilité et tout gain doivent être mesurés dans une cuisine pilote.",
@@ -1559,7 +1559,7 @@
     const REGLES_CHARTE_KB = [
       {id:"charte_vue_ensemble", kind:"reference", title:"Vue d'ensemble de la Charte vaudoise", badge:"Charte officielle · Cahier des charges", badgeType:"ok", keywords:["charte", "critères", "criteres", "cahier des charges", "toutes les règles", "tous les points"], regle:"La Charte couvre les formations, les produits régionaux, la saisonnalité, le bien-être animal, les produits de la mer, le lait équitable et le commerce équitable, la santé et les allergies, la composition des menus, le gaspillage, les bonnes pratiques en cuisine et le suivi des établissements. Les seuils et délais précis figurent dans chaque section de la Charte officielle.", chef:"Choisissez un thème précis pour obtenir le critère et sa référence exacte.", pesee:"L'OCDC 2026 propose des moyens de suivi et des subventions distincts des obligations de la Charte.", sources:[{label:"Charte officielle, p. 1–3, § 1–11",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"}], conseilSource:"Résumé de navigation Serafino, non nouveau critère"},
       {id:"charte_formations", kind:"reference", title:"Formations des équipes de cuisine", badge:"Charte officielle · § 1", badgeType:"ok", keywords:["formation", "formations", "cours", "cuisinier", "équipe"], regle:"Chaque établissement signataire permet à son équipe de suivre les cours de la démarche « Cuisinons notre région » et favorise la formation continue. En principe, au moins une personne par an et par établissement participe aux formations proposées.", chef:"Identifiez la personne à former et conservez l'attestation de participation.", pesee:"Le document OCDC 2026 décrit une subvention de 50 % des frais de formation, au maximum 500 CHF par cuisinier, pour les cours du catalogue cantonal.", sources:[{label:"Charte officielle, p. 1, § 1.1–3",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=1"},{label:"OCDC, Subventions alimentation VD 2026, p. 3, § 2 (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
-      {id:"charte_regionalite", kind:"reference", title:"Produits régionaux et provenance", badge:"Charte officielle · § 2", badgeType:"ok", keywords:["régional", "regionaux", "provenance", "origine", "suisse", "60%", "60 %", "vaud certifié"], regle:"Au minimum 60 % de produits suisses dans les trois ans suivant l'adhésion ; privilégier si possible les produits locaux ou d'un rayon de 100 km. Toute viande servie est de provenance vaudoise ou suisse. Demander la provenance aux fournisseurs, informer les convives et éviter au maximum les achats transportés par avion.", chef:"Vérifiez les provenances sur les fiches et bulletins de livraison.", pesee:"L'OCDC propose l'analyse de deux mois de bulletins, un en été et un en hiver.", sources:[{label:"Charte officielle, p. 2, § 2.1–5",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
+      {id:"charte_regionalite", kind:"reference", title:"Produits régionaux et provenance", badge:"Charte officielle · § 2", badgeType:"ok", keywords:["régional", "regionaux", "produits locaux", "local", "locaux", "vaudois", "provenance", "origine", "suisse", "60%", "60 %", "vaud certifié"], regle:"Au minimum 60 % de produits suisses dans les trois ans suivant l'adhésion ; privilégier si possible les produits locaux ou d'un rayon de 100 km. Toute viande servie est de provenance vaudoise ou suisse. Demander la provenance aux fournisseurs, informer les convives et éviter au maximum les achats transportés par avion.", chef:"Vérifiez les provenances sur les fiches et bulletins de livraison.", pesee:"L'OCDC propose l'analyse de deux mois de bulletins, un en été et un en hiver.", sources:[{label:"Charte officielle, p. 2, § 2.1–5",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
       {id:"charte_saisonnalite", kind:"reference", title:"Saisonnalité et serres", badge:"Charte officielle · § 3", badgeType:"ok", keywords:["saisonnalité", "saison", "serre chauffée", "serres", "fruits", "légumes", "80%", "80 %"], regle:"Les établissements sont encouragés à utiliser des produits de saison. Au minimum 80 % des fruits et légumes frais utilisés sont cultivés sans serre chauffée artificiellement.", chef:"Demandez le mode de culture des produits frais au fournisseur ; le calendrier de la démo est une aide, pas une preuve d'origine.", pesee:"Conservez les bulletins de livraison d'été et d'hiver pour le suivi.", sources:[{label:"Charte officielle, p. 2, § 3.1",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"OCDC, Subventions alimentation VD 2026, p. 2, tableau (document local)"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
       {id:"charte_animaux", kind:"reference", title:"Bien-être animal", badge:"Charte officielle · § 4", badgeType:"ok", keywords:["bien-être animal", "bien etre animal", "sst", "srpa", "volaille", "œufs", "oeufs", "élevage", "batterie"], regle:"Aucune volaille d'importation en batterie ni aucun œuf d'importation de volaille élevée en batterie. Au moins 80 % de la viande provient d'élevages SST ou SRPA. La viande, les œufs, le lait et les produits laitiers respectent le standard suisse de bien-être animal.", chef:"Demandez les justificatifs de provenance et d'élevage au fournisseur.", pesee:"Le suivi proposé par l'OCDC repose notamment sur deux mois de bulletins de livraison.", sources:[{label:"Charte officielle, p. 2, § 4.1–4",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
       {id:"charte_mer", kind:"reference", title:"Poissons et crustacés", badge:"Charte officielle · § 5 et 8", badgeType:"ok", keywords:["poissons", "crustacés", "mollusques", "fruits de mer", "wwf", "msc", "asc", "second choix", "4 fois"], regle:"Poissons et fruits de mer : catégorie WWF « À privilégier » ou « Second choix » et/ou label reconnu ; aucun produit « À éviter ». Les mets contenant poisson, mollusques ou crustacés sont proposés au maximum quatre fois par mois.", chef:"Comptez les services contenant des produits de la mer et vérifiez la catégorie ou le label sur la fiche fournisseur.", pesee:"L'OCDC propose le contrôle des plans de menus et des bulletins de livraison.", sources:[{label:"Charte officielle, p. 2, § 5.1–2",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=2"},{label:"Charte officielle, p. 3, § 8.2",url:"https://www.vd.ch/fileadmin/user_upload/accueil/fichiers_pdf/2025_janvier_actus/Charte_de_la_restauration_collective_vaudoise.pdf#page=3"}], conseilSource:"Conseil opérationnel Serafino, distinct de l'obligation"},
@@ -1731,6 +1731,7 @@
 
     const stellaHistory = [];
     let stellaPending = false;
+    let stellaExpired = false;
     function appendSourceLinks(container, documents) {
       documents.forEach((doc, index) => {
         if (index) container.append(" · ");
@@ -1762,7 +1763,7 @@
 
     async function runSearch() {
       const question = document.getElementById("queryInput").value.trim();
-      if (!question || stellaPending) return;
+      if (!question || stellaPending || stellaExpired) return;
       if (question.length > 700) {
         appendStellaMessage("assistant", "Veuillez raccourcir votre question à 700 caractères.");
         return;
@@ -1776,6 +1777,12 @@
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ messages }),
         });
+        if (response.status === 410) {
+          stellaExpired = true;
+          appendStellaMessage("assistant", "La démonstration de Stella est terminée. Merci de votre intérêt ; pour poursuivre l’échange, contactez Serafino Résout.");
+          document.getElementById("queryInput").disabled = true;
+          return;
+        }
         if (!response.ok) throw new Error("Chat unavailable");
         const data = await response.json();
         if (typeof data.answer !== "string" || !data.answer) throw new Error("Empty answer");
@@ -1784,13 +1791,13 @@
         if (firstSource) renderAnswer(firstSource, undefined, false);
         stellaHistory.push({ role: "user", content: question }, { role: "assistant", content: data.answer });
         while (stellaHistory.length > 6) stellaHistory.shift();
-        stellaOnAnswer({ chef: data.answer });
+        stellaOnAnswer({ chef: data.answer, voiceToken: data.voiceToken });
       } catch (_) {
         runOfflineSearch();
         appendStellaMessage("assistant", "Connexion indisponible. Réponse de la fiche hors ligne affichée ci-dessous ; elle ne tient pas compte des échanges précédents.");
       } finally {
         stellaPending = false;
-        document.getElementById("askBtn").disabled = false;
+        document.getElementById("askBtn").disabled = stellaExpired;
       }
     }
 
@@ -2057,16 +2064,19 @@
     }
 
 
-    // Sur iPhone, speechSynthesis doit démarrer après un geste de l'utilisateur.
+    // Le premier toucher déverrouille Web Audio sur les téléphones.
     let stellaVoiceEnabled = false;
     let stellaCurrentAnswer = null;
-    let stellaUtterance = null;
+    let stellaAudioContext = null;
+    let stellaAudioSource = null;
+    let stellaVoiceAbort = null;
+    let stellaVoiceRequestId = 0;
     let stellaMouthTimer = null;
     const stellaScene = document.getElementById("stellaScene");
     const stellaVoice = document.getElementById("stellaVoice");
     const stellaStatus = document.getElementById("stellaStatus");
     const stellaMouth = document.getElementById("stella-mouth");
-    const stellaSpeech = window.speechSynthesis;
+    const StellaAudioContext = window.AudioContext || window.webkitAudioContext;
 
     function stellaSetSpeaking(active) {
       stellaScene.classList.toggle("speaking", active);
@@ -2083,38 +2093,85 @@
       stellaStatus.textContent = active ? "Stella parle…" : (stellaVoiceEnabled ? "Voix activée" : "Voix désactivée");
     }
     function stellaStop() {
-      if (stellaSpeech) stellaSpeech.cancel();
-      stellaUtterance = null;
+      stellaVoiceRequestId += 1;
+      if (stellaVoiceAbort) stellaVoiceAbort.abort();
+      stellaVoiceAbort = null;
+      if (stellaAudioSource) {
+        try { stellaAudioSource.stop(); } catch (_) {}
+        stellaAudioSource.disconnect();
+      }
+      stellaAudioSource = null;
       stellaSetSpeaking(false);
     }
-    function stellaSpeak(item) {
-      if (!stellaSpeech || !window.SpeechSynthesisUtterance) {
+    function stellaUnlockAudio() {
+      if (!StellaAudioContext) return;
+      if (!stellaAudioContext) stellaAudioContext = new StellaAudioContext();
+      if (stellaAudioContext.state !== "running") stellaAudioContext.resume().catch(() => {});
+    }
+    async function stellaSpeak(item) {
+      if (!StellaAudioContext) {
         stellaStatus.textContent = "Voix indisponible sur ce navigateur. La réponse reste affichée.";
         return;
       }
       stellaStop();
-      const utterance = new SpeechSynthesisUtterance(item.chef);
-      utterance.lang = "fr-CH";
-      utterance.rate = 0.94;
-      const voices = stellaSpeech.getVoices();
-      const voice = voices.find(v => v.lang.toLowerCase() === "fr-ch") || voices.find(v => v.lang.toLowerCase().startsWith("fr"));
-      if (voice) utterance.voice = voice;
-      utterance.onstart = () => stellaSetSpeaking(true);
-      utterance.onend = () => { stellaUtterance = null; stellaSetSpeaking(false); };
-      utterance.onerror = () => { stellaUtterance = null; stellaSetSpeaking(false);
-        stellaStatus.textContent = "Audio indisponible. La réponse reste affichée."; };
-      stellaUtterance = utterance; // Conserver la référence pendant la lecture sur Safari.
-      stellaSpeech.speak(utterance);
+      const requestId = stellaVoiceRequestId;
+      const body = item.voiceToken ? { voiceToken: item.voiceToken } : item.id ? { sourceId: item.id } : null;
+      if (!body) {
+        stellaStatus.textContent = "Voix indisponible pour cette réponse. Le texte reste affiché.";
+        return;
+      }
+      stellaStatus.textContent = "Préparation de la voix…";
+      const controller = new AbortController();
+      stellaVoiceAbort = controller;
+      try {
+        const response = await fetch("https://bot.serafino-resout.ch/api/charte-vaud-voice", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body), signal: controller.signal,
+        });
+        if (response.status === 410) {
+          stellaExpired = true;
+          document.getElementById("queryInput").disabled = true;
+          document.getElementById("askBtn").disabled = true;
+          stellaStatus.textContent = "La démonstration de Stella est terminée.";
+          return;
+        }
+        if (!response.ok) throw new Error("Voice unavailable");
+        const bytes = await response.arrayBuffer();
+        if (requestId !== stellaVoiceRequestId || !stellaVoiceEnabled) return;
+        if (!stellaAudioContext) stellaUnlockAudio();
+        const audioBuffer = await stellaAudioContext.decodeAudioData(bytes);
+        if (requestId !== stellaVoiceRequestId || !stellaVoiceEnabled) return;
+        if (stellaAudioContext.state !== "running") {
+          stellaStatus.textContent = "Touchez Stella pour écouter la réponse.";
+          return;
+        }
+        const source = stellaAudioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(stellaAudioContext.destination);
+        source.onended = () => {
+          if (requestId === stellaVoiceRequestId) { stellaAudioSource = null; stellaSetSpeaking(false); }
+        };
+        stellaAudioSource = source;
+        source.start();
+        stellaSetSpeaking(true);
+      } catch (error) {
+        if (error.name !== "AbortError" && requestId === stellaVoiceRequestId) {
+          stellaStatus.textContent = "Audio indisponible. La réponse reste affichée.";
+        }
+      } finally {
+        if (requestId === stellaVoiceRequestId) stellaVoiceAbort = null;
+      }
     }
     function stellaOnAnswer(item) {
       stellaCurrentAnswer = item;
       if (stellaVoiceEnabled) stellaSpeak(item);
     }
     function stellaToggleVoice() {
-      if (!stellaSpeech || !window.SpeechSynthesisUtterance) {
+      if (!StellaAudioContext) {
         stellaStatus.textContent = "Voix indisponible sur ce navigateur. La réponse reste affichée.";
         return;
       }
+      stellaUnlockAudio();
       stellaVoiceEnabled = !stellaVoiceEnabled;
       stellaVoice.setAttribute("aria-pressed", String(stellaVoiceEnabled));
       stellaVoice.textContent = stellaVoiceEnabled ? "🔇 Désactiver la voix" : "🔊 Activer la voix";
@@ -2124,8 +2181,8 @@
     stellaVoice.addEventListener("click", stellaToggleVoice);
     stellaScene.addEventListener("click", () => {
       if (!stellaVoiceEnabled) stellaToggleVoice();
-      else if (stellaSpeech && stellaSpeech.speaking) stellaStop();
-      else if (stellaCurrentAnswer) stellaSpeak(stellaCurrentAnswer);
+      else if (stellaAudioSource || stellaVoiceAbort) stellaStop();
+      else if (stellaCurrentAnswer) { stellaUnlockAudio(); stellaSpeak(stellaCurrentAnswer); }
     });
     function stellaBlink() {
       stellaScene.classList.remove("blink");

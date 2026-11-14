@@ -1,5 +1,8 @@
 'use strict';
 
+const fs = require('node:fs');
+const { randomUUID } = require('node:crypto');
+
 const knowledge = [
   ...require('../knowledge/charte-vaud-knowledge.json'),
   ...require('../knowledge/charte-vaud-rules.json'),
@@ -12,6 +15,44 @@ const allowedOrigins = new Set([
   'https://bot.serafino-resout.ch',
 ]);
 const requests = new Map();
+const voiceTokens = new Map();
+const audioCache = new Map();
+let voiceDay = '';
+let voiceCount = 0;
+
+function voiceResult(answer, sources) {
+  const voiceToken = randomUUID();
+  voiceTokens.set(voiceToken, { answer, until: Date.now() + 10 * 60_000 });
+  if (voiceTokens.size > 1000) {
+    for (const [token, value] of voiceTokens) if (value.until < Date.now()) voiceTokens.delete(token);
+  }
+  return { answer, sources, voiceToken };
+}
+
+function expired(res) {
+  const expiryFile = process.env.STELLA_EXPIRY_FILE || '/app/data/stella-expiry.txt';
+  let expiry;
+  try {
+    expiry = fs.readFileSync(expiryFile, 'utf8').trim();
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      res.status(503).json({ error: 'Stella est momentanément indisponible.' });
+      return true;
+    }
+  }
+  if (expiry) {
+    const deadline = Date.parse(expiry);
+    if (!Number.isFinite(deadline)) {
+      res.status(503).json({ error: 'Stella est momentanément indisponible.' });
+      return true;
+    }
+    if (Date.now() >= deadline) {
+      res.status(410).json({ error: 'La démonstration Stella est terminée.' });
+      return true;
+    }
+  }
+  return false;
+}
 
 function normalize(value) {
   return String(value || '').toLowerCase().normalize('NFD')
@@ -49,6 +90,7 @@ function headers(req, res, next) {
 }
 
 async function chat(req, res) {
+  if (expired(res)) return;
   const ip = req.ip || 'unknown';
   const now = Date.now();
   const windowStart = now - 60_000;
@@ -71,9 +113,9 @@ async function chat(req, res) {
   if (!facts.length) {
     const last = normalize(messages.at(-1).content).trim();
     if (/^(bonjour|bonsoir|salut|merci|que peux tu faire|qu est ce que tu peux faire)[\s!?.,-]*$/.test(last)) {
-      return res.json({ answer: 'Bonjour ! Je peux vous aider à consulter les fiches de cette démo sur les achats, les menus de saison et la pesée. Quel produit ou critère souhaitez-vous examiner ?', sources: [] });
+      return res.json(voiceResult('Bonjour ! Je peux vous aider à consulter les fiches de cette démo sur les achats, les menus de saison et la pesée. Quel produit ou critère souhaitez-vous examiner ?', []));
     }
-    return res.json({ answer: 'Je n’ai pas de fiche fiable sur ce point dans cette démo. Précisez le produit ou le critère concerné, ou vérifiez auprès de l’OCDC.', sources: [] });
+    return res.json(voiceResult('Je n’ai pas de fiche fiable sur ce point dans cette démo. Précisez le produit ou le critère concerné, ou vérifiez auprès de l’OCDC.', []));
   }
   if (!process.env.GEMINI_API_KEY) return res.status(503).json({ error: 'Conversation indisponible pour le moment.' });
 
@@ -108,11 +150,50 @@ async function chat(req, res) {
       if (sources.some(s => s.id === 'chef_sera_pilote')) parts.push('Cette fonction est proposée, non encore intégrée : relier les commandes à la Charte Vaud, puis tester caméra et balance pour documenter les déchets. Les prévisions et gains restent à mesurer en cuisine.');
       answer = parts.join(' ');
     }
-    res.json({ answer, sources });
+    res.json(voiceResult(answer, sources));
   } catch (error) {
     console.error('[charte-vaud-chat]', error.message);
     res.status(502).json({ error: 'Stella est momentanément indisponible.' });
   } finally { clearTimeout(timer); }
 }
 
-module.exports = { headers, chat, relevantFacts };
+async function voice(req, res) {
+  if (expired(res)) return;
+  if (!process.env.GEMINI_API_KEY) return res.status(503).json({ error: 'Voix indisponible.' });
+  const { voiceToken, sourceId } = req.body || {};
+  const saved = typeof voiceToken === 'string' ? voiceTokens.get(voiceToken) : null;
+  const fiche = typeof sourceId === 'string' ? knowledge.find(item => item.id === sourceId) : null;
+  const transcript = saved && saved.until > Date.now() ? saved.answer : fiche?.chef;
+  if (!transcript || transcript.length > 700) return res.status(400).json({ error: 'Réponse vocale inconnue.' });
+  const cached = audioCache.get(transcript);
+  if (cached) return res.type('audio/wav').send(cached);
+  const today = new Date().toISOString().slice(0, 10);
+  if (voiceDay !== today) { voiceDay = today; voiceCount = 0; }
+  if (voiceCount >= 100) return res.status(429).json({ error: 'Voix momentanément indisponible.' });
+  voiceCount += 1;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 30_000);
+  try {
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/interactions', {
+      method: 'POST', signal: controller.signal,
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': process.env.GEMINI_API_KEY },
+      body: JSON.stringify({ model: process.env.STELLA_TTS_MODEL || 'gemini-3.8-flash-tts',
+        input: [{ type: 'user_input', content: [{ type: 'text', text: transcript,
+          annotations: [{ type: 'speech_metadata', style: 'French (France) accent, warm clear female voice, moderate pace and precise articulation' }] }] }],
+        response_format: { type: 'audio' }, generation_config: { speech_config: [{ voice: 'Kore' }] } }),
+    });
+    if (!response.ok) throw new Error(`Gemini TTS HTTP ${response.status}`);
+    const data = await response.json();
+    const block = data.steps?.flatMap(step => step.content || []).filter(part => part.type === 'audio').at(-1);
+    const audio = block?.data ? Buffer.from(block.data, 'base64') : null;
+    if (!audio || audio.length < 44 || audio.length > 5_000_000 || audio.toString('ascii', 0, 4) !== 'RIFF') throw new Error('Gemini TTS invalid WAV');
+    if (audioCache.size >= 100) audioCache.delete(audioCache.keys().next().value);
+    audioCache.set(transcript, audio);
+    return res.type('audio/wav').send(audio);
+  } catch (error) {
+    console.error('[charte-vaud-voice]', error.message);
+    return res.status(502).json({ error: 'Voix momentanément indisponible.' });
+  } finally { clearTimeout(timer); }
+}
+
+module.exports = { headers, chat, voice, relevantFacts };

@@ -18,6 +18,8 @@ app.use(express.json({ limit: '2mb' }));
 app.post('/api/chat',        require('./api/chat'));
 app.options('/api/charte-vaud-chat', charteVaudChat.headers);
 app.post('/api/charte-vaud-chat', charteVaudChat.headers, charteVaudChat.chat);
+app.options('/api/charte-vaud-voice', charteVaudChat.headers);
+app.post('/api/charte-vaud-voice', charteVaudChat.headers, charteVaudChat.voice);
 app.get( '/api/chat-health', require('./api/chat-health'));
 app.post('/api/route',       require('./api/route'));
 app.post('/api/dispatch',    require('./api/dispatch'));
