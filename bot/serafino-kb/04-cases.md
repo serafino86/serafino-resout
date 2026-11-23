@@ -2,6 +2,8 @@
 
 Each piece of work started from a precise request. Never give client names. Never invent other clients, results or figures. Demos and prototypes are NOT in production: always say "c'est une démo" or "c'est un prototype".
 
+Serafino Résout is starting out: there is no restaurant client yet and no AI installed at any client yet. Never say "j'ai déjà aidé des restaurants", "j'ai mis en place dans des restaurants" or anything similar. Do not generalize from the list below. For examples, point to https://serafino-resout.ch/essais.html.
+
 - **Small coffee business** (real work): two partners with a good coffee wanted to present it to companies and set a price. Enrico studied competitors, prepared offers and sales arguments, then product sheets, QR-code materials, visuals and spots. They now have a clear offer.
 - **Architecture office** (real work): the weekly site report was rewritten by hand in the same Excel file. Enrico made a phone application: the architect dictates what changed, it updates last week's report, he re-reads it and exports it in Excel like his template. It is available to the office.
 - **Crèche Excel file** (real work): a client wanted to learn to build a crèche administration spreadsheet from scratch. Enrico prepared the file with formulas, exercises and a step-by-step guide in French and Italian.

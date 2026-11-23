@@ -30,10 +30,15 @@ const kb = fs.readdirSync(kbDir).filter((f) => f.endsWith('.md'))
   .map((f) => fs.readFileSync(path.join(kbDir, f), 'utf8')).join('\n');
 const prompt = chat.buildSystemPrompt('fr', '', { name: 'deep_case', compressionMode: 'expanded' });
 for (const [label, text] of [['kb', kb], ['prompt', prompt]]) {
-  for (const bad of [/\bLigne\b/, /\b249\b/, /\b119\b/, /r[ée]servation/i, /prise de messages/i, /dix premiers/i]) {
+  // Ligne 79/149 is back (site a8900cd, audit G1 23.11); Pro stays "sur demande", never 249/119
+  for (const bad of [/\b249\b/, /\b119\b/, /prise de messages/i, /dix premiers/i, /sans (autre )?service externe/i, /100 ?% local/i]) {
     assert.ok(!bad.test(text), `${label} contains ${bad}`);
   }
-  for (const good of ['390', '190', '120', '30']) assert.ok(text.includes(good), `${label} missing ${good}`);
+  for (const good of ['390', '190', '120', '30', '79 CHF par mois', '149 CHF par mois', 'sur demande', 'Groq']) {
+    assert.ok(text.includes(good), `${label} missing ${good}`);
+  }
 }
 assert.ok(!/PDF/.test(kb), 'kb mentions PDF');
+// audit G2: the prompt must forbid invented past clients
+assert.ok(prompt.includes('CLIENTS RULE'), 'prompt missing CLIENTS RULE');
 console.log('test-chat-offer: OK');
