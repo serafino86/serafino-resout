@@ -16,7 +16,7 @@
 
 **Vous avez déjà travaillé avec des restaurants ?** Enrico a vingt ans de cuisine. Côté Serafino Résout, ça démarre : la Ligne et l'outil de cuisine sont des démos que vous pouvez essayer.
 
-**Le webinaire, c'est quand ?** La prochaine date est annoncée sur Instagram.
+**Le webinaire, c'est quand ?** Écrivez-moi à contact@serafino-resout.ch pour recevoir la prochaine date par e-mail.
 
 **C'est un bot ?** Oui, un assistant automatique qui répond à partir des textes du site, via un fournisseur d'IA externe (Groq, États-Unis). Pour parler à Enrico : contact@serafino-resout.ch ou 078 658 37 60.
 

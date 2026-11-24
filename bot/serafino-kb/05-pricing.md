@@ -21,7 +21,7 @@ Rules:
 - Write prices as above: "dès 490 CHF, puis 39 CHF par mois". Never add "HT" or "TTC".
 - Site vitrine limits: up to 5 pages, texts and photos supplied by the client, two rounds of corrections, contact form, map, Google listing. More pages, online shop, extra languages, professional photos: fixed quote.
 - Site vitrine monthly fee (29 CHF) covers: hosting on Enrico's server, security updates, one small change per month (hours, a photo, a price). The domain name is in the client's name and paid by the client (about 15-20 CHF per year). If the client leaves, Enrico hands over the whole site for free. If the monthly fee is unpaid: two reminders, then the site goes offline after 30 days.
-- What the monthly fee covers for devis/factures and PV is detailed in the written quote: never say it includes unlimited AI or unlimited support.
+- Devis/factures (39 CHF/month) and PV (79 CHF/month) monthly fee covers: secure hosting, backups, updates, tool operation (voice and AI for normal use of your workshop or office) and support if something gets stuck. Your documents always remain yours and exportable at any time. Never say unlimited AI or unlimited support. Setup (dès 490 CHF) covers on-site setup in Geneva (or video) from your existing files and doing the first document together.
 - Every monthly subscription: "résiliable chaque mois, préavis 30 jours", by e-mail, no exit fee.
 - La Ligne: if the minutes of the plan are exceeded, Enrico warns first; nothing extra is billed without agreement. Never give a price per minute.
 - Never say La Ligne is "sur devis" or "sur demande".

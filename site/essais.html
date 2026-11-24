@@ -14,7 +14,7 @@
   <link rel="icon" href="./assets/photos/avatar.png">
   <link rel="preload" href="./assets/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/fonts/barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./assets/services.css?v=1124b">
+  <link rel="stylesheet" href="./assets/services.css?v=1124c">
   <link rel="stylesheet" href="./assets/motion.css?v=20261111b" media="(prefers-reduced-motion: no-preference)">
   <link rel="stylesheet" href="./assets/audit-ui.css?v=20261111b">
   <noscript><link rel="stylesheet" href="./assets/noscript.css?v=20261111b"></noscript>
@@ -35,7 +35,7 @@
 <a class="skip-link" href="#main-content">Aller au contenu</a>
 
 <!-- HEADER -->
-<header class="site-header"><a class="brand" href="/">Serafino <span class="brand-accent">Résout</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">Menu</button><nav id="site-nav" class="site-nav" aria-label="Navigation principale"><a href="/reservations.html">La Ligne</a><a href="/essais.html" aria-current="page">Réalisations</a><a href="/apprendre-ia.html">Apprendre l'IA</a><a href="/ia-chez-vous.html">IA chez vous</a><a href="/entreprises.html">Entreprises</a></nav></header>
+<header class="site-header"><a class="brand" href="/">Serafino <span class="brand-accent">Résout</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">Menu</button><nav id="site-nav" class="site-nav" aria-label="Navigation principale"><a href="/reservations.html">La Ligne</a><a href="/entreprises.html">Entreprises</a><a href="/essais.html" aria-current="page">Réalisations</a><a href="/ia-chez-vous.html">IA chez vous</a><a href="/apprendre-ia.html">Apprendre l'IA</a></nav></header>
 
 <main id="main-content">
 
@@ -49,22 +49,23 @@
 <section class="section">
 <h2>Pour les patrons</h2>
 <div class="cards">
-<article class="format">
+<article id="pv" class="format">
 <h3>Les comptes rendus de chantier</h3>
 <p><strong>La demande :</strong> un bureau d'architecture refaisait chaque semaine le compte rendu de chantier à la main, dans le même fichier Excel.</p>
 <p>J'ai fait une application pour le téléphone. Sur le chantier, l'architecte dicte ce qui a changé, et elle met à jour le compte rendu de la semaine passée. Il relit, puis il sort en Excel, pareil à son modèle, et en PDF. Elle est à disposition du bureau.</p>
 </article>
-<article class="format">
+<article id="artisan" class="format">
 <h3>Une application de chantier pour un artisan</h3>
 <p><strong>La demande :</strong> un atelier voulait des documents tous pareils, voir la marge de chaque chantier et passer moins de temps sur les devis.</p>
 <p>Je suis d'abord allé voir comment l'atelier travaille. Ensuite j'ai fait une application où tout part du numéro de chantier, les devis, les factures, les heures et la marge. On voit chantier par chantier si on gagne de l'argent. C'est un prototype.</p>
 </article>
-<article class="format">
+<article id="cuisine" class="format">
 <h3>Un outil de cuisine</h3>
 <p><strong>La demande :</strong> celle que j'avais comme chef en restauration collective, savoir où partent les pertes.</p>
 <p>L'outil suit ce qu'on a commandé, reçu et compté. Le cuisinier dit « un sac », l'outil compte les 2,5 kg. Les pertes sortent en kilos et en francs. C'est une démo.</p>
+<figure class="format-screen"><img src="./assets/screens/restaurant-dashboard-produits.png" alt="Aperçu de la démo de l'outil de cuisine : suivi des produits et des pertes" loading="lazy"><figcaption>Aperçu de la démo : suivi des produits et des pertes.</figcaption></figure>
 </article>
-<article class="format">
+<article id="cafe" class="format">
 <h3>Le travail pour une petite entreprise du café</h3>
 <p><strong>La demande :</strong> deux associés avec un bon café, qui cherchaient comment le présenter aux entreprises et à quel prix.</p>
 <p>J'ai étudié les concurrents, puis préparé les offres et les arguments de vente. Ensuite sont venus les fiches produits, les supports avec QR code, les visuels et des spots. Ils ont maintenant une offre claire à présenter.</p>

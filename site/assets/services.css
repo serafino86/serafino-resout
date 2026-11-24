@@ -326,3 +326,5 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 /* Réalisations: travaux secondaires repliés (24.11) */
 details > summary { cursor: pointer; font-size: 1.15rem; font-weight: 500; padding: 12px 0; }
 details > .cards { margin-top: var(--s4); }
+.format-screen { margin-top: var(--s3); width: 100%; }
+.format-screen img { display: block; width: 100%; border-radius: var(--r-sm); border: 1px solid var(--line); }

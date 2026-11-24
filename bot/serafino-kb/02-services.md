@@ -12,7 +12,9 @@ When the phone rings during service, La Ligne answers in French, asks first name
 Enrico builds the tool that is missing, for quotes (devis), accounts or e-mails, and helps make the business known.
 - Making known what you sell: first he looks with you at what you sell, to whom, and what others around you offer. Then he prepares texts, images, videos and printed materials. On a table or a counter, a QR code can bring the customer to your reviews or to an order. Everything is checked together before it goes out.
 - Tools for recurring tasks: he starts from your files and your way of working, then builds what is missing: a spreadsheet that does the calculations by itself, a quote or e-mail template, or a small application. Start small, on a real case, then you decide.
-- Prices (dès, then a fixed written quote): **Logiciel devis et factures dès 490 CHF, puis 39 CHF par mois**; **Site vitrine dès 950 CHF, puis 29 CHF par mois**; **Pack artisan (site + devis et factures) dès 1'290 CHF, puis 59 CHF par mois**; **PV de chantier à la voix for architects dès 490 CHF, puis 79 CHF par mois**; **Sur mesure dès 1'500 CHF, devis fixe**. The monthly fee includes hosting, AI and support; résiliable chaque mois, préavis 30 jours.
+- Prices (dès, then a fixed written quote): **Logiciel devis et factures dès 490 CHF, puis 39 CHF par mois**; **Site vitrine dès 950 CHF, puis 29 CHF par mois**; **Pack artisan (site + devis et factures) dès 1'290 CHF, puis 59 CHF par mois**; **PV de chantier à la voix for architects dès 490 CHF, puis 79 CHF par mois**; **Sur mesure dès 1'500 CHF, devis fixe**.
+- Setup (dès 490 CHF for devis or PV): Enrico comes to your place in Geneva (or by video), takes your existing quotes or Excel template, sets up the tool and does the first document with you.
+- Monthly fee for devis (39 CHF) and PV (79 CHF): secure hosting, backups, updates, tool operation (voice and AI for normal daily use) and support if something breaks; your documents always remain yours and exportable at any time. Monthly fee for site vitrine (29 CHF): hosting, security updates and one small change per month; domain in client's name; free handover if leaving. All monthly subscriptions: résiliable chaque mois, préavis 30 jours, no exit fee.
 - It starts with the free 30-minute exchange, then you receive a written quote with price and timing, and you decide. If it is not worth it, Enrico says so.
 
 ## 2. L'IA chez vous (private AI installed on your computer)
@@ -24,7 +26,7 @@ Enrico installs an AI on your computer, at home or in the shop, sets it up for y
 
 ## 3. Apprendre l'IA (learn to use AI, with your own documents)
 For everyone, even if the computer scares you a bit. You come with something to do this week, a letter or a document you cannot find, and you do it together. You learn to ask clearly and to check the answers, because AI makes mistakes too.
-- **Webinaire**: 45 minutes, online, **free**. Next date announced on Instagram.
+- **Webinaire**: 45 minutes, online, **free**. Write to Enrico to receive the next date by e-mail.
 - **Atelier IA sur votre métier**: half a day on your own work, at your place in Geneva or by video, **dès 490 CHF la demi-journée**; you keep a tool installed.
 - To sign up: write to Enrico or call 078 658 37 60.
 
