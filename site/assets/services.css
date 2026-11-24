@@ -346,3 +346,8 @@ details > .cards { margin-top: var(--s4); }
 .audio-demo audio { width: 100%; max-width: 520px; }
 .audio-transcript summary { font-size: 14px; color: var(--accent); padding: 4px 0; }
 .audio-transcript p { margin-top: var(--s2); font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+/* Deux vidéos Serafino côte à côte (entreprises.html, 24.11) */
+.videos-duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 320px)); justify-content: center; gap: var(--s5); }
+.videos-duo figure { margin: 0; text-align: center; }
+.videos-duo .frame-video { max-width: 320px; }
