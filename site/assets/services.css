@@ -326,13 +326,21 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .passe.on .bon-n, .passe.on .bon::after { border-color: transparent; color: transparent; }
 .passe.on .bon-desc { color: transparent; }
 
-/* Réalisations: travaux secondaires repliés (24.11) */
+/* Réalisations: travaux secondaires repliés + grille 2 colonnes lisible (24.11) */
 details > summary { cursor: pointer; font-size: 1.15rem; font-weight: 500; padding: 12px 0; }
 details > .cards { margin-top: var(--s4); }
+@media (min-width: 760px) { .cards-realisations { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); } }
 .format-screen { margin-top: var(--s3); width: 100%; }
 .format-screen img { display: block; width: 100%; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.format-screen-phone img { max-width: 320px; margin-inline: auto; }
 
-/* Lecteur audio demo Ligne (reservations.html, 24.11) */
+/* Lecteur audio + capture app demo Ligne (reservations.html, 24.11) */
+.ligne-demo-grid { display: grid; gap: var(--s4); align-items: start; }
+@media (min-width: 860px) {
+  .ligne-demo-grid { grid-template-columns: minmax(0, 1.25fr) minmax(260px, 340px); }
+}
+.ligne-demo-screen { margin: 0; }
+.ligne-demo-screen img { display: block; width: 100%; max-width: 340px; margin-inline: auto; border-radius: var(--r-frame); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .audio-demo { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-frame); padding: var(--s4); display: flex; flex-direction: column; gap: var(--s3); }
 .audio-demo-title { font-size: 15px; color: var(--text); }
 .audio-demo audio { width: 100%; max-width: 520px; }
