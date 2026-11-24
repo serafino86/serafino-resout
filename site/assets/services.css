@@ -309,8 +309,8 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
   .bon { border-top: 10px solid #9A9DA1; padding-top: 18px; }
 }
 .passe.on .passe-stage { height: 100vh; background: #0D0C0B; }
-/* 24.11: la scena 3D occupa una sola schermata (prima 250vh di scorrimento). passe.js legge l'avanzamento come 0 e resta sull'inquadratura d'apertura. */
-.passe.dolly .passe-stage { height: 100vh; }
+.passe.dolly { height: 250vh; }
+.passe.dolly .passe-stage { position: sticky; top: 0; height: 100vh; }
 .passe.on .passe-text { z-index: 2; display: grid; grid-template-columns: minmax(0, 46ch) auto; column-gap: 40px; align-items: end; }
 .passe.on .passe-kicker, .passe.on h1 { grid-column: 1 / -1; }
 .passe.on h1 { max-width: 34ch; font-size: min(3vw, 4.6vh); }
