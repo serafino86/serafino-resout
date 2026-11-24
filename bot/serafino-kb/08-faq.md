@@ -1,6 +1,6 @@
 # Serafino Résout - FAQ
 
-**Qu'est-ce que vous proposez ?** La Ligne pour le téléphone (79 CHF par mois artisan, 149 CHF par mois restaurant, Pro sur demande), un outil pour votre entreprise (sur devis), l'IA installée chez vous (dès 390 CHF, matériel non compris), et apprendre l'IA (webinaire gratuit, atelier 190 CHF par personne, leçon privée 120 CHF).
+**Qu'est-ce que vous proposez ?** La Ligne pour le téléphone (79 CHF par mois artisan, 149 CHF par mois restaurant, Pro dès 249 CHF par mois), le logiciel devis et factures (dès 490 CHF, puis 39 CHF par mois), le site vitrine (dès 690 CHF, puis 29 CHF par mois), les deux ensemble (dès 990 CHF, puis 59 CHF par mois), le PV de chantier pour les architectes (dès 490 CHF, puis 79 CHF par mois), l'atelier IA sur votre métier (dès 490 CHF la demi-journée), un outil sur mesure (dès 1'500 CHF, devis fixe) et un webinaire gratuit.
 
 **Comment on commence ?** Par un échange de 30 minutes, gratuit, chez vous si vous êtes à Genève, sinon en visio.
 
@@ -8,7 +8,7 @@
 
 **Mon ordinateur suffit ?** Enrico regarde votre machine avant de commencer. Si elle ne suffit pas, il vous le dit.
 
-**La Ligne coûte combien ?** 79 CHF par mois pour un artisan, 149 CHF par mois pour un restaurant, Pro sur demande. Sans engagement, 30 jours de préavis.
+**La Ligne coûte combien ?** 79 CHF par mois pour un artisan, 149 CHF par mois pour un restaurant, Pro dès 249 CHF par mois. Résiliable chaque mois, préavis 30 jours.
 
 **Il y a un abonnement pour l'IA chez vous ?** Non. Vous payez l'installation, l'ordinateur s'il faut en changer, et le courant.
 

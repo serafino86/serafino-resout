@@ -30,11 +30,11 @@ const kb = fs.readdirSync(kbDir).filter((f) => f.endsWith('.md'))
   .map((f) => fs.readFileSync(path.join(kbDir, f), 'utf8')).join('\n');
 const prompt = chat.buildSystemPrompt('fr', '', { name: 'deep_case', compressionMode: 'expanded' });
 for (const [label, text] of [['kb', kb], ['prompt', prompt]]) {
-  // Ligne 79/149 is back (site a8900cd, audit G1 23.11); Pro stays "sur demande", never 249/119
-  for (const bad of [/\b249\b/, /\b119\b/, /prise de messages/i, /dix premiers/i, /sans (autre )?service externe/i, /100 ?% local/i]) {
+  // price grid 24.11: Pro dès 249, old 390/190/120/119, per-minute and "sur demande" gone
+  for (const bad of [/\b119\b/, /\b(390|190|120) CHF/, /0,15/, /sur demande\b(?!")/i, /quand vous voulez/i, /prise de messages/i, /dix premiers/i, /sans (autre )?service externe/i, /100 ?% local/i]) {
     assert.ok(!bad.test(text), `${label} contains ${bad}`);
   }
-  for (const good of ['390', '190', '120', '30', '79 CHF par mois', '149 CHF par mois', 'sur demande', 'Groq']) {
+  for (const good of ['79 CHF par mois', '149 CHF par mois', 'dès 249 CHF par mois', 'dès 490 CHF, puis 39 CHF par mois', 'dès 690 CHF, puis 29 CHF par mois', 'dès 990 CHF, puis 59 CHF par mois', 'dès 490 CHF, puis 79 CHF par mois', 'dès 490 CHF la demi-journée', "1'500 CHF", 'préavis 30 jours', 'Groq']) {
     assert.ok(text.includes(good), `${label} missing ${good}`);
   }
 }
