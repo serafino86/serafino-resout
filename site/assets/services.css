@@ -274,6 +274,13 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
 .passe-kicker { font-size: 15px; color: var(--muted-inv); }
 .passe h1 { margin-top: var(--s3); max-width: 30ch; font-size: clamp(2.4rem, 4.6vw, 5.6rem); line-height: .98; letter-spacing: -0.035em; text-wrap: balance; }
 .passe h1 span { display: block; }
+.passe-kicker { display: flex; align-items: center; gap: 12px; }
+.passe-photo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; }
+.passe-cta { margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: 12px; pointer-events: auto; }
+.passe-cta .btn { background: var(--text-inv); border-color: var(--text-inv); color: var(--text); }
+.passe-cta .btn:hover { background: var(--accent-inv); border-color: var(--accent-inv); }
+.passe-cta .btn-outline { border-color: var(--muted-inv); color: var(--text-inv); }
+@media (max-width: 700px) { .passe h1 { font-size: 2rem; } .passe-cta a { width: 100%; } }
 .passe-sub { margin-top: var(--s4); max-width: 46ch; font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.45; color: var(--muted-inv); }
 .passe-bons { position: relative; z-index: 1; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2.4vw, 40px); padding-top: 12px; }
 .passe-bons::before {
@@ -302,10 +309,20 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
   .bon { border-top: 10px solid #9A9DA1; padding-top: 18px; }
 }
 .passe.on .passe-stage { height: 100vh; background: #0D0C0B; }
-.passe.dolly { height: 250vh; }
-.passe.dolly .passe-stage { position: sticky; top: 0; height: 100vh; }
+/* 24.11: la scena 3D occupa una sola schermata (prima 250vh di scorrimento). passe.js legge l'avanzamento come 0 e resta sull'inquadratura d'apertura. */
+.passe.dolly .passe-stage { height: 100vh; }
+.passe.on .passe-text { z-index: 2; display: grid; grid-template-columns: minmax(0, 46ch) auto; column-gap: 40px; align-items: end; }
+.passe.on .passe-kicker, .passe.on h1 { grid-column: 1 / -1; }
+.passe.on h1 { max-width: 34ch; font-size: min(3vw, 4.6vh); }
+.passe.on .passe-stage { padding-top: clamp(16px, 3vh, 40px); }
+.passe.on .passe-sub { font-size: 1.05rem; }
+.passe.on .passe-photo { width: 44px; height: 44px; }
 .passe.on .passe-bons { position: absolute; inset: 0; display: block; padding: 0; }
 .passe.on .passe-bons::before { content: none; }
 .passe.on .bon, .passe.on .passe-bons li .bon { position: absolute; left: 0; top: 0; padding: 0; color: transparent; background: none; box-shadow: none; transform: none; transition: none; }
 .passe.on .bon-n, .passe.on .bon::after { border-color: transparent; color: transparent; }
 .passe.on .bon-desc { color: transparent; }
+
+/* Réalisations: travaux secondaires repliés (24.11) */
+details > summary { cursor: pointer; font-size: 1.15rem; font-weight: 500; padding: 12px 0; }
+details > .cards { margin-top: var(--s4); }
