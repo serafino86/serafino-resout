@@ -252,8 +252,11 @@ a.door:hover::after, a.door:focus-visible::after, .next-door a:hover::after, .ne
   .section > figure .frame-video { max-width: none; }
 }
 .section-cartone { padding-block: clamp(24px, 4vw, 48px); }
-.section.section-cartone:has(> .frame-video) { display: block; }
-.section.section-cartone > .frame-video { max-width: 360px; margin-inline: auto; }
+.section.section-cartone:has(> .frame-video),
+.section.section-cartone:has(> .video-chi-sono) { display: block; }
+.section.section-cartone > .frame-video,
+.section.section-cartone > .video-chi-sono { max-width: 340px; margin-inline: auto; text-align: center; }
+.ar-916 { --ar: 9 / 16; }
 
 /* ── HERO «LE PASSE» (home). Questa è la versione completa senza JS/WebGL e su telefono: sbarra inox in CSS e bon di carta.
    Con la scena 3D (passe.js, solo schermi ≥ 860px) .passe prende la classe .on e i bon diventano zone cliccabili trasparenti sopra il canvas. */

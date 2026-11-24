@@ -27,7 +27,7 @@
       }
     });
   }, { threshold: [0, 0.5] });
-  document.querySelectorAll('video').forEach(function (v) { io.observe(v); });
+  document.querySelectorAll('video[muted]').forEach(function (v) { io.observe(v); });
 
   // Inclinazione prospettica che segue il puntatore (porte e cornici video), solo con mouse. Gli angoli vanno in variabili CSS.
   if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
