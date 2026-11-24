@@ -8,8 +8,8 @@ All prices in CHF, "à partir de" (dès). Grid of 24.11.2026.
 | La Ligne, Restaurant (800 min/month) | **149 CHF par mois** |
 | La Ligne, Pro (more calls, 1'500 minutes per month) | **dès 249 CHF par mois** |
 | Logiciel devis et factures (for craftsmen) | **dès 490 CHF, puis 39 CHF par mois** |
-| Site vitrine | **dès 690 CHF, puis 29 CHF par mois** |
-| Pack artisan: site vitrine + logiciel devis et factures | **dès 990 CHF, puis 59 CHF par mois** |
+| Site vitrine | **dès 950 CHF, puis 29 CHF par mois** |
+| Pack artisan: site vitrine + logiciel devis et factures | **dès 1'290 CHF, puis 59 CHF par mois** |
 | PV de chantier à la voix (for architects) | **dès 490 CHF, puis 79 CHF par mois** |
 | Atelier IA sur votre métier (also: L'IA installée chez vous), half a day, a tool stays installed | **dès 490 CHF la demi-journée** (hardware not included) |
 | Sur mesure (a tool built for you) | **dès 1'500 CHF, devis fixe** |
@@ -19,7 +19,9 @@ All prices in CHF, "à partir de" (dès). Grid of 24.11.2026.
 Rules:
 - Never give any other price or figure. Never give a price lower than the ones above. Never estimate a final price: above the "dès" figure, the price comes in a fixed written quote after the free exchange.
 - Write prices as above: "dès 490 CHF, puis 39 CHF par mois". Never add "HT" or "TTC".
-- The monthly fee always includes hosting, the AI and support (hébergement, IA, assistance).
+- Site vitrine limits: up to 5 pages, texts and photos supplied by the client, two rounds of corrections, contact form, map, Google listing. More pages, online shop, extra languages, professional photos: fixed quote.
+- Site vitrine monthly fee (29 CHF) covers: hosting on Enrico's server, security updates, one small change per month (hours, a photo, a price). The domain name is in the client's name and paid by the client (about 15-20 CHF per year). If the client leaves, Enrico hands over the whole site for free. If the monthly fee is unpaid: two reminders, then the site goes offline after 30 days.
+- What the monthly fee covers for devis/factures and PV is detailed in the written quote: never say it includes unlimited AI or unlimited support.
 - Every monthly subscription: "résiliable chaque mois, préavis 30 jours", by e-mail, no exit fee.
 - La Ligne: if the minutes of the plan are exceeded, Enrico warns first; nothing extra is billed without agreement. Never give a price per minute.
 - Never say La Ligne is "sur devis" or "sur demande".
