@@ -105,7 +105,7 @@ function buildSystemPrompt(language, memory, route) {
     `IMPORTANT: Always respond in the language specified above. Never switch to another language. REMINDER: ${config.promptInstruction}`,
     'The knowledge base below is canonical and written in English. Use it as the source of truth, and translate its facts naturally into the requested response language.',
     'You are the assistant for Serafino Résout. Serafino is the working alter ego of Enrico La Noce, a chef for events and collective catering with 20 years in professional kitchens, based in Geneva, who tests AI at home.',
-    'Serafino Résout has exactly FOUR offers: (1) La Ligne: a telephone line that answers calls when the restaurant or craftsman cannot, takes the request and sends it to their phone; monthly subscription: Artisan 79 CHF par mois (400 minutes), Restaurant 149 CHF par mois (800 minutes), Pro dès 249 CHF par mois; résiliable chaque mois, préavis 30 jours; if minutes are exceeded Enrico warns first, nothing extra without agreement; demo at 022 510 55 86; (2) Pour votre entreprise: Logiciel devis et factures dès 490 CHF puis 39 CHF par mois, Site vitrine dès 690 CHF puis 29 CHF par mois, Pack artisan (site + devis et factures) dès 990 CHF puis 59 CHF par mois, PV de chantier for architects dès 490 CHF puis 79 CHF par mois, Sur mesure dès 1\'500 CHF devis fixe; (3) L\'IA chez vous / Atelier IA sur votre métier: half a day, a tool stays installed, dès 490 CHF la demi-journée, hardware not included; (4) Apprendre l\'IA: free 45-minute webinar, and the same Atelier IA sur votre métier.',
+    'Serafino Résout has exactly FOUR offers: (1) La Ligne: a telephone line that answers calls when the restaurant or craftsman cannot, takes the request and sends it to their phone; monthly subscription: Artisan 79 CHF par mois (400 minutes), Restaurant 149 CHF par mois (800 minutes), Pro dès 249 CHF par mois (1\'500 minutes); résiliable chaque mois, préavis 30 jours; if minutes are exceeded Enrico warns first, nothing extra without agreement; demo at 022 510 55 86; (2) Pour votre entreprise: Logiciel devis et factures dès 490 CHF puis 39 CHF par mois, Site vitrine dès 690 CHF puis 29 CHF par mois, Pack artisan (site + devis et factures) dès 990 CHF puis 59 CHF par mois, PV de chantier for architects dès 490 CHF puis 79 CHF par mois, Sur mesure dès 1\'500 CHF devis fixe; (3) L\'IA chez vous / Atelier IA sur votre métier: half a day, a tool stays installed, dès 490 CHF la demi-journée, hardware not included; (4) Apprendre l\'IA: free 45-minute webinar, and the same Atelier IA sur votre métier.',
     'PRICE GRID RULE: only the prices above exist, all "dès" (à partir de), in CHF. Every monthly fee includes hosting, AI and support and is "résiliable chaque mois, préavis 30 jours". Never give a lower price, a per-minute price or a final estimate: above the "dès" figure, a fixed written quote follows the free exchange.',
     'LIGNE PRICE RULE: when asked the price of La Ligne, always answer "79 CHF par mois (Artisan) ou 149 CHF par mois (Restaurant), Pro dès 249 CHF par mois". La Ligne is a monthly subscription: never say there is no subscription, never say La Ligne is "sur devis" or "sur demande". For any offer or price not listed here, never invent a figure: refer to contact@serafino-resout.ch.',
     'CLIENTS RULE: Serafino Résout is starting out. Never claim past clients or past installations: never say "j\'ai déjà aidé des restaurants", "j\'ai mis en place dans des restaurants", "déjà installé chez", or similar. There is no restaurant client yet and no AI installed at any client yet. If asked about clients or experience with restaurants, say honestly that Enrico has 20 years in professional kitchens, that the Ligne and the kitchen tool are demos you can try, and that examples are on https://serafino-resout.ch/essais.html.',
@@ -150,7 +150,16 @@ function sanitizeReply(text) {
     .replace(/point(?:s)? de friction opérationnel(?:le)?(?:s)?/gi, 'ce qui coince')
     .replace(/problème(?:s)? opérationnel(?:le)?(?:s)?/gi, 'problème concret')
     .replace(/levier(?:s)? stratégique(?:s)?/gi, 'levier concret')
-    .replace(/enjeu(?:x)? clé(?:s)?/gi, 'enjeu principal');
+    .replace(/enjeu(?:x)? clé(?:s)?/gi, 'enjeu principal')
+    // Chat widget shows plain text: drop markdown bold/italic markers
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    // Enrico works alone: plural "nous" -> "je" for the common verbs
+    .replace(/\b([Nn])ous (propos|install|ador|fais|cré|configur|accompagn|offr|réalis)(?:ons)\b/g, (m, n, v) => {
+      const je = { propos: 'propose', install: 'installe', ador: 'adore', fais: 'fais', cré: 'crée', configur: 'configure', accompagn: 'accompagne', offr: 'offre', réalis: 'réalise' }[v];
+      const w = /^[aeiouéèh]/i.test(je) ? `j'${je}` : `je ${je}`;
+      return n === 'N' ? w.charAt(0).toUpperCase() + w.slice(1) : w;
+    });
   // Capitalise first letter if we stripped the opener
   if (t !== before) t = t.charAt(0).toUpperCase() + t.slice(1);
   return t;
@@ -790,4 +799,5 @@ module.exports = async function handler(req, res) {
 };
 
 module.exports.shouldOfferEmail = shouldOfferEmail;
+module.exports.sanitizeReply = sanitizeReply;
 module.exports.buildSystemPrompt = buildSystemPrompt;

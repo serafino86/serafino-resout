@@ -42,3 +42,9 @@ assert.ok(!/PDF/.test(kb), 'kb mentions PDF');
 // audit G2: the prompt must forbid invented past clients
 assert.ok(prompt.includes('CLIENTS RULE'), 'prompt missing CLIENTS RULE');
 console.log('test-chat-offer: OK');
+
+// 24.11: chat shows plain text and Enrico works alone (no ** and no "nous" verbs)
+assert.strictEqual(chat.sanitizeReply('Nous proposons **La Ligne**.'), 'Je propose La Ligne.');
+assert.strictEqual(chat.sanitizeReply('Ici nous installons tout.'), "Ici j'installe tout.");
+assert.ok(fs.readFileSync(path.join(__dirname, '../serafino-kb/05-pricing.md'), 'utf8').includes("1'500 minutes"));
+console.log('test-chat-sanitize: OK');

@@ -6,7 +6,7 @@ All prices in CHF, "à partir de" (dès). Grid of 24.11.2026.
 |---|---|
 | La Ligne, Artisan (400 min/month) | **79 CHF par mois** |
 | La Ligne, Restaurant (800 min/month) | **149 CHF par mois** |
-| La Ligne, Pro (more calls, minutes agreed together) | **dès 249 CHF par mois** |
+| La Ligne, Pro (more calls, 1'500 minutes per month) | **dès 249 CHF par mois** |
 | Logiciel devis et factures (for craftsmen) | **dès 490 CHF, puis 39 CHF par mois** |
 | Site vitrine | **dès 690 CHF, puis 29 CHF par mois** |
 | Pack artisan: site vitrine + logiciel devis et factures | **dès 990 CHF, puis 59 CHF par mois** |

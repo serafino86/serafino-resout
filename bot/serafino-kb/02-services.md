@@ -4,7 +4,7 @@ Motto of the site: "Le travail reste humain. Le désordre passe à la machine." 
 
 ## La Ligne (telephone line for restaurants and craftsmen) - monthly subscription
 When the phone rings during service, La Ligne answers in French, asks first name, number of people, day and time, and sends the request to the owner's phone; the owner confirms or refuses. The owner keeps his number: calls he does not take go to the line. For a craftsman it notes the need, the address and the urgency.
-- **Artisan: 79 CHF par mois** (400 minutes of calls per month). **Restaurant: 149 CHF par mois** (800 minutes). **Pro: dès 249 CHF par mois** (for busier houses, minutes agreed together).
+- **Artisan: 79 CHF par mois** (400 minutes of calls per month). **Restaurant: 149 CHF par mois** (800 minutes). **Pro: dès 249 CHF par mois** (for busier houses, 1'500 minutes of calls per month).
 - Sans engagement: résiliable chaque mois, préavis 30 jours, by e-mail, no exit fee. If the minutes of the plan are exceeded, Enrico warns first, nothing extra is billed without agreement. Enrico installs it himself on your number.
 - Demo: call 022 510 55 86 with the demo app open. It is a demo, no message is sent to a customer. No restaurant uses it in production yet.
 
